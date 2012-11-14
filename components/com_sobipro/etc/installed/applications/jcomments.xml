@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SobiProApp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://xml.sigsiu.net/SobiPro/application.xsd">
+  <name>jComments Integration</name>
+  <id>jcomments</id>
+  <authorName>Sigsiu.NET GmbH</authorName>
+  <authorEmail>sobi@sigsiu.net</authorEmail>
+  <authorUrl>http://www.Sigsiu.NET/</authorUrl>
+  <copyright>Copyright (C) 2006-2012 Sigsiu.NET GmbH</copyright>
+  <license>GNU General Public License v3</license>
+  <creationDate>2012-03-21</creationDate>
+  <type>application</type>
+  <version>1.0</version>
+  <description>This application integrates jComments component into SobiPro and allows adding comments to SobiPro entries.</description>
+  <language>
+    <file lang="en_GB">en-GB.SpApp.jcomments.ini</file>
+    <file lang="de_DE">de-DE.SpApp.jcomments.ini</file>
+    <file lang="sv_SE">sv-SE.SpApp.jcomments.ini</file>
+    <file lang="hr_HR">hr-HR.SpApp.jcomments.ini</file>
+    <file lang="hr_HR">pl-PL.SpApp.jcomments.ini</file>
+  </language>
+  <files path="home:.">
+    <file>init.php</file>
+    <file>description_en-GB.html</file>
+    <file>description_hr-HR.html</file>
+    <file>description_de-DE.html</file>
+  </files>
+  <files path="ctrl:adm">
+    <file>jcomments.php</file>
+  </files>
+  <actions>
+    <action>entry.details</action>
+    <action>category.view</action>
+    <action>section.view</action>
+    <action>list.*</action>
+    <action>adm_menu</action>
+  </actions>
+  <requirements>
+    <core version="1.0.0"/>
+  </requirements>
+  <installLog>
+    <actions>
+      <action>entry.details</action>
+      <action>category.view</action>
+      <action>section.view</action>
+      <action>list.*</action>
+      <action>adm_menu</action>
+    </actions>
+    <modified>
+      <file>
+        <path>/var/www/kienviet/components/com_sobipro/opt/plugins/jcomments/init.php</path>
+        <size>2241</size>
+        <checksum>529c463cc0439bce0b1d291b2d989de7</checksum>
+        <backup>/var/www/kienviet/components/com_sobipro/etc/installed/applications/jcomments/backup/init.php</backup>
+      </file>
+      <file>
+        <path>/var/www/kienviet/components/com_sobipro/opt/plugins/jcomments/description_en-GB.html</path>
+        <size>1109</size>
+        <checksum>27e58508308f082d37dd2e3cdc4927f0</checksum>
+        <backup>/var/www/kienviet/components/com_sobipro/etc/installed/applications/jcomments/backup/description_en-GB.html</backup>
+      </file>
+      <file>
+        <path>/var/www/kienviet/components/com_sobipro/opt/plugins/jcomments/description_hr-HR.html</path>
+        <size>1034</size>
+        <checksum>be8af1017e70e063f2237c115ff44beb</checksum>
+        <backup>/var/www/kienviet/components/com_sobipro/etc/installed/applications/jcomments/backup/description_hr-HR.html</backup>
+      </file>
+      <file>
+        <path>/var/www/kienviet/components/com_sobipro/opt/plugins/jcomments/description_de-DE.html</path>
+        <size>1157</size>
+        <checksum>cdd13b43f2714a3ca8b847bca5435d13</checksum>
+        <backup>/var/www/kienviet/components/com_sobipro/etc/installed/applications/jcomments/backup/description_de-DE.html</backup>
+      </file>
+      <file>
+        <path>/var/www/kienviet/components/com_sobipro/lib/ctrl/adm/jcomments.php</path>
+        <size>1902</size>
+        <checksum>54fc750f4037f498f869fed26a5b0392</checksum>
+        <backup>/var/www/kienviet/components/com_sobipro/etc/installed/applications/jcomments/backup/jcomments.php</backup>
+      </file>
+    </modified>
+    <files>
+      <file>/var/www/kienviet/language/en-GB/en-GB.SpApp.jcomments.ini</file>
+    </files>
+  </installLog>
+</SobiProApp>

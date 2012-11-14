@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form
+	addrulepath="/administrator/components/com_tvtproject/models/rules"
+>
+	<fieldset name="details">
+		<field
+			name="id"
+			type="hidden"
+		/>
+		<field
+			name="name"
+			type="text"
+			label="COM_TVTPROJECT_TVTPROJECT_FIELD_NAME_LABEL"
+			description="COM_TVTPROJECT_TVTPROJECT_FIELD_NAME_DESC"
+			size="40"
+			class="inputbox validate-name"
+			required="true"
+			default=""
+		/>
+                
+                <field
+			name="owner"
+			type="text"
+			label="COM_TVTPROJECT_TVTPROJECT_FIELD_OWNER_LABEL"
+			description="COM_TVTPROJECT_TVTPROJECT_FIELD_OWNER_DESC"
+			size="40"
+			class="inputbox"
+			required="true"
+			default=""
+		/>
+                
+                <field
+			name="publish"
+			type="text"
+			label="COM_TVTPROJECT_TVTPROJECT_FIELD_PUBLISH_LABEL"
+			description="COM_TVTPROJECT_TVTPROJECT_FIELD_PUBLISH_DESC"
+			size="40"
+			class="inputbox"
+			required="true"
+			default=""
+		/>
+                
+                <field
+			name="active"
+			type="text"
+			label="COM_TVTPROJECT_TVTPROJECT_FIELD_ACTIVE_LABEL"
+			description="COM_TVTPROJECT_TVTPROJECT_FIELD_ACTIVE_DESC"
+			size="40"
+			class="inputbox"
+			required="true"
+			default=""
+		/>
+	</fieldset>
+</form>

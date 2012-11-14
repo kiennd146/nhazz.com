@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+        <fields
+		name="request"
+		addfieldpath="/administrator/components/com_sobiprotag/models/fields"
+	>
+            <fieldset 
+                    name="section"
+                    label="COM_SOBIPROTAG_CONFIG_PROJECT_ID_LABEL"
+                    description="COM_SOBIPROTAG_CONFIG_PROJECT_ID_DESC"
+            >
+                <field name="FieldId" type="Field" label="COM_SOBIPROTAG_PROJECT_ID_LABEL"
+                description="COM_SOBIPROTAG_PROJECT_ID_DESC"
+                />
+            </fieldset>
+        </fields>
+</config>

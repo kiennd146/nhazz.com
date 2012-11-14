@@ -1,0 +1,56 @@
+.sobiproposts-table { width: 100%; border-collapse:collapse;}
+.sobiproposts-table-header { color: #111111;}
+.sobiproposts-table-header th { padding: 10px;font-weight:bold;}
+.sobiproposts-table tbody tr { background:#eeeeee;}
+.sobiproposts-table tbody tr:hover {background:#f9f9f9;}
+.sobiproposts-table tbody td { border-bottom:4px solid #bbbbbb;padding:10px;color:#111111;}
+#community-wrap div.project-box {
+    background-color: white;
+    border: 1px solid #DEDDDB;
+    float: left;
+    overflow: hidden;
+    padding: 13px 11px;
+    width: 245px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    height: 246px;
+    position: relative;
+}
+#community-wrap .control-project-tvtma{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    float: right;
+}
+#community-wrap .control-project-tvtma a{
+    float: right;
+}
+#community-wrap .projectBigImage {
+    float: left;
+    width: 185px;
+    height: 180px;
+}
+#community-wrap .projectSmallImage{
+    float: left;
+    width: 57px;
+    height: 58px;
+    margin-left: 3px;
+    margin-bottom: 3px;
+}
+#community-wrap div.projectName {
+    margin-top: 5px;
+}
+#community-wrap div.projectName a{
+    font-size: 13px;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+}
+#community-wrap .projectBigImage img {
+    width: 100%;
+    height: 100%;
+}
+#community-wrap .projectSmallImage img {
+    width: 100%;
+    height: 100%;
+}

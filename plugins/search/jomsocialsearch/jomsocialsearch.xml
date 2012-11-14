@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="search" method="upgrade">
+	<name>Jomsocial Search</name>
+	<author>ProgTutor dot Com</author>
+	<creationDate>August 2012</creationDate>
+	<copyright>GNU/GPLv2</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>luan.vu@tvtmarine.com</authorEmail>
+	<authorUrl>www.progtutor.com</authorUrl>
+	<version>1.1.2</version>
+	<description>Joomla Search for Community Component</description>
+	<files>
+		<filename plugin="jomsocialsearch">jomsocialsearch.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<languages>
+		<language tag="en-GB">languages/en-GB.plg_search_jomsocialsearch.ini</language>
+		<language tag="en-GB">languages/en-GB.plg_search_jomsocialsearch.sys.ini</language>
+		<language tag="vi-VN">languages/vi-VN.plg_search_jomsocialsearch.ini</language>
+		<language tag="vi-VN">languages/vi-VN.plg_search_jomsocialsearch.sys.ini</language>		
+	</languages>
+	
+	<config>
+		<fields name="params">
+
+			<fieldset name="basic">
+				<field name="search_limit" type="text"
+					default="50"
+					description="JFIELD_PLG_SEARCH_SEARCHLIMIT_DESC"
+					label="JFIELD_PLG_SEARCH_SEARCHLIMIT_LABEL"
+					size="5"
+				/>
+                                
+                                <field name="search_content" type="radio"
+					default="0"
+					description="JFIELD_PLG_SEARCH_ALL_DESC"
+					label="JFIELD_PLG_SEARCH_ALL_LABEL"
+				>
+					<option value="0">JOFF</option>
+					<option value="1">JON</option>
+				</field>
+			</fieldset>
+			
+		</fields>
+	</config>
+</extension>

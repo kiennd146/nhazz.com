@@ -1,0 +1,61 @@
+.dmt-social-links
+{
+	padding: 3px 0 0;/* Room for the hover effect */
+	margin: 0;
+	overflow: hidden;
+}
+
+	.dmt-social-links li
+	{
+		float: left;
+		line-height: 0;
+		list-style-type: none;
+		margin: 0 4px 4px 0;
+	}
+	
+	.dmt-icons-32 li
+	{
+		margin: 0 8px 8px 0;
+	}
+	
+	.dmt-social-links li:last-child
+	{
+		margin-right: 0;
+	}
+
+		.dmt-social-links li a
+		{
+			display: inline-block;
+			
+			background: 0;
+		}
+		
+		.dmt-social-links li a.icon16
+		{
+			height: 16px;
+			width: 16px;
+		}
+		
+		.dmt-social-links li a.icon32
+		{
+			height: 32px;
+			width: 32px;
+		}
+		
+			.dmt-social-links img
+			{
+				border: 0;
+				padding: 0;
+				margin: 0;
+			}
+			
+	.dmt-social-links a:hover
+	{
+		margin-top: -3px;
+		padding-bottom: 3px;
+		
+		transition: margin .2s ease, padding .2s ease;
+		-moz-transition: margin .2s ease, padding .2s ease;
+		-webkit-transition: margin .2s ease, padding .2s ease;
+		-o-transition: margin .2s ease, padding .2s ease;
+	}

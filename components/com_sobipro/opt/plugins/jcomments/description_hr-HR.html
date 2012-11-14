@@ -1,0 +1,15 @@
+<div style="margin: 20px; font-size: 13px;">
+Ovaj plugin integrira <a href="http://www.joomlatune.com" target="_blank">JComments</a> komponentu za komentare u SobiPro komponentu.
+<br/>
+<br/>
+Za prikaz komentara i obrasca za komentar u okviru pregleda detalja, dodajte slijedeći kod u vaš predložak za pregled detalja:
+
+<pre>
+        <b>&lt;</b><b><span style='color:#000080;'>xsl:value-of</span></b><span style='color:#006e28;'> select=</span><span style='color:#008080;'>&quot;jcomments&quot;</span><span style='color:#006e28;'> disable-output-escaping=</span><span style='color:#800000;'>&quot;yes&quot;</span><span style='color:#006e28;'> </span><b>/&gt;</b>
+</pre>
+Za prikaz broja komentara u V-Cardu upisa, dodajte ovaj kod u vaš V-Card predložak:
+<pre>
+        <b>&lt;</b><b><span style='color:#000080;'>xsl:value-of</span></b><span style='color:#006e28;'> select=</span><span style='color:#008080;'>&quot;jcomments&quot;</span><b>/&gt;</b>
+</pre>
+ Ovaj plugin ne zahtijeva dodatnu konfiguraciju u SobiPro komponenti
+</div>

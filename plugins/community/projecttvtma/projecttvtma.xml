@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5" type="plugin" group="community" method="upgrade">
+    <name>Dự án của tôi</name>
+    <author>Luan Vu</author>
+    <creationDate>August 2012</creationDate>
+    <copyright>Copyright (C) 2012. All rights reserved.</copyright>
+    <license>GPL 3.0</license>
+    <authorEmail>luan.vu@tvtmarine.com</authorEmail>
+    <authorUrl>www.ma.tvtmarine.com</authorUrl>
+    <version>1.0</version>
+    <isapplication>true</isapplication>
+    <description>
+        Displays project list of user
+    </description>
+    <languages>
+        <language tag="en-GB">en-GB.plg_community_projecttvtma.ini</language>
+        <language tag="vi-VN">vi-VN.plg_community_projecttvtma.ini</language>
+    </languages>
+    <files>
+        <file plugin="projecttvtma">projecttvtma.php</file>
+        <file>index.html</file>		
+        <filename plugin="projecttvtma">projecttvtma.php</filename>
+        <filename>index.html</filename>
+        <filename>fields.php</filename>
+        <filename>javascript.php</filename>
+        <filename>section.php</filename>
+        <folder>projecttvtma</folder>
+    </files>
+    <params>
+        <param name="dateformat" type="text" default="F jS, Y" label="Date Format" description="Here you can configure how dates are presented in this application" />			
+        <param name="coreapp" type="list" default="0" label="Core Application" description="Causes this application to not appear in the users applications list but it will allow this application to appear in the user profile automatically if selected.">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </param>
+    </params>
+	
+    <config>
+        <fields name="params">
+
+            <fieldset name="basic"  addfieldpath="/plugins/community/projecttvtma/">
+                <field name="coreapp" type="list"
+                       default="0"
+                       description="Causes this application to not appear in the users applications list but it will allow this application to appear in the user profile automatically if selected."
+                       label="Core Application">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>				
+                </field>
+                <field
+                name="sectionId"
+                type="Section"
+                label="Sobipro Section"
+                description="Sobipro Section" />
+                <field name="count" type="text"
+                       default="6"
+                       description="Number display" label="Count"
+				/>
+                <field
+                name="fieldID"
+                type="Fields"
+                label="Field"
+                size = "1"
+                multiple = "false"
+                description="Field" />
+                <field
+                name="imageId"
+                type="Fields"
+                label="Image"
+                size = "1"
+                multiple = "false"
+                description="Image" />
+                <field name="position" type="list" default="content" label="Position" description="Default position if you select this as core apps">
+					<option value="content">Main  content</option>
+					<option value="sidebar-top">Sidebar top</option>
+					<option value="sidebar-bottom">Sidebar bottom</option>
+				</field>
+            </fieldset>			
+			
+            <fieldset name="advanced">	
+                <field name="debug" type="radio" default="0" label="Debug" description="Flag to enable debug messages.">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </field>			
+            </fieldset>
+			
+        </fields>
+    </config>
+					
+</install>
+

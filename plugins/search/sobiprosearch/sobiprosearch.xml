@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="search" method="upgrade">
+	<name>Sobipro Search</name>
+	<author>Luan.vu</author>
+	<creationDate>August 2012</creationDate>
+	<copyright>Copyright (C) 2011 TVTMarine. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>luan.vu@tvtmarine.com</authorEmail>
+	<authorUrl>www.ma.tvtmarine.com</authorUrl>
+	<version>1.1.2</version>
+	<description>Joomla Search for SobiPro Component</description>
+	<files>
+		<filename plugin="sobiprosearch">sobiprosearch.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<languages>
+		<language tag="en-GB">languages/en-GB.plg_search_sobiprosearch.ini</language>
+		<language tag="en-GB">languages/en-GB.plg_search_sobiprosearch.sys.ini</language>
+		<language tag="vi-VN">languages/vi-VN.plg_search_sobiprosearch.ini</language>
+		<language tag="vi-VN">languages/vi-VN.plg_search_sobiprosearch.sys.ini</language>		
+	</languages>
+	
+	<config>
+		<fields name="params">
+
+			<fieldset name="basic">
+				<field name="search_limit" type="text"
+					default="50"
+					description="JFIELD_PLG_SEARCH_SEARCHLIMIT_DESC"
+					label="JFIELD_PLG_SEARCH_SEARCHLIMIT_LABEL"
+					size="5"
+				/>
+
+				<field name="catalog_pid" type="text"
+					default="1"
+					description="PLG_SEARCH_SOBIPROSEARCH_CATALOGPID_DESC"
+					label="PLG_SEARCH_SOBIPROSEARCH_CATALOGPID_LABEL"
+					size="5"
+				/>
+				
+				<field name="desc_id" type="text"
+					default=""
+					description="PLG_SEARCH_SOBIPROSEARCH_DESCID_DESC"
+					label="PLG_SEARCH_SOBIPROSEARCH_DESCID_LABEL"
+					size="5"
+				/>				
+
+				<field name="menu_itemid" type="text"
+					default=""
+					description="PLG_SEARCH_SOBIPROSEARCH_MENUITEMID_DESC"
+					label="PLG_SEARCH_SOBIPROSEARCH_MENUITEMID_LABEL"
+					size="5"
+				/>
+
+				<field name="interval" type="text"
+					default="60"
+					description="PLG_SEARCH_SOBIPROSEARCH_INTERVAL_DESC"
+					label="PLG_SEARCH_SOBIPROSEARCH_INTERVAL_LABEL"
+					size="10"
+				/>
+				
+				<field name="debug" type="list" default="0" label="Debug" description="Flag to enable debug messages.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				
+				<field name="sql_big_selects" type="list" default="0" label="SQL_BIG_SELECTS" description="Enable SQL_BIG_SELECTS.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				
+			</fieldset>
+			
+		</fields>
+	</config>
+</extension>

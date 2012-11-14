@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <fieldset
+	name="permissions"
+	label="JCONFIG_PERMISSIONS_LABEL"
+	description="JCONFIG_PERMISSIONS_DESC"
+    >
+	<field
+	    name="rules"
+	    type="rules"
+	    label="JCONFIG_PERMISSIONS_LABEL"
+	    class="inputbox"
+	    validate="rules"
+	    filter="rules"
+	    component="com_tvtma_user_presenter"
+	    section="component"
+		/>
+    </fieldset>
+    <fieldset name="basic" label="Community"  addfieldpath="/administrator/components/com_tvtma_user_presenter/models/fields">
+	<field
+	    name="fieldID"
+	    type="Profiles"
+	    label="Field"
+	    size = "5"
+	    description="Field display in profile box of user" />
+	<field
+	    name="limit"
+	    type="text"
+	    label="Limit on page"
+	    description="Limit user on page" />
+	<field
+	    name="metroId"
+	    type="Profiles"
+	    label="Metro"
+	    size = "5"
+	    description="Select field display in metro" />
+	
+    </fieldset>
+    <fieldset name="advance" label="Sobipro"  addfieldpath="/administrator/components/com_tvtma_user_presenter/models/fields">
+	<field
+	    name="sectionId"
+	    type="Section"
+	    label="Sobipro Section"
+	    description="Sobipro Section" />
+	<field
+	    name="sobiproField"
+	    type="Fields"
+	    label="Sobipro field"
+	    size = "1"
+	    multiple = "false"
+	    description="Field for project" />
+	<field
+	    name="imageField"
+	    type="Fields"
+	    label="Image field"
+	    size = "1"
+	    multiple = "false"
+	    description="Field display image" />
+    </fieldset>
+    
+</config>

@@ -1,0 +1,107 @@
+div.community-info .profile-avatar img{
+    box-shadow: 3px 3px 3px #333;
+    padding: 7px;
+    border: 3px solid #e1dfd1;
+    width: 150px;
+}
+div.community-info-profile {
+    font-size: 11px;
+    padding: 5px;
+}
+.profile-right-info {
+    font-size: 12px;
+}
+div.community-info-profile dd{
+    color: #222222;
+    font-size: 90%;
+    margin: 0 0 10px;
+    word-wrap: break-word;
+}
+
+div.community-info-profile dt {
+background: none repeat scroll 0 0 transparent;
+    color: #777777;
+    font-size: 90%;
+    line-height: normal;
+    padding: 0;
+}
+div.community-info-profile h3 {
+    display: none;
+}
+div.community-info-profile h4 {
+    border-bottom: 1px solid #666666;
+    margin: 10px;
+    color: #333333;
+    font-size: 90%;
+    font-weight: 700;
+    margin: 0;
+    padding: 0 0 5px;
+    font-size: 12px;
+}
+.profile-menu-box {
+    float: left;
+    width: 100%;
+}
+.profile-menu-box h1 {
+    text-align: center;
+    margin: 10px 0px 0px;
+    background: #e4e4e4;
+    padding: 5px;
+}
+.profile-avatar {
+    text-align: center;
+    
+}
+.like-button, .meLike {
+    
+}
+.like-snippet {
+    border: 1px solid #CCCCCC;
+    border-radius: 4px 4px 4px 4px;
+    display: block;
+    font-size: 11px;
+    height: 26px;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+}
+.like-button, .meLike {
+    border-radius: 3px 0 0 3px;
+    border-right: 1px solid #DEDEDE;
+}
+.community-info .like-button, .community-info .unlike-button, .community-info .dislike-button, .community-info .peepDislike, .community-info .peepLike, .community-info .meLike, .community-info .meDislike {
+    background: url("like-button-bg.png") repeat-x scroll 0 0 #ACD371 !important;
+    border-bottom: 1px solid #F1F1F1;
+    border-top: 1px solid #FFFFFF;
+    color: #555555;
+    display: block;
+    float: left;
+    font-weight: 700;
+    line-height: 24px;
+    margin: 0;
+    padding: 0 6px 0 22px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+.community-info .dislike-button, .community-info .meDislike  {
+    background-color: #F36B4E;
+    background-position: 0 -48px !important;
+    border-left: 1px solid #FFFFFF;
+    border-radius: 0 3px 3px 0;
+}
+#community_info_like_container {
+    float: right;
+    height: 35px;
+    line-height: 1;
+    margin-right: 8px;
+    padding: 0;
+}
+div.minimum {
+    text-align: left;
+}
+div.box-minimum {
+    text-align: right;
+}
+div.box-minimum a.zoom {
+    text-align: right;
+}

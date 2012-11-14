@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5" type="plugin" group="community" method="upgrade">
+    <name>Sản phẩm của tôi</name>
+    <author>Luan Vu</author>
+    <creationDate>August 2012</creationDate>
+    <copyright>Copyright (C) 2012. All rights reserved.</copyright>
+    <license>GPL 3.0</license>
+    <authorEmail>luan.vu@tvtmarine.com</authorEmail>
+    <authorUrl>www.ma.tvtmarine.com</authorUrl>
+    <version>1.0</version>
+    <isapplication>true</isapplication>
+    <description>
+        Displays a user's SobiPro entries
+    </description>
+    <languages>
+        <language tag="en-GB">en-GB.plg_community_sobiprotvtma.ini</language>
+        <language tag="vi-VN">vi-VN.plg_community_sobiprotvtma.ini</language>
+    </languages>
+    <files>
+        <file plugin="sobiprotvtma">sobiprotvtma.php</file>
+        <file>index.html</file>		
+        <filename plugin="sobiprotvtma">sobiprotvtma.php</filename>
+        <filename>index.html</filename>
+        <folder>sobiprotvtma</folder>
+    </files>
+    <params>
+        <param name="lsectionpid" type="text" default="1" description="List of Section Id (Pid), to show entries from, separted with ,." label="List of Section Id" />		
+        <param name="dateformat" type="text" default="F jS, Y" label="Date Format" description="Here you can configure how dates are presented in this application" />			
+        <param name="coreapp" type="list" default="0" label="Core Application" description="Causes this application to not appear in the users applications list but it will allow this application to appear in the user profile automatically if selected.">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </param>
+    </params>
+	
+    <config>
+        <fields name="params">
+
+            <fieldset name="basic">
+                <field name="lsectionpid" type="text"
+                       default="1"
+                       description="List of Section Id (Pid), to show entries from, separted with ,." label="List of Section Id"
+				/>
+                <field name="fieldnid" type="text"
+                       default="imagefield"
+                       description="Nid of image field" label="Image field"
+				/>
+                <field name="menu_itemid" type="text"
+                       default=""
+                       description="Menu Item Identification to set a the link target."
+                       label="Menu Item ID"
+				/>
+                <field name="coreapp" type="list"
+                       default="0"
+                       description="Causes this application to not appear in the users applications list but it will allow this application to appear in the user profile automatically if selected."
+                       label="Core Application">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>				
+                </field>
+                <field name="position" type="list" default="content" label="Position" description="Default position if you select this as core apps">
+					<option value="content">Main  content</option>
+					<option value="sidebar-top">Sidebar top</option>
+					<option value="sidebar-bottom">Sidebar bottom</option>
+				</field>
+            </fieldset>			
+			
+            <fieldset name="advanced">	
+                <field name="debug" type="radio" default="0" label="Debug" description="Flag to enable debug messages.">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </field>			
+            </fieldset>
+			
+        </fields>
+    </config>
+					
+</install>
+

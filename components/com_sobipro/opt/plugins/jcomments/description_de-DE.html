@@ -1,0 +1,15 @@
+<div style="margin: 20px; font-size: 13px;">
+Diese Applikation integriert die Kommentarsystem-Komponente <a href="http://www.joomlatune.com" target="_blank">JComments</a> in die SobiPro Komponente.
+<br/>
+<br/>
+Um die Kommentare und das Kommentarformular in der Detailansicht anzuzeigen füge den folgenden Kode in Dein Template für die Detailansicht entry/details.xsl ein:
+
+<pre>
+        <b>&lt;</b><b><span style='color:#000080;'>xsl:value-of</span></b><span style='color:#006e28;'> select=</span><span style='color:#008080;'>&quot;jcomments&quot;</span><span style='color:#006e28;'> disable-output-escaping=</span><span style='color:#800000;'>&quot;yes&quot;</span><span style='color:#006e28;'> </span><b>/&gt;</b>
+</pre>
+Um die Anuahl der Kommentare für einen Eintrag in der vCard anzuzeigen füge diesen Kode in Dein vCard Template common/vcard.xsl ein:
+<pre>
+        <b>&lt;</b><b><span style='color:#000080;'>xsl:value-of</span></b><span style='color:#006e28;'> select=</span><span style='color:#008080;'>&quot;jcomments&quot;</span><b>/&gt;</b>
+</pre>
+Diese Applikation benötigt keine weitere Konfiguration innerhalb der SobiPro Komponente.
+</div>

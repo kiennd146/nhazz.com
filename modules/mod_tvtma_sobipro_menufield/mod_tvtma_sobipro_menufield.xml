@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install SYSTEM "http://dev.joomla.org/xml/1.5/component-install.dtd">
+<install type="module" version="1.5.0" method="upgrade">
+	<name>TVTMA SobiPro Menu Module</name>
+	<creationDate>06 August 2012</creationDate>
+	<author>Tung Pham</author>
+	<authorEmail>tung.pham@tvtmarine.com</authorEmail>
+	<authorUrl>http://www.tvtmarine.com</authorUrl>
+	<copyright>Copyright (C) 2006-2011 TVTMarine.com</copyright>
+	<license>GNU General Public License v3</license>
+	<version>1.1</version>
+	<description>MOD_SOBIPRO_CAT_XML_DESCRIPTION</description>
+	<SobiPro>
+	  <requirements>
+	    <core version="1.0.0.1753"/>
+	  </requirements> 	
+	</SobiPro>
+	<files>
+		<filename module="mod_tvtma_sobipro_menufield">mod_tvtma_sobipro_menufield.php</filename>
+		<filename>helper.php</filename>
+		<filename>spelements.php</filename>
+		<filename>spform.php</filename>
+		<filename>view.php</filename>
+		<filename>index.html</filename>
+		<filename>tmpl/default.xsl</filename>
+                <filename>tmpl/cat_drop.xsl</filename>
+                <filename>tmpl/field.xsl</filename>
+		<filename>tmpl/index.html</filename>
+                <filename>includes/jquerymin.js</filename>
+                <filename>includes/drilldownmenu.js</filename>
+                <filename>includes/css/index.html</filename>
+                <filename>includes/css/drilldownmenu.css</filename>
+                <filename>includes/css/backbutton.jpg</filename>
+                <filename>includes/css/leftarrow.gif</filename>
+                <filename>includes/css/loader.gif</filename>
+                <filename>includes/css/right.gif</filename>
+	</files>
+	
+	<languages>
+		<language tag="en-GB">languages/en-GB/en-GB.mod_tvtma_sobipro_menufield.ini</language>
+		<language tag="en-GB">languages/en-GB/en-GB.mod_tvtma_sobipro_menufield.sys.ini</language>
+	</languages>
+	<config>
+		<fields name="params">
+			<fieldset name="basic" addfieldpath="/modules/mod_tvtma_sobipro_menufield/">
+				<field name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="PARAMMODULECLASSSUFFIX" />
+				<field name="SOBI_SELECT_SECTION" type="spform" msg="SOBI_SELECT_SECTION_EXPL" />
+				<field name="sid" type="spform" />
+				<field name="tplFile" type="spform" />
+				<field name="xmlDeb" type="list" default="0" label="SOBI_XML_DEB">
+					<option value="1">YES</option>
+					<option value="0">NO</option>
+				</field>
+                                <field name="listfield" type="spform" msg="SOBI_SELECT_FIELD_EXPL"/>
+                                <field name="fid" type="spform" />				
+			</fieldset>
+		</fields>
+	</config>
+	<params addpath="/modules/mod_tvtma_sobipro_menufield/">
+		<param name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="PARAMMODULECLASSSUFFIX" />
+		<param name="SOBI_SELECT_SECTION" type="spelements" msg="SOBI_SELECT_SECTION_EXPL" />
+		<!-- <param name="cid" type="spsection" msg="SOBI_SELECT_CATEGORY_EXPL" /> -->
+		<param name="sid" type="spelements" />
+		<param name="tplFile" type="spelements" />
+		<param name="xmlDeb" type="list" default="0" label="SOBI_XML_DEB">
+			<option value="1">YES</option>
+			<option value="0">NO</option>
+		</param>
+                <param name="listfield" type="spelements" msg="SOBI_SELECT_FIELD_EXPL" />
+                <param name="fid" type="spform" />				
+	</params>
+</install>

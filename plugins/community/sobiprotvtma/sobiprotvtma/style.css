@@ -1,0 +1,9 @@
+.sobiproposts-table { width: 100%; border-collapse:collapse;}
+.sobiproposts-table-header { color: #111111;}
+.sobiproposts-table-header th { padding: 10px;font-weight:bold;}
+.sobiproposts-table tbody tr { background:#eeeeee;}
+.sobiproposts-table tbody tr:hover {background:#f9f9f9;}
+.sobiproposts-table tbody td { border-bottom:4px solid #bbbbbb;padding:10px;color:#111111;}
+.sobiproposts-table tbody td img {
+    width: 50px;
+}

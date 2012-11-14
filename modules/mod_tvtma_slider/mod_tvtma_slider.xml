@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="2.5" client="site" method="upgrade">
+<name>TVTMA Slider</name>
+<creationDate>30 July 2012</creationDate>
+<author>Luan Vu</author>
+<authorEmail>luan.vu@tvtmarine.com</authorEmail>
+<authorUrl>http://www.tvtmarine.com</authorUrl>
+<copyright>Copyright (C) 2006-2011 TVTMarine.com</copyright>
+<license>GNU General Public License v3</license>
+<version>1.1.9</version>
+<description>TVTMA Slider use for Sobipro</description>
+<files>
+<filename>mod_tvtma_slider.xml</filename>
+<filename module="mod_tvtma_slider">mod_tvtma_slider.php</filename>
+<filename>index.html</filename>
+<filename>helper.php</filename>
+<filename>section.php</filename>
+<filename>fields.php</filename>
+<filename>javascript.php</filename>
+<filename>tmpl/default.php</filename>
+<filename>tmpl/index.html</filename>
+<folder>includes</folder>
+</files>
+<languages>
+		<language tag="en-GB">languages/en-GB/en-GB.mod_tvtma_slider.ini</language>
+		<language tag="en-GB">languages/en-GB/en-GB.mod_tvtma_slider.sys.ini</language>
+                
+                <language tag="vi-VN">languages/vi-VN/vi-VN.mod_tvtma_slider.ini</language>
+		<language tag="vi-VN">languages/vi-VN/vi-VN.mod_tvtma_slider.sys.ini</language>
+</languages>
+<config>
+		<fields name="params">
+			<fieldset name="basic" addfieldpath="/modules/mod_tvtma_slider/">
+				<field
+					name="sectionId"
+					type="Section"
+					label="MOD_TVTMA_SLIDER_SECTION_ID"
+					description="MOD_TVTMA_SLIDER_SECTION_ID_DESC" />
+                                <field
+                                name="width"
+                                type="text"
+                                label="MOD_TVTMA_SLIDER_WIDTH"
+                                description="MOD_TVTMA_SLIDER_WIDTH_DESC" />
+                                
+                                <field
+                                name="height"
+                                type="text"
+                                label="MOD_TVTMA_SLIDER_HEIGHT"
+                                description="MOD_TVTMA_SLIDER_HEIGHT_DESC" />
+                                
+                                <field name="imageCrop" type="list" default="landscape" label="MOD_TVTMA_SLIDER_IMAGE_CROP" description="MOD_TVTMA_SLIDER_IMAGE_CROP_DESC">
+                                        <option value="height">height</option>
+                                        <option value="width">width</option>
+                                        <option value="landscape">landscape</option>
+                                        <option value="portrait">portrait</option>
+                                        
+				</field>
+                                
+                                <field name="fullscreenCrop" type="list" default="height" label="MOD_TVTMA_SLIDER_FULLSCREEN_CROP" description="MOD_TVTMA_SLIDER_FULLSCREEN_CROP_DESC">
+                                        <option value="height">height</option>
+                                        <option value="width">width</option>
+                                        <option value="landscape">landscape</option>
+                                        <option value="portrait">portrait</option>
+                                        
+				</field>
+                                
+                                <field name="auto" type="list" default="0" label="MOD_TVTMA_SLIDER_AUTO" description="MOD_TVTMA_SLIDER_AUTO_DESC">
+					<option value="1">YES</option>
+					<option value="0">NO</option>
+				</field>
+                                
+                                <field name="wait" type="text" default="500" label="MOD_TVTMA_SLIDER_WAIT" description="MOD_TVTMA_SLIDER_WAIT_DESC"/>
+                                
+                                <field name="lightbox" type="list" default="1" label="MOD_TVTMA_SLIDER_LIGHTBOX" description="MOD_TVTMA_SLIDER_LIGHTBOX_DESC">
+					<option value="1">YES</option>
+					<option value="0">NO</option>
+				</field>
+                                
+                                <field name="lightboxFadeSpeed" type="text" default="500" label="MOD_TVTMA_SLIDER_LIGHTBOX_FADE_SPEED" description="MOD_TVTMA_SLIDER_LIGHTBOX_FADE_SPEED_DESC"/>
+                                
+                                <field name="lightboxTransitionSpeed" type="text" default="500" label="MOD_TVTMA_SLIDER_LIGHTBOX_TRANSITION_SPEED" description="MOD_TVTMA_SLIDER_LIGHTBOX_TRANSITION_SPEED_DESC"/>
+                                
+                                <field name="showCounter" type="list" default="1" label="MOD_TVTMA_SLIDER_SHOW_COUNTER" description="MOD_TVTMA_SLIDER_SHOW_COUNTER_DESC">
+					<option value="1">YES</option>
+					<option value="0">NO</option>
+				</field>
+                                
+                                <field name="showInfo" type="list" default="1" label="MOD_TVTMA_SLIDER_SHOW_INFO" description="MOD_TVTMA_SLIDER_SHOW_INFO_DESC">
+					<option value="1">YES</option>
+					<option value="0">NO</option>
+				</field>
+                                
+                                <field name="trueFullscreen" type="list" default="1" label="MOD_TVTMA_SLIDER_TRUE_FULLSCREEN" description="MOD_TVTMA_SLIDER_TRUE_FULLSCREEN_DESC">
+					<option value="1">YES</option>
+					<option value="0">NO</option>
+				</field>
+                                
+                                <field name="transition" type="list" default="fadeslide" label="MOD_TVTMA_SLIDER_TRANSITION" description="MOD_TVTMA_SLIDER_TRANSITION_DESC">
+					<option value="fade">fade</option>
+					<option value="flash">flash</option>
+                                        <option value="pulse">pulse</option>
+                                        <option value="slide">slide</option>
+                                        <option value="fadeslide">fadeslide</option>
+                                        
+				</field>
+                                
+                                <field name="fullscreenTransition" type="list" default="fadeslide" label="MOD_TVTMA_SLIDER_FULLSCREEN_TRANSITION" description="MOD_TVTMA_SLIDER_FULLSCREEN_TRANSITION_DESC">
+					<option value="fade">fade</option>
+					<option value="flash">flash</option>
+                                        <option value="pulse">pulse</option>
+                                        <option value="slide">slide</option>
+                                        <option value="fadeslide">fadeslide</option>
+                                        
+				</field>
+                                
+                                <field name="transitionSpeed" type="text" default="500" label="MOD_TVTMA_SLIDER_TRANSITION_SPEED" description="MOD_TVTMA_SLIDER_TRANSITION_SPEED_DESC"/>
+                                
+                                <field name="preload" type="text" default="2" label="MOD_TVTMA_SLIDER_PRELOAD" description="MOD_TVTMA_SLIDER_PRELOAD_DESC"/>
+                                
+                                <field name="queue" type="list" default="1" label="MOD_TVTMA_SLIDER_QUEUE" description="MOD_TVTMA_SLIDER_QUEUE_DESC">
+					<option value="1">YES</option>
+					<option value="0">NO</option>
+				</field>
+                                
+                                <field name="thumbnails" type="list" default="1" label="MOD_TVTMA_SLIDER_THUMBNAILS" description="MOD_TVTMA_SLIDER_THUMBNAILS_DESC">
+					<option value="1">YES</option>
+					<option value="0">NO</option>
+				</field>
+                                
+                                <field name="thumbQuality" type="list" default="1" label="MOD_TVTMA_SLIDER_THUMB_QUALITY" description="MOD_TVTMA_SLIDER_THUMB_QUALITY_DESC">
+					<option value="1">YES</option>
+					<option value="0">NO</option>
+				</field>
+                                
+                                <field name="responsive" type="list" default="1" label="MOD_TVTMA_SLIDER_RESPONSIVE" description="MOD_TVTMA_SLIDER_RESPONSIVE_DESC">
+					<option value="1">YES</option>
+					<option value="0">NO</option>
+				</field>
+                                
+                                <field name="showImagenav" type="list" default="1" label="MOD_TVTMA_SHOW_IMG_NAV" description="MOD_TVTMA_SHOW_IMG_NAV_DESC">
+					<option value="1">YES</option>
+					<option value="0">NO</option>
+				</field>
+                                
+                                <field name="useCat" type="list" default="1" label="MOD_TVTMA_USE_CAT" description="MOD_TVTMA_USE_CAT_DESC">
+					<option value="1">YES</option>
+					<option value="0">NO</option>
+				</field>
+
+                                <field
+					name="fieldID"
+					type="Fields"
+					label="MOD_TVTMA_SLIDER_FIELD_ID"
+                                        size = "5"
+                                        multiple = "true"
+					description="MOD_TVTMA_SLIDER_FIELD_ID_DESC" />
+			</fieldset>
+			
+		</fields>
+</config>
+</extension>

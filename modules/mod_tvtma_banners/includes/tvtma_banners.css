@@ -1,0 +1,36 @@
+.ajaxSelect {
+    position: absolute;
+    right: 10px;
+    top : 0px;
+    border: none;
+    background: transparent;
+    font-weight: bold;
+    color: #3c5828;
+}
+.bannerDrop.ajaxSelect {
+    top: 10px;
+}
+#bannersShow {
+    float: left;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+div.badImage {
+    float: left;
+    width: 50%;
+}
+div.goodImage {
+    float: right;
+    width: 49%;
+    margin-left: 1%;
+}
+div.banneritem img {
+    width: 100%;
+}
+div.banneritem img:hover {
+    opacity: 0.8;
+}
+div.badImage div.banneritem {
+    margin-bottom: 2px;
+}

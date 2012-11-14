@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<fieldset
+		name="permissions"
+		label="JCONFIG_PERMISSIONS_LABEL"
+		description="JCONFIG_PERMISSIONS_DESC"
+	>
+		<field
+			name="rules"
+			type="rules"
+			label="JCONFIG_PERMISSIONS_LABEL"
+			class="inputbox"
+			validate="rules"
+			filter="rules"
+			component="com_tvtproject"
+			section="component"
+		/>
+	</fieldset>
+        
+        <fields
+		name="request"
+		addfieldpath="/administrator/components/com_tvtproject/models/fields"
+	>
+            <fieldset 
+                    name="section"
+                    label="COM_TVTPROJECT_CONFIG"
+                    description="COM_TVTPROJECT_CONFIG_DESC"
+            >
+                <field name="projectId" type="Section" label="COM_TVTPROJECT_SECTION_ID"
+                description="COM_TVTPROJECT_SECTION_ID_DESC"
+                />
+                
+                <field name="fieldID" type="Tag" label="COM_TVTPROJECT_FIELD_ID"
+                description="COM_TVTPROJECT_FIELD_ID_DESC"
+                />
+            </fieldset>
+        </fields>
+</config>

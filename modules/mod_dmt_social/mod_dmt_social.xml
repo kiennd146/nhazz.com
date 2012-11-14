@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension
+	type="module"
+	version="1.6.0"
+	client="site"
+	method="upgrade">
+	
+	<name>mod_dmt_social</name>
+	<author>Demente Design</author>
+	<creationDate>June 2011</creationDate>
+	<authorEmail>contact@demente-design.com</authorEmail>
+	<authorUrl>http://demente-design.com</authorUrl>
+	<version>1.1</version>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<description>A simple module to display links to popular social networking sites. Default icons from &lt;a href="http://www.komodomedia.com/download/#social-network-icon-pack"&gt;Komodomedia&lt;/a&gt;. To add icons name them [website]_16.png and put them in the icons directory.</description>
+	<files>
+		<filename module="mod_dmt_social">mod_dmt_social.php</filename>
+		<filename>mod_dmt_social.xml</filename>
+		<filename>helper.php</filename>
+		<filename>index.html</filename>
+		<folder>admin</folder>
+		<folder>css</folder>
+		<folder>icons</folder>
+		<folder>tmpl</folder>
+	</files>
+	
+	<languages>
+		<language tag="en-GB">language/en-GB.mod_dmt_social.ini</language>
+		<language tag="en-GB">language/en-GB.mod_dmt_social.sys.ini</language>
+	</languages>
+	
+	<config>
+		<fields name="params" addfieldpath="/modules/mod_dmt_social/admin/elements">
+			<fieldset name="basic">
+				<field name="iconSize" type="radio" default="16" label="MOD_DMT_SOCIAL_ICONSIZE" description="">
+					<option value="16">MOD_DMT_SOCIAL_16PX</option>
+					<option value="32">MOD_DMT_SOCIAL_32PX</option>
+				</field>
+				
+				<field name="websites" type="additem" label="MOD_DMT_SOCIAL_WEBSITES" description="MOD_DMT_SOCIAL_WEBSITES_DESC"/>
+				
+				<field name="RSS" type="radio" default="1" label="MOD_DMT_SOCIAL_RSS" description="MOD_DMT_SOCIAL_RSS_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="format" type="radio" default="rss" label="MOD_DMT_SOCIAL_FORMAT">
+					<option value="rss">RSS</option>
+					<option value="atom">Atom</option>
+				</field>
+				<field name="targetBlank" type="radio" default="1" label="MOD_DMT_SOCIAL_TARGET_BLANK" description="MOD_DMT_SOCIAL_TARGET_BLANK_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+			</fieldset>
+			<fieldset name="advanced">
+				<field name="moduleclass_sfx" type="text" size="30" default="" label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL" description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+			
+				<field name="addCSS" type="radio" default="1" label="MOD_DMT_SOCIAL_ADDCSS" description="MOD_DMT_SOCIAL_ADDCSS_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="addRelMe" type="radio" default="1" label="MOD_DMT_SOCIAL_ADDRELME" description="MOD_DMT_SOCIAL_ADDRELME_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="addRelNofollow" type="radio" default="1" label="MOD_DMT_SOCIAL_ADDRELNF" description="MOD_DMT_SOCIAL_ADDRELNF_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="layout" type="modulelayout" label="JFIELD_ALT_LAYOUT_LABEL" description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+				
+				<field name="cache" type="list" default="1" label="COM_MODULES_FIELD_CACHING_LABEL" description="COM_MODULES_FIELD_CACHING_DESC">
+					<option value="1">JGLOBAL_USE_GLOBAL</option>
+					<option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+				<field name="cache_time" type="text" default="900" label="COM_MODULES_FIELD_CACHE_TIME_LABEL" description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
+				<field name="cachemode" type="hidden" default="itemid">
+					<option value="itemid"></option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>

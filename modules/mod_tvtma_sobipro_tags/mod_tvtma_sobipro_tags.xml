@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="2.5" client="site" method="upgrade">
+<name>TVTMA Sobipro Tags</name>
+<author>ProgTutor dot Com</author>
+<creationDate>August 2012</creationDate>
+<copyright>GNU/GPLv2</copyright>
+<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+<authorEmail>luan.vu@tvtmarine.com</authorEmail>
+<authorUrl>www.progtutor.com</authorUrl>
+<version>1.0.2</version>
+<description>TVTMA Module Sobipro Tags</description>
+<files>
+<filename>mod_tvtma_sobipro_tags.xml</filename>
+<filename module="mod_tvtma_sobipro_tags">mod_tvtma_sobipro_tags.php</filename>
+<filename>index.html</filename>
+<filename>helper.php</filename>
+<filename>tag.php</filename>
+<filename>section.php</filename>
+<filename>javascript.php</filename>
+<filename>tmpl/default.php</filename>
+<filename>tmpl/index.html</filename>
+<folder>includes</folder>
+</files>
+<languages>
+		<language tag="en-GB">languages/en-GB.mod_tvtma_sobipro_tags.ini</language>
+		<language tag="en-GB">languages/en-GB.mod_tvtma_sobipro_tags.sys.ini</language>
+                <language tag="vi-VN">languages/vi-VN.mod_tvtma_sobipro_tags.ini</language>
+		
+</languages>
+<config>
+		<fields name="params">
+			<fieldset name="basic" addfieldpath="/modules/mod_tvtma_sobipro_tags/">
+                                 <field
+					name="sectionId"
+					type="Section"
+					label="MOD_TVTMA_SOBIPRO_TAGS_SECTION_ID"
+					description="MOD_TVTMA_SOBIPRO_TAGS_SECTION_ID_DESC" />
+				<field
+					name="fieldId"
+					type="Tag"
+					label="MOD_TVTMA_SOBIPRO_TAGS_FIELD_ID"
+					description="MOD_TVTMA_SOBIPRO_TAGS_FIELD_ID_DESCRIPTION" />
+			</fieldset>
+			
+		</fields>
+</config>
+</extension>

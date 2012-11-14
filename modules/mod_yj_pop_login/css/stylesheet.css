@@ -1,0 +1,164 @@
+/*======================================================================*\
+|| #################################################################### ||
+|| # Copyright ©2006-2009 Youjoomla LLC. All Rights Reserved.           ||
+|| #################################################################### ||
+\*======================================================================*/
+/*opneing links container*/
+.poping_links {
+	display:block;
+	text-align:center !Important;
+	width:100%;
+	position:relative;
+	height:auto;
+	overflow:hidden;
+}
+/* opening buttons*/
+#openLogin, #openReg {
+	display:inline-block;
+	height:25px;
+	width:65px;
+	clear:right;
+	text-align:center;
+	line-height:25px;
+	background:transparent;
+	color:#FFF;
+	text-decoration:none;
+        font-weight: bold;
+}
+#openLogin:hover, #openReg:hover {
+	color:#999;
+}
+/* login box*/
+#login_pop {
+	position:fixed;
+	width:250px;
+	height:220px;
+	top:150px;
+	background:#F7F7F7;
+	color:#333;
+	text-align:left;
+	padding:10px;
+	border:10px solid #92B41F;
+	z-index:1000000;
+}
+#login_popinput .yjpop_login {
+    color: #333;
+}
+/* registration box */
+#reg_pop {
+	position:fixed;
+	width:405px;
+	height:300px;
+	top:150px;
+	background:#F7F7F7;
+	color:#333;
+	text-align:left;
+	padding:10px;
+	border:10px solid #92B41F;
+	z-index:1000000;
+}
+#reg_pop .popyjreg{
+	overflow:hidden;
+	display:block;
+}
+#reg_pop .popyjreg_ins{
+	clear:both;
+	overflow:hidden;
+	display:block;
+}
+#reg_pop .inputbox {
+	width:280px;
+	float:right;
+	margin-bottom:10px;
+
+}
+#reg_pop label{
+	float:left;
+}
+p.information_td{
+	clear:both;
+	display:block;
+}
+/* closing buttons*/
+#closeReg, #closeLogin {
+	display:inline-block;
+	width:100px;
+	height:25px;
+	width:60px;
+	position:absolute;
+	bottom:5px;
+	right:5px;
+	text-align:center;
+	line-height:25px;
+	background:#ccc;
+	color:#000;
+	text-decoration:none;
+}
+/* input boxes and rest */
+#yjpop_passwd {
+	width:98%;
+	margin:0;
+	padding:0;
+}
+#yjpop_username {
+	width:98%;
+	margin:0;
+	padding:0;
+}
+#yjpop_remember {
+}
+#login_pop .button {
+	margin:10px 0;
+        color: #333;
+        padding: 5px;
+        background: #ccc;
+}
+/* logeedin class */
+#logins {
+	display:block;
+	width:100%;
+	height:auto !Important;
+	clear:both;
+        position: relative;
+}
+#logins .button {
+	margin:0px 0;
+}
+#logins:hover #loginManagement{
+    display: block;
+}
+a.user-link {
+    padding-right: 20px;
+    background-image: url('down.png');
+    background-repeat: no-repeat;
+    background-position: right 1px;
+}
+#login-form {
+    overflow: hidden;
+}
+div.loginManagement {
+    display: none;
+    background: #FFF;
+    float: left;
+    width: 140px;
+    min-height: 30px;
+    padding: 5px;
+    border: 2px solid black;
+    position: absolute;
+    top:30px;
+    right: 0;
+    z-index: 102;
+}
+.loginManagement a{
+    color: #333;
+}
+.loginManagement ul {
+    width: 100%;
+}
+.loginManagement li {
+    margin: 0;
+    padding: 0;
+}
+.loginManagement li a:hover{
+    color: #3D8901;
+}

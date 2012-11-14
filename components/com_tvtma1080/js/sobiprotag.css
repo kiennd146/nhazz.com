@@ -1,0 +1,53 @@
+/* 
+    Document   : sobiprotag
+    Created on : Aug 10, 2012, 9:48:46 AM
+    Author     : tung
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+table.tagTable{
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-collapse:collapse;
+}
+table.tagTable img {
+    max-width: 100px;
+}
+table.tagTable thead {
+    margin-bottom:10px;
+    border: 1px solid #EDEEE9;
+}
+table.tagTable thead th {
+    padding: 10px;
+    color: #FFF;
+    border: 1px solid #EDEEE9;
+    background: #3C5828;
+}
+table.tagTable thead th a{
+    color: #333;
+}
+table.tagTable tr {
+    padding: 10px 0;
+}
+table.tagTable tr:nth-child(even) {
+    background: #F7F7F7;
+}
+table.tagTable td {
+    padding: 5px;
+    border: 1px solid #EDEEE9;
+}
+table.tagTable td a:hover{
+    text-decoration: none;
+}
+table.tagTable tr{
+    
+}
+img.tagAvatar {
+    width: 32px;
+    height: 32px;
+    margin: 5px;
+    vertical-align: middle;
+}
+

@@ -1,0 +1,379 @@
+/* 
+    Document   : entries
+    Created on : Aug 9, 2012, 1:07:22 PM
+    Author     : tuyenhung
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+.selectproduct{
+    background: url(dropdownlist.png) no-repeat right;
+    padding-right: 20px;
+    color: #3C5828 !important;
+    height: 18px;
+    padding-top: 5px;
+    position:absolute;
+    font-weight: bold;
+    top:10px;
+    right:0;
+}
+.selectproduct:hover{
+    background: url(dropdownlist.png) no-repeat right !important;
+    padding-right: 20px;
+    color: green !important;
+}
+.product{
+    
+}
+.product .leftdiv{
+    float:left;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.product .leftdiv .mainimg{
+    width:49%;
+    height:170px;
+    overflow:hidden;
+    float:left;
+}
+.product .leftdiv .mainimg img{
+    width:100%;
+	min-height:170px;
+}
+.product .leftdiv .lcontent{
+    width:49%;
+    float:right;
+}
+.product .leftdiv .lcontent .imgtitle{
+    float:left;
+    width:100%
+}
+.product .leftdiv .lcontent .imgtitle .titlecontent{
+    float:left;
+    width:70%
+}
+.product .leftdiv .lcontent .desprice{
+    width:100%;
+    overflow:hidden;
+}
+.product .leftdiv .lcontent .desprice.description{
+    overflow:hidden;
+	text-align: justify;
+}
+.product .leftdiv .lcontent .desprice .author{
+    float:left;
+    width:100%;
+}
+.product .leftdiv .lcontent .desprice .price{
+    float:left;
+    width:100%;
+}
+.product .rightdiv{
+    float:right;
+    width: 49%; 
+    margin-bottom:10px;
+}
+.product .rightdiv .limg{
+    width:100%;
+    float:left;
+}
+.product .rightdiv .limg .subimg{
+    width:100%;
+    height:245px;
+    overflow:hidden;
+}
+.product .rightdiv .limg .subimg img{
+    width:100%;
+	min-height:245px;
+}
+.product .rightdiv .rcontent{
+    width:100%;
+    float:right;
+    margin-top: 5px;
+}
+.product .rightdiv .rcontent .imgtitle{
+    width:100%;
+    float:right;
+}
+.product .rightdiv .rcontent .imgtitle .titlecontent{
+    width:100%;
+    float:right;
+}
+.product .rightdiv .rcontent .desprice{
+    width:100%;
+    float:left;
+    overflow:hidden;
+    text-align: justify;
+}
+.product .rightdiv .rcontent .desprice .author{
+    float:left;
+    width:100%;
+}
+.product .rightdiv .rcontent .desprice .price{
+    float:left;
+    width:100%;
+}
+.product .ldiv{
+    float:left;
+    width: 50%;
+}
+.product .ldiv .limg{
+    width:50%;
+    float:left;
+}
+.product .ldiv .limg .subimg{
+    width:154px;
+    height:185px;
+    overflow:hidden;
+}
+.product .ldiv .limg .subimg img{
+    width:100%;
+	min-height:185px;
+}
+.product .ldiv .rcontent{
+    width:50%;
+    float:right;
+}
+.product .ldiv .rcontent .imgtitle{
+    width:100%;
+    float:right;
+}
+.product .ldiv .rcontent .imgtitle .titlecontent{
+    width:50%;
+    float:right;
+}
+.product .ldiv .rcontent .desprice{
+    width:100%;
+    float:left;
+    overflow:hidden;
+    text-align: justify;
+}
+.product .ldiv .rcontent .desprice .author{
+    float:left;
+    width:100%;
+}
+.product .ldiv .rcontent .desprice .price{
+    float:left;
+    width:100%;
+}
+.product .rdiv{
+    float:left;
+    width: 50%;
+}
+.product .rdiv .limg{
+    width:50%;
+    float:left;
+}
+.product .rdiv .limg .subimg{
+    width:154px;
+    height:185px;
+    overflow:hidden;
+}
+.product .rdiv .limg .subimg img{
+    width:100%;
+	min-height:185px;
+}
+.product .rdiv .rcontent{
+    width:50%;
+    float:right;
+}
+.product .rdiv .rcontent .imgtitle{
+    width:100%;
+    float:right;
+}
+.product .rdiv .rcontent .imgtitle .titlecontent{
+    width:50%;
+    float:right;
+}
+.product .rdiv .rcontent .desprice{
+    width:100%;
+    float:left;
+    overflow:hidden;
+    text-align: justify;
+}
+.product .rdiv .rcontent .desprice .author{
+    float:left;
+    width:100%;
+}
+.product .rdiv .rcontent .desprice .price{
+    float:left;
+    width:100%;
+}
+.project .leftdiv{
+    float:left;
+    width: 49%;
+}
+.project .leftdiv .mainimg{
+    width:100%;
+    height:245px;
+    overflow:hidden;
+}
+.project .leftdiv .mainimg img{
+    width:100%;
+	min-height:245px;
+}
+.project .leftdiv .lcontent{
+    width:100%;
+    float:left;
+    margin-top:7px;
+}
+.project .leftdiv .lcontent .imgtitle{
+    float:left;
+    width:100%
+}
+.project .leftdiv .lcontent .imgtitle .titlecontent{
+    float:left;
+    margin-left: 5px;
+}
+.project .leftdiv .lcontent .desprice{
+    width:100%;
+    overflow:hidden;
+}
+.project .leftdiv .lcontent .desprice.description{
+    overflow:hidden;
+	text-align: justify;
+}
+.project .leftdiv .lcontent .desprice .author{
+    float:left;
+    width:100%;
+}
+.project .leftdiv .lcontent .desprice .price{
+    float:left;
+    width:100%;
+}
+.project .rightdiv{
+    float:right;
+    width: 49%; 
+    margin-bottom:10px;
+}
+.project .rightdiv .limg{
+    width:49%;
+    float:left;
+}
+.project .rightdiv .limg .subimg{
+    width:100%;
+    height:170px;
+    overflow:hidden;
+}
+.project .rightdiv .limg .subimg img{
+    width:100%;
+	min-height:170px;
+}
+.project .rightdiv .rcontent{
+    width:49%;
+    float:right;
+}
+.project .rightdiv .rcontent .imgtitle{
+    width:100%;
+    float:right;
+}
+.project .rightdiv .rcontent .imgtitle .titlecontent{
+    float:left;
+    margin-left: 5px;
+}
+.project .rightdiv .rcontent .desprice{
+    width:100%;
+    float:left;
+    overflow:hidden;
+    text-align: justify;
+    margin-top: 5px;
+}
+.project .rightdiv .rcontent .desprice .author{
+    float:left;
+    width:100%;
+}
+.project .rightdiv .rcontent .desprice .price{
+    float:left;
+    width:100%;
+}
+.project .ldiv{
+    float:left;
+    width: 49%;
+    margin-bottom: 5px;
+}
+.project .ldiv .limg{
+    width:49%;
+    float:left;
+}
+.project .ldiv .limg .subimg{
+    width:100%;
+    height:185px;
+    overflow:hidden;
+}
+.project .ldiv .limg .subimg img{
+    width:100%;
+	min-height:185px;
+}
+.project .ldiv .rcontent{
+    width:49%;
+    float:right;
+}
+.project .ldiv .rcontent .imgtitle{
+    width:100%;
+    float:right;
+}
+.project .ldiv .rcontent .imgtitle .titlecontent{
+    margin-left: 5px;
+    float:left;
+}
+.project .ldiv .rcontent .desprice{
+    width:100%;
+    float:left;
+    overflow:hidden;
+    text-align: justify;
+}
+.project .ldiv .rcontent .desprice .author{
+    float:left;
+    width:100%;
+}
+.project .ldiv .rcontent .desprice .price{
+    float:left;
+    width:100%;
+}
+.project .rdiv{
+    float:right;
+    width: 49%;
+    margin-bottom: 5px;
+}
+.project .rdiv .limg{
+    width:49%;
+    float:left;
+}
+.project .rdiv .limg .subimg{
+    width:100%;
+    height:185px;
+    overflow:hidden;
+}
+.project .rdiv .limg .subimg img{
+    width:100%;
+	min-height:185px;
+}
+.project .rdiv .rcontent{
+    width:49%;
+    float:right;
+}
+.project .rdiv .rcontent .imgtitle{
+    width:100%;
+    float:left;
+}
+.project .rdiv .rcontent .imgtitle .titlecontent{
+    margin-left: 5px;;
+    float:left;
+}
+.project .rdiv .rcontent .desprice{
+    width:100%;
+    float:left;
+    overflow:hidden;
+    text-align: justify;
+}
+.project .rdiv .rcontent .desprice .author{
+    float:left;
+    width:100%;
+}
+.project .rdiv .rcontent .desprice .price{
+    float:left;
+    width:100%
+}

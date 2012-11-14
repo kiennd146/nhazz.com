@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install SYSTEM "http://dev.joomla.org/xml/1.5/component-install.dtd">
+<install type="module" version="1.5.0" method="upgrade">
+	<name>TVTMA SobiPro Entries Module</name>
+	<creationDate>31 July 2012</creationDate>
+	<author>Tung Pham</author>
+	<authorEmail>tung.pham@tvtmarine.com</authorEmail>
+	<authorUrl>http://www.tvtmarine.com</authorUrl>
+	<copyright>Copyright (C) 2012 tvtmarine.com</copyright>
+	<license>GNU General Public License v3</license>
+	<version>1.4</version>
+	<description>MOD_SOBIPRO_ENTRIES_XML_DESCRIPTION</description>
+	<svn></svn>
+	<SobiPro>
+	  <requirements>
+	    <core version="1.0.0.1753"/>
+	  </requirements> 	
+	</SobiPro>
+	<files>
+		<filename module="mod_tvtma_sobipro_entries">mod_tvtma_sobipro_entries.php</filename>
+		<filename>helper.php</filename>
+		<filename>spelements.php</filename>
+		<filename>spform.php</filename>
+		<filename>view.php</filename>
+		<filename>index.html</filename>
+		<filename>tmpl/default.xsl</filename>
+		<filename>tmpl/index.html</filename>
+                <filename>tmpl/product.xsl</filename>
+                <filename>includes/index.html</filename>
+                <filename>includes/jquerymin.js</filename>
+                <filename>includes/ddmegamenu.js</filename>
+                <filename>includes/css/index.html</filename>
+                <filename>includes/css/ddmegamenu.css</filename>
+                <filename>includes/css/entries.css</filename>
+                <filename>includes/css/blockactive.gif</filename>
+                <filename>includes/css/blockdefault.gif</filename>
+                <filename>includes/css/down.png</filename>
+                <filename>includes/css/dropdownlist.png</filename>
+
+	</files>
+	<languages>
+		<language tag="en-GB">languages/en-GB/en-GB.mod_tvtma_sobipro_entries.ini</language>
+		<language tag="en-GB">languages/en-GB/en-GB.mod_tvtma_sobipro_entries.sys.ini</language>
+	</languages>
+	<config>
+		<fields name="params">
+			<fieldset name="basic" addfieldpath="/modules/mod_tvtma_sobipro_entries/">
+				<field name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="PARAMMODULECLASSSUFFIX" />
+				<field name="SOBI_SELECT_SECTION" type="spform" msg="SOBI_SELECT_SECTION_EXPL" />
+				<field name="sid" type="spform" />
+				<field name="spOrder" type="spform" />
+				<field name="fieldOrder" type="text" default="" label="SOBI_ORDER_BY_FIELD" size="50" />
+				<field name="entriesLimit" type="text" default="5" label="SOBI_ENTRIES_LIMIT" size="5" />
+                                <field name="linktitlemodule" type="url" label="LINK_OF_MODULE_TITLE" description="LINK_OF_MODULE_TITLE_DESC" />
+				<field name="tplFile" type="spform" />
+                                <field name="userid" type="text" default="" label="SOBI_USER_ID" size="50" description="SOBI_USER_ID_DESC" />
+				<field name="cssFiles" type="hidden" default="" label="SOBI_MOD_CSS_FILES" cols="40" rows="3" />
+				<field name="jsFiles" type="hidden" default="" label="SOBI_MOD_JS_FILES" cols="40" rows="3" />
+				<field name="xmlDeb" type="list" default="0" label="SOBI_XML_DEB">
+					<option value="1">YES</option>
+					<option value="0">NO</option>
+				</field>
+                                <field name="limitChaDesc" type="text" default="0" label="SOBI_ENA_DES" size="10"></field>
+                                <field name="filter" type="list" default="0" label="SOBI_FILTER_ENTRY">
+					<option value="1">YES</option>
+					<option value="0">NO</option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+	<params addpath="/modules/mod_tvtma_sobipro_entries/">
+		<param name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="PARAMMODULECLASSSUFFIX" />
+		<param name="SOBI_SELECT_SECTION" type="spelements" msg="SOBI_SELECT_SECTION_EXPL" />
+		<!-- <param name="cid" type="spsection" msg="SOBI_SELECT_CATEGORY_EXPL" /> -->
+		<param name="sid" type="spelements" />
+		<param name="spOrder" type="spelements" />
+		<param name="fieldOrder" type="text" default="" label="SOBI_ORDER_BY_FIELD" size="50" />
+		<param name="entriesLimit" type="text" default="5" label="SOBI_ENTRIES_LIMIT" size="5" />
+		<param name="tplFile" type="spelements" />
+		<param name="cssFiles" type="hidden" default="" label="SOBI_MOD_CSS_FILES" cols="40" rows="3" />
+		<param name="jsFiles" type="hidden" default="" label="SOBI_MOD_JS_FILES" cols="40" rows="3" />
+		<param name="xmlDeb" type="list" default="0" label="SOBI_XML_DEB">
+			<option value="1">YES</option>
+			<option value="0">NO</option>
+		</param>
+                <param name="limitChaDesc" type="spelements" default="0" label="SOBI_ENA_DES" size="10"></param>	
+                <param name="filter" type="list" default="0" label="SOBI_FILTER_ENTRY">
+			<option value="1">YES</option>
+			<option value="0">NO</option>
+		</param>	
+	</params>
+</install>

@@ -1,0 +1,15 @@
+<div style="margin: 20px; font-size: 13px;">
+This application integrates the comments system component <a href="http://www.joomlatune.com" target="_blank">JComments</a> into SobiPro component.
+<br/>
+<br/>
+To display the comments and the comment form within the details view, add following code into your details view template entry/details.xsl:
+
+<pre>
+        <b>&lt;</b><b><span style='color:#000080;'>xsl:value-of</span></b><span style='color:#006e28;'> select=</span><span style='color:#008080;'>&quot;jcomments&quot;</span><span style='color:#006e28;'> disable-output-escaping=</span><span style='color:#800000;'>&quot;yes&quot;</span><span style='color:#006e28;'> </span><b>/&gt;</b>
+</pre>
+To show the number of comments for an entry within the vCard, add this code into your vCard template common/vcard.xsl:
+<pre>
+        <b>&lt;</b><b><span style='color:#000080;'>xsl:value-of</span></b><span style='color:#006e28;'> select=</span><span style='color:#008080;'>&quot;jcomments&quot;</span><b>/&gt;</b>
+</pre>
+ This app does not requires any additional configuration within the SobiPro component.
+</div>

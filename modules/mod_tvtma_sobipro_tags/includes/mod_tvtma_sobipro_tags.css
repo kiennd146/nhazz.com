@@ -1,0 +1,19 @@
+/* 
+    Document   : mod_tvtma_sobipro_tags
+    Created on : Aug 10, 2012, 9:19:17 AM
+    Author     : tung
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+div.tvtmasobiprotags { 
+    margin-top: 10px;
+}
+div.tvtmasobiprotags a{
+    margin-right: 10px;
+    float: left;
+}
+div.tvtmasobiprotags a:hover {
+    text-decoration: underline;
+}
+

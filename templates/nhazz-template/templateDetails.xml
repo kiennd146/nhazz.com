@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install PUBLIC "-//Joomla! 2.5//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/2.5/template-install.dtd">
+<extension version="2.5" type="template" method="upgrade">
+	<name>nhazz-template</name>
+	<creationDate>2012-08-06</creationDate>
+	<author>luan vu</author>
+	<copyright>Copyright © ma.tvtmarine.com</copyright>
+	<authorEmail>luan.vu@tvtmarine.com</authorEmail>
+	<authorUrl>http://www.ma.tvtmarine.com</authorUrl>
+	<version>1.1.6</version>
+	<description><![CDATA[
+		<h1>nhazz-template</h1>
+		<p><img src="../templates/templatename/template_preview.png" /></p>
+		<h2>Module positions</h2>
+		<ol>
+			<li>main-menu</li>
+                        <li>login_position</li>
+                        <li>notify_position</li>
+                        <li>search</li>
+                        <li>small-menu</li>
+                        <li>small-upload</li>
+                        <li>breadcrumbs</li>
+                        <li>top-left</li>
+                        <li>middle-left</li>
+                        <li>bottom-left</li>
+                        <li>top-right</li>
+                        <li>middle-right</li>
+                        <li>bottom-right</li>
+                        <li>slider</li>
+                        <li>position-1</li>
+                        <li>position-2</li>
+                        <li>position-3</li>
+                        <li>position-4</li>
+                        <li>footer-menu</li>
+                        <li>footer-link</li>
+                        <li>debug</li>
+
+		</ol>
+		<p>Created by <a href="http://www.ma.tvtmarine.com" target="_blank">luan vu | ma.tvtmarine.com</a>.</p>
+	]]></description>
+	
+	<files>
+		<folder>css</folder>
+		<folder>html</folder>
+		<folder>images</folder>
+		<folder>js</folder>
+		<filename>apple-touch-icon-57x57.png</filename>
+		<filename>apple-touch-icon-72x72.png</filename>
+		<filename>apple-touch-icon-114x114.png</filename>
+		<filename>component.php</filename>
+		<filename>error.php</filename>
+		<filename>favicon.ico</filename>
+		<filename>index.php</filename>
+		<filename>offline.php</filename>
+		<filename>template_preview.png</filename>
+		<filename>template_thumbnail.png</filename>
+	</files>
+	<languages folder="language">
+		<language tag="en-GB">en-GB.tpl_nhazz.ini</language>
+	</languages>
+	
+	<positions>
+		<position>main-menu</position>
+                <position>login_position</position>
+                <position>notify_position</position>
+		<position>search</position>
+		<position>small-menu</position>
+                <position>small-upload</position>
+                <position>sub-small-menu</position>
+		<position>breadcrumbs</position>
+		<position>top-left</position>
+		<position>middle-left</position>
+		<position>bottom-left</position>
+		<position>top-right</position>
+		<position>middle-right</position>
+		<position>bottom-right</position>
+		<position>slider</position>
+		<position>position-1</position>
+		<position>position-2</position>
+                <position>position-3</position>
+                <position>position-4</position>
+                <position>footer-menu</position>
+                <position>footer-link</position>
+                <position>degbug</position>
+        </positions>
+	
+	<config>
+		<fields name="params">
+			<fieldset name="advanced">
+                            <field name="logo" type="media" label="Website logo" description="Change logo of website"></field>
+                        </fieldset>
+		</fields>
+	</config>
+</extension>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension
+    type="module"
+    version="2.5"
+    client="site"
+    method="upgrade">
+    <name>User Presenter</name>
+    <author>Luan Vu</author>
+    <creationDate>September 2012</creationDate>
+    <copyright>Copyright (C) 2012 TVTMarine.com . All rights reserved.</copyright>
+    <license>GNU General Public License version 2 or later</license>
+    <authorEmail>luan.vu@tvtmarine.com</authorEmail>
+    <authorUrl>www.ma.tvtmarine.com</authorUrl>
+    <version>0.0.1</version>
+    <description>MOD_USER_PRESENTER_XML_DESCRIPTION</description>
+    <files>
+	<filename module="mod_user_presenter">mod_user_presenter.php</filename>
+	<folder>tmpl</folder>
+	<folder>includes</folder>
+	<filename>helper.php</filename>
+	<filename>index.html</filename>
+	<filename>mod_user_presenter.xml</filename>
+	<filename>profiles.php</filename>
+    </files>
+    <languages>
+	<language tag="en-GB">languages/en-GB/en-GB.mod_user_presenter.ini</language>
+	<language tag="en-GB">languages/en-GB/en-GB.mod_user_presenter.sys.ini</language>
+	<language tag="vi-VN">languages/vi-VN/vi-VN.mod_user_presenter.ini</language>
+	<language tag="vi-VN">languages/vi-VN/vi-VN.mod_user_presenter.sys.ini</language>
+    </languages>
+    <help key="" />
+    <config>
+	<fields name="params">
+	    <fieldset name="advance" label="Community"  addfieldpath="/modules/mod_user_presenter/">
+		<field
+		    name="fieldId"
+		    type="Profiles"
+		    label="Profile Field Select"
+		    size = "5"
+		    description="Profile field select to display" />
+
+		<field
+		    name="type"
+		    type="list"
+		    label="Display"
+		    description="Display type">
+		    <option value="dropbox">Dropbox</option>
+		    <option value="list">List</option>
+		</field>
+	    </fieldset>
+	</fields>
+    </config>
+</extension>

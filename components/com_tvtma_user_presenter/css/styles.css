@@ -1,0 +1,120 @@
+div.page-navigation {
+    text-align: center;
+    background: #e6e6e6;
+    height: 28px;
+    line-height: 28px;
+    float:left;
+    width: 100%;
+    margin-bottom: 20px;
+}
+div.page-navigation a{
+    font-weight: bold;
+}
+div.page-navigation ul {
+    height: auto;
+}
+div.page-navigation ul li {
+    display: inline;
+    height: auto;
+}
+div.page-navigation ul li a,div.page-navigation ul li span{
+    padding: 5px;
+    border-right: 1px solid #f5f3f4;
+}
+li span.pagenav {
+    background: #FFF;
+    color: #333;
+}
+li.pagination-next a,li.pagination-end a,li.pagination-start a,li.pagination-prev a{
+    background: #75ba3d;
+    color: #FFF;
+}
+div.page-navigation ul li.pagination-start span.pagenav,div.page-navigation ul li.pagination-prev span.pagenav, li.pagination-next span.pagenav, li.pagination-end span.pagenav {
+    background: none;
+}
+div.userPresenter {
+    float: left;
+    width: 100%;
+    background: #fafbf6;
+    margin-bottom: 20px;
+}
+div.userBoxPresenter {
+    width: 372px;
+    height: 313px;
+    background: #FFF;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #d9d9d7;
+    float : left;
+    padding: 7px;
+}
+div.imageBoxPresenter {
+    float : left;
+    width: 100%;
+    height: 192px;
+    background: silver;
+    overflow: hidden;
+    margin-bottom: 7px;
+}
+div.imageBoxPresenter img {
+    width: 100%;
+    min-height: 192px;
+}
+div.avatarPresenter {
+    float : left;
+    width: 45px;
+    height: 45px;
+    margin-right: 7px;
+    overflow: hidden;
+    border: 1px solid #d9d9d9;
+    padding: 1px;
+}
+div.avatarPresenter img {
+    width: 100%;
+    min-height: 45px;
+}
+div.userNamePresenter a{
+    color: #010101;
+    font-weight: bold;
+    font-size: 14px;
+}
+div.userNamePresenter {
+    float: left;
+    width: 100%;
+    margin-bottom: 7px;
+}
+div.detailPresenter {
+    float:left;
+    width: 100%;
+}
+div.detailPresenter a.more-link {
+    margin-left: 10px;
+}
+h1.totalUser {
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 1;
+    margin: 15px 0 10px;
+    color: #333;
+}
+div.metroPresenter ul li {
+    display: inline;
+    margin-right: 10px;
+}
+div.metroPresenter ul li a{
+    color: #333;
+}
+div.metroPresenter ul li a:hover {
+    color: #3D8901;
+}
+div.metroPresenter ul li.active a {
+    color: #3D8901;
+    font-weight: bold;
+}
+div.metroPresenter {
+    margin-bottom: 10px;
+}
+div.metroPresenter h3 {
+    font-weight: bold;
+    margin-bottom: 5px;
+}

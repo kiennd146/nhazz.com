@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="plugin" group="jcomments" version="1.6" method="upgrade">
+	<name>plg_jcomments_jomsocial</name>
+	<author>Luan vu</author>
+	<creationDate>2012-07-09</creationDate>
+	<copyright>Copyright (C) 2012 TVTMarine.com . All rights reserved.</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>luan.vu@tvtmarine.com</authorEmail>
+	<authorUrl>http://www.tvtmarine.com</authorUrl>
+	<version>1.4</version>
+	<description>PLG_JCOMMENTS_JOMSOCIAL_XML_DESCRIPTION</description>
+	<files>
+		<filename plugin="jomsocial">jomsocial.php</filename>
+	</files>
+	<languages>
+		<language tag="en-GB">language/en-GB/en-GB.plg_jcomments_jomsocial.ini</language>
+		<language tag="en-GB">language/en-GB/en-GB.plg_jcomments_jomsocial.sys.ini</language>
+	</languages>
+	<config/>
+</install>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension
+    type="module"
+    version="2.5"
+    client="site"
+    method="upgrade">
+    <name>Community Info</name>
+    <author>Luan Vu</author>
+    <creationDate>September 2012</creationDate>
+    <copyright>Copyright (C) 2012 TVTMarine.com . All rights reserved.</copyright>
+    <license>GNU General Public License version 2 or later</license>
+    <authorEmail>luan.vu@tvtmarine.com</authorEmail>
+    <authorUrl>www.ma.tvtmarine.com</authorUrl>
+    <version>0.0.1</version>
+    <description>MOD_COMMUNITY_INFO_XML_DESCRIPTION</description>
+    <files>
+	<filename module="mod_community_info">mod_community_info.php</filename>
+	<folder>tmpl</folder>
+	<folder>includes</folder>
+	<filename>helper.php</filename>
+	<filename>index.html</filename>
+	<filename>mod_community_info.xml</filename>
+	<filename>fields.php</filename>
+	<filename>javascript.php</filename>
+	<filename>profiles.php</filename>
+	<filename>section.php</filename>
+    </files>
+    <languages>
+	<language tag="en-GB">languages/en-GB/en-GB.mod_community_info.ini</language>
+	<language tag="en-GB">languages/en-GB/en-GB.mod_community_info.sys.ini</language>
+	<language tag="vi-VN">languages/vi-VN/vi-VN.mod_community_info.ini</language>
+	<language tag="vi-VN">languages/vi-VN/vi-VN.mod_community_info.sys.ini</language>
+    </languages>
+    <help key="" />
+    <config>
+	<fields name="params">
+	    <fieldset name="basic" label="Projects"  addfieldpath="/modules/mod_community_info/">
+		<field
+		    name="sectionId"
+		    type="Section"
+		    label="Sobipro Section"
+		    description="Sobipro Section" />
+		<field
+		    name="fieldID"
+		    type="Fields"
+		    label="Field"
+		    size = "1"
+		    multiple = "false"
+		    description="Field" />
+
+	    </fieldset>
+	    <fieldset name="advance" label="Community"  addfieldpath="/modules/mod_community_info/">
+		<field
+		    name="profieFieldId"
+		    type="Profiles"
+		    label="Profile Field Select"
+		    size = "5"
+                    multiple = "true"
+		    description="Profile field select to display" />
+
+		<field
+		    name="profileMaxChar"
+		    type="text"
+		    label="Max char display"
+		    description="Number of char to display" />
+	    </fieldset>
+	</fields>
+    </config>
+</extension>
