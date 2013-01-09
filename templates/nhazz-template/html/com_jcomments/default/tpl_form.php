@@ -157,6 +157,7 @@ class jtt_tpl_form extends JoomlaTuneTemplate
 </div>
 </form>
 <script language="javascript" type="text/javascript">
+jQuery.noConflict();
             function Submit(e) {
                 var isEnter = window.event == null ? 
                               e.keyCode == 13 : 

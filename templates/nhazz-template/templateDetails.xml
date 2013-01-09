@@ -31,6 +31,7 @@
                         <li>position-2</li>
                         <li>position-3</li>
                         <li>position-4</li>
+                        <li>position-5</li>
                         <li>footer-menu</li>
                         <li>footer-link</li>
                         <li>debug</li>
@@ -79,6 +80,7 @@
 		<position>position-2</position>
                 <position>position-3</position>
                 <position>position-4</position>
+                <position>position-5</position>
                 <position>footer-menu</position>
                 <position>footer-link</position>
                 <position>degbug</position>

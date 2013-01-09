@@ -1,0 +1,3 @@
+SELECT `g4gc3_user_usergroup_map`.* FROM `g4gc3_user_usergroup_map` inner join `g4gc3_users` on g4gc3_users.id=g4gc3_user_usergroup_map.user_id where g4gc3_users.username='admin'
+Update to 8
+

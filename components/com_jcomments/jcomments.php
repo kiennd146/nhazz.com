@@ -1474,5 +1474,11 @@ class JComments
 	{
 		return JComments::show($object_id, $object_group, $object_title);
 	}
+  
+  public static function getLastComment( $object_id, $object_group = 'com_content', $parent = 0 )
+	{
+		return JCommentsModel::getLastComment($object_id, $object_group, $parent);
+	}
+  
 }
 ?>

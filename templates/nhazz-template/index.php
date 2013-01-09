@@ -25,16 +25,23 @@ unset($doc->_scripts[$this->baseurl.'/media/system/js/mootools-core.js']);
 unset($doc->_scripts[$this->baseurl.'/media/system/js/core.js']);
 unset($doc->_scripts[$this->baseurl.'/media/system/js/caption.js']);
 
-?><!doctype html>
+?><!DOCTYPE html>
 <!--[if IEMobile]><html class="iemobile" lang="<?php echo $this->language; ?>"> <![endif]-->
 <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="<?php echo $this->language; ?>"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="<?php echo $this->language; ?>"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="<?php echo $this->language; ?>"> <![endif]-->
-<!--[if gt IE 8]><!-->  <html class="no-js" lang="<?php echo $this->language; ?>"> <!--<![endif]-->
+<!--[if gt IE 8]>  <html class="no-js" lang="<?php echo $this->language; ?>"> <![endif]-->
+<!--[if not IE]><html slick-uniqueid="3" xmlns:fb="http://www.facebook.com/2008/fbml" class=" js no-flexbox canvas canvastext postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients no-cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache"  class="no-js" lang="<?php echo $this->language; ?>"><![endif]-->
 <head>
+  <link REL="SHORTCUT ICON" HREF="<?php echo $tpath; ?>/favicon.ico">
+    
+  <link rel="stylesheet" href="<?php echo $tpath; ?>/css/jquery-ui-1.9.2.custom.css" />
+  
   <script type="text/javascript" src="<?php echo $tpath.'/js/template.js.php'; ?>"></script>
   <jdoc:include type="head" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" /> <!-- mobile viewport -->
+
+	
   <link rel="stylesheet" media="only screen and (max-width: 768px)" href="<?php echo $tpath; ?>/css/tablet.css" type="text/css" />
   <link rel="stylesheet" media="only screen and (min-width: 240px) and (max-width: 480px)" href="<?php echo $tpath; ?>/css/phone.css" type="text/css" />
   <!--[if IEMobile]><link rel="stylesheet" media="screen" href="<?php echo $tpath; ?>/css/phone.css" type="text/css" /><![endif]--> <!-- iemobile -->
@@ -53,6 +60,16 @@ unset($doc->_scripts[$this->baseurl.'/media/system/js/caption.js']);
       
     </style>
   <![endif]-->
+
+	<script src="<?php echo $tpath; ?>/js/jquery-1.8.3.js"></script>
+	<script>
+	jQuery.noConflict();
+	</script>
+	
+	<script src="<?php echo $tpath; ?>/js/jquery-ui-1.9.2.custom.js"></script>
+	<script src="<?php echo $tpath; ?>/js/jquery.equalheights.js"></script>
+	<script src="<?php echo $tpath; ?>/js/jquery.form.js"></script>
+	
 </head>
 	
 <body class="<?php echo $pageclass; ?>">
@@ -204,7 +221,17 @@ $user =& JFactory::getUser();
                     <?php endif;?>
 
                     <jdoc:include type="message" />
-		    <jdoc:include type="component" />
+                    
+                    <?php if ($this->countModules('position-5')): ?>
+                    <div id="centerCol">
+                        <jdoc:include type="component" />
+                    </div>                    
+                    <div id="rightCol">
+                        <jdoc:include type="modules" name="position-5" style="xhtml" />
+                    </div>
+                    <?php else: ?>
+                        <jdoc:include type="component" />
+                    <?php endif;?>		    
                     
                 </div>
                 

@@ -68,7 +68,7 @@ SPLoader::loadView( 'section' );
 		<?php endforeach; ?>
 		</ul>
 	</li>
-        <? $t++;
+        <?php $t++;
                         if($t==$d){ ?>
                         </div>
                 <div class="rightcom" style="width: 49%;display: block;float: right;">

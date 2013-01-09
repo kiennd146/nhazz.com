@@ -25,7 +25,7 @@ abstract class modArticlesPopularHelper
 		$model->setState('params', $appParams);
 
 		// Set the filters based on the module params
-		$model->setState('list.start', 0);
+		$model->setState('list.start', DISCUSS_FILTER_FEATURE);
 		$model->setState('list.limit', (int) $params->get('count', 5));
 		$model->setState('filter.published', 1);
 		$model->setState('filter.featured', $params->get('show_front', 1) == 1 ? 'show' : 'hide');
