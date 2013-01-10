@@ -32,11 +32,12 @@
 			type="hidden"
 			filter="unset"
 		/>
-		<field
+		<!-- field
 			name="level"
 			type="hidden"
 			filter="unset"
 		/>
+		
 		<field
 			name="jid"
 			type="hidden"
@@ -46,7 +47,7 @@
 			filter="intval"
 			default="0"
 		/>
-		<!-- field
+		<field
 			name="ip"
 			type="hidden"
 			label="COM_VITABOOK_MESSAGE_FORM_IP"
@@ -113,6 +114,7 @@
             label="COM_VITABOOK_FORM_TITLE"
             description="COM_VITABOOK_FORM_TITLE_DESC"
             size="40"
+			required="true"
             class="inputbox"
             default=""
             filter="safehtml"
@@ -122,12 +124,11 @@
 			type="vitabookEditor"
 			label="COM_VITABOOK_MESSAGE_FORM_MESSAGE"
 			height="200"
-			required="true"
 			default=""
 			filter="safehtml"
 			class="mceEditor"
 		/>
-		<field name="created_by" type="user"
+		<field name="jid" type="user"
 			label="COM_VITABOOK_MESSAGE_FORM_CREATED_BY" description="COM_VITABOOK_MESSAGE_FORM_CREATED_BY_DESC" />
 		
 		<field
@@ -182,9 +183,9 @@
 				JYES
 			</option>
 		</field>
-		<!--field
+		<field
 			name="parent_id"
-			type="text"
+			type="hidden"
 			label="COM_VITABOOK_MESSAGE_FORM_PARENT"
 			description="COM_VITABOOK_MESSAGE_FORM_PARENT_DESC"
 			class="inputbox"
@@ -192,6 +193,6 @@
 			default="1"
 			filter="intval"
             validate="parentid"
-		/-->
+		/>
 	</fieldset>
 </form>

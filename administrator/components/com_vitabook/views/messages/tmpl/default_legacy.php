@@ -27,6 +27,11 @@ JHtml::_('behavior.multiselect');
 		</div>
 		
 		<div class="filter-select fltrt">
+			<select name="filter_catid" class="inputbox" onchange="this.form.submit()">
+				<option value=""><?php echo JText::_('JOPTION_SELECT_CATEGORY');?></option>
+				<?php echo JHtml::_('select.options', JHtml::_('category.options', 'com_vitabook'), 'value', 'text', $this->state->get('filter.catid'));?>
+			</select>
+			
 			<select name="filter_published" class="inputbox" onchange="this.form.submit()">
 				<option value=""><?php echo JText::_('JOPTION_SELECT_PUBLISHED');?></option>
 				<?php echo JHtml::_('select.options', JHtml::_('jgrid.publishedOptions'), 'value', 'text', $this->state->get('filter.published'), true);?>

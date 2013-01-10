@@ -88,13 +88,13 @@ class VitabookModelMessage extends JModelAdmin
 
 		// get photos
 		$item->photos = array();
-		$item->created_by;
+		//$item->created_by;
 		$images = json_decode($item->images);
 		foreach($images as $image) {
 			$item->photos[] = JURI::base() . DISCUSS_PHOTOS_PATH . DS . $image;
 		}
 		
-		$user = CFactory::getUser($item->created_by);
+		$user = CFactory::getUser($item->jid);
 		
 		$item->user_avatar = $user->getAvatar();
 		$item->user_name = $user->get('name');
@@ -299,7 +299,7 @@ class VitabookModelMessage extends JModelAdmin
 		$data['message'] = JRequest::getVar('dcs_message', '');
 		$data['catid'] = JRequest::getVar('dcs_category', '');
 		$data['published'] = 1;
-		$data['created_by'] = $user->get('id');
+		$data['jid'] = $user->get('id');
 		$data['parent_id'] = 1;
 		
 		// fill in form fields a user can't be trusted with

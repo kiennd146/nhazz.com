@@ -46,7 +46,7 @@ class VitabookTableMessages extends JTable
 			$registry->loadArray($array['metadata']);
 			$array['metadata'] = (string)$registry;
 		}
-		var_dump($array);die();
+		//var_dump($array);die();
 		return parent::bind($array, $ignore);
 	}
 

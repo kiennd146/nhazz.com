@@ -66,10 +66,10 @@ class VitabookModelMessage extends JModelAdmin
 	protected function populateState()
 	{
 		$app = JFactory::getApplication('administrator');
-
+		/*
 		$parentId = JRequest::getInt('parent_id');
 		$this->setState('message.parent_id', $parentId);
-
+		*/
 		// Load the User state.
 		$pk = (int) JRequest::getInt('id');
 		$this->setState($this->getName() . '.id', $pk);
@@ -250,6 +250,7 @@ class VitabookModelMessage extends JModelAdmin
     public function validate($form, $data, $group = null)
     {
         // detect embedded youtube/vimeo iframes
+		/*
        if(JFactory::getUser()->authorise('vitabook.insert.video', 'com_vitabook')){
             if(strpos($data['message'],'<iframe src="http://www.youtube.com/embed/') !== false || strpos($data['message'],'<iframe src="http://player.vimeo.com/video/') !== false)
             {
@@ -276,11 +277,11 @@ class VitabookModelMessage extends JModelAdmin
                 }
             }
         }
-
+		*/
  		// Get the data cleaned and validated by proxying the task to JModelForm
 		$data = parent::validate($form, $data, $group);
 
-
+		/*
         // if necessary, restore iframes at the temporary markers
         if(!empty($youtube))
         {
@@ -296,7 +297,7 @@ class VitabookModelMessage extends JModelAdmin
                 $data['message'] = preg_replace($pattern, '<iframe src="http://player.vimeo.com/video/'.$videoId.'" frameborder="0" width="350px" height="300px"></iframe></div>', $data['message']);
             endforeach;
         }
-
+		*/
         return $data;
     }
 

@@ -161,7 +161,7 @@ class VitabookModelVitabook extends JModelList
 					$message->photo = JURI::base() . DISCUSS_PHOTOS_PATH . DS . 'no_photo.jpg';
 				}
 				
-				$user = CFactory::getUser($message->created_by);
+				$user = CFactory::getUser($message->jid);
 				//JRoute::_(VitabookHelperRoute::getCategoryRoute($item->id))
 				//$message->category = JCategories::getInstance('Vitabook')->get($item->catid);
 				$message->user_avatar = $user->getAvatar();

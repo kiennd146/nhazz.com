@@ -9,7 +9,8 @@
 
 //-- No direct access
 defined('_JEXEC') or die;
-
+//echo JPATH_COMPONENT;die();
+JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 jimport('joomla.application.component.view');
 
 class VitabookViewMessages extends JViewLegacy
@@ -76,7 +77,8 @@ class VitabookViewMessages extends JViewLegacy
 		$table	->addColumn('checkbox')
 				//->addColumn('name')
         ->addColumn('title')
-				->addColumn('message')
+				->addColumn('topic')
+				->addColumn('name')
 				->addColumn('status')
 				->addColumn('date')
         ->addColumn('feature')
@@ -90,9 +92,11 @@ class VitabookViewMessages extends JViewLegacy
 
 		$table	->addRow(array(), 1)
 				->setRowCell('checkbox', '<input type="checkbox" name="checkall-toggle" value="" title="'.JText::_('JGLOBAL_CHECK_ALL').'" onclick="Joomla.checkAll(this)" />', array('width' => '1%'))
-				//->setRowCell('name', JHtml::_('jhtml.grid.sort', 'COM_VITABOOK_MESSAGES_THEAD_NAME', 'name', $this->listDirn, $this->listOrder), array())
+				->setRowCell('name', JHtml::_('jhtml.grid.sort', 'COM_VITABOOK_MESSAGES_THEAD_NAME', 'name', $this->listDirn, $this->listOrder), array())
         ->setRowCell('title', JHtml::_('jhtml.grid.sort', 'COM_VITABOOK_MESSAGES_THEAD_TITLE', 'title', $this->listDirn, $this->listOrder), array())
-				->setRowCell('message', JHtml::_('jhtml.grid.sort', 'COM_VITABOOK_MESSAGES_THEAD_MESSAGE', 'message', $this->listDirn, $this->listOrder), array())
+				//->setRowCell('message', JHtml::_('jhtml.grid.sort', 'COM_VITABOOK_MESSAGES_THEAD_MESSAGE', 'message', $this->listDirn, $this->listOrder), array())
+				->setRowCell('topic', JHtml::_('jhtml.grid.sort', 'COM_VITABOOK_CATEGORIES_TITLE', 'topic', $this->listDirn, $this->listOrder), array())
+				//->setRowCell('name', JHtml::_('jhtml.grid.sort', 'COM_VITABOOK_CREATED_BY_TITLE', 'name', $this->listDirn, $this->listOrder), array())
 				->setRowCell('status', JHtml::_('jhtml.grid.sort', 'JSTATUS', 'published', $this->listDirn, $this->listOrder), array('width' => '5%'))
 				->setRowCell('date', JHtml::_('jhtml.grid.sort', 'COM_VITABOOK_MESSAGES_THEAD_DATE', 'date', $this->listDirn, $this->listOrder), array())
 				//->setRowCell('email', JHtml::_('jhtml.grid.sort', 'COM_VITABOOK_MESSAGES_THEAD_EMAIL', 'email', $this->listDirn, $this->listOrder), array())
@@ -114,10 +118,15 @@ class VitabookViewMessages extends JViewLegacy
 		foreach ($this->messages as $i => $message) {
 			$table	->addRow(array('class' => 'row'.($i % 2)));
 			$table	->setRowCell('checkbox', JHtml::_('grid.id', $i, $message->id), array('class' => 'center'));
-			$table	->setRowCell('title', str_repeat('<span class="gi">|&mdash;</span>', $message->level-1) . $this->escape($message->title));
-			$table	->setRowCell('message', str_repeat('<span class="gi">|&mdash;</span>', $message->level-1) . '<a href="'.JRoute::_($message->url).'" title="'.JText::_('COM_VITABOOK_MESSAGES_TBODY_EDIT').'">'.$message->message.'</a>');
+			//$table	->setRowCell('title', $this->escape($message->title));
+			$table	->setRowCell('title', '<a href="'.JRoute::_($message->url).'" title="'.JText::_('COM_VITABOOK_MESSAGES_TBODY_EDIT').'">'.$message->title.'</a>');
+			//$table	->setRowCell('message', '<a href="'.JRoute::_($message->url).'" title="'.JText::_('COM_VITABOOK_MESSAGES_TBODY_EDIT').'">'.$message->message.'</a>');
+			$table	->setRowCell('topic', $message->topic);
+			$table	->setRowCell('name', $message->name);
 			$table	->setRowCell('status', JHtml::_('jgrid.published', $message->published, $i, 'messages.'), array('class' => 'center'));
-      $table	->setRowCell('feature', JHtml::_('jgrid.published', $message->feature, $i, 'messages.'), array('class' => 'center'));
+      //$table	->setRowCell('feature', JHtml::_('jgrid.published', $message->feature, $i, 'messages.'), array('class' => 'center'));
+	  $table	->setRowCell('feature', JHtml::_('contentadministrator.featured', $message->feature, $i, true), array('class' => 'center'));
+	  
       $table	->setRowCell('top', JHtml::_('jgrid.published', $message->top, $i, 'messages.'), array('class' => 'center'));
 			$table	->setRowCell('date', $message->date);
 			//$table	->setRowCell('email', $this->escape($message->email));
@@ -147,7 +156,8 @@ class VitabookViewMessages extends JViewLegacy
 		$table	->addColumn('checkbox')
 				//->addColumn('name')
         ->addColumn('title')
-				->addColumn('message')
+				//->addColumn('message')
+				->addColumn('topic')
 				->addColumn('status')
 				->addColumn('date')
         ->addColumn('feature')

@@ -28,13 +28,16 @@ class VitabookModelMessages extends JModelList
     {
         if (empty($config['filter_fields'])) {
             $config['filter_fields'] = array(
-                'name',
-				'email',
+                //'name',
+				//'email',
+				'title',
 				'message',
 				'published',
+				'feature',
+				'top',
 				'date',
-				'site',
-                'location'
+				//'site',
+                //'location'
             );
         }
 
@@ -70,12 +73,15 @@ class VitabookModelMessages extends JModelList
 	{
 		$search = $this->getUserStateFromRequest($this->context.'.filter.search', 'filter_search');
 		$this->setState('filter.search', $search);
+		
+		$catid = $this->getUserStateFromRequest($this->context.'.filter.catid', 'filter_catid');
+		$this->setState('filter.catid', $catid);
 
 		$published = $this->getUserStateFromRequest($this->context.'.filter.published', 'filter_published');
 		$this->setState('filter.published', $published);
 
 		// List state information.
-		parent::populateState('rgt', 'DESC');
+		parent::populateState('a.rgt', 'DESC');
 	}
 
 	/**
@@ -89,14 +95,25 @@ class VitabookModelMessages extends JModelList
 		//-- Create a new query object.
 		$query = parent::getListQuery();
 
-		$query->select('*');
-		$query->from('#__vitabook_messages');
+		$query->select('a.*');
+		$query->from('#__vitabook_messages as a');
 
+		// Join over the categories.
+		$query->select('c.title AS topic');
+		$query->join('LEFT', '#__categories AS c ON c.id = a.catid');
+	
+		// Join over the categories.
+		$query->select('u.name');
+		$query->join('LEFT', '#__users AS u ON u.id = a.jid');
+		
 		//-- We don't want the root
-		$query->where('(parent_id > 0)');
+		$query->where('(a.parent_id > 0)');
 
 		//-- Filter state
 		$published = $this->getState('filter.published');
+		$feature = $this->getState('filter.feature');
+		$top = $this->getState('filter.top');
+		$catid = $this->getState('filter.catid');
 
 		if ($published == '') {
 			//$query->where('(published = 1 OR published = 0)');
@@ -105,6 +122,34 @@ class VitabookModelMessages extends JModelList
 			$query->where("published = '{$published}'");
 		}
 
+		if ($feature == '') {
+			//$query->where('(published = 1 OR published = 0)');
+		} else if ($feature != '*') {
+			$feature = (int) $feature;
+			$query->where("feature = '{$feature}'");
+		}
+
+		if ($top == '') {
+			//$query->where('(published = 1 OR published = 0)');
+		} else if ($top != '*') {
+			$top = (int) $top;
+			$query->where("top = '{$top}'");
+		}
+		//var_dump($catid);
+		if ($catid > 0) {
+			$catid = (int) $catid;
+			//$query->where("catid = '{$catid}'");
+			// Filter by a single or group of categories.
+			if (is_numeric($catid)) {
+				$query->where('a.catid = '.(int) $catid);
+			}
+			elseif (is_array($catid)) {
+				JArrayHelper::toInteger($catid);
+				$catid = implode(',', $catid);
+				$query->where('a.catid IN ('.$catid.')');
+			}
+		}
+		
 		//-- Search
 		$search = $this->getState('filter.search');
 
@@ -115,8 +160,8 @@ class VitabookModelMessages extends JModelList
 
 			$field_searches =
 				"(message LIKE '{$search}' OR " .
-				"name LIKE '{$search}' OR " .
-				"email LIKE '{$search}')";
+				"title LIKE '{$search}' OR " .
+				//"email LIKE '{$search}')";
 
 			$query->where($field_searches);
 		}
@@ -127,7 +172,7 @@ class VitabookModelMessages extends JModelList
 
 		//-- Standard order is 'rgt desc', as stated in the populateState method.
         $query->order($db->escape($listOrdering.' '.$listDirn));
-        $query->order('rgt');
+        $query->order('a.rgt');
 
 		return $query;
 	}
