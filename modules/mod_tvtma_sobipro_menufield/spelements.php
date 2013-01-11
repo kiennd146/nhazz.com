@@ -18,19 +18,19 @@
  */
 defined('_JEXEC') or die();
 defined( 'DS' ) || define( 'DS', DIRECTORY_SEPARATOR );
-define( 'SOBI_CMS', version_compare( JVERSION,'1.6.0','ge' ) ? 'joomla16' : 'joomla15' );
-define( 'SOBIPRO', true );
-define( 'SOBIPRO_ADM', true );
-define( 'SOBI_TASK', 'task' );
-define( 'SOBI_DEFLANG', JFactory::getConfig()->getValue( 'config.language' ) );
-define( 'SOBI_ACL', 'adm' );
-define( 'SOBI_ROOT', JPATH_ROOT );
-define( 'SOBI_PATH', SOBI_ROOT.DS.'components'.DS.'com_sobipro' );
-define( 'SOBI_ADM_PATH', JPATH_ADMINISTRATOR.DS.'components'.DS.'com_sobipro' );
+if (!defined('SOBI_CMS')) define( 'SOBI_CMS', version_compare( JVERSION,'1.6.0','ge' ) ? 'joomla16' : 'joomla15' );
+if (!defined('SOBIPRO')) define( 'SOBIPRO', true );
+if (!defined('SOBIPRO_ADM')) define( 'SOBIPRO_ADM', true );
+if (!defined('SOBI_TASK')) define( 'SOBI_TASK', 'task' );
+if (!defined('SOBI_DEFLANG')) define( 'SOBI_DEFLANG', JFactory::getConfig()->getValue( 'config.language' ) );
+if (!defined('SOBI_ACL')) define( 'SOBI_ACL', 'adm' );
+if (!defined('SOBI_ROOT')) define( 'SOBI_ROOT', JPATH_ROOT );
+if (!defined('SOBI_PATH')) define( 'SOBI_PATH', SOBI_ROOT.DS.'components'.DS.'com_sobipro' );
+if (!defined('SOBI_ADM_PATH')) define( 'SOBI_ADM_PATH', JPATH_ADMINISTRATOR.DS.'components'.DS.'com_sobipro' );
 $adm = str_replace( JPATH_ROOT, null, JPATH_ADMINISTRATOR );
-define( 'SOBI_ADM_FOLDER', $adm  );
-define( 'SOBI_ADM_LIVE_PATH', $adm . '/components/com_sobipro' );
-define( 'SOBI_LIVE_PATH', JURI::base().'components/com_sobipro/' );
+if (!defined('SOBI_ADM_FOLDER')) define( 'SOBI_ADM_FOLDER', $adm  );
+if (!defined('SOBI_ADM_LIVE_PATH')) define( 'SOBI_ADM_LIVE_PATH', $adm . '/components/com_sobipro' );
+if (!defined('SOBI_LIVE_PATH')) define( 'SOBI_LIVE_PATH', JURI::base().'components/com_sobipro/' );
 require_once JPATH_SITE.'/libraries/joomla/html/parameter/element.php';
 class JElementSPElements extends JElement
 {

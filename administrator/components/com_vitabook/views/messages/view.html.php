@@ -9,7 +9,6 @@
 
 //-- No direct access
 defined('_JEXEC') or die;
-//echo JPATH_COMPONENT;die();
 JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 jimport('joomla.application.component.view');
 
@@ -75,39 +74,25 @@ class VitabookViewMessages extends JViewLegacy
 		$table = new JGrid(array('class' => 'adminlist'));
 
 		$table	->addColumn('checkbox')
-				//->addColumn('name')
-        ->addColumn('title')
+				->addColumn('title')
 				->addColumn('topic')
 				->addColumn('name')
 				->addColumn('status')
 				->addColumn('date')
-        ->addColumn('feature')
-        ->addColumn('top')
-				//->addColumn('email')
-				//->addColumn('site')
-        //->addColumn('location')
-				//->addColumn('ip')
-				->addColumn('id')
-		;
+				->addColumn('featured')
+				->addColumn('populared')
+				->addColumn('id');
 
 		$table	->addRow(array(), 1)
 				->setRowCell('checkbox', '<input type="checkbox" name="checkall-toggle" value="" title="'.JText::_('JGLOBAL_CHECK_ALL').'" onclick="Joomla.checkAll(this)" />', array('width' => '1%'))
 				->setRowCell('name', JHtml::_('jhtml.grid.sort', 'COM_VITABOOK_MESSAGES_THEAD_NAME', 'name', $this->listDirn, $this->listOrder), array())
-        ->setRowCell('title', JHtml::_('jhtml.grid.sort', 'COM_VITABOOK_MESSAGES_THEAD_TITLE', 'title', $this->listDirn, $this->listOrder), array())
-				//->setRowCell('message', JHtml::_('jhtml.grid.sort', 'COM_VITABOOK_MESSAGES_THEAD_MESSAGE', 'message', $this->listDirn, $this->listOrder), array())
+				->setRowCell('title', JHtml::_('jhtml.grid.sort', 'COM_VITABOOK_MESSAGES_THEAD_TITLE', 'title', $this->listDirn, $this->listOrder), array())
 				->setRowCell('topic', JHtml::_('jhtml.grid.sort', 'COM_VITABOOK_CATEGORIES_TITLE', 'topic', $this->listDirn, $this->listOrder), array())
-				//->setRowCell('name', JHtml::_('jhtml.grid.sort', 'COM_VITABOOK_CREATED_BY_TITLE', 'name', $this->listDirn, $this->listOrder), array())
 				->setRowCell('status', JHtml::_('jhtml.grid.sort', 'JSTATUS', 'published', $this->listDirn, $this->listOrder), array('width' => '5%'))
 				->setRowCell('date', JHtml::_('jhtml.grid.sort', 'COM_VITABOOK_MESSAGES_THEAD_DATE', 'date', $this->listDirn, $this->listOrder), array())
-				//->setRowCell('email', JHtml::_('jhtml.grid.sort', 'COM_VITABOOK_MESSAGES_THEAD_EMAIL', 'email', $this->listDirn, $this->listOrder), array())
-        ->setRowCell('feature', JHtml::_('jhtml.grid.sort', 'COM_VITABOOK_MESSAGES_THEAD_FEATURE', 'feature', $this->listDirn, $this->listOrder), array('width' => '5%'))
-				//->setRowCell('site', JHtml::_('jhtml.grid.sort', 'COM_VITABOOK_MESSAGES_THEAD_SITE', 'site', $this->listDirn, $this->listOrder), array())
-        ->setRowCell('top', JHtml::_('jhtml.grid.sort', 'COM_VITABOOK_MESSAGES_THEAD_TOP', 'top', $this->listDirn, $this->listOrder), array('width' => '5%'))
-        //setRowCell('location', JHtml::_('jhtml.grid.sort', 'COM_VITABOOK_MESSAGES_THEAD_LOCATION', 'location', $this->listDirn, $this->listOrder), array())
-        //setRowCell('location', JHtml::_('jhtml.grid.sort', 'COM_VITABOOK_MESSAGES_THEAD_LOCATION', 'location', $this->listDirn, $this->listOrder), array())
-				//->setRowCell('ip', JText::_('COM_VITABOOK_MESSAGES_THEAD_IP'), array())
-				->setRowCell('id', JText::_('COM_VITABOOK_MESSAGES_THEAD_ID'), array('width' => '1%', 'class' => 'nowrap'))
-		;
+				->setRowCell('featured', JHtml::_('jhtml.grid.sort', 'COM_VITABOOK_MESSAGES_THEAD_FEATURED', 'featured', $this->listDirn, $this->listOrder), array('width' => '5%'))
+				->setRowCell('populared', JHtml::_('jhtml.grid.sort', 'COM_VITABOOK_MESSAGES_THEAD_POPULARED', 'populared', $this->listDirn, $this->listOrder), array('width' => '5%'))
+				->setRowCell('id', JText::_('COM_VITABOOK_MESSAGES_THEAD_ID'), array('width' => '1%', 'class' => 'nowrap'));
 
 		//-- Add pagination
 		$table	->addRow(array(), 2)
@@ -118,21 +103,13 @@ class VitabookViewMessages extends JViewLegacy
 		foreach ($this->messages as $i => $message) {
 			$table	->addRow(array('class' => 'row'.($i % 2)));
 			$table	->setRowCell('checkbox', JHtml::_('grid.id', $i, $message->id), array('class' => 'center'));
-			//$table	->setRowCell('title', $this->escape($message->title));
 			$table	->setRowCell('title', '<a href="'.JRoute::_($message->url).'" title="'.JText::_('COM_VITABOOK_MESSAGES_TBODY_EDIT').'">'.$message->title.'</a>');
-			//$table	->setRowCell('message', '<a href="'.JRoute::_($message->url).'" title="'.JText::_('COM_VITABOOK_MESSAGES_TBODY_EDIT').'">'.$message->message.'</a>');
 			$table	->setRowCell('topic', $message->topic);
 			$table	->setRowCell('name', $message->name);
 			$table	->setRowCell('status', JHtml::_('jgrid.published', $message->published, $i, 'messages.'), array('class' => 'center'));
-      //$table	->setRowCell('feature', JHtml::_('jgrid.published', $message->feature, $i, 'messages.'), array('class' => 'center'));
-	  $table	->setRowCell('feature', JHtml::_('contentadministrator.featured', $message->feature, $i, true), array('class' => 'center'));
-	  
-      $table	->setRowCell('top', JHtml::_('jgrid.published', $message->top, $i, 'messages.'), array('class' => 'center'));
+			$table	->setRowCell('featured', JHtml::_('messages.featured', $message->featured, $i, true), array('class' => 'center'));
+			$table	->setRowCell('populared', JHtml::_('messages.populared', $message->populared, $i, 'messages.'), array('class' => 'center'));
 			$table	->setRowCell('date', $message->date);
-			//$table	->setRowCell('email', $this->escape($message->email));
-			//$table	->setRowCell('site', $this->escape($message->site));
-      //$table	->setRowCell('location', $this->escape($message->location));
-			//$table	->setRowCell('ip', $message->ip);
 			$table	->setRowCell('id', (int) $message->id, array('class' => 'center'));
 		}
 
@@ -154,20 +131,14 @@ class VitabookViewMessages extends JViewLegacy
 		$table = new JGrid(array('class' => 'table table-striped'));
 
 		$table	->addColumn('checkbox')
-				//->addColumn('name')
-        ->addColumn('title')
-				//->addColumn('message')
+				->addColumn('title')
+				->addColumn('message')
 				->addColumn('topic')
 				->addColumn('status')
 				->addColumn('date')
-        ->addColumn('feature')
-        ->addColumn('top')
-				//->addColumn('email')
-				//->addColumn('site')
-        //->addColumn('location')
-				//->addColumn('ip')
-				->addColumn('id')
-		;
+				->addColumn('featured')
+				->addColumn('populared')
+				->addColumn('id');
 
 		$table	->addRow(array(), 1)
 				->setRowCell('checkbox', '<input type="checkbox" name="checkall-toggle" value="" title="'.JText::_('JGLOBAL_CHECK_ALL').'" onclick="Joomla.checkAll(this)" />', array('width' => '1%', 'class' => 'hidden-phone'))

@@ -32,72 +32,6 @@
 			type="hidden"
 			filter="unset"
 		/>
-		<!-- field
-			name="level"
-			type="hidden"
-			filter="unset"
-		/>
-		
-		<field
-			name="jid"
-			type="hidden"
-			label="COM_VITABOOK_MESSAGE_FORM_JID"
-			size="10"
-			class="inputbox"
-			filter="intval"
-			default="0"
-		/>
-		<field
-			name="ip"
-			type="hidden"
-			label="COM_VITABOOK_MESSAGE_FORM_IP"
-			size="40"
-			readonly="true"
-			required="true"
-			class="inputbox"
-			default=""
-		/ -->
-		<!--field
-			name="name"
-			type="text"
-			class="inputbox"
-			label="COM_VITABOOK_MESSAGE_FORM_NAME"
-			description="COM_VITABOOK_MESSAGE_FORM_NAME_DESC"
-			size="40"
-			required="true"
-            validate="user"            
-		/-->
-		<!--field
-			name="email"
-			type="email"
-			class="inputbox"
-			label="COM_VITABOOK_MESSAGE_FORM_EMAIL"
-			description="COM_VITABOOK_MESSAGE_FORM_EMAIL_DESC"
-			size="40"
-			required="true"
-			validate="email"
-		/-->
-		<!--field
-			name="site"
-			type="text"
-			class="inputbox"
-			label="COM_VITABOOK_MESSAGE_FORM_SITE"
-			description="COM_VITABOOK_MESSAGE_FORM_SITE_DESC"
-			size="40"
-			required="false"
-            validate="url"
-            filter="url"
-		/-->
-        <!--field
-            name="location"
-            type="text"
-            label="COM_VITABOOK_FORM_LOCATION"
-            description="COM_VITABOOK_FORM_LOCATION_DESC"
-            size="40"
-            class="inputbox"
-            default=""
-            filter="safehtml"
-        /-->
 		<field
 			name="date"
 			type="calendar"
@@ -138,10 +72,10 @@
 			default=""
 		/>
     
-    <field
-			name="feature"
+		<field
+			name="featured"
 			type="radio"
-			label="COM_VITABOOK_MESSAGE_FORM_FEATURE"
+			label="COM_VITABOOK_MESSAGE_FORM_FEATURED"
 			size="1"
 			filter="intval"
 			default="1"
@@ -153,10 +87,10 @@
 				JYES
 			</option>
 		</field>
-    <field
-			name="top"
+		<field
+			name="populared"
 			type="radio"
-			label="COM_VITABOOK_MESSAGE_FORM_TOP"
+			label="COM_VITABOOK_MESSAGE_FORM_POPULARED"
 			size="1"
 			filter="intval"
 			default="1"
@@ -193,6 +127,13 @@
 			default="1"
 			filter="intval"
             validate="parentid"
+		/>
+		<field
+			name="images"
+			type="hidden"
+			label="COM_VITABOOK_MESSAGE_FORM_IMAGES"
+			description="COM_VITABOOK_MESSAGE_FORM_IMAGES_DESC"
+			default=""
 		/>
 	</fieldset>
 </form>

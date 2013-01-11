@@ -317,4 +317,104 @@ class VitabookModelMessage extends JModelAdmin
 		rsort($pks);
 		return parent::delete($pks);
 	}
+	
+	/**
+	 * Method to toggle the featured setting of contacts.
+	 *
+	 * @param       array   $pks    The ids of the items to toggle.
+	 * @param       int             $value  The value to toggle to.
+	 *
+	 * @return      boolean True on success.
+	 * @since       1.6
+	 */
+	public function populared($pks, $value = 0)
+	{
+		// Sanitize the ids.
+		$pks = (array) $pks;
+		JArrayHelper::toInteger($pks);
+
+		if (empty($pks)) {
+				$this->setError(JText::_('COM_CONTACT_NO_ITEM_SELECTED'));
+				return false;
+		}
+
+		$table = $this->getTable();
+
+		try
+		{
+			$db = $this->getDbo();
+
+			$db->setQuery(
+					'UPDATE #__vitabook_messages' .
+					' SET populared = '.(int) $value.
+					' WHERE id IN ('.implode(',', $pks).')'
+			);
+			if (!$db->query()) {
+					throw new Exception($db->getErrorMsg());
+			}
+		}
+		catch (Exception $e)
+		{
+				$this->setError($e->getMessage());
+				return false;
+		}
+
+		$table->reorder();
+
+		// Clean component's cache
+		$this->cleanCache();
+
+		return true;
+	}
+	
+	/**
+	 * Method to toggle the featured setting of contacts.
+	 *
+	 * @param       array   $pks    The ids of the items to toggle.
+	 * @param       int             $value  The value to toggle to.
+	 *
+	 * @return      boolean True on success.
+	 * @since       1.6
+	 */
+	public function featured($pks, $value = 0)
+	{
+		// Sanitize the ids.
+		$pks = (array) $pks;
+		JArrayHelper::toInteger($pks);
+
+		if (empty($pks)) {
+				$this->setError(JText::_('COM_CONTACT_NO_ITEM_SELECTED'));
+				return false;
+		}
+
+		$table = $this->getTable();
+
+		try
+		{
+			$db = $this->getDbo();
+
+			$db->setQuery(
+					'UPDATE #__vitabook_messages' .
+					' SET featured = '.(int) $value.
+					' WHERE id IN ('.implode(',', $pks).')'
+			);
+			if (!$db->query()) {
+					throw new Exception($db->getErrorMsg());
+			}
+
+		}
+		catch (Exception $e)
+		{
+				$this->setError($e->getMessage());
+				return false;
+		}
+
+		$table->reorder();
+
+		// Clean component's cache
+		$this->cleanCache();
+
+		return true;
+	}
+
 }

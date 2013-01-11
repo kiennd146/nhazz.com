@@ -28,16 +28,12 @@ class VitabookModelMessages extends JModelList
     {
         if (empty($config['filter_fields'])) {
             $config['filter_fields'] = array(
-                //'name',
-				//'email',
 				'title',
 				'message',
 				'published',
-				'feature',
-				'top',
-				'date',
-				//'site',
-                //'location'
+				'featured',
+				'populared',
+				'date'
             );
         }
 
@@ -80,6 +76,12 @@ class VitabookModelMessages extends JModelList
 		$published = $this->getUserStateFromRequest($this->context.'.filter.published', 'filter_published');
 		$this->setState('filter.published', $published);
 
+		$populared = $this->getUserStateFromRequest($this->context.'.filter.populared', 'filter_populared');
+		$this->setState('filter.populared', $populared);
+		
+		$featured = $this->getUserStateFromRequest($this->context.'.filter.featured', 'filter_featured');
+		$this->setState('filter.featured', $featured);
+		
 		// List state information.
 		parent::populateState('a.rgt', 'DESC');
 	}
@@ -111,8 +113,8 @@ class VitabookModelMessages extends JModelList
 
 		//-- Filter state
 		$published = $this->getState('filter.published');
-		$feature = $this->getState('filter.feature');
-		$top = $this->getState('filter.top');
+		$featured = $this->getState('filter.featured');
+		$populared = $this->getState('filter.populared');
 		$catid = $this->getState('filter.catid');
 
 		if ($published == '') {
@@ -122,18 +124,18 @@ class VitabookModelMessages extends JModelList
 			$query->where("published = '{$published}'");
 		}
 
-		if ($feature == '') {
+		if ($featured == '') {
 			//$query->where('(published = 1 OR published = 0)');
-		} else if ($feature != '*') {
-			$feature = (int) $feature;
-			$query->where("feature = '{$feature}'");
+		} else if ($featured != '*') {
+			$featured = (int) $featured;
+			$query->where("featured = '{$featured}'");
 		}
 
-		if ($top == '') {
+		if ($populared == '') {
 			//$query->where('(published = 1 OR published = 0)');
-		} else if ($top != '*') {
-			$top = (int) $top;
-			$query->where("top = '{$top}'");
+		} else if ($populared != '*') {
+			$populared = (int) $populared;
+			$query->where("populared = '{$populared}'");
 		}
 		//var_dump($catid);
 		if ($catid > 0) {

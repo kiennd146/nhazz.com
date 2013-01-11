@@ -108,7 +108,7 @@ require_once( JPATH_ROOT . DS . 'components' . DS . 'com_community' . DS . 'libr
             }
         ?>
 	<li>
-            <? if($imgpth && ($params->get('show_image'))): ?>
+            <? if(isset($imgpth) && $imgpth && ($params->get('show_image'))): ?>
             <div class="imgcom" style="overflow:hidden;width:22%;height:76px;float:left">
                 <a href="<?echo $item->displayCommentLink;?>">
                 <img style="width:100%;height:100%" src="<?echo $imgpth?>" />

@@ -96,7 +96,7 @@ class VitabookModelVitabook extends JModelList
         $db = $this->getDbo();
         $query = $db->getQuery(true);
 
-        $query->select('m.id,m.title,c.title as catname,m.catid,m.images,m.parent_id,m.level,m.jid,m.name,m.email,m.site,m.location,m.date,m.message,m.published,m.feature,m.top');
+        $query->select('m.id,m.title,c.title as catname,m.catid,m.images,m.parent_id,m.level,m.jid,m.name,m.date,m.message,m.published,m.featured,m.populared');
         $query->from('#__vitabook_messages AS m');
         $query->leftjoin(' #__categories AS c ON c.id=m.catid ');
         $query->where('m.parent_id = 1');
@@ -109,7 +109,7 @@ class VitabookModelVitabook extends JModelList
         {
             VitabookHelperAvatar::setAvatarQuery($query);
         }
-		//$catid = JRequest::getInt("catid", 0);
+		
 		$catid = $this->getState('filter.catId');
 		if ($catid > 0) {
 			$query->where("m.catid = $catid");
@@ -119,10 +119,10 @@ class VitabookModelVitabook extends JModelList
 		$filter = $this->getState('filter.actId');
 
 		if ($filter == DISCUSS_FILTER_FEATURE) {
-			$query->where("m.feature = 1");
+			$query->where("m.featured = 1");
 		}
 		elseif ($filter == DISCUSS_FILTER_POPULAR) {
-			$query->where("m.top = 1");
+			$query->where("m.populared = 1");
 		}
 		
 		$query->order('m.date DESC');
