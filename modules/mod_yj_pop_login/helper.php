@@ -16,6 +16,7 @@ defined('_JEXEC') or die('Restricted access');
 
 class mod_YJPOPHelper
 {
+	
 	static function getReturnURL($params, $type)
 	{
 		$app	= JFactory::getApplication();

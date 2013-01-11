@@ -67,8 +67,42 @@ window.addEvent('domready', function() {
 			left: (window.getScrollLeft() + (window.getWidth() - 445)/2)+'px'
 
 		}); 
+		
+		$("discuss_form_photo").setStyles({
+			left: (window.getScrollLeft() + (window.getWidth() - 445)/2)+'px'
+
+		}); 
                 
 });
+
+(function($){
+	$(document).ready(function(){	
+		$("#dcs_form_submit").click(function(e){
+			e.preventDefault();
+			//$('form#dcs_form_create').submit();
+			<?php if ($loggedin): ?>
+			//alert("test");
+			$('form#dcs_form_create').ajaxSubmit({
+				beforeSubmit: function() {
+					//$('#results').html('Submitting...');
+					//alert("test");
+				},
+				success: function(data) {
+					var _data = JSON.parse(data);
+					if (_data.state == '1') {
+						alert("Create discussion successfully");
+						document.location.href=document.location.href;
+					}
+				}
+			});
+			
+			<?php else: ?>
+			showThem('login_pop');
+			<?php endif ?>
+			
+		});
+	});
+})(jQuery);
 </script>
 <!-- registration and login -->
 <div class="poping_links"> 
@@ -144,4 +178,28 @@ window.addEvent('domready', function() {
 	</form>
 	<a href="javascript:;" onclick="this.blur();showThem('reg_pop');return true;" id="closeReg"><?php echo JText::_('CLOSE') ?></a> </div>
 <!-- end registration and login -->
+
+<!--discuss-form-->
+<div id="discuss_form_photo" style="display:none;">
+	<div class="dcs_form">
+		<form id="dcs_form_create" action="<?php echo JRoute::_('index.php?option=com_vitabook'); ?>" method="post">
+		
+		<input class="borderGrey" placeholder="Example title: need help for my kitchen" type="text" name="dcs_title" />
+		<textarea class="borderGrey" placeholder="Tell us the details here" name="dcs_message"></textarea>
+		<input id="discuss_photo_id" name="dcs_photo_id" value="" type="hidden" />
+		<p>
+			<button type="button" id="dcs_form_cancel" onclick="this.blur();showThem('discuss_form_photo');return true;"  ><?php echo JText::_('CLOSE') ?></button>
+			<button type="button" id="dcs_form_submit" >Post</button>
+		</p>
+		<?php 
+		// hidden fields
+		echo JHtml::_('form.token');
+		//echo $this->form->getInput('id');
+		//echo $this->form->getInput('parent_id'); ?>
+		<input type="hidden" name="task" value="message.save" />
+		<input type="hidden" name="format" value="raw" />
+		</form>
+	</div>
+</div>
+<!--end-discuss-form-->
 <?php endif; ?>

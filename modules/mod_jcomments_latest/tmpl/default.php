@@ -96,7 +96,7 @@ SPLoader::loadView( 'section' );
             }
         ?>
 	<li>
-            <? if($imgpth && ($params->get('show_image'))): ?>
+            <? if(isset($imgpth) && $imgpth && ($params->get('show_image'))): ?>
             <div class="imgcom" style="overflow:hidden;width:49%;height:76px;float:left;margin-top: 0; margin-bottom: 5px;margin-right: 5px;">
                 <img style="width:100%;height:100%" src="<?echo $imgpth?>" />
             </div>

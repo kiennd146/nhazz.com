@@ -24,11 +24,19 @@ if (file_exists($comments)) {
 ?>
 <script>	
 (function($){
-	$(document).ready(function() {
-		$(".dcsdt_comment_add").click(function(){
-			$('html,body').animate({
+	$.fn.gotoComment = function(){
+		$('html,body').animate({
 			scrollTop: $("#comments-form").offset().top - 200},
-			'slow');
+		'slow');
+	}
+	$(document).ready(function() {
+		$(".dcsdt_comment_add").click(function(e){
+			e.preventDefault();
+			$.fn.gotoComment();
+		});
+		$(".dcs_comment").click(function(e){
+			e.preventDefault();
+			$.fn.gotoComment();
 		});
 		$(".dcsdt_small a").click(function(e){
 			e.preventDefault();

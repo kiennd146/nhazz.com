@@ -24,14 +24,15 @@ class VitabookViewVitabook extends JViewLegacy
     protected $params;
     protected $pagination;
 
-	function getCategory($root, &$categories) {
+	function getCategory($root, &$categories, &$id) {
 		if (!in_array($root->id, $id) && $root->id!='root') {
 			$categories[] = $root;
+			$id[]=$root->id;
 		}
 		
 		$children = $root->getChildren();
 		foreach($children as $child) {
-			$this->getCategory($child, $categories);
+			$this->getCategory($child, $categories, $id);
 		}
 	}
 	
@@ -73,7 +74,8 @@ class VitabookViewVitabook extends JViewLegacy
 			$category = $categories->get('root');
 		
 			$cat = array();
-			$this->getCategory($category, $cat);
+			$id_arr = array();
+			$this->getCategory($category, $cat, $id_arr);
 			
 			$this->categories = $cat;
         }

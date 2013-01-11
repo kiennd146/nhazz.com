@@ -98,7 +98,7 @@ JFactory::getDocument()->addStyleDeclaration( $style );
 		$.fn.createImageForm = function(name, default_value){
 			m7_count += 1;
 			var m7_id = name + m7_count.toString();
-			//return;
+			if ($(".dcs_images").length >=4) return;
 			var	$newImageForm ='<div class="dcs_images">';
 				$newImageForm+=		'<input type="file" name="file_upload[]" id="' + m7_id + '" />';
 				$newImageForm+=		'<a class="dcs_remove_img" title="Remove" href="#" >Remove</a>&nbsp;';
@@ -117,6 +117,7 @@ JFactory::getDocument()->addStyleDeclaration( $style );
 		
 		$("a.dcs_remove_img").live("click", function(e){
 			e.preventDefault();
+			m7_count -= 1;
 			$(this).parent().remove();
 		});
 
@@ -166,7 +167,7 @@ JFactory::getDocument()->addStyleDeclaration( $style );
     <?php 
     // hidden fields
     echo JHtml::_('form.token');
-    echo $this->form->getInput('id');
+    //echo $this->form->getInput('id');
     //echo $this->form->getInput('parent_id'); ?>
     <input type="hidden" name="task" value="message.save" />
     <input type="hidden" name="format" value="raw" />
