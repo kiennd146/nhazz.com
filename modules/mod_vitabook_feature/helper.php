@@ -20,6 +20,7 @@ abstract class modVitabookFeatureHelper
 	{
         $vitabook_model = JModelLegacy::getInstance( 'vitabook', 'VitabookModel', array('ignore_request' => true));
 		$vitabook_model->setState('filter.actId', DISCUSS_FILTER_FEATURE);
+		$vitabook_model->setState('list.limit', 7);
 		
         $items = $vitabook_model->getItems();
         return $items;

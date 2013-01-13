@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * @version     2.0.1
  * @package     com_vitabook
@@ -28,6 +28,13 @@ define('DISCUSS_FILTER_LASTEST_ACTIVITY', 1);
 define('DISCUSS_FILTER_FEATURE', 2);
 define('DISCUSS_FILTER_POPULAR', 3);
 define('DISCUSS_FILTER_NEW', 4);
+//if (!defined('VITABOOK_CATEGORY_PHOTO_ALIAS'))define('VITABOOK_CATEGORY_PHOTO_ALIAS', 'photoquestion');
+if (!defined('DISCUSS_PHOTOS_PATH')) define('DISCUSS_PHOTOS_PATH', "images/discuss");
+
+// quite urly
+require_once (JPATH_ADMINISTRATOR .'/components/com_vitabook/helpers/vitabook.php');
+require_once (JPATH_ADMINISTRATOR .'/components/com_vitabook/helpers/avatar.php');
+require_once (JPATH_ADMINISTRATOR .'/components/com_vitabook/helpers/mail.php');
 
 class VitabookModelVitabook extends JModelList
 {
@@ -52,7 +59,7 @@ class VitabookModelVitabook extends JModelList
     public function __construct($config = array())
     {
         parent::__construct($config);
-
+		//die();
         // Get user permissions
         $this->_canDo = VitabookHelper::getActions();
         // Get user id
@@ -60,6 +67,7 @@ class VitabookModelVitabook extends JModelList
         //-- Get avatar parameters
         $this->_avatarSource = JComponentHelper::getParams('com_vitabook')->get('vbAvatar');
         $this->_sourceAvailable = VitabookHelperAvatar::checkAvatarSystem($this->_avatarSource);
+		//var_dump($this->_sourceAvailable);
         //-- get message id
         $this->_messageId = JRequest::getInt('messageId');
     }
@@ -93,17 +101,53 @@ class VitabookModelVitabook extends JModelList
      */
     protected function getListQuery()
     {
+		/**
+		select 
+			m.id,m.title,m.catid,m.images,m.parent_id,m.level,m.jid,m.name,m.date,m.message,m.published,m.featured,m.populared
+			,c.title as catname
+			,sum(cm.published) as count_populared, sum(cm.isgood) AS count_featured,cm.date as last_comment
+		from
+			g4gc3_vitabook_messages AS m
+		left join 
+			g4gc3_categories AS c on c.id=m.catid 
+		left join 
+			g4gc3_jcomments AS cm
+			on (cm.object_id=m.id AND cm.object_group='com_vitabook')
+		group by id
+		order by count_populared desc
+		**/
+		
+		/*
+		SELECT m.id,m.title,m.catid,m.images,m.parent_id,m.level,m.jid,m.name,m.date,m.message,m.published,m.featured,m.populared,c.title as catname
+		FROM g4gc3_vitabook_messages AS m
+		LEFT JOIN  g4gc3_categories AS c ON c.id=m.catid 
+		ORDER BY m.featured DESC,m.date DESC
+		*/
+
+		
         $db = $this->getDbo();
+		
         $query = $db->getQuery(true);
 
-        $query->select('m.id,m.title,c.title as catname,m.catid,m.images,m.parent_id,m.level,m.jid,m.name,m.date,m.message,m.published,m.featured,m.populared');
+        $query->select('m.id,m.title,m.catid,m.images,m.parent_id,m.level,m.jid,m.name,m.date,m.message,m.published,m.featured,m.populared');
+		$query->select('c.title as catname');
+        $query->select('SUM(cm.published) as count_populared, SUM(cm.isgood) AS count_featured, cm.date as last_comment');
+		
         $query->from('#__vitabook_messages AS m');
-        $query->leftjoin(' #__categories AS c ON c.id=m.catid ');
+		$query->leftJoin(' #__categories AS c ON c.id=m.catid ');
+		
+        $query->leftJoin(" #__jcomments AS cm ON (cm.object_id=m.id AND cm.object_group='com_vitabook') ");
+		$query->group('id');
+		
         $query->where('m.parent_id = 1');
+		$query->where('m.published = 1');
+		
+		/*
         if(!$this->_canDo->get('core.edit.state'))
         {
             $query->where('m.published = 1');
         }
+		*/
         // get database join for avatar
         if(!empty($this->_avatarSource) && $this->_sourceAvailable == true)
         {
@@ -117,16 +161,26 @@ class VitabookModelVitabook extends JModelList
 		
 		//$filter = JRequest::getInt("actid", DISCUSS_FILTER_NEW);
 		$filter = $this->getState('filter.actId');
-
+		
 		if ($filter == DISCUSS_FILTER_FEATURE) {
-			$query->where("m.featured = 1");
+			$query->where("cm.isgood > 0 or m.featured=1");
+			$query->order('m.featured DESC');
+			$query->order('count_featured DESC');
 		}
-		elseif ($filter == DISCUSS_FILTER_POPULAR) {
-			$query->where("m.populared = 1");
+		
+		if ($filter == DISCUSS_FILTER_POPULAR) {
+			$query->where("cm.published > 0 or m.populared=1");
+			$query->order('m.populared DESC');
+			$query->order('count_populared DESC');
+		}
+		
+		if ($filter == DISCUSS_FILTER_LASTEST_ACTIVITY) {
+			$query->order('last_comment DESC');
 		}
 		
 		$query->order('m.date DESC');
-        //$query->order('m.lft DESC');
+		//var_dump($query->dump());
+		
         return $query;
     }
 
@@ -150,9 +204,13 @@ class VitabookModelVitabook extends JModelList
 				// get photos
 				$message->photos = array();
 				$images = json_decode($message->images);
-				foreach($images as $image) {
-					$message->photos[] = JURI::base() . DISCUSS_PHOTOS_PATH . DS . $image;
+				
+				if ($images) {
+					foreach($images as $image) {
+						$message->photos[] = JURI::base() . $image; //DISCUSS_PHOTOS_PATH . 
+					}
 				}
+				
 				
 				if (count($message->photos) > 0) {
 					$message->photo = $message->photos[0];
@@ -170,6 +228,7 @@ class VitabookModelVitabook extends JModelList
 
 				// format date according to settings
 				$message->date = VitabookHelper::formatDate($message);
+				//var_dump($message->date);die();
 				// add message id to list for retrieval of children
 				$parent_ids[] = $message->id;
 				// store message
@@ -188,7 +247,6 @@ class VitabookModelVitabook extends JModelList
 		}
 		return $this->_messages;
 	}
-
 
     /**
      * Method to get a set of children of a (group of) parent id(s)

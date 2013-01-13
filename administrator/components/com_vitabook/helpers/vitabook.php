@@ -214,6 +214,7 @@ abstract class VitabookHelper
     {
         // Get date format from parameters, LC2 is the standard
         $date_format = JComponentHelper::getParams('com_vitabook')->get('vb_date_format','DATE_FORMAT_LC2');
+
         if($date_format == 'relative'):
             $date = JHtml::_('date.relative',$message->date);
         else:
@@ -222,8 +223,8 @@ abstract class VitabookHelper
    
         return $date;
     }
-         
-         
+    
+	
    /*
     * Check for sufficient memory for resizing image
     * Input is JImage object

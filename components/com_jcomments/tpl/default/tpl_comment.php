@@ -60,7 +60,10 @@ class jtt_tpl_comment extends JoomlaTuneTemplate
 <?php
 				}
 ?>
-<span class="comment-date"><?php echo JCommentsText::formatDate($comment->date, JText::_('DATETIME_FORMAT')); ?></span>
+<span class="comment-date"><?php 
+//echo JCommentsText::formatDate($comment->date, JText::_('DATETIME_FORMAT')); 
+echo JHtml::_('date.relative',$comment->date);
+?></span>
 <div class="comment-body" id="comment-body-<?php echo $comment->id; ?>"><?php echo $comment->comment; ?></div>
 <?php
 				if (($this->getVar('button-reply') == 1)

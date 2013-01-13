@@ -79,7 +79,8 @@ class CategoriesHelper
 		$result		= new JObject;
 		$parts		= explode('.', $extension);
 		$component	= $parts[0];
-
+		// kiennd temporarily fix to display save button
+		$result->set('core.edit',1);
 		if (empty($categoryId)) {
 			$assetName = $component;
 			$level = 'component';

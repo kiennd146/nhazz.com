@@ -93,7 +93,6 @@ JFactory::getDocument()->addStyleDeclaration( $style );
 <script>
 (function($){
 	$(document).ready(function(){
-	
 		var m7_count = 0;
 		$.fn.createImageForm = function(name, default_value){
 			m7_count += 1;
@@ -101,8 +100,8 @@ JFactory::getDocument()->addStyleDeclaration( $style );
 			if ($(".dcs_images").length >=4) return;
 			var	$newImageForm ='<div class="dcs_images">';
 				$newImageForm+=		'<input type="file" name="file_upload[]" id="' + m7_id + '" />';
-				$newImageForm+=		'<a class="dcs_remove_img" title="Remove" href="#" >Remove</a>&nbsp;';
-				$newImageForm+=		'<a class="dcs_add_img" title="Remove" href="#" >Add</a>';
+				$newImageForm+=		'<a class="dcs_remove_img" title="Remove" href="#" ><?php echo JText::_('VITABOOK_LIST_REMOVE') ?></a>&nbsp;';
+				$newImageForm+=		'<a class="dcs_add_img" title="Remove" href="#" ><?php echo JText::_('VITABOOK_LIST_ADD') ?></a>';
 				$newImageForm+='<div style="clear:both"></div>';
 				$newImageForm+='</div>';
 		
@@ -120,12 +119,10 @@ JFactory::getDocument()->addStyleDeclaration( $style );
 			m7_count -= 1;
 			$(this).parent().remove();
 		});
-
-		$("#dcs_form_submit").click(function(e){
+		
+		$("button#dcs_form_submit").click(function(e){
 			e.preventDefault();
-			//$('form#dcs_form_create').submit();
 			<?php if ($this->loggedin): ?>
-			//alert("test");
 			$('form#dcs_form_create').ajaxSubmit({
 				beforeSubmit: function() {
 					//$('#results').html('Submitting...');
@@ -134,7 +131,7 @@ JFactory::getDocument()->addStyleDeclaration( $style );
 				success: function(data) {
 					var _data = JSON.parse(data);
 					if (_data.state == '1') {
-						alert("Create discussion successfully");
+						alert("<?php echo JText::_('VITABOOK_LIST_CREATE_SUCCESS') ?>");
 						document.location.href=document.location.href;
 					}
 				}
@@ -149,8 +146,8 @@ JFactory::getDocument()->addStyleDeclaration( $style );
 })(jQuery);
 </script>
 <div id="discuss_form">
-	<h2>What are you going on?</h2>
-	<p>Get help for your project, share your finds and show off your Before and After</p>
+	<h2><?php echo JText::_('VITABOOK_LIST_HELP') ?></h2>
+	<p><?php echo JText::_('VITABOOK_LIST_TITLE') ?></p>
 	<div class="dcs_form">
 		<form id="dcs_form_create" action="<?php echo JRoute::_('index.php?option=com_vitabook'); ?>" method="post" enctype="multipart/form-data">
 		
@@ -159,18 +156,17 @@ JFactory::getDocument()->addStyleDeclaration( $style );
 			<option value="<?php echo $category->id?>"><?php echo $category->title?></option>
 			<?php endforeach; ?>
 		</select>
-		<input class="borderGrey" placeholder="Example title: need help for my kitchen" type="text" name="dcs_title" />
-		<textarea class="borderGrey" placeholder="Tell us the details here" name="dcs_message"></textarea>
-		<a class="dcs_attach_img dcs_add_img" href="#">Attach Images</a>
+		<input class="borderGrey" placeholder="<?php echo JText::_('VITABOOK_LIST_HINT_TITLE') ?>" type="text" name="dcs_title" />
+		<textarea class="borderGrey" placeholder="<?php echo JText::_('VITABOOK_LIST_HINT_MESSAGE') ?>" name="dcs_message"></textarea>
+		<a class="dcs_attach_img dcs_add_img" href="#"><?php echo JText::_('VITABOOK_LIST_BUTTON_ATTACH') ?></a>
 		<p id="dcs_img_list"></p>
-		<button type="button" id="dcs_form_submit" >Post</button>
-    <?php 
-    // hidden fields
-    echo JHtml::_('form.token');
-    //echo $this->form->getInput('id');
-    //echo $this->form->getInput('parent_id'); ?>
-    <input type="hidden" name="task" value="message.save" />
-    <input type="hidden" name="format" value="raw" />
+		<button type="button" id="dcs_form_submit" ><?php echo JText::_('VITABOOK_LIST_BUTTON_POST') ?></button>
+		<?php 
+		// hidden fields
+		echo JHtml::_('form.token');
+		?>
+		<input type="hidden" name="task" value="message.save" />
+		<input type="hidden" name="format" value="raw" />
 		</form>
 	</div>
 </div>

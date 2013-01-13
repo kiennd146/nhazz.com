@@ -195,7 +195,7 @@ class SearchModelSearch extends JModelLegacy
 			JPluginHelper::importPlugin('search');
 			$dispatcher = JDispatcher::getInstance();
 			$searchareas = $dispatcher->trigger('onContentSearchAreas');
-
+			//var_dump($searchareas);die();
 			foreach ($searchareas as $area) {
 				if (is_array($area)) {
 					$areas = array_merge($areas, $area);

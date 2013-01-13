@@ -1712,8 +1712,9 @@ div.user_status {
 /*new template*/
 
 #centerCol {
-	width:532px;
+	width:517px;
 	float:left;
+	padding-right:15px;
 }
 #rightCol {
 	width:244px;
@@ -1771,6 +1772,9 @@ div.user_status {
 	color:#fff;
 	padding:2px;
 	cursor:pointer;
+}
+.dcs_form button#dcs_form_cancel {
+	right:64px;
 }
 .dcs_attach_img{
 	background:url(./img/upload_image.png) no-repeat center left;
@@ -2029,7 +2033,7 @@ ul.tab-paging li.ui-tabs-active a, ul.ui-tabs-nav li.ui-tabs-active a{
 }
 
 #dcsdetail .dcsdt_content {
-	width:488px;
+	width:468px;
 	height:100%;
 	margin:0 0 0 10px;
 	float:left;

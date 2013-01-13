@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 ?>
 <div id="featuredcs">
-	<h2>Featured Discussion</h2>
+	<h2><?php echo JText::_('VITABOOK_MOD_VITAFEATURE_TITLE') ?></h2>
 	<ul id="featuredcs_list">
 		<?php foreach ($list as $message): ?>
 		<?php
@@ -31,7 +31,7 @@ defined('_JEXEC') or die;
 				</a>
 			</div>
 			<div class="dcs_content_wrapper">
-				<a style="color:#000;font-weight:bold;" href="<?php echo JRoute::_(VitabookHelperRoute::getVitabookRoute($message->id)) ?>"><?php echo $message->title?></a>-<span> "<?php echo $shortmsg?>..."</span>
+				<a style="color:#000;font-weight:bold;" href="<?php echo JRoute::_(VitabookHelperRoute::getVitabookRoute($message->id)) ?>"><?php echo $message->title?></a>-<span> "<?php echo $shortmsg?>"</span>
 				<div class="dcs_wrapper">
 					<?php if ($message->user_link): ?>
 					<div class="dcs_avatar">
@@ -40,7 +40,7 @@ defined('_JEXEC') or die;
 						</a>
 					</div>
 					<div class="dcs_name">
-						by &nbsp; <a href="<?php echo $message->user_link  ?>"><?php echo $message->user_name; ?></a>
+						<?php echo JText::_('VITABOOK_MOD_VITAFEATURE_BY') ?> &nbsp; <a href="<?php echo $message->user_link  ?>"><?php echo $message->user_name; ?></a>
 					</div>
 					<?php endif; ?>
 				</div>

@@ -21,9 +21,10 @@ $params->def('greeting', 0);
 $type	= mod_YJPOPHelper::getType();
 $return	= mod_YJPOPHelper::getReturnURL($params, $type);
 $user	= JFactory::getUser();
-
+/*
 $loggedin = false;
 if($user->id > 0){
 	$loggedin = true;
 }
+*/
 require JModuleHelper::getLayoutPath('mod_yj_pop_login', $params->get('layout', 'default'));

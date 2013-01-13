@@ -49,10 +49,11 @@ function renderMessage($message,$params,$parentState){ ?>
 			</div>
 			<div class="dcs_content">
 				<?php if ($comment): ?>
-				<p><a class="dsc_user" href="<?php echo CRoute::_('index.php?option=com_community&view=profile&userid=' . $comment->userid ); ?>"><?php echo $comment->name; ?></a> commented:</p>
+				<p><a class="dsc_user" href="<?php echo CRoute::_('index.php?option=com_community&view=profile&userid=' . $comment->userid ); ?>"><?php echo $comment->name; ?></a> <?php echo JText::_('VITABOOK_LIST_COMMENT') ?>:</p>
 				<p><?php echo $comment->comment; ?></p>
 				<p class="dsc_time">
-					<?php echo $comment->date?> in <a href="<?php echo JRoute::_(VitabookHelperRoute::getCategoryRoute($message->category->id)) ?>"><?php echo $message->catname ?></a>
+					<?php echo JHtml::_('date.relative',$comment->date);
+					?> <?php echo JText::_('VITABOOK_LIST_IN') ?> <a href="<?php echo JRoute::_(VitabookHelperRoute::getCategoryRoute($message->category->id)) ?>"><?php echo $message->catname ?></a>
 					<a class="dcs_comment" href="#"><?php echo $count ?></a>
 				</p>
 				<?php endif ?>
@@ -67,7 +68,7 @@ function renderMessage($message,$params,$parentState){ ?>
 
 ?>
 <div id="discuss_list">
-	<h2><?php echo $this->pagination->total ?> Discussions</h2>
+	<h2><?php echo $this->pagination->total ?> <?php echo JText::_('VITABOOK_LIST_COUNT_DISCUSS') ?></h2>
 	<ul>
 <?php
 // render available messages

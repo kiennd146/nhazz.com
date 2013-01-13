@@ -17,10 +17,10 @@ abstract class modVitabookFilterHelper
 	public static function getList(&$params)
 	{
 		$filter_list = array(
-			DISCUSS_FILTER_LASTEST_ACTIVITY=>JText::_('Lastest Activity'),
-			DISCUSS_FILTER_FEATURE=>JText::_('Featured'),
-			DISCUSS_FILTER_POPULAR=>JText::_('Popular'),
-			DISCUSS_FILTER_NEW=>JText::_('New')
+			DISCUSS_FILTER_LASTEST_ACTIVITY=>JText::_('VITABOOK_MOD_VITAFILTER_LAST_ACT'),
+			DISCUSS_FILTER_FEATURE=>JText::_('VITABOOK_MOD_VITAFILTER_FEATURED'),
+			DISCUSS_FILTER_POPULAR=>JText::_('VITABOOK_MOD_VITAFILTER_POPULARED'),
+			DISCUSS_FILTER_NEW=>JText::_('VITABOOK_MOD_VITAFILTER_NEW')
 		);
 		return $filter_list;
 	}

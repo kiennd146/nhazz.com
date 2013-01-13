@@ -19,14 +19,18 @@ abstract class modVitabookCategoriesHelper
 		$categories = JCategories::getInstance('Vitabook');
 		//$category = $categories->get($params->get('parent', 'root'));
 		$category = $categories->get('root');
-		
+		//var_dump($category->title);
+		$items = $category->getChildren();
+		//echo count($items);
 		if ($category != null)
 		{
 			$items = $category->getChildren();
+			/**/
 			if($params->get('count', 0) > 0 && count($items) > $params->get('count', 0))
 			{
 				$items = array_slice($items, 0, $params->get('count', 0));
 			}
+			
 			return $items;
 		}
 	}

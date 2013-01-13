@@ -16,3 +16,9 @@ $controller->execute(JRequest::getCmd('task'));
 
 // Redirect if set by the controller
 $controller->redirect();
+/*
+//-- Require helper file for ACL
+JLoader::register('VitabookHelper', JPATH_COMPONENT_ADMINISTRATOR .'/helpers/vitabook.php');
+JLoader::register('VitabookHelperAvatar', JPATH_COMPONENT_ADMINISTRATOR .'/helpers/avatar.php');
+JLoader::register('VitabookHelperMail', JPATH_COMPONENT_ADMINISTRATOR .'/helpers/mail.php');
+*/

@@ -18,12 +18,16 @@ jimport('joomla.event.dispatcher');
 jimport('joomla.application.categories');
 jimport('joomla.filesystem.file');
 
+define('VITABOOK_CATEGORY_PHOTO_ALIAS', 'photoquestion');
+if (!defined('DISCUSS_PHOTOS_PATH')) define('DISCUSS_PHOTOS_PATH', "images/discuss");
+
+require_once ( implode( DS, array( JPATH_ROOT, 'components', 'com_sobipro', 'lib', 'sobi.php' ) ) );
+Sobi::Init( JPATH_ROOT, JFactory::getConfig()->getValue( 'config.language' ));
+require_once( JPATH_ROOT . DS . 'components' . DS . 'com_community' . DS . 'libraries' . DS . 'core.php');
+
 /**
  * Vitabook model.
  */
-define('DISCUSS_PHOTOS_PATH', "images/discuss");
-require_once( JPATH_ROOT . DS . 'components' . DS . 'com_community' . DS . 'libraries' . DS . 'core.php');
-
 class VitabookModelMessage extends JModelAdmin
 {
     protected $_canDo;
@@ -91,7 +95,7 @@ class VitabookModelMessage extends JModelAdmin
 		//$item->created_by;
 		$images = json_decode($item->images);
 		foreach($images as $image) {
-			$item->photos[] = JURI::base() . DISCUSS_PHOTOS_PATH . DS . $image;
+			$item->photos[] = JURI::base() . DS . $image;
 		}
 		
 		$user = CFactory::getUser($item->jid);
@@ -250,8 +254,9 @@ class VitabookModelMessage extends JModelAdmin
 	
 	protected function upload_img($file) {
 		//Clean up filename to get rid of strange characters like spaces etc
-		//var_dump($file);die();
 		$name = array();
+		if (count($file) <=0 ) return $name;
+		
 		foreach($file['name'] as $i=>$fname) {
 			$filename = JFile::makeSafe($fname);
 			$src = $file['tmp_name'][$i];
@@ -263,9 +268,9 @@ class VitabookModelMessage extends JModelAdmin
 			
 			//First check if the file has the right extension, we need jpg only
 			$error='';
-			if ( in_array(strtolower($ext), array('jpg','png')) ) {
+			if ( in_array(strtolower($ext), array('jpg','png','gif','jpeg','bmp')) ) {
 			   if ( JFile::upload($src, $dest) ) {
-					$name[] = $new_name;
+					$name[] = DISCUSS_PHOTOS_PATH . DS . $new_name;
 			   } else {
 			   }
 			} else {
@@ -274,6 +279,38 @@ class VitabookModelMessage extends JModelAdmin
 		}
 		return $name;
 	}
+	
+	protected function create_photo_category() {
+		$db = $this->getDbo();
+		$query = $db->getQuery(true);
+		$query->select('c.*');
+		$query->from('#__categories AS c');
+		$query->where("c.alias = '".VITABOOK_CATEGORY_PHOTO_ALIAS."'");
+		$db->setQuery($query);
+		$data = $db->loadObject();
+		
+		if (!$data) {
+			$data = new stdClass();
+			$data->title = JText::_('VITABOOK_CATEGORY_PHOTO_QUESTION');
+			$data->alias = VITABOOK_CATEGORY_PHOTO_ALIAS;
+			$data->published = 1;
+			$data->parent_id = 1;
+			$data->level = 1;
+			$data->metadata = '{"author":"","robots":""}';
+			$data->extension = 'com_vitabook';
+			$data->language = '*';
+			$data->access = '1';
+			
+			$user = JFactory::getUser();
+			//$data->	created_user_id = $user->get('id');
+
+			if (!$db->insertObject( '#__categories', $data, 'id' )) {
+				echo $db->stderr();
+			}
+		}
+		return $data;
+	}
+	
     /**
      * Method to validate the form data. Override JModelForm to preserve youtube and vimeo iframes/div-objects
      *
@@ -289,16 +326,34 @@ class VitabookModelMessage extends JModelAdmin
     {
         //Retrieve file details from uploaded file, sent from upload form
 		$file = JRequest::getVar('file_upload', null, 'files', 'array');
-		$filenames = $this->upload_img($file);
+		if ($file) {
+			$filenames = $this->upload_img($file);
+			$data['images'] = json_encode($filenames);
+		}
+		
+		$sobi_id = JRequest::getInt('dcs_photo_id', 0);
+		//var_dump($sobi_id);
+		if ($sobi_id > 0) {
+			$entry = SPFactory::Entry($sobi_id);
+			$field = SPConfig::unserialize( $entry->getField( 'field_hnh_nh' )->getRaw() );
+			$data['images'] = json_encode(array($field['original']));
+		}
 		
 		$data['published'] = 1;
-		$data['images'] = json_encode($filenames);
+		
 		$data['date'] = JFactory::getDate('utc')->toSql();
 		$user = JFactory::getUser();
 		$data['title'] = JRequest::getVar('dcs_title', '');
 		$data['message'] = JRequest::getVar('dcs_message', '');
+		
+		// check if category is photo or not
 		$data['catid'] = JRequest::getVar('dcs_category', '');
-		$data['published'] = 1;
+		$photo_category = null;
+		if ($data['catid'] == '') {
+			$photo_category = $this->create_photo_category();
+			$data['catid'] = $photo_category->id;
+		}
+		
 		$data['jid'] = $user->get('id');
 		$data['parent_id'] = 1;
 		

@@ -103,7 +103,10 @@ div.comments-policy ol li, div.comments-policy ul li {font: normal 1em Verdana, 
 #comments-form span.captcha {padding: 0 0 0 12px; color: #777; background: url(images/jc_refreshg.gif) no-repeat 0 2px;cursor: pointer; display: inline-block}
 #comments-form label, #comments-report-form label {color: #777; background-color: inherit; line-height: 1.5em; padding: 0;margin: 0;vertical-align: middle}
 #comments-form input, #comments-report-form input, #comments-form textarea {color: #444;background-color: #fff;padding: 0 !important;margin: 0;border: 1px solid #ccc}
-#comments-form input {width: 170px;margin-bottom: 2px;height: 1.5em}
+/*#comments-form input {width: 170px;margin-bottom: 2px;height: 1.5em}*/
+/*kiennd*/
+#comments-form input {width: 100%;margin-bottom: 2px;height: 2.5em}
+
 #comments-form input.selected, #comments-form textarea.selected {color: #777;background-color: #ffffe0 !important;border: 1px solid #849B9F}
 #comments-form input.error, #comments-form textarea.error {border: 1px solid #f00;text-decoration:none;text-transform:none;background-color: #ffffe0}
 
@@ -117,7 +120,10 @@ div.comments-policy ol li, div.comments-policy ul li {font: normal 1em Verdana, 
 
 #comments-form .counterpanel {height:13px;display:block;overflow:hidden;color: #ccc;padding: 0;margin:0;border:1px solid #ddd;border-top-width:0;max-width: 400px !important;width: 350px;background-color: #eee}
 
-#comments-form .grippie {height:13px;display:block;overflow:hidden;color: #ccc;padding: 0;margin:0;border:1px solid #ddd;border-top-width:0;max-width: 400px !important;width: 350px;cursor:s-resize;background: #eee url(images/jc_resize.gif) no-repeat right 2px}
+/*#comments-form .grippie {height:13px;display:block;overflow:hidden;color: #ccc;padding: 0;margin:0;border:1px solid #ddd;border-top-width:0;max-width: 400px !important;width: 350px;cursor:s-resize;background: #eee url(images/jc_resize.gif) no-repeat right 2px}*/
+/*kiennd*/
+#comments-form .grippie {height:13px;display:block;overflow:hidden;color: #ccc;padding: 0;margin:0;border:1px solid #ddd;border-top-width:0;max-width: 100% !important;width: 100%;cursor:s-resize;background: #eee url(images/jc_resize.gif) no-repeat right 2px}
+
 #comments-form .grippie .counter {font-size: 10px;padding: 0; margin: 0}
 #comments-form .grippie span {display:block;float:left}
 #comments-form .grippie span span {display:inline;float:none}

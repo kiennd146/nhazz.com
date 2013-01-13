@@ -17,7 +17,7 @@ defined('_JEXEC') or die;
 </script>
 
 <div id="topcommenter">
-	<h2>Top commenters</h2>
+	<h2><?php echo JText::_('VITABOOK_MOD_TOPCOMMENTER_TITLE'); ?></h2>
 	<div id="topcommenter_tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 	<div style="clear:both"></div>
 <?php //<div style="clear:both"></div>

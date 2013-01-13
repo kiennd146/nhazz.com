@@ -25,7 +25,7 @@ class VitabookViewVitabook extends JViewLegacy
     protected $pagination;
 
 	function getCategory($root, &$categories, &$id) {
-		if (!in_array($root->id, $id) && $root->id!='root') {
+		if (!in_array($root->id, $id) && $root->id!='root' && $root->alias!=VITABOOK_CATEGORY_PHOTO_ALIAS) {
 			$categories[] = $root;
 			$id[]=$root->id;
 		}

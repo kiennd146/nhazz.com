@@ -45,18 +45,19 @@ if ($interval != '1-day-1-week-1-month') {
     $list[$interval] = modJCommentsTopPostersHelper::getList($params, $interval); 
 }
 else {    
-    $list['1-day'] = modJCommentsTopPostersHelper::getList($params, '1-year');
-    $list['1-week'] = modJCommentsTopPostersHelper::getList($params, '1-year');
-    $list['1-month'] = modJCommentsTopPostersHelper::getList($params, '1-year');
+    $list['1-week'] = modJCommentsTopPostersHelper::getList($params, '1-week');
+    $list['1-month'] = modJCommentsTopPostersHelper::getList($params, '1-month');
+    $list['1-year'] = modJCommentsTopPostersHelper::getList($params, '1-year');
 } 
 
 $lang_interval = array(
-    '1-day'=>_('1 day'),
-    '1-week'=>_('1 week'),
-    '1-month'=>_('1 month'),
-    '1-year'=>_('1 year'),
-    '2-day'=>_('2 days'),
-    '2-month'=>_('2 months'),
+    '1-day'=>JText::_('VITABOOK_MOD_TOPCOMMENTER_1_DAY'),
+    '1-week'=>JText::_('VITABOOK_MOD_TOPCOMMENTER_1_WEEK'),
+    '1-month'=>JText::_('VITABOOK_MOD_TOPCOMMENTER_1_MONTH'),
+    '1-year'=>JText::_('VITABOOK_MOD_TOPCOMMENTER_1_YEAR'),
+    '2-day'=>JText::_('VITABOOK_MOD_TOPCOMMENTER_2_DAY'),
+    '2-week'=>JText::_('VITABOOK_MOD_TOPCOMMENTER_2_WEEK'),
+    '2-month'=>JText::_('VITABOOK_MOD_TOPCOMMENTER_2_MONTH'),
 );
 
 //var_dump($list);
