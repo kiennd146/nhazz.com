@@ -62,16 +62,16 @@ function renderMessage($message,$params,$parentState){ ?>
 			<p class="author"><?php echo $message->date ?> <?php echo JText::_('VITABOOK_LIST_IN') ?> <a href="<?php echo JRoute::_(VitabookHelperRoute::getCategoryRoute($message->category->id)) ?>"><?php echo $message->category->title ?></a></p>
 			
 			<h2><?php echo $message->title; ?></h2>
-			<p><?php echo $message->message; ?></p>
+			<p><?php echo nl2br($message->message); ?></p>
 			<div id="dcsdt_images">
 				<?php if (count($message->photos) > 0):?>
 				<div class="dcsdt_large">
-					<img src="<?php echo $message->photos[0]?>">
+					<img src="<?php echo $message->photos[0]->origin?>">
 				</div>
 				<ul class="dcsdt_small">
 					<?php $first = true;?>
 					<?php foreach($message->photos as $photo):?>
-					<li  <?php if ($first == true):?>class="active"<?php endif;?>><a href="#"><img style="width:75px;height:55px" src="<?php echo $photo; ?>"></a></li>
+					<li  <?php if ($first == true):?>class="active"<?php endif;?>><a href="#"><img style="height:55px" src="<?php echo $photo->origin; ?>"></a></li>
 					<?php $first = false;?>
 					<?php endforeach;?>
 					

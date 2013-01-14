@@ -9,85 +9,6 @@
 
 // no direct access
 defined('_JEXEC') or die;
-/*
-JHTML::stylesheet('vitabookLegacy.css', 'components/com_vitabook/assets/');
-if($this->params->get('rounded_corners') == 1) {
-    JHTML::stylesheet('vitabook_rounded.css', 'components/com_vitabook/assets/');
-}
-
-// include JS libraries
-
-JHtml::_('behavior.framework');
-JHtml::_('behavior.formvalidation');
-JHtml::_('behavior.tooltip');
-JHtml::_('behavior.modal', 'a.modal');
-
-JHTML::script('vitabook_Legacy.js', 'components/com_vitabook/assets/');
-
-// populate dynamic javascript variables
-JFactory::getDocument()->addScriptDeclaration("
-    window.addEvent('domready', function(){     // initialize variables
-        vitabook.url_base = '".JRoute::_('index.php?option=com_vitabook')."';
-        vitabook.token = '".JUtility::getToken()."';
-    });
-");
-
-// configurable css settings
-// Get values from parameters
-
-$introtext_color = $this->params->get('vb_introtext_color');
-$introtext_background = $this->params->get('vb_introtext_background');
-$introtext_border = $this->params->get('vb_introtext_border');
-$text_color = $this->params->get('vb_text_color');
-$header_background = $this->params->get('vb_header_background');
-$message_background = $this->params->get('vb_message_background');
-$border_color = $this->params->get('vb_border_color');
-// define and override css
-$style = '
-    .vbContainer{color:#'.$text_color.';}
-    .vbMessageHeader{background:#'.$header_background.';}
-    .vbMessageMessage{background:#'.$message_background.';}
-    .vbMessageHeader, .vbMessageMessage, .vbMessageForm, .vbLoadMoreMessages{border-color:#'.$border_color.';}
-    .vbMessageUnpublished{background:#ffe7d7; border-color:#ffb39b;}
-    .vbActiveParent{background:#e0eab9; border-color:#90b203;}
-    .vbActiveParent img, .vbMessageUnpublished img{filter:alpha(opacity=40); opacity:0.4;}
-    img.vbPublishControl{filter:alpha(opacity=100);	opacity:1;}
-    #vbMessageForm ul{list-style-type:none;list-style:none;}
-    #vbMessageForm ul li, #vbMessageForm ul > li, .vbForm li, ul.vbForm li{list-style-type:none;list-style:none;background:none;background-image:none;}
-    .vbIntrotext{color:#'.$introtext_color.';background:#'.$introtext_background.';border-color:#'.$introtext_border.';}
-    ';
-// add to html head
-JFactory::getDocument()->addStyleDeclaration( $style );
-
-// some loose JS ?>
-<script>
-    window.addEvent('domready', function() { // validation handler for name
-        document.formvalidator.setHandler('user',
-            function (value) {
-                regex = /[<|>|\"|'|%|;|(|)|&]/i;
-                return !regex.test(value);
-        });
-    });
-</script>
-
-<script>
-    vitabook.validate = function(){
-        var isValid = true;
-
-        // prepend site with http:// if no scheme is present
-        if($('jform_site') && $('jform_site').value != '' && !$('jform_site').value.test('https?://','i'))
-        {
-            $('jform_site').value = 'http://'+$('jform_site').value;
-        }
-
-        if (!document.formvalidator.isValid($('vitabookMessageForm')))
-        {
-            isValid = false;
-        }
-    return isValid;
-    }
-</script>
-*/
 ?>
 
 <script>
@@ -122,6 +43,8 @@ JFactory::getDocument()->addStyleDeclaration( $style );
 		
 		$("button#dcs_form_submit").click(function(e){
 			e.preventDefault();
+			//$('form#dcs_form_create').submit();
+			//return;
 			<?php if ($this->loggedin): ?>
 			$('form#dcs_form_create').ajaxSubmit({
 				beforeSubmit: function() {

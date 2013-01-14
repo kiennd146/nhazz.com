@@ -26,9 +26,10 @@ function renderMessage($message,$params,$parentState){ ?>
 	$count = JComments::getCommentsCount($message->id, 'com_vitabook');
     if(is_object($message))
     { ?>
+		<?php //var_dump($message->photo); ?>
         <div class="dcs_img_wrapper">
 			<a href="<?php echo JRoute::_(VitabookHelperRoute::getVitabookRoute($message->id)) ?>">
-			<img src="<?php echo $message->photo ?>" <?php echo JHtml::setImageDimension($message->photo, 136, 136); ?> />
+			<img src="<?php echo $message->photo->thumb ?>" <?php echo JHtml::setImageDimension($message->photo->thumb, 136, 136); ?> />
 			</a>
 		</div>
 		<div class="dcs_content_wrapper">

@@ -105,6 +105,10 @@ require_once( JPATH_ROOT . DS . 'components' . DS . 'com_community' . DS . 'libr
                 $value= $item->object_id;
                 $com_type=$item->object_group;
                 $imgpth = modJCommentsLatestHelper::takeImage(NULL,'original',$com_type,$value);
+            } else if(($item->object_group)=='com_vitabook'){
+                $value= $item->object_id;
+                $com_type=$item->object_group;
+                $imgpth = modJCommentsLatestHelper::takeImage(NULL,'original',$com_type,$value);
             }
         ?>
 	<li>

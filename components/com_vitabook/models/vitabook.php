@@ -205,18 +205,30 @@ class VitabookModelVitabook extends JModelList
 				$message->photos = array();
 				$images = json_decode($message->images);
 				
-				if ($images) {
-					foreach($images as $image) {
-						$message->photos[] = JURI::base() . $image; //DISCUSS_PHOTOS_PATH . 
+				foreach($images as $image) {
+					if (file_exists(dirname(JPATH_BASE . DS . $image->origin)) && file_exists(dirname(JPATH_BASE . DS . $image->thumb))) {
+						$image_photo = (object)array(
+							'origin'=>JURI::base() . DS . $image->origin,
+							'thumb'=>JURI::base() . DS . $image->thumb
+						);
 					}
+					else {
+						$image_photo = (object)array(
+							'origin'=>JURI::base() . DISCUSS_PHOTOS_PATH . DS . 'no_photo.jpg',
+							'thumb'=>JURI::base() . DISCUSS_PHOTOS_PATH . DS . 'no_photo.jpg'
+						);
+					}
+					$message->photos[] = $image_photo;
 				}
-				
 				
 				if (count($message->photos) > 0) {
 					$message->photo = $message->photos[0];
 				}
 				else {
-					$message->photo = JURI::base() . DISCUSS_PHOTOS_PATH . DS . 'no_photo.jpg';
+					$message->photo = (object)array(
+						'origin'=>JURI::base() . DISCUSS_PHOTOS_PATH . DS . 'no_photo.jpg',
+						'thumb'=>JURI::base() . DISCUSS_PHOTOS_PATH . DS . 'no_photo.jpg'
+					);
 				}
 				
 				$user = CFactory::getUser($message->jid);

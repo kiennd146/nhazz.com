@@ -20,6 +20,7 @@ jimport('joomla.filesystem.file');
 
 define('VITABOOK_CATEGORY_PHOTO_ALIAS', 'photoquestion');
 if (!defined('DISCUSS_PHOTOS_PATH')) define('DISCUSS_PHOTOS_PATH', "images/discuss");
+if (!defined('DISCUSS_PHOTOS_THUMB')) define('DISCUSS_PHOTOS_THUMB', "thumbs");
 
 require_once ( implode( DS, array( JPATH_ROOT, 'components', 'com_sobipro', 'lib', 'sobi.php' ) ) );
 Sobi::Init( JPATH_ROOT, JFactory::getConfig()->getValue( 'config.language' ));
@@ -92,10 +93,24 @@ class VitabookModelMessage extends JModelAdmin
 
 		// get photos
 		$item->photos = array();
-		//$item->created_by;
+		
 		$images = json_decode($item->images);
+		
 		foreach($images as $image) {
-			$item->photos[] = JURI::base() . DS . $image;
+			if (file_exists(dirname(JPATH_BASE . DS . $image->origin)) && file_exists(dirname(JPATH_BASE . DS . $image->thumb))) {
+				$image_photo = (object)array(
+					'origin'=>JURI::base() . DS . $image->origin,
+					'thumb'=>JURI::base() . DS . $image->thumb
+				);
+			}
+			else {
+				$image_photo = (object)array(
+					'origin'=>JURI::base() . DISCUSS_PHOTOS_PATH . DS . 'no_photo.jpg',
+					'thumb'=>JURI::base() . DISCUSS_PHOTOS_PATH . DS . 'no_photo.jpg'
+				);
+			}
+			
+			$item->photos[] = $image_photo;
 		}
 		
 		$user = CFactory::getUser($item->jid);
@@ -106,7 +121,6 @@ class VitabookModelMessage extends JModelAdmin
 		
         return $item;
     }
-
 
 
     /**
@@ -242,6 +256,7 @@ class VitabookModelMessage extends JModelAdmin
         }
     }
 
+	/*
 	protected function rand_string( $length ) {
 		$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-";
 		
@@ -251,31 +266,130 @@ class VitabookModelMessage extends JModelAdmin
 		}
 		return $str;
 	}
+	*/
 	
 	protected function upload_img($file) {
+		
 		//Clean up filename to get rid of strange characters like spaces etc
 		$name = array();
-		if (count($file) <=0 ) return $name;
+		if (count($file['name']) <=0 || count($file['name']) > 4 ) return $name;
 		
+		//-- Get parameters for image uploading
+		$params = JComponentHelper::getParams('com_vitabook');
+		$imageQuality = $params->get('upload_image_quality');
+		$imageWidth = $params->get('upload_image_width');
+		
+		$imageThumbWidth = $params->get('upload_image_thumb_width');
+
+		$succes = 0;
+
 		foreach($file['name'] as $i=>$fname) {
-			$filename = JFile::makeSafe($fname);
-			$src = $file['tmp_name'][$i];
-			$ext =  JFile::getExt($filename);
-			$new_name = $this->rand_string(10);
-			$new_name = $new_name .'.'. $ext;
-			
-			$dest = JPATH_ROOT . DS . DISCUSS_PHOTOS_PATH . DS . $new_name;
-			
-			//First check if the file has the right extension, we need jpg only
-			$error='';
-			if ( in_array(strtolower($ext), array('jpg','png','gif','jpeg','bmp')) ) {
-			   if ( JFile::upload($src, $dest) ) {
-					$name[] = DISCUSS_PHOTOS_PATH . DS . $new_name;
-			   } else {
-			   }
-			} else {
-			   
+			$succes = 0;
+			//-- Check if file type is supported
+			$types = array('image/gif', 'image/jpeg', 'image/png', 'image/pjpeg', 'image/x-png');
+			if(!in_array($file["type"][$i], $types)) {
+				continue;
 			}
+			try {
+				$fileInfo = JImage::getImageFileProperties($file["tmp_name"][$i]);
+			}
+			catch(Exception $e) {
+				continue;
+			}
+						
+			$image = new JImage;
+			
+			try {
+				$image->loadFile($file["tmp_name"][$i]);
+			}
+			//-- Loading image failed, stop!
+			catch(Exception $e) {
+				continue;
+			}
+			
+			if(!$image->isLoaded()) {
+                continue;
+            }
+			
+			//-- Check for memory
+			if(!VitabookHelper::checkMemory($image)) {
+				continue;
+			}
+			
+			$fileName = md5($image->getPath() + (rand()*1000));
+			//-- Get correct extension
+			switch (JImage::getImageFileProperties($image->getPath())->mime) {
+				case 'image/gif':
+					$extension = 'gif';
+					$img_type = 'IMAGETYPE_GIF';
+					break;
+				case 'image/png':
+					$extension = 'png';
+					$img_type = 'IMAGETYPE_PNG';
+					break;
+				case 'image/x-png':
+					$extension = 'png';
+					$img_type = 'IMAGETYPE_PNG';
+					break;
+				case 'image/jpeg':
+					$extension = 'jpg';
+					$img_type = 'IMAGETYPE_JPEG';
+					break;
+				case 'image/pjpeg':
+					$extension = 'jpg';
+					$img_type = 'IMAGETYPE_JPEG';
+					break;
+				default :
+					continue;
+			}
+			
+			//-- Where to store the image
+			$created_filename = array();
+			$created_filename['origin'] = DISCUSS_PHOTOS_PATH . DS . $fileName.'.'.$extension;
+			$dest = JPATH_BASE . DS . $created_filename['origin'];
+			
+			$created_filename['thumb'] = DISCUSS_PHOTOS_PATH . DS . $fileName . DISCUSS_PHOTOS_THUMB . '.'.$extension;
+			$dest_thumb = JPATH_BASE . DS . $created_filename['thumb'];
+			//$loc = JURI::root().'media/com_vitabook/images/uploaded/'.$fileName.'.'.$extension;
+
+			//-- Resize image proportional to its original size
+			if (intval($fileInfo->width) > $imageWidth) {
+				try {
+					$image->resize($imageWidth,'100%',false);
+				}
+				//-- Loading image failed, stop!
+				catch(Exception $e) {
+					continue;
+				}
+			}
+			
+			//-- Copy the renamed file to media/com_vitabook/images.
+			@$image->toFile($dest, $img_type, array('quality' => $imageQuality));
+
+			//-- Check if uploading was successful
+			if(JFile::exists($dest)) {
+				$succes = 1;
+			}
+			
+			//-- create thumb
+			try {
+				$thumb = $image->resize($imageThumbWidth,'100%',true);
+			}
+			//-- Loading image failed, stop!
+			catch(Exception $e) {
+				continue;
+			}
+			
+			//-- Copy the renamed file to media/com_vitabook/images.
+			@$thumb->toFile($dest_thumb, $img_type, array('quality' => $imageQuality));
+
+			//-- Check if uploading was successful
+			if(JFile::exists($dest_thumb)) {
+				$succes = 1;
+			}
+			
+			if ($succes==1) $name[] = $created_filename;
+			
 		}
 		return $name;
 	}
@@ -336,7 +450,8 @@ class VitabookModelMessage extends JModelAdmin
 		if ($sobi_id > 0) {
 			$entry = SPFactory::Entry($sobi_id);
 			$field = SPConfig::unserialize( $entry->getField( 'field_hnh_nh' )->getRaw() );
-			$data['images'] = json_encode(array($field['original']));
+			
+			$data['images'] = json_encode(array((object)array('origin'=>$field['original'], 'thumb'=>$field['original'])));
 		}
 		
 		$data['published'] = 1;

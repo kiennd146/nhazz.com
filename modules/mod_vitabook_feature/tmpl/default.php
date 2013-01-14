@@ -15,20 +15,12 @@ defined('_JEXEC') or die;
 		<?php foreach ($list as $message): ?>
 		<?php
 		$count = JComments::getCommentsCount($message->id, 'com_vitabook');
-        /*
-		$shortmsg = strip_tags($message->message);
-		$limited_char = 40;
-		if (strlen($shortmsg) > $limited_char) {
-			// truncate string
-			$stringCut = substr($shortmsg, 0, $limited_char);
-			$shortmsg = substr($stringCut, 0, strrpos($stringCut, ' ')).'...'; 
-		}
-        */
+        
 		?>
 		<li>
 			<div class="dcs_img_wrapper">
 				<a href="<?php echo JRoute::_(VitabookHelperRoute::getVitabookRoute($message->id)) ?>">
-				<img src="<?php echo $message->photo ?>" <?php echo JHtml::setImageDimension($message->photo, 126, 136); ?> />
+				<img src="<?php echo $message->photo->thumb ?>" <?php echo JHtml::setImageDimension($message->photo, 126, 136); ?> />
 				</a>
 			</div>
 			<div class="dcs_content_wrapper">

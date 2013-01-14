@@ -1,6 +1,8 @@
 <?php
 // no direct access
 defined('_JEXEC') or die;
+if (!defined('DISCUSS_PHOTOS_PATH')) define('DISCUSS_PHOTOS_PATH', "images/discuss");
+
 class modJCommentsLatestHelper
 {
 	public static function getList( &$params )
@@ -347,5 +349,30 @@ class modJCommentsLatestHelper
                 }
                 return $string;
             }
+			else if($com_type=='com_vitabook'){
+				$db = JFactory::getDbo();
+		
+				$query = $db->getQuery(true);
+
+				$query->select('m.images');
+				$query->from('#__vitabook_messages AS m');
+				$query->where('m.parent_id = 1');
+				$query->where('m.published = 1');
+				$query->where('m.id = '.$value);
+				
+				$db->setQuery($query);
+				$rsimages = $db->loadResult();
+		
+				$images = json_decode($rsimages);
+				
+				if (count($images) > 0) {
+					$photo = JURI::base() . $images[0];
+				}
+				else {
+					$photo = JURI::base() . DISCUSS_PHOTOS_PATH . DS . 'no_photo.jpg';
+				}
+				
+				return $photo;
+			}
         }
 }

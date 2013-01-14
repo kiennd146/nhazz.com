@@ -260,6 +260,13 @@
 			description="COM_VITABOOK_CONFIG_EDITOR_IMAGE_WIDTH_DESC"
 			size="10"
 		/>
+		<field name="upload_image_thumb_width"
+			type="text"
+			default="500"
+			label="COM_VITABOOK_CONFIG_EDITOR_IMAGE_THUMB_WIDTH_LABEL"
+			description="COM_VITABOOK_CONFIG_EDITOR_IMAGE_WIDTH_DESC"
+			size="10"
+		/>
 		<field name="upload_image_quality"
 			type="text"
 			default="70"
