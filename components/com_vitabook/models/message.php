@@ -97,7 +97,7 @@ class VitabookModelMessage extends JModelAdmin
 		$images = json_decode($item->images);
 		
 		foreach($images as $image) {
-			if (file_exists(dirname(JPATH_BASE . DS . $image->origin)) && file_exists(dirname(JPATH_BASE . DS . $image->thumb))) {
+			if (file_exists(JPATH_BASE . DS . $image->origin) && file_exists(JPATH_BASE . DS . $image->thumb)) {
 				$image_photo = (object)array(
 					'origin'=>JURI::base() . DS . $image->origin,
 					'thumb'=>JURI::base() . DS . $image->thumb
