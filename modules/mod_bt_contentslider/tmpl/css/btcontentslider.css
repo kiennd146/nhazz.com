@@ -127,6 +127,7 @@
 
 /*** CSS STYLE FOR ITEM ****/
 .bt-cs .bt-inner {
+	width:382px;
 	margin: 0;
 	position: relative;
 	padding: 0 5px;

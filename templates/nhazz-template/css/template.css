@@ -1807,6 +1807,16 @@ div.user_status {
 	margin:8px;
 	float:left;
 }
+#discuss_list li .dcs_img_wrapper a{
+	display:table;
+	width:100%;
+	height:100%;
+	text-align:center;
+	background-color:#EAEAE8;
+}
+#discuss_list li .dcs_img_wrapper a img{
+	display:table-cell;
+}
 #discuss_list li .dcs_content_wrapper {
 	width:350px;
 	padding:8px 7px 0 5px;
