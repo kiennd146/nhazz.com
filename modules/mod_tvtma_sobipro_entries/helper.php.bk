@@ -270,13 +270,15 @@ class SPEntriesMod extends SPSectionCtrl {
         $user_array = $this->array_random(explode(',', $userids), $limit);
         $pro_arr = array();
         foreach ($user_array as $user) {
-			$rand = $this->getrandproject($user);			
-			if ($rand > 0) {
-				$pro_arr[] = $rand;
+            $pro_arr[] = $this->getrandproject($user);
+			//$rs = null;
+			while(!$rs) {
+				$rs = $this->getrandproject($user);
 			}
+			$pro_arr[] = $rs;
         }
         $pro_str = implode(',', $pro_arr);
-		//var_dump($pro_str);die();
+	    var_dump($pro_str);die();
         $entries = array();
         foreach ($user_array as $user) {
             $db = JFactory::getDBO();
@@ -284,14 +286,8 @@ class SPEntriesMod extends SPSectionCtrl {
             $query->select('sid');
             $query->from('#__sobipro_field_data');
             $query->where("fid = '" . $fid . "' AND baseData IN(" . $pro_str . ") AND createdBy ='" . $user . "'");
-            $query->order("rand()");
-            $query->limit("1");
             $db->setQuery((string) $query);
-            //$entries[] = $this->array_random($db->loadResultArray());
-			$rs = $db->loadResult();
-			if ($rs) {
-				$entries[] = $rs;
-			}
+            $entries[] = $this->array_random($db->loadResultArray());
         }
         return $entries;
     }
@@ -348,38 +344,65 @@ class SPEntriesMod extends SPSectionCtrl {
         return $num == 1 ? $r[0] : $r;
     }
 
-    public function getrandproject($owner) {
-        $db = & JFactory::getDBO();
+	public function _getrandproject($owner) {
+        $db = JFactory::getDBO();
         $query = $db->getQuery(true);
         $query->select('p.id');
         $query->from('#__tvtproject as p');
         $query->where("p.owner ='" . $owner . "'");
-		
-		$query->innerJoin('#__sobipro_field_data as s on s.baseData=p.id');
-		
+        $query->innerJoin("#__sobipro_field_data as s ON p.id=s.baseData");
         $query->order("rand()");
-        $query->limit("1");
+		$query->limit(1);
+		
         $db->setQuery((string) $query);
-        
 		$pro_array = $db->loadResult();
-		return $pro_array;
+		
+		echo "--<br>", $pro_array;
+		
+		if ( $pro_array == null ) {
+			return $this->getrandproject($owner);
+		};
 		/*
-        if ($pro_array > 0 && $this->checkexistentry($pro_array)) {
-            return $pro_array;
-        } else {
-            return $this->getrandproject($owner);
-        }
+		var_dump($pro_array[0]);
+		if ( $pro_array == null || !isset($pro_array[0]) || $pro_array[0] == null ) {
+			return $this->getrandproject($owner);
+		};
 		*/
+		return $pro_array;
+    }
+	
+    public function getrandproject($owner) {
+		$db = &JFactory::getDBO();
+		//while(1) {
+			
+			$query = $db->getQuery(true);
+			$query->select('id');
+			$query->from('#__tvtproject');
+			$query->where("owner ='" . $owner . "'");
+			$query->order("rand()");
+			$query->limit(1);
+			$db->setQuery((string) $query);
+			$pro_array = $db->loadResult();
+			
+			if ($pro_array > 0 && $this->checkexistentry($pro_array)) {
+				return $pro_array;
+			} else {
+				//return $this->getrandproject($owner);
+			}
+		//}
+		
     }
 
     private function checkexistentry($pro_id) {
         $db = JFactory::getDBO();
         $query = $db->getQuery(true);
-        $query->select('*');
+        $query->select('count(*)');
         $query->from('#__sobipro_field_data');
         $query->where("baseData='" . $pro_id . "'");
         $db->setQuery((string) $query);
-        if ($db->loadResult()) {
+		//echo "result";
+		//var_dump($db->loadResult()); die();
+        if ($db->loadResult() > 0) {
             return true;
         } else {
             return false;
