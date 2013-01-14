@@ -930,4 +930,21 @@ abstract class JHtml
 
 		return JHtml::$includePaths;
 	}
+	
+	public static function setImageDimension($image_src, $width, $height) {
+		//$image_property = JImage::getImageFileProperties($image_src);
+		//var_dump($image_property);
+		$size = getimagesize($image_src);
+		if (!$size) {
+			return ' style="width:'.$width.'px;height:'.$height.'" ';
+		}
+		$str='';
+		if ($width/$height > (int)$size['width']/(int)$size['height']) {
+			$str=' style="height:'.$height.'px;width:auto" ';
+		}
+		else {
+			$str=' style="width:'.$width.'px;height:auto" ';
+		}
+		return $str;
+	}
 }

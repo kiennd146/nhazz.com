@@ -59,7 +59,13 @@ defined('_JEXEC') or die;
 					<div class="tab-item tab-number"><?php echo $count?></div>
 					<div class="tab-item tab-avatar"><a href="<?php echo $item->profileLink; ?>"><?php echo $item->avatar; ?></a></div>
 					<div class="tab-item tab-name"><a href="<?php echo $item->profileLink; ?>"><?php echo $item->displayAuthorName; ?></a></div>
+					<?php if ($item->status == 0): ?>
 					<div class="tab-item tab-state-origin"></div>
+					<?php elseif  ($item->status > 0): ?>
+					<div class="tab-item tab-state-increase"></div>
+					<?php else: ?>
+					<div class="tab-item tab-state-descrease"></div>
+					<?php endif ?>
 				</div>
 			<?php $countdown--; ?>
             

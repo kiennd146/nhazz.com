@@ -9,15 +9,7 @@
 
 // no direct access
 defined('_JEXEC') or die;
-   /*
-$comments = JPATH_SITE . DS .'components' . DS . 'com_jcomments' . DS . 'jcomments.php';
-  if (file_exists($comments)) {
-    require_once($comments);
-    echo JComments::showComments($message->id, 'com_vitabook', 'Title test');
-    $count = JComments::getCommentsCount($message->id, 'com_vitabook');
-    echo $count ? ('Comments('. $count . ')') : 'Add comment';
-  }
-     */
+
 // function to recursively render messages with their children
 $comments = JPATH_SITE . DS .'components' . DS . 'com_jcomments' . DS . 'jcomments.php';
 if (file_exists($comments)) {
@@ -34,10 +26,9 @@ function renderMessage($message,$params,$parentState){ ?>
 	$count = JComments::getCommentsCount($message->id, 'com_vitabook');
     if(is_object($message))
     { ?>
-	
         <div class="dcs_img_wrapper">
 			<a href="<?php echo JRoute::_(VitabookHelperRoute::getVitabookRoute($message->id)) ?>">
-			<img style="width:136px; height:136px;"  src="<?php echo $message->photo ?>" />
+			<img src="<?php echo $message->photo ?>" <?php echo JHtml::setImageDimension($message->photo, 136, 136); ?> />
 			</a>
 		</div>
 		<div class="dcs_content_wrapper">

@@ -66,7 +66,7 @@ function renderMessage($message,$params,$parentState){ ?>
 			<div id="dcsdt_images">
 				<?php if (count($message->photos) > 0):?>
 				<div class="dcsdt_large">
-					<img style="width:478px;" src="<?php echo $message->photos[0]?>">
+					<img src="<?php echo $message->photos[0]?>">
 				</div>
 				<ul class="dcsdt_small">
 					<?php $first = true;?>

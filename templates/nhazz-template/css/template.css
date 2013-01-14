@@ -1804,7 +1804,7 @@ div.user_status {
 	width:136px;
 	height:136px;
 	overflow:hidden;
-	padding:8px;
+	margin:8px;
 	float:left;
 }
 #discuss_list li .dcs_content_wrapper {
@@ -1974,10 +1974,11 @@ ul.tab-paging li.ui-tabs-active a, ul.ui-tabs-nav li.ui-tabs-active a{
 	border:1px solid #f1f1f1;
 }
 #featuredcs ul li .dcs_img_wrapper{
-	padding:7px;
+	margin:7px;
 	width:126px; 
 	height:136px;
 	float:left;
+	overflow:hidden;
 }
 #featuredcs ul li .dcs_content_wrapper{
 	height:136px;
@@ -2050,6 +2051,7 @@ ul.tab-paging li.ui-tabs-active a, ul.ui-tabs-nav li.ui-tabs-active a{
 	margin-bottom:10px;
 }
 #dcsdt_images .dcsdt_large{
+	width:478px;
 	height:380px;
 	float:left;
 	margin-bottom:10px;
