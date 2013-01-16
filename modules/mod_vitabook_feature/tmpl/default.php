@@ -14,8 +14,8 @@ defined('_JEXEC') or die;
 	<ul id="featuredcs_list">
 		<?php foreach ($list as $message): ?>
 		<?php
-		//$comment = JComments::getLastComment($message->id, 'com_vitabook');
 		$count = JComments::getCommentsCount($message->id, 'com_vitabook');
+        /*
 		$shortmsg = strip_tags($message->message);
 		$limited_char = 40;
 		if (strlen($shortmsg) > $limited_char) {
@@ -23,6 +23,7 @@ defined('_JEXEC') or die;
 			$stringCut = substr($shortmsg, 0, $limited_char);
 			$shortmsg = substr($stringCut, 0, strrpos($stringCut, ' ')).'...'; 
 		}
+        */
 		?>
 		<li>
 			<div class="dcs_img_wrapper">
@@ -31,7 +32,7 @@ defined('_JEXEC') or die;
 				</a>
 			</div>
 			<div class="dcs_content_wrapper">
-				<a style="color:#000;font-weight:bold;" href="<?php echo JRoute::_(VitabookHelperRoute::getVitabookRoute($message->id)) ?>"><?php echo $message->title?></a>-<span> "<?php echo $shortmsg?>"</span>
+				<a style="color:#000;font-weight:bold;" href="<?php echo JRoute::_(VitabookHelperRoute::getVitabookRoute($message->id)) ?>"><?php echo $message->title?></a>-<span> "<?php echo JHtml::cutText($message->message, 40) //echo $shortmsg ?>"</span>
 				<div class="dcs_wrapper">
 					<?php if ($message->user_link): ?>
 					<div class="dcs_avatar">

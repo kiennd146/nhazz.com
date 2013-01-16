@@ -932,8 +932,6 @@ abstract class JHtml
 	}
 	
 	public static function setImageDimension($image_src, $width, $height) {
-		//$image_property = JImage::getImageFileProperties($image_src);
-		//var_dump($image_property);
 		$size = getimagesize($image_src);
 		if (!$size) {
 			return ' style="width:'.$width.'px;height:'.$height.'" ';
@@ -946,5 +944,16 @@ abstract class JHtml
 			$str=' style="width:'.$width.'px;height:auto" ';
 		}
 		return $str;
+	}
+    
+    public static function cutText($text, $limited) {
+        $shorttext = strip_tags($text);
+		if (strlen($shorttext) > $limited) {
+			// truncate string
+			$stringCut = substr($shorttext, 0, $limited);
+			$shorttext = substr($stringCut, 0, strrpos($stringCut, ' ')).'...'; 
+		}
+        
+		return $shorttext;
 	}
 }
