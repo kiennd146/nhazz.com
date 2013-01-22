@@ -47,7 +47,7 @@
 
 							<li class='sp-comment-icon'>
                                 <a class="dcs_comment_photos" href="#">
-									<xsl:attribute name="photo_id"><xsl:value-of select="id"/></xsl:attribute>
+									<xsl:attribute name="photo_id"><xsl:value-of select="@id"/></xsl:attribute>
                                     Đặt câu hỏi
                                 </a>
                             </li>

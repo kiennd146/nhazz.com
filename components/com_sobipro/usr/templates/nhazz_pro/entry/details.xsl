@@ -98,7 +98,10 @@
                                     </xsl:for-each>
                                 </fieldset>
                                 </xsl:if>
-                                
+                                <a class="dcs_comment_photos" href="#">
+									<xsl:attribute name="photo_id"><xsl:value-of select="entry/@id"/></xsl:attribute>
+				                    Đặt câu hỏi
+				                </a>
                                 
 			</div>
 			<div style="clear:both;"></div>
