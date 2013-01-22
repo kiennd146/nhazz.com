@@ -82,7 +82,7 @@ defined('_JEXEC') or die;
 			<?php $first_page = true;?>
 			
 			<?php for($page=1; $page<=$n+1; $page++): ?>
-				<li class="ui-state-default ui-corner-top <?php if($first_page == true): ?> ui-tabs-active ui-state-active <?php endif ?>" role="tab" tabindex="0" aria-controls="topcommenter_tabs-<?php echo $i?>-<?php echo $p?>" aria-labelledby="ui-id-<?php echo ($page+1000) ?>" aria-selected="true">
+				<li class="ui-state-default ui-corner-top <?php if($first_page == true): ?> ui-tabs-active ui-state-active <?php endif ?>" role="tab" tabindex="0" aria-controls="topcommenter_tabs-<?php echo $i?>-<?php echo $page?>" aria-labelledby="ui-id-<?php echo ($page+1000) ?>" aria-selected="true">
 					<a href="#topcommenter_tabs-<?php echo $i?>-<?php echo $page-1?>" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-<?php echo ($page+1000) ?>">
 						<?php echo $page?>
 					</a>

@@ -81,6 +81,8 @@ function renderMessage($message,$params,$parentState){ ?>
 			</div>
 		</div>
 		<div class="dcsdt_footer">
+			&nbsp;&nbsp;<a class="dcsdt_comment_edit" href="#"><?php echo JText::_('VITABOOK_LIST_EDIT_COMMENT'); ?></a>
+			&nbsp;&nbsp;<a class="dcsdt_comment_delete" href="#"><?php echo JText::_('VITABOOK_LIST_DELETE_COMMENT'); ?></a>
 			<a class="dcs_comment" href="#"><?php echo $count ?></a>&nbsp;&nbsp;<a class="dcsdt_comment_add" href="#"><?php echo JText::_('VITABOOK_LIST_ADD_COMMENT'); ?></a>
 		</div>
 	</div>

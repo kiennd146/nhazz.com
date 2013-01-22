@@ -30,4 +30,18 @@ class VitabookCategories extends JCategories
 		$options['statefield'] = 'published';
 		parent::__construct($options);
 	}
+	
+	
+	public function getCategory($root, &$categories, &$id) {
+		if (!in_array($root->id, $id) && $root->id!='root' && $root->alias!=VITABOOK_CATEGORY_PHOTO_ALIAS) {
+			$categories[] = $root;
+			$id[]=$root->id;
+		}
+		//var_dump($root);
+		if ($root == null) return;
+		$children = $root->getChildren();
+		foreach($children as $child) {
+			$this->getCategory($child, $categories, $id);
+		}
+	}
 }

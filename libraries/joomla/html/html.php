@@ -933,7 +933,8 @@ abstract class JHtml
 	
 	public static function setImageDimension($image_src, $width, $height) {
 		$size = getimagesize($image_src);
-		if (!$size) {
+		//var_dump($image_src);
+		if (!$size || !isset($size['height'])) {
 			return ' style="width:'.$width.'px;height:'.$height.'" ';
 		}
 		$str='';

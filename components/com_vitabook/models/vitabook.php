@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * @version     2.0.1
  * @package     com_vitabook
@@ -28,7 +28,7 @@ define('DISCUSS_FILTER_LASTEST_ACTIVITY', 1);
 define('DISCUSS_FILTER_FEATURE', 2);
 define('DISCUSS_FILTER_POPULAR', 3);
 define('DISCUSS_FILTER_NEW', 4);
-//if (!defined('VITABOOK_CATEGORY_PHOTO_ALIAS'))define('VITABOOK_CATEGORY_PHOTO_ALIAS', 'photoquestion');
+
 if (!defined('DISCUSS_PHOTOS_PATH')) define('DISCUSS_PHOTOS_PATH', "images/discuss");
 
 // quite urly
@@ -117,14 +117,6 @@ class VitabookModelVitabook extends JModelList
 		order by count_populared desc
 		**/
 		
-		/*
-		SELECT m.id,m.title,m.catid,m.images,m.parent_id,m.level,m.jid,m.name,m.date,m.message,m.published,m.featured,m.populared,c.title as catname
-		FROM g4gc3_vitabook_messages AS m
-		LEFT JOIN  g4gc3_categories AS c ON c.id=m.catid 
-		ORDER BY m.featured DESC,m.date DESC
-		*/
-
-		
         $db = $this->getDbo();
 		
         $query = $db->getQuery(true);
@@ -149,11 +141,12 @@ class VitabookModelVitabook extends JModelList
         }
 		*/
         // get database join for avatar
+        /* kiennd
         if(!empty($this->_avatarSource) && $this->_sourceAvailable == true)
         {
             VitabookHelperAvatar::setAvatarQuery($query);
         }
-		
+		*/
 		$catid = $this->getState('filter.catId');
 		if ($catid > 0) {
 			$query->where("m.catid = $catid");
@@ -205,6 +198,7 @@ class VitabookModelVitabook extends JModelList
 				$message->photos = array();
 				$images = json_decode($message->images);
 				
+				if (count($images)) {
 				foreach($images as $image) {
 					if ($image->origin && file_exists(JPATH_BASE . DS . $image->origin) && file_exists(JPATH_BASE . DS . $image->thumb)) {
 						$image_photo = (object)array(
@@ -220,7 +214,7 @@ class VitabookModelVitabook extends JModelList
 					}
 					$message->photos[] = $image_photo;
 				}
-				
+				}
 				if (count($message->photos) > 0) {
 					$message->photo = $message->photos[0];
 				}
@@ -251,11 +245,13 @@ class VitabookModelVitabook extends JModelList
 			$this->_messages = $messages;
 
 			// get children and inject into messages list
+			/*
 			$children = $this->getChildren($parent_ids);
 			if(!empty($children))
 			{
 				$this->sortChildMessages();
 			}
+			*/
 		}
 		return $this->_messages;
 	}
@@ -264,7 +260,7 @@ class VitabookModelVitabook extends JModelList
      * Method to get a set of children of a (group of) parent id(s)
      *      Will recursively loop through the levels of replies, executing one db-query per level
      * @return  mixed An array of data items on success, false on failure.
-     */
+    
     public function getChildren($parent_ids,$start=0)
     {
         if(empty($parent_ids))
@@ -327,12 +323,12 @@ class VitabookModelVitabook extends JModelList
         }
         return $this->_childMessages;
     }
-
+	 */
 
     /**
      * Method to sort out a set of children
      * @return  mixed An array of data items on success, false on failure.
-     */
+     
     public function sortChildMessages()
     {
 //TODO: check this function for php notices
@@ -373,7 +369,7 @@ class VitabookModelVitabook extends JModelList
             endfor;
         }
     }
-
+	 */
 
     /**
      * Method to auto-populate the model state.

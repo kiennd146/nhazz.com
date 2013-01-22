@@ -93,6 +93,7 @@ class VitabookModelMessage extends JModelAdmin
 
 		// get photos
 		$item->photos = array();
+		//$item->images_data = array();
 		
 		$images = json_decode($item->images);
 		
@@ -100,18 +101,22 @@ class VitabookModelMessage extends JModelAdmin
 			if (file_exists(JPATH_BASE . DS . $image->origin) && file_exists(JPATH_BASE . DS . $image->thumb)) {
 				$image_photo = (object)array(
 					'origin'=>JURI::base() . DS . $image->origin,
-					'thumb'=>JURI::base() . DS . $image->thumb
+					'thumb'=>JURI::base() . DS . $image->thumb,
+					'json'=> $image->origin.','.$image->thumb
 				);
+				
 			}
 			else {
 				$image_photo = (object)array(
 					'origin'=>JURI::base() . DISCUSS_PHOTOS_PATH . DS . 'no_photo.jpg',
-					'thumb'=>JURI::base() . DISCUSS_PHOTOS_PATH . DS . 'no_photo.jpg'
+					'thumb'=>JURI::base() . DISCUSS_PHOTOS_PATH . DS . 'no_photo.jpg',
+					'json'=> ''
 				);
 			}
 			
 			$item->photos[] = $image_photo;
 		}
+		
 		
 		$user = CFactory::getUser($item->jid);
 		
@@ -256,19 +261,7 @@ class VitabookModelMessage extends JModelAdmin
         }
     }
 
-	/*
-	protected function rand_string( $length ) {
-		$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-";
-		
-		$size = strlen( $chars );
-		for( $i = 0; $i < $length; $i++ ) {
-			$str .= $chars[ rand( 0, $size - 1 ) ];
-		}
-		return $str;
-	}
-	*/
-	
-	protected function upload_img($file) {
+	public function upload_img($file) {
 		
 		//Clean up filename to get rid of strange characters like spaces etc
 		$name = array();
@@ -394,7 +387,7 @@ class VitabookModelMessage extends JModelAdmin
 		return $name;
 	}
 	
-	protected function create_photo_category() {
+	public function create_photo_category() {
 		$db = $this->getDbo();
 		$query = $db->getQuery(true);
 		$query->select('c.*');
@@ -438,39 +431,7 @@ class VitabookModelMessage extends JModelAdmin
      */
     public function validate($form, $data, $group = null)
     {
-        //Retrieve file details from uploaded file, sent from upload form
-		$file = JRequest::getVar('file_upload', null, 'files', 'array');
-		if ($file) {
-			$filenames = $this->upload_img($file);
-			$data['images'] = json_encode($filenames);
-		}
-		
-		$sobi_id = JRequest::getInt('dcs_photo_id', 0);
-		//var_dump($sobi_id);
-		if ($sobi_id > 0) {
-			$entry = SPFactory::Entry($sobi_id);
-			$field = SPConfig::unserialize( $entry->getField( 'field_hnh_nh' )->getRaw() );
-			
-			$data['images'] = json_encode(array((object)array('origin'=>$field['original'], 'thumb'=>$field['original'])));
-		}
-		
-		$data['published'] = 1;
-		
-		$data['date'] = JFactory::getDate('utc')->toSql();
-		$user = JFactory::getUser();
-		$data['title'] = JRequest::getVar('dcs_title', '');
-		$data['message'] = JRequest::getVar('dcs_message', '');
-		
-		// check if category is photo or not
-		$data['catid'] = JRequest::getVar('dcs_category', '');
-		$photo_category = null;
-		if ($data['catid'] == '') {
-			$photo_category = $this->create_photo_category();
-			$data['catid'] = $photo_category->id;
-		}
-		
-		$data['jid'] = $user->get('id');
-		$data['parent_id'] = 1;
+        
 		
 		// fill in form fields a user can't be trusted with
             // for new messages
@@ -563,5 +524,6 @@ class VitabookModelMessage extends JModelAdmin
 		*/
 		
         return $data;
+		//return true;
     }
 }

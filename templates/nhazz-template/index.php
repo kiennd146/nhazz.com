@@ -35,7 +35,7 @@ unset($doc->_scripts[$this->baseurl.'/media/system/js/caption.js']);
 <head>
   <link REL="SHORTCUT ICON" HREF="<?php echo $tpath; ?>/favicon.ico">
     
-  <link rel="stylesheet" href="<?php echo $tpath; ?>/css/jquery-ui-1.9.2.custom.css" />
+  <?php /*<link rel="stylesheet" href="<?php echo $tpath; ?>/css/jquery-ui-1.9.2.custom.css" /> */ ?>
   
   <script type="text/javascript" src="<?php echo $tpath.'/js/template.js.php'; ?>"></script>
   <jdoc:include type="head" />

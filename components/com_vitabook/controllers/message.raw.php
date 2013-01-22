@@ -11,7 +11,8 @@
 defined('_JEXEC') or die;
 
 jimport('joomla.application.component.controllerform');
-
+jimport( 'joomla.application.application' );
+require_once JPATH_SITE.'/components/com_vitabook/helpers/route.php';
 /**
  * Message controller class.
  */
@@ -65,7 +66,63 @@ class VitabookControllerMessage extends JControllerForm
         $lang = JFactory::getLanguage();
         $model = $this->getModel('message');
         $table = $model->getTable();
-        $data = JRequest::getVar('jform', array(), 'post', 'array');
+        //$data = JRequest::getVar('jform', array(), 'post', 'array');
+		$data = array();
+		
+		// kiennd
+		
+		//Retrieve file details from uploaded file, sent from upload form
+		$file = JRequest::getVar('file_upload', null, 'files', 'array');
+		$file_exists = JRequest::getVar('file_uploaded', array());
+		
+		$file_images = array();
+		
+		if (count($file_exists)) {
+			foreach($file_exists as $file_exist) {
+				$file_exist = explode(",", $file_exist);
+				if (count($file_exist) ==2 && JFile::exists(JPATH_BASE . DS . $file_exist[0]) && JFile::exists(JPATH_BASE . DS . $file_exist[1])) {
+					$file_images[] = (object)array('origin'=>$file_exist[0], 'thumb'=>$file_exist[1]);
+				}
+			}
+		}
+		
+		if ($file) {
+			$filenames = $model->upload_img($file);
+			$file_images = array_merge($file_images, $filenames);
+		}
+		//var_dump($file_images);die();
+		$data['images'] = json_encode($file_images);
+		
+		$sobi_id = JRequest::getInt('dcs_photo_id', 0);
+		//var_dump($sobi_id);
+		if ($sobi_id > 0) {
+			$entry = SPFactory::Entry($sobi_id);
+			$field = SPConfig::unserialize( $entry->getField( 'field_hnh_nh' )->getRaw() );
+			$data['images'] = json_encode(array((object)array('origin'=>$field['original'], 'thumb'=>$field['original'])));
+		}
+		
+		$data['published'] = 1;
+		$data['date'] = JFactory::getDate('utc')->toSql();
+		
+		$user = JFactory::getUser();
+		$data['title'] = JRequest::getVar('dcs_title', '');
+		$data['id'] = JRequest::getVar('dcs_id', 0);
+		$data['message'] = JRequest::getVar('dcs_message', '');
+		
+		// check if category is photo or not
+		$data['catid'] = JRequest::getVar('dcs_category', '');
+		$photo_category = null;
+		
+		if ($data['catid'] == '') {
+			$photo_category = $model->create_photo_category();
+			$data['catid'] = $photo_category->id;
+		}
+		
+		$data['jid'] = $user->get('id');
+		$data['parent_id'] = 1;
+		
+		// end
+		
         $context = "$this->option.edit.$this->context";
         $task = $this->getTask();
 
@@ -74,9 +131,10 @@ class VitabookControllerMessage extends JControllerForm
         {
             $key = $table->getKeyName();
         }
-
+		
         // Populate the row id from the session.
         $recordId = $data[$key];
+		//var_dump($data);
         // for messages which are being edited
         if(!empty($recordId))
         {
@@ -111,7 +169,7 @@ class VitabookControllerMessage extends JControllerForm
 
         // Test whether the data is valid.
         $validData = $model->validate($form, $data);
-
+	
         // Check for validation errors.
         if ($validData === false)
         {
@@ -165,6 +223,9 @@ class VitabookControllerMessage extends JControllerForm
         // get id of newly created message
         $result = $model->getItem()->get('id');
 
+		//$app = & JFactory::getApplication();
+		//$app->redirect(VitabookHelperRoute::getEditRoute($result));
+		
         jexit(json_encode(array("state"=>1, "result" => $result)));
     }
 

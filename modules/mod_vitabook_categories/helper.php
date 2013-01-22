@@ -17,10 +17,9 @@ abstract class modVitabookCategoriesHelper
 	public static function getList(&$params)
 	{
 		$categories = JCategories::getInstance('Vitabook');
-		//$category = $categories->get($params->get('parent', 'root'));
 		$category = $categories->get('root');
-		//var_dump($category->title);
-		$items = $category->getChildren();
+		if ($category==null) return;
+		//$items = $category->getChildren();
 		//echo count($items);
 		if ($category != null)
 		{

@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.controllerlegacy');
 
-//JPATH_COMPONENT_ADMINISTRATOR .'/helpers/vitabook.php');
+require_once(JPATH_COMPONENT_ADMINISTRATOR .'/helpers/vitabook.php');
 
 class VitabookController extends JControllerLegacy
 {

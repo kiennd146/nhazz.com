@@ -74,25 +74,24 @@ $templateDir = JURI::base() . 'templates/' . $app->getTemplate();
 	<h2><?php echo JText::_('VITABOOK_LIST_HELP') ?></h2>
 	<p><?php echo JText::_('VITABOOK_LIST_TITLE') ?></p>
 	<div class="dcs_form">
-		<form id="dcs_form_create" action="<?php echo JRoute::_('index.php?option=com_vitabook'); ?>" method="post" enctype="multipart/form-data">
-		
-		<select class="borderGrey" name="dcs_category" >
-			<?php foreach($this->categories as $category): ?>
-			<option value="<?php echo $category->id?>"><?php echo $category->title?></option>
-			<?php endforeach; ?>
-		</select>
-		<input class="borderGrey" placeholder="<?php echo JText::_('VITABOOK_LIST_HINT_TITLE') ?>" type="text" name="dcs_title" />
-		<textarea class="borderGrey" placeholder="<?php echo JText::_('VITABOOK_LIST_HINT_MESSAGE') ?>" name="dcs_message"></textarea>
-		<a class="dcs_attach_img dcs_add_img" href="#"><?php echo JText::_('VITABOOK_LIST_BUTTON_ATTACH') ?></a>
-		<p id="dcs_img_list"></p>
-        <div id="dcs_loading" style="display:none"><img src="<?php echo $templateDir.'/images/loading.gif' ?>" /></div>
-		<button type="button" id="dcs_form_submit" ><?php echo JText::_('VITABOOK_LIST_BUTTON_POST') ?></button>
-		<?php 
-		// hidden fields
-		echo JHtml::_('form.token');
-		?>
-		<input type="hidden" name="task" value="message.save" />
-		<input type="hidden" name="format" value="raw" />
+		<form id="dcs_form_create" name="jform" action="<?php echo JRoute::_('index.php?option=com_vitabook'); ?>" method="post" enctype="multipart/form-data">
+			<select class="borderGrey" name="dcs_category" >
+				<?php foreach($this->categories as $category): ?>
+				<option value="<?php echo $category->id?>"><?php echo $category->title?></option>
+				<?php endforeach; ?>
+			</select>
+			<input class="borderGrey" placeholder="<?php echo JText::_('VITABOOK_LIST_HINT_TITLE') ?>" type="text" name="dcs_title" />
+			<textarea class="borderGrey" placeholder="<?php echo JText::_('VITABOOK_LIST_HINT_MESSAGE') ?>" name="dcs_message"></textarea>
+			<a class="dcs_attach_img dcs_add_img" href="#"><?php echo JText::_('VITABOOK_LIST_BUTTON_ATTACH') ?></a>
+			<p id="dcs_img_list"></p>
+			<div id="dcs_loading" style="display:none"><img src="<?php echo $templateDir.'/images/loading.gif' ?>" /></div>
+			<button type="button" id="dcs_form_submit" ><?php echo JText::_('VITABOOK_LIST_BUTTON_POST') ?></button>
+			<?php 
+			// hidden fields
+			echo JHtml::_('form.token');
+			?>
+			<input type="hidden" name="task" value="message.save" />
+			<input type="hidden" name="format" value="raw" />
 		</form>
 	</div>
 </div>

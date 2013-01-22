@@ -17,6 +17,7 @@ jimport('joomla.application.component.viewlegacy');
  */
  
 require_once JPATH_SITE.'/components/com_vitabook/helpers/route.php';
+//require_once JPATH_SITE.'/components/com_vitabook/helpers/category.php';
 jimport('joomla.application.categories');
 class VitabookViewVitabook extends JViewLegacy
 {
@@ -24,23 +25,13 @@ class VitabookViewVitabook extends JViewLegacy
     protected $params;
     protected $pagination;
 
-	function getCategory($root, &$categories, &$id) {
-		if (!in_array($root->id, $id) && $root->id!='root' && $root->alias!=VITABOOK_CATEGORY_PHOTO_ALIAS) {
-			$categories[] = $root;
-			$id[]=$root->id;
-		}
-		
-		$children = $root->getChildren();
-		foreach($children as $child) {
-			$this->getCategory($child, $categories, $id);
-		}
-	}
 	
     function display($tpl = null)
-    {
+    {   
         $app = JFactory::getApplication();
         $this->params = $app->getParams('com_vitabook');
         // only messages (AJAX)
+        
         if($tpl=='messages')
         {
             $model = $this->getModel();
@@ -66,16 +57,17 @@ class VitabookViewVitabook extends JViewLegacy
             $this->pagination = $this->get('Pagination');
             // Get the data from the vitabook model
             $this->messages = $this->get('Items','vitabook');
+            //var_dump($this->messages);
             // Get the form from the message model
             $this->form     = $this->get('Form','message');
 			
-			$categories = JCategories::getInstance('Vitabook');
+			$categories_model = JCategories::getInstance('Vitabook');
 			
-			$category = $categories->get('root');
+			$category = $categories_model->get('root');
 		
 			$cat = array();
 			$id_arr = array();
-			$this->getCategory($category, $cat, $id_arr);
+			$categories_model->getCategory($category, $cat, $id_arr);
 			
 			$this->categories = $cat;
         }
@@ -90,7 +82,7 @@ class VitabookViewVitabook extends JViewLegacy
         if( version_compare( $jversion->getShortVersion(), '3.0.0', 'lt' ) ) {
                 $tpl .= "Legacy";
         }
-
+        
         parent::display($tpl);
     }
 }

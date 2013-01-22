@@ -7,7 +7,7 @@
  */
 
 // no direct access
-defined('_JEXEC') or die;
+defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.application.component.helper');
 jimport('joomla.application.categories');
@@ -45,22 +45,23 @@ abstract class VitabookHelperRoute
 				$link .= '&catid='.$catid;
 			}
 		}
-			if ($language && $language != "*" && JLanguageMultilang::isEnabled()) {
-				$db		= JFactory::getDBO();
-				$query	= $db->getQuery(true);
-				$query->select('a.sef AS sef');
-				$query->select('a.lang_code AS lang_code');
-				$query->from('#__languages AS a');
-				//$query->where('a.lang_code = ' .$language);
-				$db->setQuery($query);
-				$langs = $db->loadObjectList();
-				foreach ($langs as $lang) {
-					if ($language == $lang->lang_code) {
-						$language = $lang->sef;
-						$link .= '&lang='.$language;
-					}
+		
+		if ($language && $language != "*" && JLanguageMultilang::isEnabled()) {
+			$db		= JFactory::getDBO();
+			$query	= $db->getQuery(true);
+			$query->select('a.sef AS sef');
+			$query->select('a.lang_code AS lang_code');
+			$query->from('#__languages AS a');
+			//$query->where('a.lang_code = ' .$language);
+			$db->setQuery($query);
+			$langs = $db->loadObjectList();
+			foreach ($langs as $lang) {
+				if ($language == $lang->lang_code) {
+					$language = $lang->sef;
+					$link .= '&lang='.$language;
 				}
 			}
+		}
 
 		if ($item = self::_findItem($needles)) {
 			$link .= '&Itemid='.$item;
@@ -72,6 +73,44 @@ abstract class VitabookHelperRoute
 		return $link;
 	}
 
+	/**
+	 * @param	int	The route of the content item
+	 */
+	public static function getEditRoute($id, $catid = 0, $language = 0)
+	{
+		$needles = array(
+			'article'  => array((int) $id)
+		);
+		//Create the link
+		$link = 'index.php?option=com_vitabook&view=edit&id='. $id;
+		
+		if ($language && $language != "*" && JLanguageMultilang::isEnabled()) {
+			$db		= JFactory::getDBO();
+			$query	= $db->getQuery(true);
+			$query->select('a.sef AS sef');
+			$query->select('a.lang_code AS lang_code');
+			$query->from('#__languages AS a');
+			//$query->where('a.lang_code = ' .$language);
+			$db->setQuery($query);
+			$langs = $db->loadObjectList();
+			foreach ($langs as $lang) {
+				if ($language == $lang->lang_code) {
+					$language = $lang->sef;
+					$link .= '&lang='.$language;
+				}
+			}
+		}
+
+		if ($item = self::_findItem($needles)) {
+			$link .= '&Itemid='.$item;
+		}
+		elseif ($item = self::_findItem()) {
+			$link .= '&Itemid='.$item;
+		}
+
+		return $link;
+	}
+	
 	public static function getActivityRoute($actid)
 	{
 		//$link = 'index.php?option=com_vitabook&view=vitabook&actid='.$actid;

@@ -2078,7 +2078,6 @@ ul.tab-paging li.ui-tabs-active a, ul.ui-tabs-nav li.ui-tabs-active a{
 	margin-bottom:10px;
 }
 #dcsdt_images ul.dcsdt_small li{
-	width:72px;
 	height:55px;
 	float:left;
 	margin-right:7px;
@@ -2114,6 +2113,9 @@ ul.tab-paging li.ui-tabs-active a, ul.ui-tabs-nav li.ui-tabs-active a{
 	float:left;
 	padding-left:10px;
 	font-size:12px;
+}
+.dcs_images img{
+	float:left;
 }
 
 /* all */
