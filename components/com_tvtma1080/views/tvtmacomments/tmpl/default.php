@@ -12,13 +12,19 @@ SPLoader::loadView( 'section' );
             }else{$d=$n/2;}
         ?>
         <div class="leftcom" style="width:49%;display: block;float:left">
-	<?php foreach ($this->list as $item) :
+	<?php 
+    $imgpth = '';
+    foreach ($this->list as $item) :
             if(($item->object_group)=='com_sobipro'){
                 $com_type=$item->object_group;
                 $value = $item->object_id;
                 $entry = SPFactory::Entry($value);
                 $imgpth = modJCommentsLatestHelper::takeImage($entry,'original',$com_type,$value);
             } else if(($item->object_group)=='com_content'){
+                $value= $item->object_id;
+                $com_type=$item->object_group;
+                $imgpth = modJCommentsLatestHelper::takeImage(NULL,'original',$com_type,$value);
+            } else if(($item->object_group)=='com_vitabook'){
                 $value= $item->object_id;
                 $com_type=$item->object_group;
                 $imgpth = modJCommentsLatestHelper::takeImage(NULL,'original',$com_type,$value);

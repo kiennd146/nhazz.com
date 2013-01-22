@@ -2,9 +2,33 @@
 // no direct access
 defined('_JEXEC') or die;
 if (!defined('DISCUSS_PHOTOS_PATH')) define('DISCUSS_PHOTOS_PATH', "images/discuss");
-
+jimport('joomla.application.categories');
 class modJCommentsLatestHelper
 {
+
+  public function getCategory($root, &$categories, &$id) {
+		if (!in_array($root->id, $id) && $root->id!='root') { // && $root->alias!=VITABOOK_CATEGORY_PHOTO_ALIAS
+			$categories[] = $root;
+			$id[]=$root->id;
+		}
+		
+		if ($root == null) return;
+		$children = $root->getChildren();
+		foreach($children as $child) {
+			self::getCategory($child, $categories, $id);
+		}
+	}
+  /*  */
+  public static function getCategoryList() {
+    $category_model = JCategories::getInstance('Vitabook');
+		$category = $category_model->get('root');
+    
+		$categories = array();
+    $ids = array();
+    self::getCategory($category, $categories, $ids);
+    return $categories;
+  }
+  
 	public static function getList( &$params )
 	{
 		$db = JFactory::getDBO();
@@ -366,7 +390,7 @@ class modJCommentsLatestHelper
 				$images = json_decode($rsimages);
 				
 				if (count($images) > 0) {
-					$photo = JURI::base() . $images[0];
+					$photo = JURI::base() . $images[0]->thumb;
 				}
 				else {
 					$photo = JURI::base() . DISCUSS_PHOTOS_PATH . DS . 'no_photo.jpg';

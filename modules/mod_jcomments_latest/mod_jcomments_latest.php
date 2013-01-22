@@ -42,13 +42,12 @@ if ($params->get('useCSS') && !defined ('_JCOMMENTS_LATEST_CSS')) {
 }
 
 $list = modJCommentsLatestHelper::getList($params);
-
+$categories = modJCommentsLatestHelper::getCategoryList();
 if (!empty($list)) {
 	$grouped = false;
 
 	$comments_grouping = $params->get('comments_grouping', 'none');
 	$item_heading = $params->get('item_heading', 4);
-
 	if ($comments_grouping !== 'none') {
 		$grouped = true;
 		$list = modJCommentsLatestHelper::groupBy($list, $comments_grouping);

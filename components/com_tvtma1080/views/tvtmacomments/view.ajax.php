@@ -20,49 +20,52 @@ class TvtMA1080ViewTVTMAComments extends JView
 	// Overwriting JView display method
 	function display($tpl = null) 
 	{
-             //$this->string = $string;
-            $mainframe =& JFactory::getApplication();
-            $source = $mainframe->getUserState( "comment_source");
-            $count = $mainframe->getUserState( "comment_count");
-            $ordering = $mainframe->getUserState( "comment_ordering");
-            $group = $mainframe->getUserState( "comment_group");
-            $show_comment_title = $mainframe->getUserState( "comment_show_comment_title");
-            $limit_comment_text = $mainframe->getUserState( "comment_limit_comment_text");
-            $readmore = $mainframe->getUserState( "comment_readmore");
-            $show_comment_date = $mainframe->getUserState( "comment_show_comment_date");
-            $date_type = $mainframe->getUserState( "comment_date_type");
-            $date_format = $mainframe->getUserState( "comment_date_format");
-            $show_object_title = $mainframe->getUserState( "comment_show_object_title");
-            $link_object_title = $mainframe->getUserState( "comment_link_object_title");
-            $item_heading = $mainframe->getUserState( "comment_item_heading");
-            $show_avatar = $mainframe->getUserState( "comment_show_avatar");
-            $show_image = $mainframe->getUserState( "comment_show_image");
-            $show_smiles = $mainframe->getUserState( "comment_show_smiles");
-            $catid = $mainframe->getUserState( "comment_catid");
-            $sectionidarray = $mainframe->getUserState( "comment_sectionidarray");
-            $show_comment_author = $mainframe->getUserState( "comment_show_comment_author");
-            $sectionid = $mainframe->getUserState( "comment_sectionid");
-            $useCSS = $mainframe->getUserState( "comment_useCSS");
-            $layout = $mainframe->getUserState( "comment_layout");
-            $cache = $mainframe->getUserState( "comment_cache");
-            $cache_time = $mainframe->getUserState( "comment_cache_time");
-            $cachemode = $mainframe->getUserState( "comment_cachemode");
-            $moduleclass_sfx = $mainframe->getUserState("moduleclass_sfx");
-            if($sectionid >= 0){
-                $sobisection = explode(",", $sectionidarray);
-                $idsection=$sobisection[$sectionid];
-                $secid = self::takepid($idsection);
-                $i=0;
-                do{
-                   if (self::checkexistpid($secid[$i])){
-                       $temp = self::takepid($secid[$i]);
-                        $secid = array_merge($secid,$temp);
-                   } $i++;
-                }while($i<count($secid));
+     //$this->string = $string;
+    $mainframe =& JFactory::getApplication();
+    $source = $mainframe->getUserState( "comment_source");
+    $count = $mainframe->getUserState( "comment_count");
+    $ordering = $mainframe->getUserState( "comment_ordering");
+    $group = $mainframe->getUserState( "comment_group");
+    $show_comment_title = $mainframe->getUserState( "comment_show_comment_title");
+    $limit_comment_text = $mainframe->getUserState( "comment_limit_comment_text");
+    $readmore = $mainframe->getUserState( "comment_readmore");
+    $show_comment_date = $mainframe->getUserState( "comment_show_comment_date");
+    $date_type = $mainframe->getUserState( "comment_date_type");
+    $date_format = $mainframe->getUserState( "comment_date_format");
+    $show_object_title = $mainframe->getUserState( "comment_show_object_title");
+    $link_object_title = $mainframe->getUserState( "comment_link_object_title");
+    $item_heading = $mainframe->getUserState( "comment_item_heading");
+    $show_avatar = $mainframe->getUserState( "comment_show_avatar");
+    $show_image = $mainframe->getUserState( "comment_show_image");
+    $show_smiles = $mainframe->getUserState( "comment_show_smiles");
+    $catid = $mainframe->getUserState( "comment_catid");
+    $sectionidarray = $mainframe->getUserState( "comment_sectionidarray");
+    $show_comment_author = $mainframe->getUserState( "comment_show_comment_author");
+    $sectionid = $mainframe->getUserState( "comment_sectionid");
+    $useCSS = $mainframe->getUserState( "comment_useCSS");
+    $layout = $mainframe->getUserState( "comment_layout");
+    $cache = $mainframe->getUserState( "comment_cache");
+    $cache_time = $mainframe->getUserState( "comment_cache_time");
+    $cachemode = $mainframe->getUserState( "comment_cachemode");
+    $moduleclass_sfx = $mainframe->getUserState("moduleclass_sfx");
+    
+    /* */
+    if($sectionid >= 0 && $source=='com_sobipro'){
+        $sobisection = explode(",", $sectionidarray);
+        $idsection=$sobisection[$sectionid];
+        $secid = self::takepid($idsection);
+        $i=0;
+        do{
+           if (self::checkexistpid($secid[$i])){
+               $temp = self::takepid($secid[$i]);
+                $secid = array_merge($secid,$temp);
+           } $i++;
+        }while($i<count($secid));
 
-            }
-            //process
-                $db = JFactory::getDBO();
+    }
+    
+    //process
+    $db = JFactory::getDBO();
 		$user = JFactory::getUser();
 		if (!is_array($source)) {
 			$source = explode(',', $source);
@@ -80,16 +83,15 @@ class TvtMA1080ViewTVTMAComments extends JView
 
 		switch($ordering)
 		{
-		        case 'vote':
-		        	$orderBy = '(c.isgood-c.ispoor) DESC';
-		        	break;
+      case 'vote':
+      	$orderBy = '(c.isgood-c.ispoor) DESC';
+      	break;
 
 			case 'date':
 			default:
 		        	$orderBy = 'c.date DESC';
 				break;
 		}
-
 
 		$where = array();
 
@@ -103,8 +105,8 @@ class TvtMA1080ViewTVTMAComments extends JView
 		}
 
 		$joins = array();
-                if (count($source) == 1 && $source[0] == 'com_sobipro'){
-                        $joins[] = 'JOIN #__sobipro_object AS cs ON cs.id = o.object_id';
+    if (count($source) == 1 && $source[0] == 'com_sobipro'){
+      $joins[] = 'JOIN #__sobipro_object AS cs ON cs.id = o.object_id';
 			$joins[] = 'LEFT JOIN #__sobipro_relations AS cr ON cr.id = cs.id';
 
 			$where[] = "c.object_group = " . $db->Quote($source[0]);
@@ -121,7 +123,7 @@ class TvtMA1080ViewTVTMAComments extends JView
 			if (!empty($cates)) {
 				$where[] = "cr.pid IN (" . $cates . ")";
 			}
-                }
+    }
 		if (count($source) == 1 && $source[0] == 'com_content') {
 			$joins[] = 'JOIN #__content AS cc ON cc.id = o.object_id';
 			$joins[] = 'LEFT JOIN #__categories AS ct ON ct.id = cc.catid';
@@ -141,7 +143,27 @@ class TvtMA1080ViewTVTMAComments extends JView
 			if (!empty($categories)) {
 				$where[] = "cc.catid IN (" . $categories . ")";
 			}
-		} else if (count($source)) {
+		}
+    elseif (count($source) == 1 && $source[0] == 'com_vitabook') {
+     
+			$joins[] = 'JOIN #__vitabook_messages AS cc ON cc.id = o.object_id';
+			$joins[] = 'LEFT JOIN #__categories AS ct ON ct.id = cc.catid';
+
+			$where[] = "c.object_group = " . $db->Quote($source[0]);
+			
+			$categories = $sectionid;
+			if (!is_array($categories)) {
+				$categories = explode(',', $categories);
+			}
+
+			JArrayHelper::toInteger($categories);
+
+			$categories = implode(',', $categories);
+			if (!empty($categories)) {
+				$where[] = "cc.catid IN (" . $categories . ")";
+			}
+		} 
+    else if (count($source)) {
 			$where[] = "c.object_group in ('" . implode("','", $source) . "')";
 		}
                 
@@ -153,8 +175,9 @@ class TvtMA1080ViewTVTMAComments extends JView
 			. (count($where) ? ' WHERE  ' . implode(' AND ', $where) : '')
 			. " ORDER BY " . $orderBy
 			;
-
+    
 		$db->setQuery($query, 0, $count);
+    
 		$list = $db->loadObjectList();
 
 		if (!is_array($list)) {
@@ -162,8 +185,6 @@ class TvtMA1080ViewTVTMAComments extends JView
 		}
 
 		if (count($list)) {
-			
-
 			$config = JCommentsFactory::getConfig();
 			$bbcode = JCommentsFactory::getBBCode();
 			$smiles = JCommentsFactory::getSmiles();
@@ -235,36 +256,36 @@ class TvtMA1080ViewTVTMAComments extends JView
                                 $item->creatby =  JText::_('MOD_JCOMMENTS_LATEST_CREATEDBY');
 			}
 		}
-                $this->assignRef( 'list', $list );
-                $this->assignRef( 'show_image', $show_image );
-                $this->assignRef( 'count', $count );
-                $this->assignRef( 'ordering', $ordering );
-                $this->assignRef( 'group', $group );
-                $this->assignRef( 'show_comment_title', $show_comment_title );
-                $this->assignRef( 'limit_comment_text', $limit_comment_text );
-                $this->assignRef( 'readmore', $readmore );
-                $this->assignRef( 'date_type', $date_type );
-                $this->assignRef( 'show_comment_date', $show_comment_date );
-                $this->assignRef( 'date_format', $date_format );
-                $this->assignRef( 'show_object_title', $show_object_title );
-                $this->assignRef( 'link_object_title', $link_object_title );
-                $this->assignRef( 'item_heading', $item_heading );
-                $this->assignRef( 'show_avatar', $show_avatar );
-                $this->assignRef( 'show_smiles', $show_smiles );
-                $this->assignRef( 'catid', $catid );
-                $this->assignRef( 'sectionidarray', $sectionidarray );
-                $this->assignRef( 'useCSS', $useCSS );
-                $this->assignRef( 'layout', $layout );
-                $this->assignRef( 'cache', $cache );
-                $this->assignRef( 'show_comment_author', $show_comment_author );
-                $this->assignRef( 'cache_time', $cache_time );
-                $this->assignRef( 'cachemode', $cachemode );
-                $this->assignRef( 'moduleclass_sfx', $moduleclass_sfx );
-            parent::display($tpl);
-            //$string = JModel::getSate('string');
-            //echo $string;
+    
+    $this->assignRef( 'list', $list );
+    $this->assignRef( 'show_image', $show_image );
+    $this->assignRef( 'count', $count );
+    $this->assignRef( 'ordering', $ordering );
+    $this->assignRef( 'group', $group );
+    $this->assignRef( 'show_comment_title', $show_comment_title );
+    $this->assignRef( 'limit_comment_text', $limit_comment_text );
+    $this->assignRef( 'readmore', $readmore );
+    $this->assignRef( 'date_type', $date_type );
+    $this->assignRef( 'show_comment_date', $show_comment_date );
+    $this->assignRef( 'date_format', $date_format );
+    $this->assignRef( 'show_object_title', $show_object_title );
+    $this->assignRef( 'link_object_title', $link_object_title );
+    $this->assignRef( 'item_heading', $item_heading );
+    $this->assignRef( 'show_avatar', $show_avatar );
+    $this->assignRef( 'show_smiles', $show_smiles );
+    $this->assignRef( 'catid', $catid );
+    $this->assignRef( 'sectionidarray', $sectionidarray );
+    $this->assignRef( 'useCSS', $useCSS );
+    $this->assignRef( 'layout', $layout );
+    $this->assignRef( 'cache', $cache );
+    $this->assignRef( 'show_comment_author', $show_comment_author );
+    $this->assignRef( 'cache_time', $cache_time );
+    $this->assignRef( 'cachemode', $cachemode );
+    $this->assignRef( 'moduleclass_sfx', $moduleclass_sfx );
+    parent::display($tpl);
 	}
-        public static function truncateText($string, $limit)
+  
+  public static function truncateText($string, $limit)
 	{
 		$prevSpace = JString::strrpos(JString::substr($string, 0, $limit), ' ');
 		$prevLength = $prevSpace !== false ? $limit - max(0, $prevSpace) : $limit;

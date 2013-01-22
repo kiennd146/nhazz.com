@@ -5,18 +5,16 @@ SPLoader::loadView( 'section' );
 require_once( JPATH_ROOT . DS . 'components' . DS . 'com_community' . DS . 'libraries' . DS . 'core.php');		
 ?>
 <select id="surf" class="ajaxSelect" name="surf" style="float:right;margin-top: 10px;">
-                <option value="0">Tìm theo chủ đề</option>
-                <option value="1">
-      Tin tức
-                </option>
-                <option value="2">
-      Hình ảnh
-                </option>
-                <option value="3">
-      Sản phẩm
-                </option>
-    
-            </select>
+      <option value="0">Tìm theo chủ đề</option>
+      <?php /*
+      <option value="1">Tin tức</option>
+      <option value="2">Hình ảnh</option>
+      <option value="3">Sản phẩm</option> 
+      */ ?>
+      <?php foreach($categories as $category): ?>
+      <option value="<?php echo $category->id ?>"><?php echo $category->title ?></option>
+      <?php endforeach; ?>
+</select>
 <div id="mod_comment">
 <div class="mod_comment_show">
 <?php if (!empty($list)) : ?>
@@ -177,7 +175,7 @@ require_once( JPATH_ROOT . DS . 'components' . DS . 'com_community' . DS . 'libr
 <?php endif; ?>
 </div>
 </div>
-<?
+<?php 
 $sectionid=$params->get('sectionid');
 $string=implode(",",$sectionid);
 ?>
@@ -215,7 +213,8 @@ $string=implode(",",$sectionid);
 <script>
 window.addEvent('domready', function(){
         $('surf').addEvent('change', function(e){
-                var com_id = $('surf').get('value');
+                var sectionid = $('surf').get('value');
+                /*
                 switch(com_id){
                     case '0':
                         var sectionid = parseInt(com_id) - 2;
@@ -234,7 +233,47 @@ window.addEvent('domready', function(){
                         com_id = "com_sobipro";
                         break;
                 }
+                */
+                var com_id="com_vitabook";
+               
                 new Event(e).stop();
+                //kiennd
+                /*
+                var test=      {
+                            option: "com_tvtma1080",
+                            view: "tvtmacomments",
+                            task: "getTVTMAComments",
+                            format : "ajax",
+                            com_id: com_id,
+                            sectionid: sectionid,
+                            count: $("count").value,
+                            show_comment_title : $("show_comment_title").value,
+                            group : $("group").value,
+                            ordering : $("ordering").value,
+                            show_comment_author : $("show_comment_author").value,
+                            limit_comment_text : $("limit_comment_text").value,
+                            readmore : $("readmore").value,
+                            show_comment_date : $("show_comment_date").value,
+                            date_type : $("date_type").value,
+                            date_format : $("date_format").value,
+                            show_object_title : $("show_object_title").value,
+                            link_object_title : $("link_object_title").value,
+                            item_heading : $("item_heading").value,
+                            show_avatar : $("show_avatar").value,
+                            show_image : $("show_image").value,
+                            show_smiles : $("show_smiles").value,
+                            catid : $("catid").value,
+                            sectionidarray : $("sectionid").value,
+                            useCSS : $("useCSS").value,
+                            layout : $("layout").value,
+                            moduleclass_sfx : $("moduleclass_sfx").value,
+                            cache: $("cache").value,
+                            cache_time : $("cache_time").value,
+                            cachemode : $("cachemode").value
+                        }
+                //alert('index.php?' + jQuery.param(test));
+                // end
+                */
                 var myRequest = new Request.HTML ({
                         url: 'index.php',
                         onRequest: function(){
