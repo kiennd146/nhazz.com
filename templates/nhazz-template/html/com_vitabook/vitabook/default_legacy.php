@@ -9,6 +9,8 @@
 
 // no direct access
 defined('_JEXEC') or die;
+$app = JFactory::getApplication();
+$templateDir = JURI::base() . 'templates/' . $app->getTemplate();
 ?>
 
 <script>
@@ -48,10 +50,10 @@ defined('_JEXEC') or die;
 			<?php if ($this->loggedin): ?>
 			$('form#dcs_form_create').ajaxSubmit({
 				beforeSubmit: function() {
-					//$('#results').html('Submitting...');
-					//alert("test");
+                    $("#dcs_loading").show();
 				},
 				success: function(data) {
+                    $("#dcs_loading").hide();
 					var _data = JSON.parse(data);
 					if (_data.state == '1') {
 						alert("<?php echo JText::_('VITABOOK_LIST_CREATE_SUCCESS') ?>");
@@ -83,6 +85,7 @@ defined('_JEXEC') or die;
 		<textarea class="borderGrey" placeholder="<?php echo JText::_('VITABOOK_LIST_HINT_MESSAGE') ?>" name="dcs_message"></textarea>
 		<a class="dcs_attach_img dcs_add_img" href="#"><?php echo JText::_('VITABOOK_LIST_BUTTON_ATTACH') ?></a>
 		<p id="dcs_img_list"></p>
+        <div id="dcs_loading" style="display:none"><img src="<?php echo $templateDir.'/images/loading.gif' ?>" /></div>
 		<button type="button" id="dcs_form_submit" ><?php echo JText::_('VITABOOK_LIST_BUTTON_POST') ?></button>
 		<?php 
 		// hidden fields
