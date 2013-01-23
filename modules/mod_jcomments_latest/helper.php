@@ -94,7 +94,27 @@ class modJCommentsLatestHelper
 			if (!empty($categories)) {
 				$where[] = "cc.catid IN (" . $categories . ")";
 			}
-		} else if (count($source)) {
+		} 
+		else if (count($source) == 1 && $source[0] == 'com_vitabook') {
+			$joins[] = 'JOIN #__vitabook_messages AS cc ON cc.id = o.object_id';
+			$joins[] = 'LEFT JOIN #__categories AS ct ON ct.id = cc.catid';
+
+			$where[] = "c.object_group = " . $db->Quote($source[0]);
+			
+			/*
+			$categories = $params->get('catid', array());
+			if (!is_array($categories)) {
+				$categories = explode(',', $categories);
+			}
+
+			JArrayHelper::toInteger($categories);
+
+			$categories = implode(',', $categories);
+			if (!empty($categories)) {
+				$where[] = "cc.catid IN (" . $categories . ")";
+			}
+			*/
+		}else if (count($source)) {
 			$where[] = "c.object_group in ('" . implode("','", $source) . "')";
 		}
 
