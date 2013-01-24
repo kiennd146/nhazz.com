@@ -69,7 +69,7 @@ echo JHtml::_('date.relative',$comment->date);
 	<?php if (count($comment->photos)): 
 	foreach($comment->photos as $photo):
 	?>
-	<img src="<?php echo $photo->thumb;?>" style="height:100px;" /> &nbsp;
+	<a href="<?php echo $photo->origin;?>" class="dcs_preview_img"><img src="<?php echo $photo->thumb;?>" style="height:100px;" /></a> &nbsp;
 	<?php endforeach; ?>
 	<?php endif; ?>
 </div>

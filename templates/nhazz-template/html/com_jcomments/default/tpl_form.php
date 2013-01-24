@@ -47,7 +47,7 @@ class jtt_tpl_form extends JoomlaTuneTemplate
 ?>
 <?php echo $htmlBeforeForm; ?>
 <a id="addcomments" href="#addcomments"></a>
-<!--form id="comments-form" name="comments-form" action="javascript:void(null);" -->
+<!--form id="comments-form" name="comments-form" action="javascript:void(null);"-->
 <form id="comments-form" name="comments-form" action="index.php?option=com_jcomments&tmpl=component&jtxf=JCommentsUploadImage" enctype="multipart/form-data" method="post">
 <?php
 		if ($this->getVar( 'comments-form-user-name', 1) == 1) {
@@ -55,9 +55,8 @@ class jtt_tpl_form extends JoomlaTuneTemplate
 ?>
 <p>
 	<span>
-                <label for="comments-form-name"><?php echo $text; ?></label>
-		<input placeholder="<?php echo $text; ?>" id="comments-form-name" type="text" name="name" value="" maxlength="<?php echo $this->getVar('comment-name-maxlength');?>" size="22" tabindex="1" />
-		
+        <label for="comments-form-name"><?php echo $text; ?></label>
+		<input placeholder="<?php echo $text; ?>" id="comments-form-name" type="text" name="name" value="" maxlength="<?php echo $this->getVar('comment-name-maxlength');?>" size="22" tabindex="1" />		
 	</span>
 </p>
 <?php
@@ -67,9 +66,8 @@ class jtt_tpl_form extends JoomlaTuneTemplate
 ?>
 <p>
 	<span>
-                <label for="comments-form-email"><?php echo $text; ?></label>
+        <label for="comments-form-email"><?php echo $text; ?></label>
 		<input placeholder="<?php echo $text; ?>" id="comments-form-email" type="text" name="email" value="" size="22" tabindex="2" />
-		
 	</span>
 </p>
 <?php
@@ -79,9 +77,8 @@ class jtt_tpl_form extends JoomlaTuneTemplate
 ?>
 <p>
 	<span>
-                <label for="comments-form-homepage"><?php echo $text; ?></label>
+        <label for="comments-form-homepage"><?php echo $text; ?></label>
 		<input placeholder="<?php echo $text; ?>" id="comments-form-homepage" type="text" name="homepage" value="" size="22" tabindex="3" />
-		
 	</span>
 </p>
 <?php
@@ -91,9 +88,8 @@ class jtt_tpl_form extends JoomlaTuneTemplate
 ?>
 <p>
 	<span>
-                <label for="comments-form-title"><?php echo $text; ?></label>
+        <label for="comments-form-title"><?php echo $text; ?></label>
 		<input placeholder="<?php echo $text; ?>" id="comments-form-title" type="text" name="title" value="" size="22" tabindex="4" />
-		
 	</span>
 </p>
 <?php
@@ -101,41 +97,38 @@ class jtt_tpl_form extends JoomlaTuneTemplate
 ?>
 <p>
 	<span>
-                <?php
-                require_once( JPATH_ROOT . DS . 'components' . DS . 'com_community' . DS . 'libraries' . DS . 'core.php');
-                $user = CFactory::getUser();
-                $avatar = $user->getAvatar();
-                $image = '<img class="userBoxAvatar" src="'. $avatar .'" alt="" border="0"/>';
-                
-                $user2 =& JFactory::getUser();
-                if (!$user2->guest) {
-                    echo $image;
-                }
-                ?>
-                
-                <input placeholder="<?php echo "Nội dung bình luận"; ?>" type="text"  id="comments-form-comment" name="comment" onkeypress="Submit(event)" />
-                
-				<?php if (!$user2->guest) { ?>
-				<a class="dcs_attach_img dcs_add_img" href="#"><?php echo JText::_('VITABOOK_LIST_BUTTON_ATTACH') ?></a>
-				<p id="dcs_img_list"></p>
-				<?php } ?>				
-				<input type="hidden" id="dcs_comment_id" name="dcs_comment_id" />
+		<?php
+		require_once( JPATH_ROOT . DS . 'components' . DS . 'com_community' . DS . 'libraries' . DS . 'core.php');
+		$user = CFactory::getUser();
+		$avatar = $user->getAvatar();
+		$image = '<img class="userBoxAvatar" src="'. $avatar .'" alt="" border="0"/>';
+		
+		$user2 =& JFactory::getUser();
+		if (!$user2->guest) {
+		    echo $image;
+		}
+		?>
+		
+		<input placeholder="<?php echo "Nội dung bình luận"; ?>" type="text"  id="comments-form-comment" name="comment" onkeypress="Submit(event)" />
+          
+		<?php if (!$user2->guest) { ?>
+		<a class="dcs_attach_img dcs_add_img" href="#"><?php echo JText::_('VITABOOK_LIST_BUTTON_ATTACH') ?></a>
+		<p id="dcs_img_list"></p>
+		<?php } ?>				
+		<input type="hidden" id="dcs_comment_id" name="dcs_comment_id" />
 				
 	</span>
 </p>
-<?php
-		if ($this->getVar('comments-form-subscribe', 0) == 1) {
-?>
+<?php if ($this->getVar('comments-form-subscribe', 0) == 1) { ?>
 <p>
 	<span>
-                <label for="comments-form-subscribe"><?php echo JText::_('FORM_SUBSCRIBE'); ?></label>
-		<input class="checkbox" id="comments-form-subscribe" type="checkbox" name="subscribe" value="1" tabindex="5" />
-		
+        <label for="comments-form-subscribe"><?php echo JText::_('FORM_SUBSCRIBE'); ?></label>
+		<input class="checkbox" id="comments-form-subscribe" type="checkbox" name="subscribe" value="1" tabindex="5" />		
 	</span>
 </p>
-<?php
-		}
+<?php } ?>
 
+<?php 
 		if ($this->getVar('comments-form-captcha', 0) == 1) {
 			$html = $this->getVar('comments-form-captcha-html');
 			if ($html != '') {
@@ -154,9 +147,9 @@ class jtt_tpl_form extends JoomlaTuneTemplate
 			}
 		}
 ?>
+
 <div id="comments-form-buttons">
 	<div class="btn" id="comments-form-send"><div><a href="#" tabindex="7" onclick="jcomments.saveComment();return false;" title="<?php echo JText::_('FORM_SEND_HINT'); ?>"><?php echo JText::_('FORM_SEND'); ?></a></div></div>
-	<!--div class="btn" id="comments-form-send"><div><a href="#" tabindex="7" onclick="mySubmit(jcomments);return false;" title="<?php echo JText::_('FORM_SEND_HINT'); ?>"><?php echo JText::_('FORM_SEND'); ?></a></div></div-->
 	<div class="btn" id="comments-form-cancel" style="display:none;"><div><a href="#" tabindex="8" onclick="return false;" title="<?php echo JText::_('FORM_CANCEL'); ?>"><?php echo JText::_('FORM_CANCEL'); ?></a></div></div>
 	<div style="clear:both;"></div>
 </div>
@@ -167,51 +160,17 @@ class jtt_tpl_form extends JoomlaTuneTemplate
 </form>  
 <script language="javascript" type="text/javascript">
 jQuery.noConflict();
-	function mySubmit(jcomments) {
-		alert(jcomments.requestURI);	
-		jcomments.form.submit();
-	}
-	
     function Submit(e) {
     	
         var isEnter = window.event == null ? 
                       e.keyCode == 13 : 
                       window.event.keyCode == 13;
         if(isEnter)
-            //document.getElementById(id).click();
              jcomments.saveComment();return false;
     }
-    
+   
 (function($){
 	$(document).ready(function(){
-		/*
-		var m7_count = 0;
-		$.fn.createImageForm = function(name, default_value){
-			m7_count += 1;
-			var m7_id = name + m7_count.toString();
-			if ($(".dcs_images").length >=4) return;
-			var	$newImageForm ='<div class="dcs_images">';
-				$newImageForm+=		'<input type="file" name="file_upload[]" id="' + m7_id + '" />';
-				$newImageForm+=		'<a class="dcs_remove_img" title="Remove" href="#" ><?php echo JText::_('VITABOOK_LIST_REMOVE') ?></a>&nbsp;';
-				$newImageForm+=		'<a class="dcs_add_img" title="Remove" href="#" ><?php echo JText::_('VITABOOK_LIST_ADD') ?></a>';
-				$newImageForm+='<div style="clear:both"></div>';
-				$newImageForm+='</div>';
-		
-			$(this).append($($newImageForm));
-		}
-
-		$("a.dcs_add_img").live("click", function(e){
-			e.preventDefault();
-			$("#dcs_img_list").createImageForm("dcs_images", "");
-		});
-		
-		$("a.dcs_remove_img").live("click", function(e){
-			e.preventDefault();
-			m7_count -= 1;
-			$(this).parent().remove();
-		});
-		*/
-		
 		var m7_count = 0;
 		$.fn.createImageForm = function(name, default_value, default_json){
 			m7_count += 1;
@@ -249,7 +208,7 @@ jQuery.noConflict();
 })(jQuery);
 
 function dcsSetupPhotos(str_photos){
-	photos = JSON.parse(str_photos);
+	var photos = JSON.parse(str_photos);
 	
 	jQuery("#dcs_img_list").empty();
 	

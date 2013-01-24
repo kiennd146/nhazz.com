@@ -1167,25 +1167,26 @@ class JComments
 		$comment->photos = array();
 		
 		$images = json_decode($comment->images);
-		
-		foreach($images as $image) {
-			if (file_exists(JPATH_BASE . DS . $image->origin) && file_exists(JPATH_BASE . DS . $image->thumb)) {
-				$image_photo = (object)array(
-					'origin'=>JURI::base() . DS . $image->origin,
-					'thumb'=>JURI::base() . DS . $image->thumb,
-					'json'=> $image->origin.','.$image->thumb
-				);
+		if ($images && count($images) > 0) {
+			foreach($images as $image) {
+				if (file_exists(JPATH_BASE . DS . $image->origin) && file_exists(JPATH_BASE . DS . $image->thumb)) {
+					$image_photo = (object)array(
+						'origin'=>JURI::base() . DS . $image->origin,
+						'thumb'=>JURI::base() . DS . $image->thumb,
+						'json'=> $image->origin.','.$image->thumb
+					);
+					
+				}
+				else {
+					$image_photo = (object)array(
+						'origin'=>JURI::base() . DISCUSS_COMMENT_PHOTOS_PATH . DS . 'no_photo.jpg',
+						'thumb'=>JURI::base() . DISCUSS_COMMENT_PHOTOS_PATH . DS . 'no_photo.jpg',
+						'json'=> ''
+					);
+				}
 				
+				$comment->photos[] = $image_photo;
 			}
-			else {
-				$image_photo = (object)array(
-					'origin'=>JURI::base() . DISCUSS_COMMENT_PHOTOS_PATH . DS . 'no_photo.jpg',
-					'thumb'=>JURI::base() . DISCUSS_COMMENT_PHOTOS_PATH . DS . 'no_photo.jpg',
-					'json'=> ''
-				);
-			}
-			
-			$comment->photos[] = $image_photo;
 		}
 		//end
 		// replace BBCode tags

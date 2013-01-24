@@ -261,6 +261,20 @@ class VitabookModelMessage extends JModelAdmin
         }
     }
 
+	public function delete_img($file_str) {
+		$file_arr = json_decode($file_str);
+		
+		foreach($file_arr as $file) {
+			if (JFile::exists($file->origin)) {
+				JFile::delete($file->origin);
+			}
+			if (JFile::exists($file->thumb)) {
+				JFile::delete($file->thumb);
+			}
+		}
+		
+	}
+	
 	public function upload_img($file) {
 		
 		//Clean up filename to get rid of strange characters like spaces etc

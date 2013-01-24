@@ -11,6 +11,7 @@ $document = JFactory::getDocument();
 $document->addStyleSheet(JURI::base() . 'modules/mod_yj_pop_login/css/stylesheet.css');
 ?>
 <script type="text/javascript">
+//jQuery.noConflict();
 window.addEvent('domready', function() {
 		
 		$("discuss_form_photo").setStyles({

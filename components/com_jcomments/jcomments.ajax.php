@@ -77,6 +77,20 @@ class JCommentsAJAX
 		return $value;
 	}
 
+	public static function delete_img($file_str) {
+		$file_arr = json_decode($file_str);
+		
+		foreach($file_arr as $file) {
+			if (JFile::exists($file->origin)) {
+				JFile::delete($file->origin);
+			}
+			if (JFile::exists($file->thumb)) {
+				JFile::delete($file->thumb);
+			}
+		}
+		
+	}
+	
 	public static function upload_img($file) {
 		
 		//Clean up filename to get rid of strange characters like spaces etc
@@ -240,8 +254,7 @@ class JCommentsAJAX
 			$comment->checkin();
 			
 			$html = JCommentsText::jsEscape(JComments::getCommentItem($comment));
-			//$response->addScript("jcomments.updateComment(" . $comment->id . ", '$html');");
-			$response->addAssign($html,'','');
+			$response->addScript("jcomments.updateComment(" . $comment->id . ", '$html');");
 		}
 		
 		return $response;
@@ -762,9 +775,9 @@ class JCommentsAJAX
 
 				if (!in_array(false, $result, true)) {
 					if ($config->getInt('delete_mode') == 0) {
+						$test = self::delete_img($comment->images);
 						$comment->delete();
 						$count = JComments::getCommentsCount($object_id, $object_group, '', true);
-
 						if ($config->get('template_view') == 'tree') {
 							if ($count > 0) {
 								$response->addScript("jcomments.updateComment('$id','');");

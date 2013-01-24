@@ -62,13 +62,21 @@ unset($doc->_scripts[$this->baseurl.'/media/system/js/caption.js']);
   <![endif]-->
 
 	<script src="<?php echo $tpath; ?>/js/jquery-1.8.3.js"></script>
+	<script src="<?php echo $tpath; ?>/js/imgpreview.full.jquery.js"></script>
 	<script>
 	jQuery.noConflict();
+	jQuery(document).ready(function(){
+		jQuery('a.dcs_preview_img').imgPreview({
+			imgCSS: {
+				'max-height': 400
+			}
+		});
+	});	
 	</script>
 	
 	<script src="<?php echo $tpath; ?>/js/jquery-ui-1.9.2.custom.js"></script>
-	<script src="<?php echo $tpath; ?>/js/jquery.equalheights.js"></script>
-	<script src="<?php echo $tpath; ?>/js/jquery.form.js"></script>
+	<!--script src="<?php echo $tpath; ?>/js/jquery.equalheights.js"></script-->
+	<script src="<?php echo $tpath; ?>/js/jquery.form.js"></script>	
 	
 </head>
 	

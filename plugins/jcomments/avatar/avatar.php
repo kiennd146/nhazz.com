@@ -116,7 +116,7 @@ class plgJCommentsAvatar extends JPlugin
 				}
 			}
 			// avatar link
-			if ($avatar_link && $comments[$i]->profileLink != '') {
+			if ($avatar_link && isset($comments[$i]->profileLink) && $comments[$i]->profileLink != '') {
 				$comments[$i]->avatar = $this->_getAppendLink($comments[$i]->avatar, $comments[$i]->profileLink, $avatar_link_target);			
 			}
 		}

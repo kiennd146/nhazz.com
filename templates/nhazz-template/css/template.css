@@ -1115,10 +1115,8 @@ body #community-wrap .cFeed-item .newsfeed-content-top, .cFeed-item .newsfeed-co
     overflow: hidden;
 }
 /* End content */
-div.SPDetailEntry {
-}
 div.SPDetailEntry img {
-    width: 100%;
+    /*width: 100%; kiennd*/
     margin: 0;
 }
 div.SPDetailEntry img.pro_image {
@@ -1444,7 +1442,7 @@ div.SPImageAuthor #comments-form textarea {
     width: 90%;
 }
 div.SPImageAuthor #comments-form .btn a,div.SPImageAuthor #comments-report-form .btn a {
-    display: none;
+    /*display: none; kiennd*/
 }
 div.SPImageAuthor #jc div.comment-body {
     margin: 0;
@@ -1472,13 +1470,14 @@ div.SPImageAuthor #comments .quote,div.SPImageAuthor #comments blockquote,div.SP
 div.SPImageAuthor #comments .comments-list {
     margin: 0;
     padding: 0;
-    max-height: 400px;
+    /*max-height: 400px;
     overflow: scroll;
     overflow-x: hidden;
-    overflow-y: hidden;
+    overflow-y: hidden;  kiennd
+    */
 }
 div.SPImageAuthor #comments .comments-list:hover{
-    overflow-y: auto;
+    /*overflow-y: auto; kiennd*/
 }
 div.SPCommandList ul li {
     display: inline;
