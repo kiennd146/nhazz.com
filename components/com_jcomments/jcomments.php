@@ -853,11 +853,11 @@ class JComments
 	{
 		$acl = JCommentsFactory::getACL();
 		$config = JCommentsFactory::getConfig();
-
+         
 		if ($acl->check('enable_gravatar')) {
 			JCommentsEvent::trigger('onPrepareAvatar', array(&$comment));
 		}
-
+        
 		// run autocensor, replace quotes, smiles and other pre-view processing
 		JComments::prepareComment($comment);
 

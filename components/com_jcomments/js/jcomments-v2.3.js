@@ -378,12 +378,14 @@ JComments.prototype = {
 	unsubscribe: function(o,g){return this.ajax('JCommentsUnsubscribe',arguments);},
 	updateSubscription: function(m,t){var e=this.$('comments-subscription');if(e){var jc=this;e.innerHTML=t;e.onclick=m?function(){jc.unsubscribe(jc.oi,jc.og);return false;}:function(){jc.subscribe(jc.oi,jc.og);return false;};e.blur();}},
 	go: function(l){window.open(l);return false;},
-	uploadImage: function(id, comment_content){
+	uploadImage: function(id){ //, comment_content
+		/*
 		if (id <=0) {
 			this.updateComment(id, comment_content);
 			return;
 		}
 		
+		//alert(id+' '+comment_content);
 		var uploaded_found = false;
 		jQuery(".dcs_images").each(function(){
 			if (jQuery("input[type=file]", this).val() != '') {
@@ -395,7 +397,7 @@ JComments.prototype = {
 			this.updateComment(id, comment_content);
 			return;
 		}
-		
+		*/
 		(function($){
 			var thiz = this
 			$("#dcs_comment_id").val(id);

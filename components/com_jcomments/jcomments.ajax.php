@@ -252,9 +252,13 @@ class JCommentsAJAX
 			$comment->images = json_encode($file_images);
 			$comment->store();
 			$comment->checkin();
-			
+			/*
 			$html = JCommentsText::jsEscape(JComments::getCommentItem($comment));
 			$response->addScript("jcomments.updateComment(" . $comment->id . ", '$html');");
+			*/
+			$html = JComments::getCommentsList($comment->object_id, $comment->object_group, JComments::getCommentPage($comment->object_id, $comment->object_group, $comment->id));
+			$html = JCommentsText::jsEscape($html);
+			$response->addScript("jcomments.updateList('$html','r');");
 		}
 		
 		return $response;
@@ -660,8 +664,9 @@ class JCommentsAJAX
 						}
 					}
 					//kiennd
-					$html = JCommentsText::jsEscape(JComments::getCommentItem($comment));
-					$response->addScript("jcomments.uploadImage(" . $comment->id . ",'$html' );");
+					//$html = JCommentsText::jsEscape(JComments::getCommentItem($comment));
+					//$response->addScript("jcomments.uploadImage(" . $comment->id . ",'$html' );");
+					$response->addScript("jcomments.uploadImage(" . $comment->id . " );");
 					// if comment published we need update comments list
 					if ($comment->published) {
 						// send notification to comment subscribers
@@ -981,7 +986,7 @@ class JCommentsAJAX
 					}
 					$html = JCommentsText::jsEscape(JComments::getCommentItem($comment));
 					#$response->addScript("jcomments.updateComment(" . $comment->id . ", '$html');"); kiennd
-					$response->addScript("jcomments.uploadImage(" . $comment->id . ", '$html');");
+					$response->addScript("jcomments.uploadImage(" . $comment->id . ");");
 				}
 			} else {
 				$response->addAlert(JText::_('ERROR_CANT_EDIT'));

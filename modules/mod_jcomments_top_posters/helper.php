@@ -157,7 +157,7 @@ class modJCommentsTopPostersHelper
 		
 		$i=0;
 		foreach($list as &$item) {
-			/*
+			/*  */
 			$last_topcommenter = self::getBefore($params, $timestamp_date_from, $timestamp_date_to);
 			if (isset($last_topcommenter[$item->userid])) {
 				if ($last_topcommenter[$item->userid] > $i) {
@@ -173,7 +173,7 @@ class modJCommentsTopPostersHelper
 			else {
 				$item->status = 1;
 			}
-			*/
+			
 			$item->displayAuthorName = JComments::getCommentAuthorName($item);
 			
 			/*
