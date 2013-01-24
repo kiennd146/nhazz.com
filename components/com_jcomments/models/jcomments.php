@@ -61,6 +61,7 @@ class JCommentsModel
 
 			if (count($rows)) {
 				$threads = array();
+				
 				foreach ($rows as $row){
 					$threads[] = $row->id;
 				}
@@ -299,6 +300,7 @@ class JCommentsModel
 
 		$query = "SELECT c.id, c.parent, c.object_id, c.object_group, c.userid, c.name, c.username, c.title, c.comment"
 				. "\n, c.email, c.homepage, c.date, c.date as datetime, c.ip, c.published, c.deleted, c.checked_out, c.checked_out_time"
+				. "\n, c.images"
 				. "\n, c.isgood, c.ispoor"
 				. ($votes ? "\n, v.value as voted" : "\n, 1 as voted")
 				. "\n, case when c.parent = 0 then unix_timestamp(c.date) else 0 end as threaddate"

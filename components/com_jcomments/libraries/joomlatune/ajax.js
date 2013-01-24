@@ -46,7 +46,7 @@ function jtAJAX()
 	this.startLoading = function(){};
 	this.finishLoading = function(){};
 
-	this.ajax = function(options)
+	this.ajax = function(options, func=null)
 	{
 		var xhr = this.xhr();
 		if (!xhr) return false;
@@ -77,6 +77,9 @@ function jtAJAX()
 			jtx.finishLoading();
 			if (xhr.status==200) {
 				jtx.processResponse(xhr.responseText);
+				if (func != null) {
+					func(xhr.responseText);
+				}				
 			}
 			delete xhr;
 			xhr = null;
@@ -109,6 +112,7 @@ function jtAJAX()
 
 	this.processResponse = function(sText)
 	{
+		//alert(sText);
 		if(sText==='') return false;
 		if(sText.substring(0,3)!='[ {'){var idx=sText.indexOf('[ {');sText=sText.substr(idx);}
 		var result;try {result=eval(sText);}catch(e){}
@@ -130,7 +134,6 @@ function jtAJAX()
 				default: this.error('Unknown command: ' + cmd);break;
 			}
 		}
-		
 		delete result;
 		delete cmd;
 		delete id;

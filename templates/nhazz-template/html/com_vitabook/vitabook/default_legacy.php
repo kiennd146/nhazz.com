@@ -57,7 +57,7 @@ $templateDir = JURI::base() . 'templates/' . $app->getTemplate();
 					var _data = JSON.parse(data);
 					if (_data.state == '1') {
 						alert("<?php echo JText::_('VITABOOK_LIST_CREATE_SUCCESS') ?>");
-						document.location.href=document.location.href;
+						//document.location.href=document.location.href;
 					}
 				}
 			});

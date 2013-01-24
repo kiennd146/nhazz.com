@@ -65,6 +65,14 @@ class jtt_tpl_comment extends JoomlaTuneTemplate
 echo JHtml::_('date.relative',$comment->date);
 ?></span>
 <div class="comment-body" id="comment-body-<?php echo $comment->id; ?>"><?php echo $comment->comment; ?></div>
+<div class="comment-images" id="comment-images-<?php echo $comment->id; ?>">
+	<?php if (count($comment->photos)): 
+	foreach($comment->photos as $photo):
+	?>
+	<img src="<?php echo $photo->thumb;?>" style="height:100px;" /> &nbsp;
+	<?php endforeach; ?>
+	<?php endif; ?>
+</div>
 <?php
 				if (($this->getVar('button-reply') == 1)
 				|| ($this->getVar('button-quote') == 1)

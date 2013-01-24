@@ -20,6 +20,13 @@ if (!defined('JOOMLATUNE_AJAX')) {
 	require_once (JCOMMENTS_LIBRARIES.'/joomlatune/ajax.php');
 }
 
+jimport('joomla.filesystem.file');
+require_once(JPATH_ADMINISTRATOR .'/components/com_vitabook/helpers/vitabook.php');
+/*
+if (!defined('DISCUSS_COMMENT_PHOTOS_PATH')) define('DISCUSS_COMMENT_PHOTOS_PATH','images/comments');
+if (!defined('DISCUSS_COMMENT_PHOTOS_THUMB')) define('DISCUSS_COMMENT_PHOTOS_THUMB','thumbs');
+*/
+
 class JCommentsAJAX
 {
 	public static function convertEncoding( $value )
@@ -70,6 +77,176 @@ class JCommentsAJAX
 		return $value;
 	}
 
+	public static function upload_img($file) {
+		
+		//Clean up filename to get rid of strange characters like spaces etc
+		$name = array();
+		if (count($file['name']) <=0 || count($file['name']) > 4 ) return $name;
+		
+		//-- Get parameters for image uploading
+		$params = JComponentHelper::getParams('com_vitabook');
+		$imageQuality = $params->get('upload_image_quality');
+		$imageWidth = $params->get('upload_image_width');
+		
+		$imageThumbWidth = $params->get('upload_image_thumb_width');
+
+		$succes = 0;
+
+		foreach($file['name'] as $i=>$fname) {
+			$succes = 0;
+			//-- Check if file type is supported
+			$types = array('image/gif', 'image/jpeg', 'image/png', 'image/pjpeg', 'image/x-png');
+			if(!in_array($file["type"][$i], $types)) {
+				continue;
+			}
+			try {
+				$fileInfo = JImage::getImageFileProperties($file["tmp_name"][$i]);
+			}
+			catch(Exception $e) {
+				continue;
+			}
+						
+			$image = new JImage;
+			
+			try {
+				$image->loadFile($file["tmp_name"][$i]);
+			}
+			//-- Loading image failed, stop!
+			catch(Exception $e) {
+				continue;
+			}
+			
+			if(!$image->isLoaded()) {
+                continue;
+            }
+			
+			//-- Check for memory
+			if(!VitabookHelper::checkMemory($image)) {
+				continue;
+			}
+			
+			$fileName = md5($image->getPath() + (rand()*1000));
+			//-- Get correct extension
+			switch (JImage::getImageFileProperties($image->getPath())->mime) {
+				case 'image/gif':
+					$extension = 'gif';
+					$img_type = 'IMAGETYPE_GIF';
+					break;
+				case 'image/png':
+					$extension = 'png';
+					$img_type = 'IMAGETYPE_PNG';
+					break;
+				case 'image/x-png':
+					$extension = 'png';
+					$img_type = 'IMAGETYPE_PNG';
+					break;
+				case 'image/jpeg':
+					$extension = 'jpg';
+					$img_type = 'IMAGETYPE_JPEG';
+					break;
+				case 'image/pjpeg':
+					$extension = 'jpg';
+					$img_type = 'IMAGETYPE_JPEG';
+					break;
+				default :
+					continue;
+			}
+			
+			//-- Where to store the image
+			$created_filename = array();
+			$created_filename['origin'] = DISCUSS_COMMENT_PHOTOS_PATH . DS . $fileName.'.'.$extension;
+			$dest = JPATH_BASE . DS . $created_filename['origin'];
+			
+			$created_filename['thumb'] = DISCUSS_COMMENT_PHOTOS_PATH . DS . $fileName . DISCUSS_COMMENT_PHOTOS_THUMB . '.'.$extension;
+			$dest_thumb = JPATH_BASE . DS . $created_filename['thumb'];
+			//$loc = JURI::root().'media/com_vitabook/images/uploaded/'.$fileName.'.'.$extension;
+
+			//-- Resize image proportional to its original size
+			if (intval($fileInfo->width) > $imageWidth) {
+				try {
+					$image->resize($imageWidth,'100%',false);
+				}
+				//-- Loading image failed, stop!
+				catch(Exception $e) {
+					continue;
+				}
+			}
+			
+			//-- Copy the renamed file to media/com_vitabook/images.
+			@$image->toFile($dest, $img_type, array('quality' => $imageQuality));
+
+			//-- Check if uploading was successful
+			if(JFile::exists($dest)) {
+				$succes = 1;
+			}
+			
+			//-- create thumb
+			try {
+				$thumb = $image->resize($imageThumbWidth,'100%',true);
+			}
+			//-- Loading image failed, stop!
+			catch(Exception $e) {
+				continue;
+			}
+			
+			//-- Copy the renamed file to media/com_vitabook/images.
+			@$thumb->toFile($dest_thumb, $img_type, array('quality' => $imageQuality));
+
+			//-- Check if uploading was successful
+			if(JFile::exists($dest_thumb)) {
+				$succes = 1;
+			}
+			
+			if ($succes==1) $name[] = $created_filename;
+			
+		}
+		return $name;
+	}
+	
+	public static function uploadImage()
+	{
+		$response = JCommentsFactory::getAjaxResponse();
+		$id = JRequest::getInt('dcs_comment_id', 0);
+		if ($id <= 0) return $response;
+		
+		$db = JCommentsFactory::getDBO();
+		$config = JCommentsFactory::getConfig();
+
+		$comment = new JCommentsTableComment($db);
+		$html = '';
+		if ($comment->load($id)) {
+		     //Retrieve file details from uploaded file, sent from upload form
+			$file = JRequest::getVar('file_upload', null, 'files', 'array');
+			$file_exists = JRequest::getVar('file_uploaded', array());
+			
+			$file_images = array();
+			
+			if (count($file_exists)) {
+				foreach($file_exists as $file_exist) {
+					$file_exist = explode(",", $file_exist);
+					if (count($file_exist) ==2 && JFile::exists(JPATH_BASE . DS . $file_exist[0]) && JFile::exists(JPATH_BASE . DS . $file_exist[1])) {
+						$file_images[] = (object)array('origin'=>$file_exist[0], 'thumb'=>$file_exist[1]);
+					}
+				}
+			}
+			
+			if ($file) {
+				$filenames = self::upload_img($file);
+				$file_images = array_merge($file_images, $filenames);
+			}
+			
+			$comment->images = json_encode($file_images);
+			$comment->store();
+			$comment->checkin();
+			
+			$html = JCommentsText::jsEscape(JComments::getCommentItem($comment));
+			//$response->addScript("jcomments.updateComment(" . $comment->id . ", '$html');");
+			$response->addAssign($html,'','');
+		}
+		
+		return $response;
+	}
+	
 	public static function prepareValues( &$values )
 	{
 		foreach ($values as $k => $v) {
@@ -104,12 +281,15 @@ class JCommentsAJAX
 				}
 				unset($tmp, $m);
 				$values[$k] = $v;
-			} else {
-				$values[$k] = trim(strip_tags($v));
+			} 
+			else {
+				if (is_string($v)) {
+					$values[$k] = trim(strip_tags($v));			
 
-				// handle magic quotes compatibility
-				if (get_magic_quotes_gpc() == 1) {
-					$values[$k] = stripslashes($values[$k]);
+					// handle magic quotes compatibility
+					if (get_magic_quotes_gpc() == 1) {
+						$values[$k] = stripslashes($values[$k]);
+					}
 				}
 
 			}
@@ -188,15 +368,15 @@ class JCommentsAJAX
 		if (JCommentsSecurity::badRequest() == 1) {
 			JCommentsSecurity::notAuth();
 		}
-
+				 
 		$user = JCommentsFactory::getUser();
 		$acl = JCommentsFactory::getACL();
 		$config = JCommentsFactory::getConfig();
 		$response = JCommentsFactory::getAjaxResponse();
 
 		if ($acl->canComment()) {
-			$values = self::prepareValues( $_POST );
-
+			$values = self::prepareValues( $_POST ); 
+			
 			$object_group = isset($values['object_group']) ? JCommentsSecurity::clearObjectGroup($values['object_group']) : '';
 			$object_id = isset($values['object_id']) ? intval($values['object_id']) : '';
 
@@ -373,7 +553,9 @@ class JCommentsAJAX
 				$comment->userid = $user->id ? $user->id : 0;
 				$comment->published = $acl->check('autopublish');
 				$comment->date = JCommentsFactory::getDate();
-
+				
+				$comment->images = isset($values['images']) ? $values['images'] : '';
+				
 				$query = "SELECT COUNT(*) "
 						. "\nFROM #__jcomments "
 						. "\nWHERE comment = '" . $db->getEscaped($comment->comment) . "'"
@@ -464,7 +646,9 @@ class JCommentsAJAX
 							JComments::sendNotification($comment, true);
 						}
 					}
-
+					//kiennd
+					$html = JCommentsText::jsEscape(JComments::getCommentItem($comment));
+					$response->addScript("jcomments.uploadImage(" . $comment->id . ",'$html' );");
 					// if comment published we need update comments list
 					if ($comment->published) {
 						// send notification to comment subscribers
@@ -696,18 +880,23 @@ class JCommentsAJAX
 				$response->addAlert(JText::_('ERROR_BEING_EDITTED'));
 			} else if ($acl->canEdit($comment)) {
 					$comment->checkout($user->id);
-
+					JComments::prepareComment($comment);
+					
 					$name = ($comment->userid) ? '' : JCommentsText::jsEscape($comment->name);
 					$email = ($comment->userid) ? '' : JCommentsText::jsEscape($comment->email);
 					$homepage = JCommentsText::jsEscape($comment->homepage);
 					$text = JCommentsText::jsEscape(JCommentsText::br2nl($comment->comment));
 					$title = JCommentsText::jsEscape(str_replace("\n", '', JCommentsText::br2nl($comment->title)));
-
+					//kiennd
+					$photos = JCommentsText::jsEscape(json_encode($comment->photos));
+					
 					if (intval($loadForm) == 1) {
 						$form = JComments::getCommentsForm($comment->object_id, $comment->object_group, true);
 						$response->addAssign('comments-form-link', 'innerHTML', $form);
 					}
+					
 					$response->addScript("jcomments.showEdit(" . $comment->id . ", '$name', '$email', '$homepage', '$title', '$text');");
+					$response->addScript("jcomments.setupPhotos(" . $comment->id . ", '$photos');");
 				} else {
 					$response->addAlert(JText::_('ERROR_CANT_EDIT'));
 				}
@@ -778,7 +967,8 @@ class JCommentsAJAX
 						}
 					}
 					$html = JCommentsText::jsEscape(JComments::getCommentItem($comment));
-					$response->addScript("jcomments.updateComment(" . $comment->id . ", '$html');");
+					#$response->addScript("jcomments.updateComment(" . $comment->id . ", '$html');"); kiennd
+					$response->addScript("jcomments.uploadImage(" . $comment->id . ", '$html');");
 				}
 			} else {
 				$response->addAlert(JText::_('ERROR_CANT_EDIT'));

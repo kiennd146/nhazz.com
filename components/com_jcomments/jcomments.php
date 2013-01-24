@@ -17,6 +17,9 @@
 if (!defined('DS')) {
 	define('DS', DIRECTORY_SEPARATOR);
 }
+//kiennd
+if (!defined('DISCUSS_COMMENT_PHOTOS_PATH')) define('DISCUSS_COMMENT_PHOTOS_PATH','images/comments');
+if (!defined('DISCUSS_COMMENT_PHOTOS_THUMB')) define('DISCUSS_COMMENT_PHOTOS_THUMB','thumbs');
 
 ob_start();
 
@@ -149,6 +152,7 @@ if (isset($_REQUEST['jtxf'])) {
 
 	$jtx = new JoomlaTuneAjax();
 	$jtx->setCharEncoding(JCOMMENTS_ENCODING);
+	$jtx->registerFunction(array('JCommentsUploadImage', 'JCommentsAJAX', 'uploadImage'));
 	$jtx->registerFunction(array('JCommentsAddComment', 'JCommentsAJAX', 'addComment'));
 	$jtx->registerFunction(array('JCommentsDeleteComment', 'JCommentsAJAX', 'deleteComment'));
 	$jtx->registerFunction(array('JCommentsEditComment', 'JCommentsAJAX', 'editComment'));
@@ -1158,7 +1162,32 @@ class JComments
 			$comment->isgood = 0;
 			$comment->ispoor = 0;
 		}
-
+		
+		// kiennd comment images
+		$comment->photos = array();
+		
+		$images = json_decode($comment->images);
+		
+		foreach($images as $image) {
+			if (file_exists(JPATH_BASE . DS . $image->origin) && file_exists(JPATH_BASE . DS . $image->thumb)) {
+				$image_photo = (object)array(
+					'origin'=>JURI::base() . DS . $image->origin,
+					'thumb'=>JURI::base() . DS . $image->thumb,
+					'json'=> $image->origin.','.$image->thumb
+				);
+				
+			}
+			else {
+				$image_photo = (object)array(
+					'origin'=>JURI::base() . DISCUSS_COMMENT_PHOTOS_PATH . DS . 'no_photo.jpg',
+					'thumb'=>JURI::base() . DISCUSS_COMMENT_PHOTOS_PATH . DS . 'no_photo.jpg',
+					'json'=> ''
+				);
+			}
+			
+			$comment->photos[] = $image_photo;
+		}
+		//end
 		// replace BBCode tags
 		$comment->comment = $bbcode->replace($comment->comment);
 

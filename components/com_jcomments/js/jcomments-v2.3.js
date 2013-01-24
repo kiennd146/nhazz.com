@@ -269,6 +269,7 @@ JComments.prototype = {
 	init: function(oi,og,r){var ua=navigator.userAgent.toLowerCase();this.browser={safari: /webkit/.test(ua),opera: /opera/.test(ua),msie: /msie/.test(ua) && !(/opera/.test(ua)),mozilla: /mozilla/.test(ua) && !(/(compatible|webkit)/.test(ua))};this.oi=oi;this.og=og;this.busy=new JCommentsIndicator();this.requestURI=r;var th=this;jtajax.startLoading=function(){th.busy.show();};jtajax.finishLoading=function(){th.busy.hide();};},
 	reinit: function(oi,og){this.oi=oi;this.og=og;var foi=this.$('object_id');if(foi){foi.value=oi;}var fog=this.$('object_group');if(fog){fog.value=og;}this.showPage(oi,og,0);},
 	setForm: function(f){this.form=f;this.form_id=f.id;this.setMode('add',null);var jc=this;this.form.submit=function(){jc.saveComment();};this.form.keypressed=function(e){if(e.keyCode==27&&jc.mode=='reply'){jc.restoreForm(false);}};this.formLoaded();},
+	//setForm: function(f){this.form=f;this.form.enctype='multipart/form-data';this.form_id=f.id;this.setMode('add',null);var jc=this;this.form.submit=function(){jc.saveComment();};this.form.keypressed=function(e){if(e.keyCode==27&&jc.mode=='reply'){jc.restoreForm(false);}};this.formLoaded();},
 	setList: function(l){this.list_id=l;},
 	setMode: function(m,i){var b=this.$('comments-form-cancel'),jc=this;if(b!=null){b.style.display=(m!='add')?'':'none';b.onclick=(m=='edit'?function(){jc.cancelEdit(i);}:(m=='reply'?function(){jc.cancelReply();}:null));}this.mode=m;},
 	$: function(id){if(!id){return null;}var e=document.getElementById(id);if(!e&&document.all){e=document.all[id];}return e;},
@@ -330,6 +331,11 @@ JComments.prototype = {
 			this.form.focus('comment');
 		}
 	},
+	setupPhotos: function(id,photos) {
+		var jc=this;
+		if(this.form==null){window.setTimeout(function(){jc.setupPhotos(id,photos);},500);return;}
+		dcsSetupPhotos(photos);
+	},
 	showReply: function(id,q){
 		this.busyComment(id);this.cancelReport();
 		var jc=this,c=this.$('comment-item-'+id),d=this.$('comments-inline-edit');
@@ -372,5 +378,43 @@ JComments.prototype = {
 	subscribe: function(o,g){return this.ajax('JCommentsSubscribe',arguments);},
 	unsubscribe: function(o,g){return this.ajax('JCommentsUnsubscribe',arguments);},
 	updateSubscription: function(m,t){var e=this.$('comments-subscription');if(e){var jc=this;e.innerHTML=t;e.onclick=m?function(){jc.unsubscribe(jc.oi,jc.og);return false;}:function(){jc.subscribe(jc.oi,jc.og);return false;};e.blur();}},
-	go: function(l){window.open(l);return false;}
+	go: function(l){window.open(l);return false;},
+	uploadImage: function(id, comment_content){
+		if (id <=0) {
+			this.updateComment(id, comment_content);
+			return;
+		}
+		
+		var uploaded_found = false;
+		jQuery(".dcs_images").each(function(){
+			if (jQuery("input[type=file]", this).val() != '') {
+				uploaded_found = true;
+			};			
+		});
+		
+		if (uploaded_found == false) {
+			this.updateComment(id, comment_content);
+			return;
+		}
+		
+		(function($){
+			var thiz = this
+			$("#dcs_comment_id").val(id);
+			/*$('form#comments-form').submit();*/ 
+			  
+			$('form#comments-form').ajaxSubmit({
+				//beforeSubmit: function() {
+				//},
+				success: function(data) {
+					alert(id);
+					json_data = JSON.parse(data);
+					content = json_data[0]['t'];
+                    thiz.updateComment(id, content);
+				}
+			});
+			
+		})(jQuery);		 
+		
+	}
+	
 };
