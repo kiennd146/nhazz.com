@@ -6,11 +6,6 @@ require_once( JPATH_ROOT . DS . 'components' . DS . 'com_community' . DS . 'libr
 ?>
 <select id="surf" class="ajaxSelect" name="surf" style="float:right;margin-top: 10px;">
       <option value="0">Tìm theo chủ đề</option>
-      <?php /*
-      <option value="1">Tin tức</option>
-      <option value="2">Hình ảnh</option>
-      <option value="3">Sản phẩm</option> 
-      */ ?>
       <?php foreach($categories as $category): ?>
       <option value="<?php echo $category->id ?>"><?php echo $category->title ?></option>
       <?php endforeach; ?>
@@ -86,6 +81,8 @@ require_once( JPATH_ROOT . DS . 'components' . DS . 'com_community' . DS . 'libr
                 </div>
 <?php else : ?>
     
+    <?php // we work here ?>
+	 
 	<?php $i = 0; $n = count($list);
             $t=0;
             if ($n%2 == 1){
@@ -109,7 +106,7 @@ require_once( JPATH_ROOT . DS . 'components' . DS . 'com_community' . DS . 'libr
                 $imgpth = modJCommentsLatestHelper::takeImage(NULL,'original',$com_type,$value);
             }
         ?>
-	<li>
+	<li> 
             <? if(isset($imgpth) && $imgpth && ($params->get('show_image'))): ?>
             <div class="imgcom" style="overflow:hidden;width:22%;height:76px;float:left">
                 <a href="<?echo $item->displayCommentLink;?>">

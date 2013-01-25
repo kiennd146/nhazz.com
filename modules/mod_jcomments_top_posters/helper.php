@@ -59,7 +59,7 @@ class modJCommentsTopPostersHelper
 		$now = $date->toMySQL();
 
 		$where = array();
-
+		
 		//$interval = $params->get('interval', '');
 		if (!empty($interval)) {
 
@@ -124,13 +124,12 @@ class modJCommentsTopPostersHelper
 
 		switch($params->get('ordering', ''))
 		{
-		        case 'votes':
-		        	$orderBy = 'votes DESC';
-		        	break;
-
+	        case 'votes':
+	        	$orderBy = 'votes DESC';
+	        	break;
 			case 'comments':
 			default:
-		        	$orderBy = 'commentsCount DESC';
+		        $orderBy = 'commentsCount DESC';
 				break;
 		}
 
@@ -157,17 +156,18 @@ class modJCommentsTopPostersHelper
 		
 		$i=0;
 		foreach($list as &$item) {
-			/*  */
 			$last_topcommenter = self::getBefore($params, $timestamp_date_from, $timestamp_date_to);
-			if (isset($last_topcommenter[$item->userid])) {
+			//var_dump($last_topcommenter);
+			// order from less to greate 
+			if (isset($last_topcommenter[$item->userid])) {   
 				if ($last_topcommenter[$item->userid] > $i) {
-					$item->status = 1;
+					$item->status = -1;
 				}
 				elseif($last_topcommenter[$item->userid] == $i)  {
 					$item->status = 0;
 				}
 				else {
-					$item->status = -1;
+					$item->status = 1;
 				}
 			}
 			else {

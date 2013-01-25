@@ -35,11 +35,11 @@ class VitabookController extends JControllerLegacy
         }  
         */
         // Get/Create the view
-        // kiennd switch view
-		//var_dump($_REQUEST);die();
         $view_rq = JRequest::getVar("view", 'vitabook');
         $view = $this->getView($view_rq, 'html');
-         
+		
+		$tmpl = JRequest::getVar('tmpl','');
+		
         // Get/Create the models
         if ($view_rq == 'vitabook') {
             $view->setModel($this->getModel('vitabook'), true);
@@ -49,9 +49,9 @@ class VitabookController extends JControllerLegacy
             $view->setModel($this->getModel('message'), true);
             $view->setModel($this->getModel('vitabook'));
         }
-        
+
         // Display the view
-        $view->display();
+        $view->display($tmpl);
         
         return $this;
 	}

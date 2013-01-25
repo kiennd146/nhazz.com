@@ -73,10 +73,45 @@ class plgJCommentsAvatar extends JPlugin
 				$users[] = $comments[$i]->userid;
 			}
 		}
+		//var_dump($users);
 		$users = array_unique($users);
-	
 		if (JFile::exists(JPATH_PLUGINS.DS.'jcomments'.DS.'avatar'.DS.'types'.DS.$avatar_type.'.php')) {
-			require_once(JPATH_PLUGINS.DS.'jcomments'.DS.'avatar'.DS.'types'.DS.$avatar_type.'.php');
+			//kiennd clone from jomsocial instead of require_once it
+			if ($avatar_type=='jomsocial') {
+				if (count($users)) {
+					$db->setQuery('SELECT userid, thumb as avatar FROM #__community_users WHERE userid in (' . implode(',', $users)  . ')');
+					$avatars = $db->loadObjectList('userid');
+					unset($users);
+				} else {
+					$avatars = array();
+				}
+				//var_dump($avatars)
+				$n=count($comments);
+				for ($i=0; $i < $n; $i++) {
+					$userid = intval($comments[$i]->userid);
+				
+					// profile link
+					$comments[$i]->profileLink = $userid ? JRoute::_('index.php?option=com_community&view=profile&userid=' . $userid) : '';
+					//error_log($comments[$i]->userid.'-'.$avatars[$userid]->avatar);
+					// avatar
+					if (isset($avatars[$userid]) && $avatars[$userid]->avatar != '') {
+						
+						if (file_exists(JPATH_SITE.DS.$avatars[$userid]->avatar)) {
+				                    //$comments[$i]->avatar = $this->getImage(JURI::base() . $avatars[$userid]->avatar);
+				                    $comments[$i]->avatar = '<img src="'. JURI::base() . '/'. $avatars[$userid]->avatar .'" alt="" border="0"/>';
+						} else {
+							$comments[$i]->avatar = '';
+						}
+					} else {
+						$comments[$i]->avatar = '';
+					}
+				}
+			}
+			else {
+				require_once(JPATH_PLUGINS.DS.'jcomments'.DS.'avatar'.DS.'types'.DS.$avatar_type.'.php'); //kiennd
+			}
+			unset($avatars);
+			//end
 		} else {
  			for ($i=0,$n=count($comments); $i < $n; $i++) {
 				// profile link
@@ -90,7 +125,7 @@ class plgJCommentsAvatar extends JPlugin
 	 	if ($avatar_custom_noavatar == '' && $avatar_noavatar == 'custom') {
 			$avatar_noavatar = 'default'; 	
 	 	}
-	
+	    
 	 	$default_noavatar = $this->_getImage($app->getCfg('live_site') . '/components/com_jcomments/images/no_avatar.png');
 	
 		if ($avatar_custom_noavatar != '' && $avatar_custom_noavatar[0] != '/') {
@@ -101,6 +136,7 @@ class plgJCommentsAvatar extends JPlugin
 	
 	 	// set noavatar image
 		for ($i=0,$n=count($comments); $i < $n; $i++) {
+			
 			if ($comments[$i]->avatar == '') {
 				switch($avatar_noavatar) {
 				

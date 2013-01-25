@@ -40,6 +40,7 @@ class VitabookViewVitabook extends JViewLegacy
             $this->messages[] = $model->getItem(JRequest::getInt('messageId'));
             $tpl = 'messages';
         }
+		
         parent::display($tpl);
     }
 }

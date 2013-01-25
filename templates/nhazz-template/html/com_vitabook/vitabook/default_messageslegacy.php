@@ -19,7 +19,7 @@ if (file_exists($comments)) {
 
 <?php
 function renderMessage($message,$params,$parentState){ ?>
-    <li>
+    <li>  
     <?php
     $comment = JComments::getLastComment($message->id, 'com_vitabook');
 	

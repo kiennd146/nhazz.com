@@ -30,7 +30,7 @@ abstract class VitabookHelperRoute
 	public static function getVitabookRoute($id, $catid = 0, $language = 0)
 	{
 		$needles = array(
-			'article'  => array((int) $id)
+			'detail'  => array((int) $id)
 		);
 		//Create the link
 		$link = 'index.php?option=com_vitabook&view=detail&id='. $id;
@@ -62,14 +62,13 @@ abstract class VitabookHelperRoute
 				}
 			}
 		}
-
+		//var_dump($needles); die();
 		if ($item = self::_findItem($needles)) {
 			$link .= '&Itemid='.$item;
 		}
 		elseif ($item = self::_findItem()) {
 			$link .= '&Itemid='.$item;
 		}
-
 		return $link;
 	}
 
@@ -200,15 +199,24 @@ abstract class VitabookHelperRoute
 		$app		= JFactory::getApplication();
 		$menus		= $app->getMenu('site');
 
-		// Prepare the reverse lookup array.
+		// kiennd skip lookup
+		
+		// Prepare the reverse lookup array. 
+		$last_found = 0; 
 		if (self::$lookup === null)
 		{
 			self::$lookup = array();
 
 			$component	= JComponentHelper::getComponent('com_vitabook');
 			$items		= $menus->getItems('component_id', $component->id);
+			/*
+			foreach ($items as $item) {
+				echo $items->id;
+			}
+			*/
 			foreach ($items as $item)
 			{
+				if ($item->id) $last_found = $item->id;
 				if (isset($item->query) && isset($item->query['view']))
 				{
 					$view = $item->query['view'];
@@ -236,6 +244,7 @@ abstract class VitabookHelperRoute
 					}
 				}
 			}
+			return $last_found;
 		}
 		else
 		{
@@ -244,7 +253,7 @@ abstract class VitabookHelperRoute
 				return $active->id;
 			}
 		}
-
-		return null;
+		return $last_found;
+		//return null;
 	}
 }

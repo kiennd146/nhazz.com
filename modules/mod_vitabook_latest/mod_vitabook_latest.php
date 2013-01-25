@@ -11,14 +11,11 @@ defined('_JEXEC') or die;
 
 // Include the helper functions only once
 require_once dirname(__FILE__).'/helper.php';
-$comments = JPATH_SITE . '/components/com_jcomments/jcomments.php';
-if (file_exists($comments)) {
-	require_once ($comments);
-} else {
-	return;
-}
-
-$list = modVitabookFeatureHelper::getList($params);
+$document = JFactory::getDocument();
+$document->addStylesheet('media/' . $module->module . '/css/style.css');
+	
+$categories = modVitabookLatestHelper::getCategoryList();
+$list = modVitabookLatestHelper::getList($params);
 if (!empty($list)) {
-	require JModuleHelper::getLayoutPath('mod_vitabook_feature', 'default');
+	require JModuleHelper::getLayoutPath('mod_vitabook_latest', 'default');
 }

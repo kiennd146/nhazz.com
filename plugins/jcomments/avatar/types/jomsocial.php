@@ -8,15 +8,17 @@ if (count($users)) {
 } else {
 	$avatars = array();
 }
+//var_dump($avatars)
 $n=count($comments);
 for ($i=0; $i < $n; $i++) {
 	$userid = intval($comments[$i]->userid);
 
 	// profile link
 	$comments[$i]->profileLink = $userid ? JRoute::_('index.php?option=com_community&view=profile&userid=' . $userid) : '';
-
+	//error_log($comments[$i]->userid.'-'.$avatars[$userid]->avatar);
 	// avatar
 	if (isset($avatars[$userid]) && $avatars[$userid]->avatar != '') {
+		
 		if (file_exists(JPATH_SITE.DS.$avatars[$userid]->avatar)) {
                     //$comments[$i]->avatar = $this->getImage(JURI::base() . $avatars[$userid]->avatar);
                     $comments[$i]->avatar = '<img src="'. JURI::base() . '/'. $avatars[$userid]->avatar .'" alt="" border="0"/>';

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension
+	type="module" version="2.5" client="site" method="upgrade">
+	<name>mod_vitabook_latest</name>
+	<author>Joomla! Project</author>
+	<creationDate>February 2010</creationDate>
+	<copyright>Copyright (C) 2005 - 2012 Open Source Matters. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>admin@joomla.org</authorEmail>
+	<authorUrl>www.joomla.org</authorUrl>
+	<version>2.5.0</version>
+	<description>mod_vitabook_latest_XML_DESCRIPTION</description>
+	<files>
+		<filename module="mod_vitabook_latest">mod_vitabook_latest.php</filename>
+		<folder>tmpl</folder>
+		<filename>helper.php</filename>
+		<filename>index.html</filename>
+		<filename>mod_vitabook_latest.xml</filename>
+	</files>
+	
+	<help key="JHELP_EXTENSIONS_MODULE_MANAGER_ARTICLES_CATEGORIES" />
+	<config>
+		<fields name="params">
+			<field name="linktitlemodule" 
+					type="url" 
+					label="LINK_OF_MODULE_TITLE" 
+					description="LINK_OF_MODULE_TITLE_DESC" />
+		</fields>
+	</config>
+</extension>

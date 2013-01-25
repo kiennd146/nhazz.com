@@ -19,6 +19,8 @@ jimport('joomla.application.component.viewlegacy');
 require_once JPATH_SITE.'/components/com_vitabook/helpers/route.php';
 //require_once JPATH_SITE.'/components/com_vitabook/helpers/category.php';
 jimport('joomla.application.categories');
+require_once JPATH_SITE . '/components/com_jcomments/jcomments.php';
+
 class VitabookViewVitabook extends JViewLegacy
 {
     protected $messages;
@@ -45,6 +47,20 @@ class VitabookViewVitabook extends JViewLegacy
             $this->messages = array();
             $this->messages[] = $model->getItem(JRequest::getInt('messageId'));
             $tpl = 'messages';
+        }
+		elseif($tpl=='latest')
+        {
+            $model = $this->getModel();
+			
+			$vitabook_model = JModelLegacy::getInstance( 'vitabook', 'VitabookModel', array('ignore_request' => true));
+			$vitabook_model->setState('list.limit', 6);
+			$catid = JRequest::getInt("catid", 0);
+			
+			if ($catid) {
+				$vitabook_model->setState('filter.catId', $catid);
+			}
+			
+			$this->list = $vitabook_model->getItems();
         }
         // If necessary, load avatar layout
         elseif(($tpl == 'avatar') && ($this->params->get('vbAvatar') == 1) && (JFactory::getUser()->get('id') != 0))
