@@ -935,7 +935,7 @@ abstract class JHtml
 		$size = getimagesize($image_src);
 		//var_dump($image_src);
 		if (!$size || !isset($size['height'])) {
-			return ' style="width:'.$width.'px;height:'.$height.'" ';
+			return ' style="width:'.$width.'px;height:'.$height.'px" ';
 		}
 		$str='';
 		if ($width/$height > (int)$size['width']/(int)$size['height']) {

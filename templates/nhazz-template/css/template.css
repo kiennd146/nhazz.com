@@ -1961,7 +1961,7 @@ ul.tab-paging li.ui-tabs-active a, ul.ui-tabs-nav li.ui-tabs-active a{
 }
 #topcommenter_tabs .tab-content .tab-state-increase{
 	width:25px;
-	background:url(./img/increase) no-repeat top left;
+	background:url(./img/increase.png) no-repeat top left;
 }
 #topcommenter_tabs .tab-content .tab-state-descrease{
 	width:25px;

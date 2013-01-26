@@ -5,15 +5,17 @@
 	$comment = JComments::getLastComment($message->id, 'com_vitabook');
 	
 	$message_link = JRoute::_(VitabookHelperRoute::getVitabookRoute($message->id));
-	//$comment_link = $comment->object_link . '#comment-' . $comment->id;
-	$comment_link = $message_link . '#comment-' . $comment->id;
+	$comment_link = '';
+	if ($comment) {
+		$comment_link = $message_link . '#comment-' . $comment->id;
+	}
 	
 	?>
 	
 	<li>
 		<div style="overflow:hidden;width:82px;height:76px;float:left" class="imgcom">
 			<a href="<?php echo $message_link ?>">
-				<img src="<?php echo $message->photo->thumb ?>" <?php echo JHtml::setImageDimension($message->photo->thumb, 126, 136); ?> />
+				<img src="<?php echo $message->photo->thumb ?>" <?php echo JHtml::setImageDimension($message->photo->thumb, 82, 76); ?> />
 			</a>
 		</div>
 		<div style="overflow:hidden;width:77%;float:right;" class="contcom">
