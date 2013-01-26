@@ -94,6 +94,19 @@ function renderMessage($message,$params,$parentState, $categories){ ?>
 		
 		$("button#dcs_form_submit").click(function(e){
 			e.preventDefault();
+			
+			var dcs_title = $("#discuss_form input[name='dcs_title']").val();
+			var dcs_message = $("#discuss_form textarea[name='dcs_message']").val();
+			
+			if (dcs_title.trim() == "") {
+				alert("Vui lòng nhập tiêu đề");
+				return;
+			}
+			if (dcs_message.trim() == "") {
+				alert("Vui lòng nhập nội dung");
+				return;
+			}
+			
 			$('form#dcs_form_create').submit();
 			return;
 			/*

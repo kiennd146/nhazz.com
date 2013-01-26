@@ -26,8 +26,19 @@ window.addEvent('domready', function() {
 		$("#dcs_photo_form_submit").click(function(e){
 			e.preventDefault();
 			<?php if($type == 'logout') : ?>
-			//$('form#dcs_photo_form_create').submit();
-			//return;
+			
+			var dcs_title = $("#dcs_photo_form_create input[name='dcs_title']").val();
+			var dcs_message = $("#dcs_photo_form_create textarea[name='dcs_message']").val();
+			
+			if (dcs_title.trim() == "") {
+				alert("Vui lòng nhập tiêu đề");
+				return;
+			}
+			if (dcs_message.trim() == "") {
+				alert("Vui lòng nhập nội dung");
+				return;
+			}
+			
 			$('form#dcs_photo_form_create').ajaxSubmit({
 				beforeSubmit: function() {
 					//$('#results').html('Submitting...');
