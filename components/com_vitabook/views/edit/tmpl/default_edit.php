@@ -94,8 +94,9 @@ function renderMessage($message,$params,$parentState, $categories){ ?>
 		
 		$("button#dcs_form_submit").click(function(e){
 			e.preventDefault();
-			//$('form#dcs_form_create').submit();
-			//return;
+			$('form#dcs_form_create').submit();
+			return;
+			/*
 			$('form#dcs_form_create').ajaxSubmit({
 				beforeSubmit: function() {
 					$("#dcs_loading").show();
@@ -109,7 +110,7 @@ function renderMessage($message,$params,$parentState, $categories){ ?>
 					}
 				}
 			});
-			
+			*/
 		});
 	});
 })(jQuery);
@@ -123,7 +124,7 @@ function renderMessage($message,$params,$parentState, $categories){ ?>
 			<option value="<?php echo $category->id?>" <?php echo $message->category->id==$category->id?'selected':'' ?> ><?php echo $category->title?></option>
 			<?php endforeach; ?>
 		</select>
-		<input class="borderGrey" placeholder="<?php echo JText::_('VITABOOK_LIST_HINT_TITLE') ?>" type="text" name="dcs_title" value="<?php echo $message->title; ?>" />
+		<input class="borderGrey" placeholder="<?php echo JText::_('VITABOOK_LIST_HINT_TITLE') ?>" type="text" name="dcs_title" value="<?php echo $message->title; ?>" maxlength="100" />
 		<textarea class="borderGrey" placeholder="<?php echo JText::_('VITABOOK_LIST_HINT_MESSAGE') ?>" name="dcs_message"><?php echo $message->message; ?></textarea>
 		<a class="dcs_attach_img dcs_add_img" href="#"><?php echo JText::_('VITABOOK_LIST_BUTTON_ATTACH') ?></a>
 		<p id="dcs_img_list"></p>
@@ -135,6 +136,7 @@ function renderMessage($message,$params,$parentState, $categories){ ?>
 		echo JHtml::_('form.token');
 		?>
 		<input type="hidden" name="task" value="message.save" />
+		<input type="hidden" name="action" value="edit" />
 		<input type="hidden" name="format" value="raw" />
 		<input type="hidden" name="dcs_id" value="<?php echo $message->id; ?>" />
 		</form>

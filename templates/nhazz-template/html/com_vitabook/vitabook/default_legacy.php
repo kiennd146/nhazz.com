@@ -45,9 +45,11 @@ $templateDir = JURI::base() . 'templates/' . $app->getTemplate();
 		
 		$("button#dcs_form_submit").click(function(e){
 			e.preventDefault();
-			//$('form#dcs_form_create').submit();
-			//return;
+			
 			<?php if ($this->loggedin): ?>
+			$('form#dcs_form_create').submit();
+			return;
+			/*
 			$('form#dcs_form_create').ajaxSubmit({
 				beforeSubmit: function() {
                     $("#dcs_loading").show();
@@ -61,7 +63,7 @@ $templateDir = JURI::base() . 'templates/' . $app->getTemplate();
 					}
 				}
 			});
-			
+			*/
 			<?php else: ?>
 			showThem('login_pop');
 			<?php endif ?>
@@ -80,7 +82,7 @@ $templateDir = JURI::base() . 'templates/' . $app->getTemplate();
 				<option value="<?php echo $category->id?>"><?php echo $category->title?></option>
 				<?php endforeach; ?>
 			</select>
-			<input class="borderGrey" placeholder="<?php echo JText::_('VITABOOK_LIST_HINT_TITLE') ?>" type="text" name="dcs_title" />
+			<input class="borderGrey" placeholder="<?php echo JText::_('VITABOOK_LIST_HINT_TITLE') ?>" type="text" name="dcs_title" maxlength="100" />
 			<textarea class="borderGrey" placeholder="<?php echo JText::_('VITABOOK_LIST_HINT_MESSAGE') ?>" name="dcs_message"></textarea>
 			<a class="dcs_attach_img dcs_add_img" href="#"><?php echo JText::_('VITABOOK_LIST_BUTTON_ATTACH') ?></a>
 			<p id="dcs_img_list"></p>
@@ -91,6 +93,7 @@ $templateDir = JURI::base() . 'templates/' . $app->getTemplate();
 			echo JHtml::_('form.token');
 			?>
 			<input type="hidden" name="task" value="message.save" />
+			<input type="hidden" name="action" value="create" />
 			<input type="hidden" name="format" value="raw" />
 		</form>
 	</div>

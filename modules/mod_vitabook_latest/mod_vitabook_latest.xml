@@ -21,10 +21,12 @@
 	<help key="JHELP_EXTENSIONS_MODULE_MANAGER_ARTICLES_CATEGORIES" />
 	<config>
 		<fields name="params">
-			<field name="linktitlemodule" 
+			<fieldset name="basic" addfieldpath="/modules/mod_vitabook_latest/">
+				<field name="linktitlemodule" 
 					type="url" 
 					label="LINK_OF_MODULE_TITLE" 
 					description="LINK_OF_MODULE_TITLE_DESC" />
+			</fieldset>		
 		</fields>
 	</config>
 </extension>

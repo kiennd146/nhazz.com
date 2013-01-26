@@ -19,7 +19,7 @@ abstract class modVitabookCategoriesHelper
 		$categories = JCategories::getInstance('Vitabook');
 		$category = $categories->get('root');
 		if ($category==null) return;
-		//$items = $category->getChildren();
+		$items = $category->getChildren(); // need review because it seems fool
 		//echo count($items);
 		if ($category != null)
 		{

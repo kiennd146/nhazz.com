@@ -52,7 +52,11 @@ div#SobiPro {
 div.sigsiuTree {
 	text-align: left!important;
 }
-div.SPDetailEntry {
+div.SPDetailEntry a.dcs_comment_photos{
+    background-image: url("img/comment.png");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    box-shadow: 3px 3px 3px #808080;
 }
 
 div.spCatListCell {

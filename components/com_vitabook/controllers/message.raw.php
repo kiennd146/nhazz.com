@@ -70,7 +70,7 @@ class VitabookControllerMessage extends JControllerForm
 		$data = array();
 		
 		// kiennd
-		
+		$action = JRequest::getVar('action', null);
 		//Retrieve file details from uploaded file, sent from upload form
 		$file = JRequest::getVar('file_upload', null, 'files', 'array');
 		$file_exists = JRequest::getVar('file_uploaded', array());
@@ -223,9 +223,17 @@ class VitabookControllerMessage extends JControllerForm
         // get id of newly created message
         $result = $model->getItem()->get('id');
 
-		//$app = & JFactory::getApplication();
-		//$app->redirect(VitabookHelperRoute::getEditRoute($result));
+		$app = & JFactory::getApplication();
 		
+		switch($action) {
+			case 'edit':
+				$app->redirect(VitabookHelperRoute::getListRoute());
+				break;
+			case 'create':
+				$app->redirect(VitabookHelperRoute::getEditRoute($result));
+				break;
+		}
+
         jexit(json_encode(array("state"=>1, "result" => $result)));
     }
 
@@ -259,12 +267,33 @@ class VitabookControllerMessage extends JControllerForm
     public function delete()
     {
         // Check for request forgeries.
-        JRequest::checkToken('request') or VitabookHelperMail::checkMailHash(JRequest::getInt('messageId'),'delete') or jexit(json_encode(array("success"=>0, "state" => JText::_('JINVALID_TOKEN'))));
-
+        //JRequest::checkToken('request') or VitabookHelperMail::checkMailHash(JRequest::getInt('messageId'),'delete') or jexit(json_encode(array("success"=>0, "state" => JText::_('JINVALID_TOKEN'))));
+		// check user
+		
         // Initialise variables.
         $model  = $this->getModel('Message');
-        $messageId = JRequest::getInt('messageId');
-
+        $messageId = JRequest::getInt('id',0);
+        
+        $message = $model->getItem($messageId);
+        
+        if (!$message || $message->jid != JFactory::getUser()->get('id')) {
+			$this->setRedirect(VitabookHelperRoute::getListRoute());
+        	$this->redirect();
+        	return;
+		}
+		
+        // get images
+        /*
+        if ($message->images != '') {
+			$model->delete_img($message->images);		
+		}
+		*/
+        
+        $model->delete($messageId);		
+		$this->setRedirect(VitabookHelperRoute::getListRoute());
+        $this->redirect();
+        
+        /*
         if (!$model->delete($messageId))
         {
             $return = json_encode(array("success"=>0, "state" => $model->getError()));
@@ -273,12 +302,15 @@ class VitabookControllerMessage extends JControllerForm
         {
             $return = json_encode(array("success"=>1, "state" => ''));
         }
+        */
         
+		/*    
         if(JRequest::getVar('code')){
             $this->setRedirect(JRoute::_('index.php?option=com_vitabook'), JText::_('COM_VITABOOK_MESSAGE_DELETED'));
             $this->redirect();
         }
-        jexit($return);
+        */
+        //jexit($return);
     }
 
 

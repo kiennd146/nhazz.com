@@ -1,6 +1,5 @@
 <ul class="jcomments-latest">
-	<?php foreach ($this->list as $message): ?>
-	<?php //echo JRoute::_(VitabookHelperRoute::getVitabookRoute($message->id));die(); ?>	
+	<?php foreach ($this->list as $message): ?>	
 	<?php
 	$count = JComments::getCommentsCount($message->id, 'com_vitabook');
 	$comment = JComments::getLastComment($message->id, 'com_vitabook');
@@ -21,7 +20,7 @@
 			<div class="comment rounded avatar-indent">
 				<div><a href="<?php echo $message_link ?>"><?php echo $message->title?></a>-
 					<p class="jcomments-latest-readmore">
-						<a href="<?php echo $comment_link ?>"><?php echo $comment?JHtml::cutText($comment->comment, 100):'';?></a>
+						<a class="comment" href="<?php echo $comment_link ?>"><?php echo $comment?JHtml::cutText($comment->comment, 100):'';?></a>
 					</p>
 				</div>
 			</div>

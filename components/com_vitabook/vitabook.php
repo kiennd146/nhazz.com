@@ -25,6 +25,5 @@ JLoader::register('VitabookHelperMail', JPATH_COMPONENT_ADMINISTRATOR .'/helpers
 // Execute the task.
 $controller = JControllerLegacy::getInstance('Vitabook');
 $task = JRequest::getVar('task','');
-
 $controller->execute($task);
 $controller->redirect();

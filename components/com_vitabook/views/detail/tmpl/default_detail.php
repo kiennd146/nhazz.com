@@ -100,6 +100,7 @@ $comments = JPATH_SITE . DS .'components' . DS . 'com_jcomments' . DS . 'jcommen
     require_once($comments);
     echo JComments::showComments($message->id, 'com_vitabook', 'Title test');
     $count = JComments::getCommentsCount($message->id, 'com_vitabook');
-    echo $count ? ('Comments('. $count . ')') : 'Add comment';
+    //echo $count ? ('Comments('. $count . ')') : '';
+    echo 'Comments('. $count . ')';
   }
   ?>

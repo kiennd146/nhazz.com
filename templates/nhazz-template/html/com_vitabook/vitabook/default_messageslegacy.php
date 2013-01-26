@@ -21,7 +21,6 @@ if (file_exists($comments)) {
 function renderMessage($message,$params,$parentState){ ?>
     <li>  
     <?php
-    //var_dump(JRoute::_(VitabookHelperRoute::getCategoryRoute($message->catid)));die();
     $comment = JComments::getLastComment($message->id, 'com_vitabook');
 	$count = JComments::getCommentsCount($message->id, 'com_vitabook');
 	$comment_link = JRoute::_(VitabookHelperRoute::getVitabookRoute($message->id)) . '#comment-' . $comment->id;; 
@@ -42,7 +41,7 @@ function renderMessage($message,$params,$parentState){ ?>
 			<div class="dcs_content">
 				<?php if ($comment): ?>
 				<p><a class="dsc_user" href="<?php echo CRoute::_('index.php?option=com_community&view=profile&userid=' . $comment->userid ); ?>"><?php echo $comment->name; ?></a> <?php echo JText::_('VITABOOK_LIST_COMMENT') ?>:</p>
-				<p><a href="<?php echo $comment_link ?>"><?php echo JHtml::cutText($comment->comment, 100) ?></a></p>
+				<p><a class="comment" href="<?php echo $comment_link ?>"><?php echo JHtml::cutText($comment->comment, 100) ?></a></p>
 				<p class="dsc_time">
 					<?php echo JHtml::_('date.relative',$comment->date);
 					?> <?php echo JText::_('VITABOOK_LIST_IN') ?> <a href="<?php echo JRoute::_(VitabookHelperRoute::getCategoryRoute($message->catid)) ?>"><?php echo $message->catname ?></a>

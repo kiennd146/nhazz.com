@@ -199,7 +199,7 @@ window.addEvent('domready', function() {
 	<div class="dcs_form">
 		<form id="dcs_photo_form_create" action="<?php echo JRoute::_('index.php?option=com_vitabook'); ?>" method="post">
 		
-		<input class="borderGrey" placeholder="<?php echo JText::_('VITABOOK_LIST_HINT_TITLE') ?>" type="text" name="dcs_title" />
+		<input class="borderGrey" placeholder="<?php echo JText::_('VITABOOK_LIST_HINT_TITLE') ?>" type="text" name="dcs_title" maxlength="100" />
 		<textarea class="borderGrey" placeholder="<?php echo JText::_('VITABOOK_LIST_HINT_MESSAGE') ?>" name="dcs_message"></textarea>
 		<input id="dcs_photo_id" name="dcs_photo_id" value="" type="hidden" />
 		<p>

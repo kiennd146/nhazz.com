@@ -21,11 +21,14 @@ class VitabookViewDetail extends JViewLegacy
         $app = JFactory::getApplication();
         $this->params = $app->getParams('com_vitabook');
         $model = $this->getModel();
-        $this->messages = array();
-        $this->messages[] = $model->getItem(JRequest::getInt('id'));
+        $this->message = $model->getItem(JRequest::getInt('id'));
+        
         $tpl = 'detail';
-          
-        $this->avatar = VitabookHelperAvatar::messageAvatar((object)array('jid'=>JFactory::getUser()->get('id')));
+        
+        $this->can_edit = false;
+        if ($this->message)	$this->can_edit = (bool)(JFactory::getUser()->get('id')==$this->message->jid);
+		
+        //$this->avatar = VitabookHelperAvatar::messageAvatar((object)array('jid'=>JFactory::getUser()->get('id')));
         
         parent::display($tpl);
     }

@@ -47,7 +47,7 @@ if (file_exists($comments)) {
 
 </script>
 <?php
-function renderMessage($message,$params,$parentState){ ?>
+function renderMessage($message, $params, $can_edit){ ?>
 <?php
 	$count = JComments::getCommentsCount($message->id, 'com_vitabook');
     if(is_object($message))
@@ -81,8 +81,10 @@ function renderMessage($message,$params,$parentState){ ?>
 			</div>
 		</div>
 		<div class="dcsdt_footer">
-			&nbsp;&nbsp;<a class="dcsdt_comment_edit" href="#"><?php echo JText::_('VITABOOK_LIST_EDIT_COMMENT'); ?></a>
-			&nbsp;&nbsp;<a class="dcsdt_comment_delete" href="#"><?php echo JText::_('VITABOOK_LIST_DELETE_COMMENT'); ?></a>
+			<?php if ($can_edit): ?>
+			&nbsp;&nbsp;<a class="dcsdt_comment_edit" href="<?php echo JRoute::_(VitabookHelperRoute::getEditRoute($message->id)) ?>"><?php echo JText::_('VITABOOK_LIST_EDIT_COMMENT'); ?></a>
+			&nbsp;&nbsp;<a class="dcsdt_comment_delete" href="<?php echo JRoute::_(VitabookHelperRoute::getDeleteRoute($message->id)) ?>"><?php echo JText::_('VITABOOK_LIST_DELETE_COMMENT'); ?></a>
+			<?php endif; ?>
 			<a class="dcs_comment" href="#"><?php echo $count ?></a>&nbsp;&nbsp;<a class="dcsdt_comment_add" href="#"><?php echo JText::_('VITABOOK_LIST_ADD_COMMENT'); ?></a>
 		</div>
 	</div>
@@ -95,10 +97,8 @@ function renderMessage($message,$params,$parentState){ ?>
 <?php
 } 
 
-if(!empty($this->messages))
+if(!empty($this->message))
 {
-    foreach ($this->messages as $message):
-        renderMessage($message,$this->params,1);
-    endforeach;
+	renderMessage($this->message,$this->params,$this->can_edit);
 }
 ?>

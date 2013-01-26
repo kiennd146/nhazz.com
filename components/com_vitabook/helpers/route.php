@@ -75,6 +75,28 @@ abstract class VitabookHelperRoute
 	/**
 	 * @param	int	The route of the content item
 	 */
+	public static function getDeleteRoute($id)
+	{
+		//Create the link
+		$link = 'index.php?option=com_vitabook&view=vitabook&task=message.delete&format=raw&id='. $id;
+		return $link;
+	}
+	
+	/**
+	 * @param	int	The route of the content item
+	 */
+	public static function getListRoute()
+	{
+		$link = 'index.php?option=com_vitabook&view=vitabook';
+
+		$item = self::_findItem();
+		$link .= '&Itemid='.$item;
+
+		return $link;
+	}
+	/**
+	 * @param	int	The route of the content item
+	 */
 	public static function getEditRoute($id, $catid = 0, $language = 0)
 	{
 		$needles = array(
