@@ -107,6 +107,9 @@ div.moduletable ul.jcomments-latest .jcomments-latest-readmore {
 div.moduletable ul.jcomments-latest .jcomments-latest-readmore a {
     color: #3D8901;
 }
+div.moduletable ul.jcomments-latest .jcomments-latest-readmore a.comment {
+	color: #333;
+}
 div.moduletable ul.jcomments-latest .jcomments-latest-readmore a:hover{
     background-color: transparent;
     text-decoration: underline;

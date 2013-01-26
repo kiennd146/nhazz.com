@@ -25,7 +25,7 @@ defined('_JEXEC') or die;
 <script>
 window.addEvent('domready', function(){
 	function getLatestDiscuss() {
-		var cid = $('surf').get('value');
+		var catid = $('surf').get('value');
 	   
 		var myRequest = new Request.HTML ({
 			url: 'index.php',
@@ -41,7 +41,7 @@ window.addEvent('domready', function(){
 				task: "getlatest",
 				tmpl: "latest",
 				format : "raw",
-				cid: cid
+				catid: catid
 			}
 		}).send();
 	}

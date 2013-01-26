@@ -20,9 +20,11 @@
 		</div>
 		<div style="overflow:hidden;width:77%;float:right;" class="contcom">
 			<div class="comment rounded avatar-indent">
-				<div><a href="<?php echo $message_link ?>"><?php echo $message->title?></a>-
+				<div><a href="<?php echo $message_link ?>"><?php echo $message->title?></a>
 					<p class="jcomments-latest-readmore">
+						<?php if ($comment): ?>
 						<a class="comment" href="<?php echo $comment_link ?>"><?php echo $comment?JHtml::cutText($comment->comment, 100):'';?></a>
+						<?php endif ?>
 					</p>
 				</div>
 			</div>
