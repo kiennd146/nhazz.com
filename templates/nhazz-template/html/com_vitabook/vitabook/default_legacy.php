@@ -43,9 +43,8 @@ $templateDir = JURI::base() . 'templates/' . $app->getTemplate();
 			$(this).parent().remove();
 		});
 		
-		$("button#dcs_form_submit").click(function(e){
-			e.preventDefault();
-			var dcs_title = $("#discuss_form input[name='dcs_title']").val();
+		$.fn.submitForm = function(){
+		    var dcs_title = $("#discuss_form input[name='dcs_title']").val();
 			var dcs_message = $("#discuss_form textarea[name='dcs_message']").val();
 			
 			if (dcs_title.trim() == "") {
@@ -57,27 +56,25 @@ $templateDir = JURI::base() . 'templates/' . $app->getTemplate();
 				return;
 			}
 			<?php if ($this->loggedin): ?>
-			$('form#dcs_form_create').submit();
-			return;
-			/*
-			$('form#dcs_form_create').ajaxSubmit({
-				beforeSubmit: function() {
-                    $("#dcs_loading").show();
-				},
-				success: function(data) {
-                    $("#dcs_loading").hide();
-					var _data = JSON.parse(data);
-					if (_data.state == '1') {
-						alert("<?php echo JText::_('VITABOOK_LIST_CREATE_SUCCESS') ?>");
-						//document.location.href=document.location.href;
-					}
-				}
-			});
-			*/
+			$(this).submit();
 			<?php else: ?>
 			showThem('login_pop');
 			<?php endif ?>
-			
+			return;
+		}   
+		
+		$("button#dcs_form_edit").click(function(e){
+			e.preventDefault();
+			$form = $('form#dcs_form_create');
+			$form.append('<input type="hidden" name="action" value="create" />');
+			$form.submitForm();
+		});
+		
+		$("button#dcs_form_submit").click(function(e){
+			e.preventDefault();
+			$form = $('form#dcs_form_create');
+			$form.append('<input type="hidden" name="action" value="edit" />');
+			$form.submitForm();			
 		});
 	});
 })(jQuery);
@@ -97,13 +94,14 @@ $templateDir = JURI::base() . 'templates/' . $app->getTemplate();
 			<a class="dcs_attach_img dcs_add_img" href="#"><?php echo JText::_('VITABOOK_LIST_BUTTON_ATTACH') ?></a>
 			<p id="dcs_img_list"></p>
 			<div id="dcs_loading" style="display:none"><img src="<?php echo $templateDir.'/images/loading.gif' ?>" /></div>
+			
+			<button type="button" id="dcs_form_edit" ><?php echo JText::_('VITABOOK_LIST_BUTTON_VIEW') ?></button>
 			<button type="button" id="dcs_form_submit" ><?php echo JText::_('VITABOOK_LIST_BUTTON_POST') ?></button>
 			<?php 
 			// hidden fields
 			echo JHtml::_('form.token');
 			?>
 			<input type="hidden" name="task" value="message.save" />
-			<input type="hidden" name="action" value="create" />
 			<input type="hidden" name="format" value="raw" />
 		</form>
 	</div>

@@ -143,7 +143,9 @@ function renderMessage($message,$params,$parentState, $categories){ ?>
 		<p id="dcs_img_list"></p>
 		
 		<div id="dcs_loading" style="display:none"><img src="<?php echo $templateDir.'/images/loading.gif'; ?>" /></div>
-		<button type="button" id="dcs_form_submit" ><?php echo JText::_('VITABOOK_LIST_BUTTON_POST') ?></button>
+		
+		<button type="button" id="dcs_form_delete" onclick="javascript:document.location.href='<?php echo JRoute::_(VitabookHelperRoute::getDeleteRoute($message->id)) ?>'" ><?php echo JText::_('VITABOOK_LIST_DELETE_COMMENT'); ?></a>
+		<button type="button" id="dcs_form_submit" ><?php echo JText::_('VITABOOK_LIST_BUTTON_UPDATE') ?></button>
 		<?php 
 		// hidden fields
 		echo JHtml::_('form.token');

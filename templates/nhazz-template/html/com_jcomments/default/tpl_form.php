@@ -109,7 +109,8 @@ class jtt_tpl_form extends JoomlaTuneTemplate
 		}
 		?>
 		
-		<input placeholder="<?php echo "Nội dung bình luận"; ?>" type="text"  id="comments-form-comment" name="comment" onkeypress="Submit(event)" />
+		<!--input placeholder="<?php //echo "Nội dung bình luận"; ?>" type="text"  id="comments-form-comment" name="comment" /-->
+		<textarea placeholder="<?php echo "Nội dung bình luận"; ?>" id="comments-form-comment" name="comment"></textarea>
           
 		<?php if (!$user2->guest) { ?>
 		<a class="dcs_attach_img dcs_add_img" href="#"><?php echo JText::_('VITABOOK_LIST_BUTTON_ATTACH') ?></a>
@@ -160,6 +161,7 @@ class jtt_tpl_form extends JoomlaTuneTemplate
 </form>  
 <script language="javascript" type="text/javascript">
 //jQuery.noConflict();
+	/*
     function Submit(e) {
     	
         var isEnter = window.event == null ? 
@@ -168,6 +170,7 @@ class jtt_tpl_form extends JoomlaTuneTemplate
         if(isEnter)
              jcomments.saveComment();return false;
     }
+    */
    
 (function($){
 	$(document).ready(function(){
