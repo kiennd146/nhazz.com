@@ -666,7 +666,10 @@ class JCommentsAJAX
 					//kiennd
 					//$html = JCommentsText::jsEscape(JComments::getCommentItem($comment));
 					//$response->addScript("jcomments.uploadImage(" . $comment->id . ",'$html' );");
-					$response->addScript("jcomments.uploadImage(" . $comment->id . " );");
+					if ($user->id > 0) {
+						$response->addScript("jcomments.uploadImage(" . $comment->id . " );");
+					}
+					
 					// if comment published we need update comments list
 					if ($comment->published) {
 						// send notification to comment subscribers
@@ -985,8 +988,14 @@ class JCommentsAJAX
 						}
 					}
 					$html = JCommentsText::jsEscape(JComments::getCommentItem($comment));
-					#$response->addScript("jcomments.updateComment(" . $comment->id . ", '$html');"); kiennd
-					$response->addScript("jcomments.uploadImage(" . $comment->id . ");");
+					#$response->addScript("jcomments.updateComment(" . $comment->id . ", '$html');"); kiennd comment
+					
+					if ($user->id > 0) {
+						$response->addScript("jcomments.uploadImage(" . $comment->id . ");");
+					}
+					else {
+						$response->addScript("jcomments.updateComment(" . $comment->id . ", '$html');"); #kiennd
+					}					
 				}
 			} else {
 				$response->addAlert(JText::_('ERROR_CANT_EDIT'));

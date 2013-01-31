@@ -46,7 +46,7 @@ function jtAJAX()
 	this.startLoading = function(){};
 	this.finishLoading = function(){};
 
-	this.ajax = function(options, func=null)
+	this.ajax = function(options) //, func=null
 	{
 		var xhr = this.xhr();
 		if (!xhr) return false;
@@ -77,9 +77,11 @@ function jtAJAX()
 			jtx.finishLoading();
 			if (xhr.status==200) {
 				jtx.processResponse(xhr.responseText);
+				/*
 				if (func != null) {
 					func(xhr.responseText);
-				}				
+				}
+				*/				
 			}
 			delete xhr;
 			xhr = null;
