@@ -24,7 +24,8 @@ class modJCommentsTopPostersHelper
 
 		$where[] = 'c.published = 1';
 		$where[] = 'c.deleted = 0';
-
+		$where[] = 'c.userid > 0';
+		
 		$query = "SELECT c.userid " //, '' as avatar, '' as profileLink
 			. " , CASE WHEN c.userid = 0 THEN c.email ELSE u.email END AS email"
 			. " , CASE WHEN c.userid = 0 THEN c.name ELSE u.name END AS name"
@@ -135,7 +136,8 @@ class modJCommentsTopPostersHelper
 
 		$where[] = 'c.published = 1';
 		$where[] = 'c.deleted = 0';
-
+		$where[] = 'c.userid > 0';
+		
 		$query = "SELECT c.userid, '' as avatar, '' as profileLink"
 			. " , CASE WHEN c.userid = 0 THEN c.email ELSE u.email END AS email"
 			. " , CASE WHEN c.userid = 0 THEN c.name ELSE u.name END AS name"
