@@ -9,3 +9,9 @@ SELECT `g4gc3_user_usergroup_map`.* FROM `g4gc3_user_usergroup_map` inner join `
 Update to 8
 
 mysqldump –-user root --password nhazz_home > nhazz.com.28jan.sql 
+
+Plugin vitabook_search
+mod_vitabook_latest
+mod_vitabook_filter
+mod_vitabook_feature
+mod_vitabook_categories
