@@ -14,7 +14,7 @@ defined('_JEXEC') or die;
 JHtml::_('behavior.tooltip');
 JHtml::_('behavior.multiselect');
 ?>
-
+	 
 <form action="<?php echo JRoute::_('index.php?option=com_vitabook&view=messages'); ?>" method="post" name="adminForm" id="adminForm">
 	
 	<fieldset id="filter-bar">

@@ -54,6 +54,7 @@ class VitabookModelMessage extends JModelAdmin
 		return JTable::getInstance($type, $prefix, $config);
 	}
 
+
 	/**
 	 * Auto-populate the model state.
 	 *

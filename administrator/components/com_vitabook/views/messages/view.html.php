@@ -11,13 +11,42 @@
 defined('_JEXEC') or die;
 JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 jimport('joomla.application.component.view');
-
+if (!defined('DISCUSS_PHOTOS_PATH')) define('DISCUSS_PHOTOS_PATH', "images/discuss");
+if (!defined('DISCUSS_PHOTOS_THUMB')) define('DISCUSS_PHOTOS_THUMB', "thumbs");
 class VitabookViewMessages extends JViewLegacy
 {
 	protected $messages;
 	protected $pagination;
 	protected $state;
 
+	public function getPhotos(&$item) {
+		// get photos
+		$item->photos = array();
+		//$item->images_data = array();
+		
+		$images = json_decode($item->images);
+		
+		foreach($images as $image) {
+			if (file_exists(JPATH_BASE. DS . '../' . DS . $image->origin) && file_exists(JPATH_BASE. DS . '../' . DS . $image->thumb)) {
+				$image_photo = (object)array(
+					'origin'=>JURI::base(). '../'  . DS . $image->origin,
+					'thumb'=>JURI::base(). '../'  . DS . $image->thumb,
+					'json'=> $image->origin.','.$image->thumb
+				);
+				
+			}
+			else {
+				$image_photo = (object)array(
+					'origin'=>JURI::base(). '../' . DISCUSS_PHOTOS_PATH . DS . 'no_photo.jpg',
+					'thumb'=>JURI::base(). '../'  . DISCUSS_PHOTOS_PATH . DS . 'no_photo.jpg',
+					'json'=> ''
+				);
+			}
+			
+			$item->photos[] = $image_photo;
+		}
+	}
+	
 	/**
 	 * Display the view
 	 */
@@ -75,6 +104,7 @@ class VitabookViewMessages extends JViewLegacy
 
 		$table	->addColumn('checkbox')
 				->addColumn('title')
+				->addColumn('photo')
 				->addColumn('topic')
 				->addColumn('name')
 				->addColumn('status')
@@ -86,6 +116,7 @@ class VitabookViewMessages extends JViewLegacy
 		$table	->addRow(array(), 1)
 				->setRowCell('checkbox', '<input type="checkbox" name="checkall-toggle" value="" title="'.JText::_('JGLOBAL_CHECK_ALL').'" onclick="Joomla.checkAll(this)" />', array('width' => '1%'))
 				->setRowCell('name', JHtml::_('jhtml.grid.sort', 'COM_VITABOOK_MESSAGES_THEAD_NAME', 'name', $this->listDirn, $this->listOrder), array())
+				->setRowCell('photo', 'Photo', array())
 				->setRowCell('title', JHtml::_('jhtml.grid.sort', 'COM_VITABOOK_MESSAGES_THEAD_TITLE', 'title', $this->listDirn, $this->listOrder), array())
 				->setRowCell('topic', JHtml::_('jhtml.grid.sort', 'COM_VITABOOK_CATEGORIES_TITLE', 'topic', $this->listDirn, $this->listOrder), array())
 				->setRowCell('status', JHtml::_('jhtml.grid.sort', 'JSTATUS', 'published', $this->listDirn, $this->listOrder), array('width' => '5%'))
@@ -101,9 +132,17 @@ class VitabookViewMessages extends JViewLegacy
 
 		//-- Fill table
 		foreach ($this->messages as $i => $message) {
+			$this->getPhotos($message);
+			$photo_str = '';
+			foreach($message->photos as $photo) {
+				$photo_str .= '<img src="'.$photo->thumb.'" style="width:50px;height:50px" />';
+			}
+			
 			$table	->addRow(array('class' => 'row'.($i % 2)));
 			$table	->setRowCell('checkbox', JHtml::_('grid.id', $i, $message->id), array('class' => 'center'));
 			$table	->setRowCell('title', '<a href="'.JRoute::_($message->url).'" title="'.JText::_('COM_VITABOOK_MESSAGES_TBODY_EDIT').'">'.$message->title.'</a>');
+			
+			$table	->setRowCell('photo', $photo_str);
 			$table	->setRowCell('topic', $message->topic);
 			$table	->setRowCell('name', $message->name);
 			$table	->setRowCell('status', JHtml::_('jgrid.published', $message->published, $i, 'messages.'), array('class' => 'center'));
