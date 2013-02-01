@@ -23,7 +23,8 @@ function renderMessage($message,$params,$parentState){ ?>
     <?php
     $comment = JComments::getLastComment($message->id, 'com_vitabook');
 	$count = JComments::getCommentsCount($message->id, 'com_vitabook');
-	$comment_link = JRoute::_(VitabookHelperRoute::getVitabookRoute($message->id)) . '#comment-' . $comment->id;; 
+	$comment_link = JRoute::_(VitabookHelperRoute::getVitabookRoute($message->id)) . '#comment-' . $comment->id;
+	$message_link = JRoute::_(VitabookHelperRoute::getVitabookRoute($message->id)); 
     if(is_object($message))
     { ?>
         <div class="dcs_img_wrapper">
@@ -32,7 +33,7 @@ function renderMessage($message,$params,$parentState){ ?>
 			</a>
 		</div>
 		<div class="dcs_content_wrapper">
-			<h3><a href="<?php echo JRoute::_(VitabookHelperRoute::getVitabookRoute($message->id)) ?>"><?php echo $message->title?></a></h3>
+			<h3><a href="<?php echo $message_link ?>"><?php echo $message->title?></a></h3>
 			<div class="dcs_avatar">
 				<a href="<?php echo $message->user_link ?>">
 				<img style="width:30px;height:30px" src="<?php echo $message->user_avatar ?>" />
@@ -47,7 +48,13 @@ function renderMessage($message,$params,$parentState){ ?>
 					?> <?php echo JText::_('VITABOOK_LIST_IN') ?> <a href="<?php echo JRoute::_(VitabookHelperRoute::getCategoryRoute($message->catid)) ?>"><?php echo $message->catname ?></a>
 					<a class="dcs_comment" href="#"><?php echo $count ?></a>
 				</p>
-				<?php endif ?>
+				<?php else: ?>
+				<p><a class="comment" href="<?php echo $message_link ?>"><?php echo JHtml::cutText($message->message, 100);?></a></p>
+				<p class="dsc_time">
+					<?php echo JText::_('VITABOOK_LIST_IN') ?> <a href="<?php echo JRoute::_(VitabookHelperRoute::getCategoryRoute($message->catid)) ?>"><?php echo $message->catname ?></a>
+					<a class="dcs_comment" href="#"><?php echo $count ?></a>
+				</p>
+				<?php endif ?> 
 			</div>
 		</div>
     <?php

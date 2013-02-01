@@ -283,11 +283,11 @@ class VitabookControllerMessage extends JControllerForm
 		}
 		
         // get images
-        /*
-        if ($message->images != '') {
+        /**/
+        if ($message->images != '' && $message->category && $message->category->alias != VITABOOK_CATEGORY_PHOTO_ALIAS) {
 			$model->delete_img($message->images);		
 		}
-		*/
+		
         
         $model->delete($messageId);		
 		$this->setRedirect(VitabookHelperRoute::getListRoute());

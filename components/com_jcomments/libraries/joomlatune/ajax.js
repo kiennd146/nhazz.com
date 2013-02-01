@@ -76,12 +76,7 @@ function jtAJAX()
 			if (xhr.readyState != 4) return;
 			jtx.finishLoading();
 			if (xhr.status==200) {
-				jtx.processResponse(xhr.responseText);
-				/*
-				if (func != null) {
-					func(xhr.responseText);
-				}
-				*/				
+				jtx.processResponse(xhr.responseText);			
 			}
 			delete xhr;
 			xhr = null;

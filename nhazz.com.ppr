@@ -1217,10 +1217,10 @@ nhazz
 			Z:\workspace\nhazz.com\.git\index
 			Z:\workspace\nhazz.com\.git\ORIG_HEAD
 			Z:\workspace\nhazz.com\.git\packed-refs
-		-administrator
+		+administrator
 			-cache
 				Z:\workspace\nhazz.com\administrator\cache\index.html
-			-components
+			+components
 				-com_admin
 					-controllers
 						Z:\workspace\nhazz.com\administrator\components\com_admin\controllers\index.html
@@ -3332,7 +3332,7 @@ nhazz
 					Z:\workspace\nhazz.com\administrator\components\com_users\index.html
 					Z:\workspace\nhazz.com\administrator\components\com_users\users.php
 					Z:\workspace\nhazz.com\administrator\components\com_users\users.xml
-				-com_vitabook
+				+com_vitabook
 					-assets
 						-jscolor
 							Z:\workspace\nhazz.com\administrator\components\com_vitabook\assets\jscolor\arrow.gif
@@ -3384,7 +3384,7 @@ nhazz
 							Z:\workspace\nhazz.com\administrator\components\com_vitabook\language\pt-BR\pt-BR.com_vitabook.ini
 							Z:\workspace\nhazz.com\administrator\components\com_vitabook\language\pt-BR\pt-BR.com_vitabook.sys.ini
 						Z:\workspace\nhazz.com\administrator\components\com_vitabook\language\index.html
-					-models
+					+models
 						-fields
 							Z:\workspace\nhazz.com\administrator\components\com_vitabook\models\fields\index.html
 							Z:\workspace\nhazz.com\administrator\components\com_vitabook\models\fields\vitabookcolor.php
@@ -6963,14 +6963,14 @@ nhazz
 					Z:\workspace\nhazz.com\components\com_jcomments\images\email.png
 					Z:\workspace\nhazz.com\components\com_jcomments\images\index.html
 					Z:\workspace\nhazz.com\components\com_jcomments\images\no_avatar.png
-				-js
+				+js
 					Z:\workspace\nhazz.com\components\com_jcomments\js\index.html
 					Z:\workspace\nhazz.com\components\com_jcomments\js\jcomments-v2.3.js
-				-libraries
+				+libraries
 					-convert
 						Z:\workspace\nhazz.com\components\com_jcomments\libraries\convert\convert.zip
 						Z:\workspace\nhazz.com\components\com_jcomments\libraries\convert\index.html
-					-joomlatune
+					+joomlatune
 						-joomla
 							Z:\workspace\nhazz.com\components\com_jcomments\libraries\joomlatune\joomla\index.html
 							Z:\workspace\nhazz.com\components\com_jcomments\libraries\joomlatune\joomla\jcache.php
@@ -8728,8 +8728,8 @@ nhazz
 						Z:\workspace\nhazz.com\components\com_vitabook\language\vi-VN\index.html
 						Z:\workspace\nhazz.com\components\com_vitabook\language\vi-VN\vi-VN.com_vitabook.ini
 					Z:\workspace\nhazz.com\components\com_vitabook\language\index.html
-				-models
-					-forms
+				+models
+					+forms
 						Z:\workspace\nhazz.com\components\com_vitabook\models\forms\index.html
 						Z:\workspace\nhazz.com\components\com_vitabook\models\forms\message.xml
 					Z:\workspace\nhazz.com\components\com_vitabook\models\index.html
@@ -8744,15 +8744,15 @@ nhazz
 							Z:\workspace\nhazz.com\components\com_vitabook\views\detail\tmpl\index.html
 						Z:\workspace\nhazz.com\components\com_vitabook\views\detail\index.html
 						Z:\workspace\nhazz.com\components\com_vitabook\views\detail\view.html.php
-					+edit
-						+tmpl
+					-edit
+						-tmpl
 							Z:\workspace\nhazz.com\components\com_vitabook\views\edit\tmpl\default_edit.php
 							Z:\workspace\nhazz.com\components\com_vitabook\views\edit\tmpl\default_edit.php~
 							Z:\workspace\nhazz.com\components\com_vitabook\views\edit\tmpl\index.html
 						Z:\workspace\nhazz.com\components\com_vitabook\views\edit\index.html
 						Z:\workspace\nhazz.com\components\com_vitabook\views\edit\view.html.php
 					+vitabook
-						-tmpl
+						+tmpl
 							Z:\workspace\nhazz.com\components\com_vitabook\views\vitabook\tmpl\default.php
 							Z:\workspace\nhazz.com\components\com_vitabook\views\vitabook\tmpl\default.xml
 							Z:\workspace\nhazz.com\components\com_vitabook\views\vitabook\tmpl\default_avatar.php
@@ -41890,7 +41890,7 @@ nhazz
 		-logs
 			Z:\workspace\nhazz.com\logs\error.php
 			Z:\workspace\nhazz.com\logs\index.html
-		-media
+		+media
 			-cms
 				-css
 					Z:\workspace\nhazz.com\media\cms\css\debug.css
@@ -42484,8 +42484,8 @@ nhazz
 					Z:\workspace\nhazz.com\media\media\js\mediamanager.js
 					Z:\workspace\nhazz.com\media\media\js\popup-imagemanager.js
 				Z:\workspace\nhazz.com\media\media\index.html
-			-mod_jcomments_latest
-				-css
+			+mod_jcomments_latest
+				+css
 					Z:\workspace\nhazz.com\media\mod_jcomments_latest\css\index.html
 					Z:\workspace\nhazz.com\media\mod_jcomments_latest\css\style.css
 					Z:\workspace\nhazz.com\media\mod_jcomments_latest\css\style_rtl.css
@@ -43128,7 +43128,7 @@ nhazz
 					Z:\workspace\nhazz.com\media\system\swf\uploader.swf
 				Z:\workspace\nhazz.com\media\system\index.html
 			Z:\workspace\nhazz.com\media\index.html
-		+modules
+		-modules
 			-mod_articles_archive
 				-tmpl
 					Z:\workspace\nhazz.com\modules\mod_articles_archive\tmpl\default.php
@@ -47646,7 +47646,7 @@ nhazz
 					Z:\workspace\nhazz.com\plugins\user\profile\profile.xml
 				Z:\workspace\nhazz.com\plugins\user\index.html
 			Z:\workspace\nhazz.com\plugins\index.html
-		+templates
+		-templates
 			-atomic
 				-css
 					-blueprint
@@ -48073,7 +48073,7 @@ nhazz
 					Z:\workspace\nhazz.com\templates\nhazz-template\css\template.css.bk2
 					Z:\workspace\nhazz.com\templates\nhazz-template\css\template.css.php
 					Z:\workspace\nhazz.com\templates\nhazz-template\css\ui1.9.2themesbasejquery-ui.css
-				-html
+				+html
 					-com_community
 						Z:\workspace\nhazz.com\templates\nhazz-template\html\com_community\profile.index.php
 						Z:\workspace\nhazz.com\templates\nhazz-template\html\com_community\toolbar.index.php
@@ -48106,8 +48106,8 @@ nhazz
 							Z:\workspace\nhazz.com\templates\nhazz-template\html\com_content\category\default.php
 							Z:\workspace\nhazz.com\templates\nhazz-template\html\com_content\category\default_articles.php
 							Z:\workspace\nhazz.com\templates\nhazz-template\html\com_content\category\default_children.php
-					-com_jcomments
-						-default
+					+com_jcomments
+						+default
 							Z:\workspace\nhazz.com\templates\nhazz-template\html\com_jcomments\default\tpl_form.php
 							Z:\workspace\nhazz.com\templates\nhazz-template\html\com_jcomments\default\tpl_form.php.bk
 					-com_search
@@ -49662,26 +49662,62 @@ nhazz
 		Z:\workspace\nhazz.com\setup.txt
 		Z:\workspace\nhazz.com\web.config.txt
 [Open project files]
-0=Z:\workspace\nhazz.com\modules\mod_vitabook_latest\tmpl\default.php
-1=Z:\workspace\nhazz.com\components\com_vitabook\views\vitabook\view.html.php
-2=Z:\workspace\nhazz.com\templates\nhazz-template\html\com_vitabook\vitabook\default_legacy.php
-3=Z:\workspace\nhazz.com\components\com_vitabook\views\edit\tmpl\default_edit.php
-4=Z:\workspace\nhazz.com\modules\mod_yj_pop_login\tmpl\default.php
+0=Z:\workspace\nhazz.com\components\com_jcomments\jcomments.ajax.php
+1=Z:\workspace\nhazz.com\components\com_jcomments\js\jcomments-v2.3.js
+2=Z:\workspace\nhazz.com\templates\nhazz-template\html\com_jcomments\default\tpl_form.php
+3=Z:\workspace\nhazz.com\components\com_jcomments\libraries\joomlatune\ajax.js
+4=Z:\workspace\nhazz.com\modules\mod_jcomments_top_posters\helper.php
+5=Z:\workspace\nhazz.com\modules\mod_vitabook_latest\tmpl\default.php
+6=Z:\workspace\nhazz.com\components\com_vitabook\views\vitabook\view.raw.php
+7=Z:\workspace\nhazz.com\components\com_vitabook\views\vitabook\view.html.php
+8=Z:\workspace\nhazz.com\components\com_vitabook\views\vitabook\tmpl\default_latestlegacy.php
+9=Z:\workspace\nhazz.com\templates\nhazz-template\html\com_vitabook\vitabook\default_messageslegacy.php
+10=Z:\workspace\nhazz.com\media\mod_jcomments_latest\css\style.css
+11=Z:\workspace\nhazz.com\components\com_vitabook\models\message.php
+12=Z:\workspace\nhazz.com\components\com_vitabook\models\forms\message.xml
+13=Z:\workspace\nhazz.com\administrator\components\com_vitabook\models\messages.php
 [Selected Project Files]
 Main=
-Selected=Z:\workspace\nhazz.com\modules\mod_yj_pop_login\tmpl\default.php
+Selected=Z:\workspace\nhazz.com\administrator\components\com_vitabook\models\messages.php
+[components\com_jcomments\jcomments.ajax.php]
+TopLine=1
+Caret=1,1
+[components\com_jcomments\js\jcomments-v2.3.js]
+TopLine=1
+Caret=1,1
+[templates\nhazz-template\html\com_jcomments\default\tpl_form.php]
+TopLine=1
+Caret=1,1
+[components\com_jcomments\libraries\joomlatune\ajax.js]
+TopLine=1
+Caret=1,1
+[modules\mod_jcomments_top_posters\helper.php]
+TopLine=1
+Caret=1,1
 [modules\mod_vitabook_latest\tmpl\default.php]
-TopLine=22
-Caret=12,28
+TopLine=1
+Caret=1,1
+[components\com_vitabook\views\vitabook\view.raw.php]
+TopLine=1
+Caret=1,1
 [components\com_vitabook\views\vitabook\view.html.php]
-TopLine=46
-Caret=36,57
-[templates\nhazz-template\html\com_vitabook\vitabook\default_legacy.php]
-TopLine=35
-Caret=6,58
-[components\com_vitabook\views\edit\tmpl\default_edit.php]
-TopLine=93
-Caret=4,97
-[modules\mod_yj_pop_login\tmpl\default.php]
-TopLine=25
-Caret=47,31
+TopLine=1
+Caret=1,1
+[components\com_vitabook\views\vitabook\tmpl\default_latestlegacy.php]
+TopLine=1
+Caret=1,1
+[templates\nhazz-template\html\com_vitabook\vitabook\default_messageslegacy.php]
+TopLine=1
+Caret=1,1
+[media\mod_jcomments_latest\css\style.css]
+TopLine=1
+Caret=1,1
+[components\com_vitabook\models\message.php]
+TopLine=427
+Caret=10,24
+[components\com_vitabook\models\forms\message.xml]
+TopLine=1
+Caret=19,14
+[administrator\components\com_vitabook\models\messages.php]
+TopLine=157
+Caret=34,168

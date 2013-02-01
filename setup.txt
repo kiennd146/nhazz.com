@@ -1,6 +1,6 @@
 SELECT `g4gc3_user_usergroup_map`.* FROM `g4gc3_user_usergroup_map` inner join `g4gc3_users` on g4gc3_users.id=g4gc3_user_usergroup_map.user_id where g4gc3_users.username='admin'
 Update to 8
-
+ALTER TABLE `g4gc3_vitabook_messages` ADD `catid` INT NOT NULL 
 ALTER TABLE `g4gc3_jcomments` ADD COLUMN `images` text DEFAULT NULL;
 
 mysql root/0906046622  @

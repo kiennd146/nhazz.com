@@ -162,8 +162,8 @@ class VitabookModelMessages extends JModelList
 
 			$field_searches =
 				"(message LIKE '{$search}' OR " .
-				"title LIKE '{$search}' OR " .
-				//"email LIKE '{$search}')";
+				"a.title LIKE '{$search}' OR " .
+				"a.email LIKE '{$search}')";
 
 			$query->where($field_searches);
 		}

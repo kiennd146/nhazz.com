@@ -26,10 +26,9 @@ a:link, a:visited {
 }
 a.comment:link, a.comment:visited {
     color: #333333;
-    text-decoration: underline;
 }
 a:hover{
-    text-decoration: none;
+	text-decoration: underline;
 }
 a.user-link:hover{
     text-decoration: none;

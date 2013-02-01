@@ -109,9 +109,10 @@ class CategoriesViewCategories extends JViewLegacy
 		// Prepare the toolbar.
 		JToolBarHelper::title($title, 'categories '.substr($component, 4).($section?"-$section":'').'-categories');
 
-		if ($canDo->get('core.create') || (count($user->getAuthorisedCategories($component, 'core.create'))) > 0 ) {
+		// kiennd temporarily comment
+		//if ($canDo->get('core.create') || (count($user->getAuthorisedCategories($component, 'core.create'))) > 0 ) {
 			 JToolBarHelper::addNew('category.add');
-		}
+		//}
 
 		if ($canDo->get('core.edit' ) || $canDo->get('core.edit.own')) {
 			JToolBarHelper::editList('category.edit');
