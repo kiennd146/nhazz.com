@@ -68,15 +68,7 @@ class SPEntriesModView extends SPSectionView {
 		$author = CRoute::_('index.php?option=com_community&view=profile&userid=' . $en['author']);
         $business=$this->showbusinessdesc($en['author']);
          
-        $img_cache = JImage::getCachedImage($en['fields']['field_hnh_nh']['_data']['data']['_attributes']['original'], 382, 477);
-        //var_dump($en['fields']['field_hnh_nh']['_data']['data']['_attributes']['original']);
-        
-        /*
-        foreach($en['fields']['field_hnh_nh']['_data']['data']['_attributes']['original'] as $key=>$value) {
-			echo $key,'<br/>';
-		}
-		    die();
-		    */
+        $img_cache = JImage::getCachedImage(@$en['fields']['field_hnh_nh']['_data']['data']['_attributes']['original'], 382, 477);
         
 		$db = JFactory::getDBO();
 		$query = $db->getQuery(true);

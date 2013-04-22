@@ -768,8 +768,10 @@ class JImage
 	}
 	
 	public function getCachedImage($file_path, $width, $height) {
+		if (!$file_path) return '';
+		
 		$path_parts = pathinfo($file_path);
-		$dest = $path_parts['dirname'].DS."cached_$width_$height".$path_parts['basename'];
+		$dest = $path_parts['dirname'].DS."cached_{$width}_{$height}_{$path_parts['basename']}";
 		
 		if(JFile::exists($dest)) {
 			return $dest;

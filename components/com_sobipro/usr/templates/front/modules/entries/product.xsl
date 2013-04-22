@@ -85,7 +85,8 @@
                           <div class="leftdiv">
                                <div class="mainimg">
                                     <img> <xsl:attribute name="src" >
-                                               <xsl:value-of select="fields/field_hnh_nh/data/@original" />
+                                               <!--xsl:value-of select="fields/field_hnh_nh/data/@original" /-->
+                                               <xsl:value-of select="@imgcache" />
                                            </xsl:attribute>
                                            <xsl:if test="$limit=0">
                                                       <xsl:attribute name="title">
@@ -162,7 +163,8 @@
                                     <div class="subimg">
                                         <img> 
                                             <xsl:attribute name="src" >
-                                               <xsl:value-of select="fields/field_hnh_nh/data/@original" />
+                                               <!--xsl:value-of select="fields/field_hnh_nh/data/@original" /-->
+                                               <xsl:value-of select="@imgcache" />
                                            </xsl:attribute>
                                            <xsl:if test="$limit=0">
                                                       <xsl:attribute name="title">
@@ -236,7 +238,8 @@
                                     <div class="subimg">
                                          <img> 
                                               <xsl:attribute name="src" >
-                                                <xsl:value-of select="fields/field_hnh_nh/data/@original" />
+                                                <!--xsl:value-of select="fields/field_hnh_nh/data/@original" /-->
+                                                <xsl:value-of select="@imgcache" />
                                               </xsl:attribute>
                                               <xsl:if test="$limit=0">
                                                    <xsl:attribute name="title">
@@ -304,7 +307,8 @@
                                     <div class="subimg">
                                          <img> 
                                               <xsl:attribute name="src" >
-                                                <xsl:value-of select="fields/field_hnh_nh/data/@original" />
+                                                <!--xsl:value-of select="fields/field_hnh_nh/data/@original" /-->
+                                                <xsl:value-of select="@imgcache" />
                                               </xsl:attribute>
                                               <xsl:if test="$limit=0">
                                                    <xsl:attribute name="title">

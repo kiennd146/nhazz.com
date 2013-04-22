@@ -72,7 +72,9 @@
                                            <xsl:value-of select="@linkpro"/>
                                        </xsl:attribute>
                                     <img> <xsl:attribute name="src" >
-                                               <xsl:value-of select="fields/field_hnh_nh/data/@original" />
+                                               <!--xsl:value-of select="fields/field_hnh_nh/data/@original" /-->
+                                               <xsl:value-of select="@imgcache" />
+                                               
                                            </xsl:attribute>
                                            <xsl:if test="$limit=0">
                                                       <xsl:attribute name="title">
@@ -145,7 +147,8 @@
                                        </xsl:attribute>
                                         <img> 
                                             <xsl:attribute name="src" >
-                                               <xsl:value-of select="fields/field_hnh_nh/data/@original" />
+                                               <!--xsl:value-of select="fields/field_hnh_nh/data/@original" /-->
+                                               <xsl:value-of select="@imgcache" />
                                            </xsl:attribute>
                                            <xsl:if test="$limit=0">
                                                       <xsl:attribute name="title">
