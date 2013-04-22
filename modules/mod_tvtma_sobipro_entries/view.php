@@ -66,7 +66,18 @@ class SPEntriesModView extends SPSectionView {
 		$project_id = $this->getidpro($this->get('fid'),$en[ 'id' ]);
 		$linkpro=JRoute::_('index.php?option=com_sobipro&task=search.search&sp_search_for='. $project_id .'&field_d_n&sid=' . $data['section'] . '&spsearchphrase=exact&search_user_id=' . $en['author']);
 		$author = CRoute::_('index.php?option=com_community&view=profile&userid=' . $en['author']);
-                $business=$this->showbusinessdesc($en['author']);
+        $business=$this->showbusinessdesc($en['author']);
+         
+        $img_cache = JImage::getCachedImage($en['fields']['field_hnh_nh']['_data']['data']['_attributes']['original'], 382, 477);
+        //var_dump($en['fields']['field_hnh_nh']['_data']['data']['_attributes']['original']);
+        
+        /*
+        foreach($en['fields']['field_hnh_nh']['_data']['data']['_attributes']['original'] as $key=>$value) {
+			echo $key,'<br/>';
+		}
+		    die();
+		    */
+        
 		$db = JFactory::getDBO();
 		$query = $db->getQuery(true);
 		$query->select('username');
@@ -77,7 +88,16 @@ class SPEntriesModView extends SPSectionView {
 		$avatar = $this->getlinkavatar($en['author']);
 		$data['entries'][] = array(
 		    '_complex' => 1,
-		    '_attributes' => array('id' => $en['id'], 'business'=>$business, 'title' => $author, 'name' => $name, 'creatby' => $creatby, 'avatar' => $avatar, 'linkpro'=>$linkpro,),
+		    '_attributes' => array(
+				'id' => $en['id'], 
+				'business'=>$business, 
+				'title' => $author, 
+				'name' => $name, 
+				'creatby' => $creatby, 
+				'avatar' => $avatar, 
+				'linkpro'=>$linkpro,
+				'imgcache'=>$img_cache,
+				),
 		    '_data' => $en
 		);
 	    }

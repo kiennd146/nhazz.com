@@ -766,4 +766,70 @@ class JImage
 
 		return $width;
 	}
+	
+	public function getCachedImage($file_path, $width, $height) {
+		$path_parts = pathinfo($file_path);
+		$dest = $path_parts['dirname'].DS."cached_$width_$height".$path_parts['basename'];
+		
+		if(JFile::exists($dest)) {
+			return $dest;
+		}
+		
+		$image = new JImage;
+			
+		try {
+			$image->loadFile($file_path);
+		}
+		//-- Loading image failed, stop!
+		catch(Exception $e) {
+			return $file_path;
+		}
+		
+		if(!$image->isLoaded()) {
+            return $file_path;
+        }
+          
+		$fileInfo = self::getImageFileProperties($file_path);
+		
+		switch ($fileInfo->mime) {
+			case 'image/gif':
+				$extension = 'gif';
+				$img_type = 'IMAGETYPE_GIF';
+				break;
+			case 'image/png':
+				$extension = 'png';
+				$img_type = 'IMAGETYPE_PNG';
+				break;
+			case 'image/x-png':
+				$extension = 'png';
+				$img_type = 'IMAGETYPE_PNG';
+				break;
+			case 'image/jpg':
+				$extension = 'jpg';
+				$img_type = 'IMAGETYPE_JPEG';
+				break;
+			case 'image/jpeg':
+			default :
+				$extension = 'jpg';
+				$img_type = 'IMAGETYPE_JPEG';
+				break;
+		}
+		
+		//-- Resize image proportional to its original size
+		if (intval($fileInfo->width) > $width) {
+			try {
+				$image->resize($width,'100%',false);
+			}
+			//-- Loading image failed, stop!
+			catch(Exception $e) {
+				return $file_path;
+			}
+		}
+		
+		//-- Copy the renamed file to media/com_vitabook/images.
+		@$image->toFile($dest, $img_type, array('quality' => '90'));
+		
+		return $dest;
+	}
+	
 }
