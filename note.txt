@@ -1,0 +1,19 @@
+Template MOdule chuyen gia
+./components/com_sobipro/usr/templates/front/modules/entries/project.xsl
+Template MOdule san pham
+./components/com_sobipro/usr/templates/front/modules/entries/product.xsl
+
+Module:
+mod_tvtma_sobipro_entries
+
+Cached image:
+libraries/joomla/image/image.php
+
+View to change in module chuyen gia, san pham:
+modules/mod_tvtma_sobipro_entries/view.php
+
+Template Bai viet moi nhat
+./module/mod_bt_contentslider/tmpl/nhazz.php
+
+
+
