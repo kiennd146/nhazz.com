@@ -26,3 +26,5 @@ Page hinh anh
 Template:
 components/com_sobipro/usr/templates/nhazz/common/vcard.xsl
 View:
+components/com_sobipro/lib/views/section.php
+
