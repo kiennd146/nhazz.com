@@ -52,7 +52,12 @@ function getImage($id, $number = null) {
         } else {
             $rand_keys = array_random($images,$n);
         }
-        return $rand_keys;
+        $imgscache = array();
+        foreach($rand_keys as $src) {
+        	$imgscache[] = JImage::getCachedImage($src, 250, 230);
+        }
+        return $imgscache;
+        //return $rand_keys;
     } else {
         return null;
     }

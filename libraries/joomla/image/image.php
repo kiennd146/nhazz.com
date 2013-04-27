@@ -770,9 +770,16 @@ class JImage
 	public function getCachedImage($file_path, $width, $height) {
 		if (!$file_path) return '';
 		
+		$file_path = urldecode($file_path);
+		/*
+		$test = 'images/Baiviet/190313/cached_250_230_trang-tri-phong-lam-viec-phu-hop-voi-cac-cung-hoang-dao%2011.jpg';
+		var_dump(urldecode($test));
+		var_dump(JFile::exists(urldecode($test)));die();
+		*/
+		
 		$path_parts = pathinfo($file_path);
 		$dest = $path_parts['dirname'].DS."cached_{$width}_{$height}_{$path_parts['basename']}";
-		
+
 		if(JFile::exists($dest)) {
 			return $dest;
 		}
@@ -784,6 +791,7 @@ class JImage
 		}
 		//-- Loading image failed, stop!
 		catch(Exception $e) {
+			error_log("Cannot load image: $file_path");
 			return $file_path;
 		}
 		
@@ -824,6 +832,7 @@ class JImage
 			}
 			//-- Loading image failed, stop!
 			catch(Exception $e) {
+				error_log("Load image failed: $file_path");
 				return $file_path;
 			}
 		}
