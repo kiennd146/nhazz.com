@@ -15,5 +15,14 @@ modules/mod_tvtma_sobipro_entries/view.php
 Template Bai viet moi nhat
 ./module/mod_bt_contentslider/tmpl/nhazz.php
 
+Page Bai viet
+Template:
+templates/nhazz-template/html/com_content/category/default.php
+templates/nhazz-template/html/com_content/category/default_articles.php
+View:
+components/com_content/views/category/view.html.php
 
-
+Page hinh anh
+Template:
+components/com_sobipro/usr/templates/nhazz/common/vcard.xsl
+View:

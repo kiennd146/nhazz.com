@@ -77,6 +77,7 @@ class SPSectionView extends SPFrontView implements SPView
             $cat[ 'url' ] = Sobi::Url( array( 'title' => $category->get( 'name' ), 'sid' => $category->get( 'id' ) ) );
             $cat[ 'position' ] = $category->get( 'position' );
             $cat[ 'author' ] = $category->get( 'owner' );
+            
             if ( $category->get( 'state' ) == 0 ) {
                 $cat[ 'state' ] = 'unpublished';
             }
@@ -181,9 +182,11 @@ class SPSectionView extends SPFrontView implements SPView
     protected function entry( $entry, $manager, $noId = false )
     {
         $en = array();
+        /*kiennd
         if ( is_numeric( $entry ) ) {
             $en = $this->cachedEntry( $entry, $manager, $noId );
         }
+        */
         if ( !( is_array( $en ) ) || !( count( $en ) ) ) {
             if ( is_numeric( $entry ) ) {
                 $entry = SPFactory::Entry( $entry );
@@ -220,6 +223,7 @@ class SPSectionView extends SPFrontView implements SPView
                     unset( $en[ 'edit_url' ] );
                 }
             }
+            
             $en[ 'edit_url_array' ] = array( 'task' => 'entry.edit', 'pid' => SPRequest::sid(), 'sid' => $entry->get( 'id' ) );
             $en[ 'created_time' ] = $entry->get( 'createdTime' );
             $en[ 'updated_time' ] = $entry->get( 'updatedTime' );
@@ -279,7 +283,12 @@ class SPSectionView extends SPFrontView implements SPView
                                 ),
                                 'data' => $struct,
                             ),
-                            '_attributes' => array( 'id' => $field->get( 'id' ), 'type' => $field->get( 'type' ), 'suffix' => $field->get( 'suffix' ), 'position' => $field->get( 'position' ), 'css_class' => ( strlen( $field->get( 'cssClass' ) ) ? $field->get( 'cssClass' ) : 'spField' ) )
+                            '_attributes' => array( 
+                            	'id' => $field->get( 'id' ), 
+                            	'type' => $field->get( 'type' ), 
+                            	'suffix' => $field->get( 'suffix' ), 
+                            	'position' => $field->get( 'position' ), 
+                            	'css_class' => ( strlen( $field->get( 'cssClass' ) ) ? $field->get( 'cssClass' ) : 'spField' ) )
                         );
                         if ( Sobi::Cfg( 'list.field_description', false ) ) {
                             $f[ $field->get( 'nid' ) ][ '_data' ][ 'description' ] = array( '_complex' => 1, '_xml' => 1, '_data' => $field->get( 'description' ) );
@@ -293,8 +302,13 @@ class SPSectionView extends SPFrontView implements SPView
                         }
                     }
                 }
-                $en[ 'fields' ] = $f;
+                $en[ 'fields' ] = $f;                
+                
             }
+            
+            $en[ 'imgcache_full' ] = JImage::getCachedImage(@$en['fields']['field_hnh_nh']['_data']['data']['_attributes']['original'], 1024, 600);
+            $en[ 'imgcache_list_item' ] =  JImage::getCachedImage(@$en['fields']['field_hnh_nh']['_data']['data']['_attributes']['original'], 550, 410);
+                
             SPFactory::cache()
                     ->addObj( $entry, 'entry', $entry->get( 'id' ) )
                     ->addObj( $en, 'entry_struct', $entry->get( 'id' ) );

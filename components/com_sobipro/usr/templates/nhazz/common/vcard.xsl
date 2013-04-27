@@ -18,11 +18,15 @@
                 </style>
                 <div class="SPImageList" id="SPGallery">
                     <a class="lightbox">
-                        <xsl:attribute name="href">
+                        <xsl:attribute name="href"><xsl:value-of select="imgcache_full"/></xsl:attribute>
+                        <img class="spFieldsData field_hnh_nh">
+                            <xsl:attribute name="src"><xsl:value-of select="imgcache_list_item"/></xsl:attribute>    
+                        </img>
+                        <!--xsl:attribute name="href">
                                 <xsl:value-of select="fields/field_hnh_nh/data/@original"/>
                         </xsl:attribute>
                         <xsl:attribute name="data">hidden<xsl:value-of select="id"/></xsl:attribute>
-                        <xsl:copy-of select="fields/field_hnh_nh/data" disable-output-escaping="yes"/>
+                        <xsl:copy-of select="fields/field_hnh_nh/data" disable-output-escaping="yes"/-->
                     </a>
                     <div class="SPCommandList" style="">
                         <ul>
