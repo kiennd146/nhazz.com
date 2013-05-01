@@ -74,8 +74,10 @@ class TvtMA1080ModelTvtMASlider extends JModelItem
             if($count == true) {
                 $db->select( $oPrefix.'id', $table, $conditions, $eOrder, 0 , 0, true );
             } else {
+            	$eOrder = 'rand()';  // kiennd: randomize result
                 $db->select( $oPrefix.'id', $table, $conditions, $eOrder, $limit , $offset, true );
             }
+            //var_dump($eOrder); die();
             unset($table);
             $results = $db->loadResultArray();
             unset($db);
