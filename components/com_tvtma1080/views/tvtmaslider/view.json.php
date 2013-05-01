@@ -39,7 +39,9 @@ class TvtMA1080ViewTvtMASlider extends JView
                     $data['title'] = $linkSobipro;
                     //$data['description'] = $entry->get('name');
                     $data['description'] = "";
-                    $data['image'] = $model->getImage($entry);
+                    //$data['image'] = $model->getImage($entry);
+                    //kiennd optimize
+                    $data['image'] = JImage::getCachedImage($model->getImage($entry), 800, 400);
 		    // Fix admin add null image
 		    if($data['image'] == null){
 			continue;
