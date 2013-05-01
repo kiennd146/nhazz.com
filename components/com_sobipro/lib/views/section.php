@@ -182,11 +182,11 @@ class SPSectionView extends SPFrontView implements SPView
     protected function entry( $entry, $manager, $noId = false )
     {
         $en = array();
-        /*kiennd
+        /*kiennd*/
         if ( is_numeric( $entry ) ) {
             $en = $this->cachedEntry( $entry, $manager, $noId );
         }
-        */
+        
         if ( !( is_array( $en ) ) || !( count( $en ) ) ) {
             if ( is_numeric( $entry ) ) {
                 $entry = SPFactory::Entry( $entry );
@@ -308,6 +308,7 @@ class SPSectionView extends SPFrontView implements SPView
             
             $en[ 'imgcache_full' ] = JImage::getCachedImage(@$en['fields']['field_hnh_nh']['_data']['data']['_attributes']['original'], 1024, 600);
             $en[ 'imgcache_list_item' ] =  JImage::getCachedImage(@$en['fields']['field_hnh_nh']['_data']['data']['_attributes']['original'], 550, 410);
+            $en[ 'imgcache_list_product' ] =  JImage::getCachedImage(@$en['fields']['field_hnh_nh']['_data']['data']['_attributes']['original'], 235, 180);
                 
             SPFactory::cache()
                     ->addObj( $entry, 'entry', $entry->get( 'id' ) )

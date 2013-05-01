@@ -100,7 +100,9 @@ class TVTMAUserPresenterModelTVTMAUserPresenter extends JModelList {
 	    $randomProject  = array_rand(array_flip($userProject),1);
 	    //$item->project  = $randomProject;
 	    $imageProject   = $this->getEntryOfProject($randomProject);
-	    $image	    = $this->getImage($imageProject, 'original');
+	    $image_property	    = $this->getImageProperty($imageProject, 'original');
+	    $image = '<img src="'.$image_property['src'].'" title="'.$image_property['title'].'" />';
+	    //echo $image,'<br/>';
 	    $item->image    = JHTML::link(JRoute::_('index.php?option=com_sobipro&task=search.search&sp_search_for='. $randomProject .'&'. $FieldNid .'&sid=' . $SID . '&spsearchphrase=exact&search_user_id=' . $item->id), $image);
 	}
 	return $items;
@@ -215,7 +217,7 @@ class TVTMAUserPresenterModelTVTMAUserPresenter extends JModelList {
         return $results;
     }
     
-            /**
+    /**
      * Show image of entry
      * @param integer $id
      * @param string $field
@@ -224,7 +226,7 @@ class TVTMAUserPresenterModelTVTMAUserPresenter extends JModelList {
      */
     function getImage($id, $type){
         $entry = SPFactory::Entry($id);
-	$field = $this->getState('presenter.imageField');
+		$field = $this->getState('presenter.imageField');
         $field = SPConfig::unserialize( $entry->getField($field)->getRaw() );
         $urlImage = JURI::base() . $field[$type];
         $title = $entry->get('name');
@@ -232,6 +234,28 @@ class TVTMAUserPresenterModelTVTMAUserPresenter extends JModelList {
         unset($entry);
         return $image;
     }
+    
+    /**
+     * Show image of entry
+     * @param integer $id
+     * @param string $field
+     * @param string $type
+     * @return img 
+     */
+    function getImageProperty($id, $type){
+        $entry = SPFactory::Entry($id);
+		$field = $this->getState('presenter.imageField');
+        $field = SPConfig::unserialize( $entry->getField($field)->getRaw() );
+        
+        $urlImage = $field[$type];
+        $urlImage = JImage::getCachedImage($urlImage, 372, 192);
+        $urlImage = JURI::base() . $urlImage;
+        
+        $title = $entry->get('name');
+        unset($entry);
+        return array('src'=>$urlImage, 'title'=>$title);
+    }
+    
     /**
      *  List all metro from profile jomsocial
      */

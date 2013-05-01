@@ -21,9 +21,10 @@
                             <xsl:value-of select="url" />
                         </xsl:attribute>
                     <img style="width:100%">
-                        <xsl:attribute name="src">
+                        <!--xsl:attribute name="src">
                                     <xsl:value-of select="fields/field_hnh_nh/data/@original" disable-output-escaping="yes"/>
-                        </xsl:attribute>
+                        </xsl:attribute-->
+                        <xsl:attribute name="src"><xsl:value-of select="imgcache_list_product"/></xsl:attribute>
                     </img>
                     </a>
                 </div>
