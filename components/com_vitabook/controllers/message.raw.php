@@ -119,6 +119,12 @@ class VitabookControllerMessage extends JControllerForm
 		}
 		
 		$data['jid'] = $user->get('id');
+		
+		// kiennd prevent anonymous user to create message
+		if (!$data['jid']) {
+		 	jexit(json_encode(array("state"=>1, "result" => $result)));
+		 	return;
+		} 
 		$data['parent_id'] = 1;
 		
 		// end
