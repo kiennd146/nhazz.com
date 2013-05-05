@@ -1217,10 +1217,10 @@ nhazz
 			Z:\workspace\nhazz.com\.git\index
 			Z:\workspace\nhazz.com\.git\ORIG_HEAD
 			Z:\workspace\nhazz.com\.git\packed-refs
-		+administrator
+		-administrator
 			-cache
 				Z:\workspace\nhazz.com\administrator\cache\index.html
-			+components
+			-components
 				-com_admin
 					-controllers
 						Z:\workspace\nhazz.com\administrator\components\com_admin\controllers\index.html
@@ -3332,7 +3332,7 @@ nhazz
 					Z:\workspace\nhazz.com\administrator\components\com_users\index.html
 					Z:\workspace\nhazz.com\administrator\components\com_users\users.php
 					Z:\workspace\nhazz.com\administrator\components\com_users\users.xml
-				+com_vitabook
+				-com_vitabook
 					-assets
 						-jscolor
 							Z:\workspace\nhazz.com\administrator\components\com_vitabook\assets\jscolor\arrow.gif
@@ -3392,7 +3392,7 @@ nhazz
 						-forms
 							Z:\workspace\nhazz.com\administrator\components\com_vitabook\models\forms\index.html
 							Z:\workspace\nhazz.com\administrator\components\com_vitabook\models\forms\message.xml
-						-rules
+						+rules
 							Z:\workspace\nhazz.com\administrator\components\com_vitabook\models\rules\index.html
 							Z:\workspace\nhazz.com\administrator\components\com_vitabook\models\rules\ipblock.php
 							Z:\workspace\nhazz.com\administrator\components\com_vitabook\models\rules\parentid.php
@@ -7675,7 +7675,7 @@ nhazz
 							Z:\workspace\nhazz.com\components\com_sobipro\opt\plugins\paypal\index.html
 							Z:\workspace\nhazz.com\components\com_sobipro\opt\plugins\paypal\init.php
 					Z:\workspace\nhazz.com\components\com_sobipro\opt\.htaccess
-				-tmp
+				+tmp
 					-edit
 						-2012-09-12_11-09-44_192-168-1-5
 							Z:\workspace\nhazz.com\components\com_sobipro\tmp\edit\2012-09-12_11-09-44_192-168-1-5\files.var
@@ -8030,7 +8030,7 @@ nhazz
 							Z:\workspace\nhazz.com\components\com_sobipro\usr\templates\front\default.xsl
 							Z:\workspace\nhazz.com\components\com_sobipro\usr\templates\front\index.html
 							Z:\workspace\nhazz.com\components\com_sobipro\usr\templates\front\template.xml
-						-nhazz
+						+nhazz
 							-.svn
 								-text-base
 									Z:\workspace\nhazz.com\components\com_sobipro\usr\templates\nhazz\.svn\text-base\config.ini.netbeans-base
@@ -8054,7 +8054,7 @@ nhazz
 								Z:\workspace\nhazz.com\components\com_sobipro\usr\templates\nhazz\category\.htaccess
 								Z:\workspace\nhazz.com\components\com_sobipro\usr\templates\nhazz\category\index.html
 								Z:\workspace\nhazz.com\components\com_sobipro\usr\templates\nhazz\category\view.xsl
-							-common
+							+common
 								-.svn
 									-text-base
 										Z:\workspace\nhazz.com\components\com_sobipro\usr\templates\nhazz\common\.svn\text-base\.htaccess.svn-base
@@ -8238,12 +8238,12 @@ nhazz
 							Z:\workspace\nhazz.com\components\com_sobipro\usr\templates\nhazz\template.php
 							Z:\workspace\nhazz.com\components\com_sobipro\usr\templates\nhazz\template.xml
 							Z:\workspace\nhazz.com\components\com_sobipro\usr\templates\nhazz\translation.xml
-						-nhazz_pro
+						+nhazz_pro
 							-category
 								Z:\workspace\nhazz.com\components\com_sobipro\usr\templates\nhazz_pro\category\.htaccess
 								Z:\workspace\nhazz.com\components\com_sobipro\usr\templates\nhazz_pro\category\index.html
 								Z:\workspace\nhazz.com\components\com_sobipro\usr\templates\nhazz_pro\category\view.xsl
-							-common
+							+common
 								Z:\workspace\nhazz.com\components\com_sobipro\usr\templates\nhazz_pro\common\.htaccess
 								Z:\workspace\nhazz.com\components\com_sobipro\usr\templates\nhazz_pro\common\alphaindex.xsl
 								Z:\workspace\nhazz.com\components\com_sobipro\usr\templates\nhazz_pro\common\alphamenu.xsl
@@ -8402,7 +8402,7 @@ nhazz
 						Z:\workspace\nhazz.com\components\com_sobipro\var\xml\index.html
 					Z:\workspace\nhazz.com\components\com_sobipro\var\index.html
 				-views
-					-tpl
+					+tpl
 						Z:\workspace\nhazz.com\components\com_sobipro\views\tpl\chooser.php
 						Z:\workspace\nhazz.com\components\com_sobipro\views\tpl\icon.php
 						Z:\workspace\nhazz.com\components\com_sobipro\views\tpl\index.html
@@ -8436,13 +8436,13 @@ nhazz
 				Z:\workspace\nhazz.com\components\com_tvtma_user_presenter\controller.php
 				Z:\workspace\nhazz.com\components\com_tvtma_user_presenter\index.html
 				Z:\workspace\nhazz.com\components\com_tvtma_user_presenter\tvtma_user_presenter.php
-			-com_tvtma1080
+			+com_tvtma1080
 				-js
 					Z:\workspace\nhazz.com\components\com_tvtma1080\js\index.html
 					Z:\workspace\nhazz.com\components\com_tvtma1080\js\jquery.bpopup-0.7.0.min.js
 					Z:\workspace\nhazz.com\components\com_tvtma1080\js\jquery.js
 					Z:\workspace\nhazz.com\components\com_tvtma1080\js\sobiprotag.css
-				-models
+				+models
 					Z:\workspace\nhazz.com\components\com_tvtma1080\models\index.html
 					Z:\workspace\nhazz.com\components\com_tvtma1080\models\modtvtmasobiproentries.php
 					Z:\workspace\nhazz.com\components\com_tvtma1080\models\projecttvtma.php
@@ -8452,9 +8452,9 @@ nhazz
 					Z:\workspace\nhazz.com\components\com_tvtma1080\models\tvtmacomments.php
 					Z:\workspace\nhazz.com\components\com_tvtma1080\models\tvtmaslider.php
 					Z:\workspace\nhazz.com\components\com_tvtma1080\models\tvtmasobiprotags.php
-				-views
+				+views
 					-modtvtmasobiproentries
-						-tmpl
+						+tmpl
 							Z:\workspace\nhazz.com\components\com_tvtma1080\views\modtvtmasobiproentries\tmpl\default.php
 							Z:\workspace\nhazz.com\components\com_tvtma1080\views\modtvtmasobiproentries\tmpl\default.xml
 							Z:\workspace\nhazz.com\components\com_tvtma1080\views\modtvtmasobiproentries\tmpl\index.html
@@ -8506,8 +8506,8 @@ nhazz
 						Z:\workspace\nhazz.com\components\com_tvtma1080\views\tvtmaprofile\index.html
 						Z:\workspace\nhazz.com\components\com_tvtma1080\views\tvtmaprofile\view.ajax.php
 						Z:\workspace\nhazz.com\components\com_tvtma1080\views\tvtmaprofile\view.html.php
-					-tvtmaslider
-						-tmpl
+					+tvtmaslider
+						+tmpl
 							Z:\workspace\nhazz.com\components\com_tvtma1080\views\tvtmaslider\tmpl\default.php
 							Z:\workspace\nhazz.com\components\com_tvtma1080\views\tvtmaslider\tmpl\default.xml
 							Z:\workspace\nhazz.com\components\com_tvtma1080\views\tvtmaslider\tmpl\index.html
@@ -8636,7 +8636,7 @@ nhazz
 				Z:\workspace\nhazz.com\components\com_users\metadata.xml
 				Z:\workspace\nhazz.com\components\com_users\router.php
 				Z:\workspace\nhazz.com\components\com_users\users.php
-			+com_vitabook
+			-com_vitabook
 				-assets
 					-img
 						Z:\workspace\nhazz.com\components\com_vitabook\assets\img\delete.png
@@ -8694,7 +8694,7 @@ nhazz
 					Z:\workspace\nhazz.com\components\com_vitabook\assets\vitabook_rounded.css
 					Z:\workspace\nhazz.com\components\com_vitabook\assets\vitabook_srcLegacy.js
 					Z:\workspace\nhazz.com\components\com_vitabook\assets\vitabookLegacy.css
-				-controllers
+				+controllers
 					Z:\workspace\nhazz.com\components\com_vitabook\controllers\avatar.php
 					Z:\workspace\nhazz.com\components\com_vitabook\controllers\editor.php
 					Z:\workspace\nhazz.com\components\com_vitabook\controllers\index.html
@@ -8752,7 +8752,7 @@ nhazz
 						Z:\workspace\nhazz.com\components\com_vitabook\views\edit\index.html
 						Z:\workspace\nhazz.com\components\com_vitabook\views\edit\view.html.php
 					+vitabook
-						+tmpl
+						-tmpl
 							Z:\workspace\nhazz.com\components\com_vitabook\views\vitabook\tmpl\default.php
 							Z:\workspace\nhazz.com\components\com_vitabook\views\vitabook\tmpl\default.xml
 							Z:\workspace\nhazz.com\components\com_vitabook\views\vitabook\tmpl\default_avatar.php
@@ -41625,7 +41625,7 @@ nhazz
 					Z:\workspace\nhazz.com\libraries\joomla\github\object.php
 					Z:\workspace\nhazz.com\libraries\joomla\github\pulls.php
 					Z:\workspace\nhazz.com\libraries\joomla\github\refs.php
-				+html
+				-html
 					-html
 						Z:\workspace\nhazz.com\libraries\joomla\html\html\access.php
 						Z:\workspace\nhazz.com\libraries\joomla\html\html\batch.php
@@ -41715,7 +41715,7 @@ nhazz
 					Z:\workspace\nhazz.com\libraries\joomla\http\index.html
 					Z:\workspace\nhazz.com\libraries\joomla\http\response.php
 					Z:\workspace\nhazz.com\libraries\joomla\http\transport.php
-				-image
+				+image
 					-filters
 						Z:\workspace\nhazz.com\libraries\joomla\image\filters\brightness.php
 						Z:\workspace\nhazz.com\libraries\joomla\image\filters\contrast.php
@@ -41890,7 +41890,7 @@ nhazz
 		-logs
 			Z:\workspace\nhazz.com\logs\error.php
 			Z:\workspace\nhazz.com\logs\index.html
-		+media
+		-media
 			-cms
 				-css
 					Z:\workspace\nhazz.com\media\cms\css\debug.css
@@ -43128,7 +43128,7 @@ nhazz
 					Z:\workspace\nhazz.com\media\system\swf\uploader.swf
 				Z:\workspace\nhazz.com\media\system\index.html
 			Z:\workspace\nhazz.com\media\index.html
-		-modules
+		+modules
 			-mod_articles_archive
 				-tmpl
 					Z:\workspace\nhazz.com\modules\mod_articles_archive\tmpl\default.php
@@ -43263,18 +43263,18 @@ nhazz
 						Z:\workspace\nhazz.com\modules\mod_bt_contentslider\admin\js\index.html
 						Z:\workspace\nhazz.com\modules\mod_bt_contentslider\admin\js\jquery.min.js
 					Z:\workspace\nhazz.com\modules\mod_bt_contentslider\admin\index.html
-				-classes
+				+classes
 					Z:\workspace\nhazz.com\modules\mod_bt_contentslider\classes\btportfolio.php
 					Z:\workspace\nhazz.com\modules\mod_bt_contentslider\classes\btsource.php
 					Z:\workspace\nhazz.com\modules\mod_bt_contentslider\classes\content.php
 					Z:\workspace\nhazz.com\modules\mod_bt_contentslider\classes\images.php
 					Z:\workspace\nhazz.com\modules\mod_bt_contentslider\classes\index.html
 					Z:\workspace\nhazz.com\modules\mod_bt_contentslider\classes\k2.php
-				-elements
-					Z:\workspace\nhazz.com\modules\mod_bt_contentslider\elements\index.html
+				+elements
 					Z:\workspace\nhazz.com\modules\mod_bt_contentslider\elements\k2multicategories.php
 					Z:\workspace\nhazz.com\modules\mod_bt_contentslider\elements\portfoliocategory.php
-				-helpers
+					Z:\workspace\nhazz.com\modules\mod_bt_contentslider\elements\index.html
+				+helpers
 					Z:\workspace\nhazz.com\modules\mod_bt_contentslider\helpers\helper.php
 					Z:\workspace\nhazz.com\modules\mod_bt_contentslider\helpers\route_content.php
 					Z:\workspace\nhazz.com\modules\mod_bt_contentslider\helpers\route_k2.php
@@ -43699,7 +43699,7 @@ nhazz
 					Z:\workspace\nhazz.com\modules\mod_tvtma_slider\includes\jquery.bpopup-0.7.0.min.js
 					Z:\workspace\nhazz.com\modules\mod_tvtma_slider\includes\jquery.js
 					Z:\workspace\nhazz.com\modules\mod_tvtma_slider\includes\megamenu.js
-				-tmpl
+				+tmpl
 					Z:\workspace\nhazz.com\modules\mod_tvtma_slider\tmpl\default.php
 					Z:\workspace\nhazz.com\modules\mod_tvtma_slider\tmpl\index.html
 				Z:\workspace\nhazz.com\modules\mod_tvtma_slider\fields.php
@@ -43709,7 +43709,7 @@ nhazz
 				Z:\workspace\nhazz.com\modules\mod_tvtma_slider\mod_tvtma_slider.php
 				Z:\workspace\nhazz.com\modules\mod_tvtma_slider\mod_tvtma_slider.xml
 				Z:\workspace\nhazz.com\modules\mod_tvtma_slider\section.php
-			-mod_tvtma_sobipro_entries
+			+mod_tvtma_sobipro_entries
 				-includes
 					-css
 						Z:\workspace\nhazz.com\modules\mod_tvtma_sobipro_entries\includes\css\blockactive.gif
@@ -43874,7 +43874,7 @@ nhazz
 				Z:\workspace\nhazz.com\modules\mod_wrapper\index.html
 				Z:\workspace\nhazz.com\modules\mod_wrapper\mod_wrapper.php
 				Z:\workspace\nhazz.com\modules\mod_wrapper\mod_wrapper.xml
-			+mod_yj_pop_login
+			-mod_yj_pop_login
 				-css
 					Z:\workspace\nhazz.com\modules\mod_yj_pop_login\css\down.png
 					Z:\workspace\nhazz.com\modules\mod_yj_pop_login\css\index.html
@@ -48010,7 +48010,7 @@ nhazz
 				Z:\workspace\nhazz.com\templates\beez5\template_preview.png
 				Z:\workspace\nhazz.com\templates\beez5\template_thumbnail.png
 				Z:\workspace\nhazz.com\templates\beez5\templateDetails.xml
-			-nhazz-template
+			+nhazz-template
 				-css
 					-images
 						Z:\workspace\nhazz.com\templates\nhazz-template\css\images\Thumbs.db
@@ -48073,7 +48073,7 @@ nhazz
 					Z:\workspace\nhazz.com\templates\nhazz-template\css\template.css.bk2
 					Z:\workspace\nhazz.com\templates\nhazz-template\css\template.css.php
 					Z:\workspace\nhazz.com\templates\nhazz-template\css\ui1.9.2themesbasejquery-ui.css
-				+html
+				-html
 					-com_community
 						Z:\workspace\nhazz.com\templates\nhazz-template\html\com_community\profile.index.php
 						Z:\workspace\nhazz.com\templates\nhazz-template\html\com_community\toolbar.index.php
@@ -48193,7 +48193,7 @@ nhazz
 					Z:\workspace\nhazz.com\templates\nhazz-template\images\upload_image.png
 				-img
 					Z:\workspace\nhazz.com\templates\nhazz-template\img\origin.png
-				-js
+				+js
 					Z:\workspace\nhazz.com\templates\nhazz-template\js\imgpreview.full.jquery.js
 					Z:\workspace\nhazz.com\templates\nhazz-template\js\index.html
 					Z:\workspace\nhazz.com\templates\nhazz-template\js\jquery.equalheights.js
@@ -49662,39 +49662,37 @@ nhazz
 		Z:\workspace\nhazz.com\setup.txt
 		Z:\workspace\nhazz.com\web.config.txt
 [Open project files]
-0=Z:\workspace\nhazz.com\components\com_jcomments\jcomments.ajax.php
-1=Z:\workspace\nhazz.com\components\com_jcomments\js\jcomments-v2.3.js
-2=Z:\workspace\nhazz.com\templates\nhazz-template\html\com_jcomments\default\tpl_form.php
-3=Z:\workspace\nhazz.com\components\com_jcomments\libraries\joomlatune\ajax.js
-4=Z:\workspace\nhazz.com\modules\mod_jcomments_top_posters\helper.php
-5=Z:\workspace\nhazz.com\modules\mod_vitabook_latest\tmpl\default.php
+0=Z:\workspace\nhazz.com\components\com_sobipro\lib\views\section.php
+1=Z:\workspace\nhazz.com\components\com_sobipro\usr\templates\nhazz_pro\common\vcard.xsl
+2=Z:\workspace\nhazz.com\components\com_sobipro\usr\templates\nhazz\common\vcard.xsl
+3=Z:\workspace\nhazz.com\modules\mod_tvtma_slider\tmpl\default.php
+4=Z:\workspace\nhazz.com\components\com_vitabook\models\message.php
+5=Z:\workspace\nhazz.com\components\com_vitabook\models\vitabook.php
 6=Z:\workspace\nhazz.com\components\com_vitabook\views\vitabook\view.raw.php
 7=Z:\workspace\nhazz.com\components\com_vitabook\views\vitabook\view.html.php
-8=Z:\workspace\nhazz.com\components\com_vitabook\views\vitabook\tmpl\default_latestlegacy.php
-9=Z:\workspace\nhazz.com\templates\nhazz-template\html\com_vitabook\vitabook\default_messageslegacy.php
-10=Z:\workspace\nhazz.com\media\mod_jcomments_latest\css\style.css
-11=Z:\workspace\nhazz.com\components\com_vitabook\models\message.php
-12=Z:\workspace\nhazz.com\components\com_vitabook\models\forms\message.xml
-13=Z:\workspace\nhazz.com\administrator\components\com_vitabook\models\messages.php
+8=Z:\workspace\nhazz.com\components\com_vitabook\controllers\message.raw.php
+9=Z:\workspace\nhazz.com\components\com_tvtma1080\views\tvtmaslider\view.json.php
+10=Z:\workspace\nhazz.com\components\com_tvtma1080\models\tvtmaslider.php
+11=Z:\workspace\nhazz.com\components\com_sobipro\lib\models\dbobject.php
 [Selected Project Files]
 Main=
-Selected=Z:\workspace\nhazz.com\administrator\components\com_vitabook\models\messages.php
-[components\com_jcomments\jcomments.ajax.php]
+Selected=Z:\workspace\nhazz.com\components\com_sobipro\lib\models\dbobject.php
+[components\com_sobipro\lib\views\section.php]
 TopLine=1
 Caret=1,1
-[components\com_jcomments\js\jcomments-v2.3.js]
+[components\com_sobipro\usr\templates\nhazz_pro\common\vcard.xsl]
 TopLine=1
 Caret=1,1
-[templates\nhazz-template\html\com_jcomments\default\tpl_form.php]
+[components\com_sobipro\usr\templates\nhazz\common\vcard.xsl]
 TopLine=1
 Caret=1,1
-[components\com_jcomments\libraries\joomlatune\ajax.js]
+[modules\mod_tvtma_slider\tmpl\default.php]
 TopLine=1
 Caret=1,1
-[modules\mod_jcomments_top_posters\helper.php]
+[components\com_vitabook\models\message.php]
 TopLine=1
 Caret=1,1
-[modules\mod_vitabook_latest\tmpl\default.php]
+[components\com_vitabook\models\vitabook.php]
 TopLine=1
 Caret=1,1
 [components\com_vitabook\views\vitabook\view.raw.php]
@@ -49703,21 +49701,15 @@ Caret=1,1
 [components\com_vitabook\views\vitabook\view.html.php]
 TopLine=1
 Caret=1,1
-[components\com_vitabook\views\vitabook\tmpl\default_latestlegacy.php]
+[components\com_vitabook\controllers\message.raw.php]
 TopLine=1
 Caret=1,1
-[templates\nhazz-template\html\com_vitabook\vitabook\default_messageslegacy.php]
-TopLine=1
-Caret=1,1
-[media\mod_jcomments_latest\css\style.css]
-TopLine=1
-Caret=1,1
-[components\com_vitabook\models\message.php]
-TopLine=427
-Caret=10,24
-[components\com_vitabook\models\forms\message.xml]
-TopLine=1
-Caret=19,14
-[administrator\components\com_vitabook\models\messages.php]
-TopLine=157
-Caret=34,168
+[components\com_tvtma1080\views\tvtmaslider\view.json.php]
+TopLine=22
+Caret=89,31
+[components\com_tvtma1080\models\tvtmaslider.php]
+TopLine=128
+Caret=44,144
+[components\com_sobipro\lib\models\dbobject.php]
+TopLine=288
+Caret=27,292

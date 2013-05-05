@@ -50,7 +50,9 @@ class TvtMA1080ModelTvtMASlider extends JModelItem
                 $SID = $this->getSid();
                 $section = SPFactory::Model( 'section' );
                 $section->init( $SID );
+                unset($SID);
                 $pids = $section->getChilds('category', true);
+                
                 if(count($pids) == 0) {
                     $pids = $cat_id;
                 }
@@ -58,7 +60,9 @@ class TvtMA1080ModelTvtMASlider extends JModelItem
                 
                 unset($pids);
             }
-            $eOrder = 'createdTime.desc';
+            
+            //$eOrder = 'createdTime.desc';
+            $eOrder = '';
             $db =& SPFactory::db();
             /* get the ordering and the direction */
             $oPrefix = 'spo.';
@@ -71,14 +75,20 @@ class TvtMA1080ModelTvtMASlider extends JModelItem
 				array( 'table' => 'spdb_relations', 'as' => 'sprl', 'key' => 'id' ),
 				array( 'table' => 'spdb_object', 'as' => 'spo', 'key' => 'id' )                                
             ) );
+            
             if($count == true) {
                 $db->select( $oPrefix.'id', $table, $conditions, $eOrder, 0 , 0, true );
+                //$db->select( 'count('.$oPrefix.'id)', $table, $conditions, $eOrder, 0 , 0, true );
             } else {
             	$eOrder = 'rand()';  // kiennd: randomize result
                 $db->select( $oPrefix.'id', $table, $conditions, $eOrder, $limit , $offset, true );
             }
+            
             //var_dump($eOrder); die();
             unset($table);
+            unset($conditions);
+            unset($eOrder);
+            
             $results = $db->loadResultArray();
             unset($db);
             if(isset($cat_id)) {
@@ -93,6 +103,92 @@ class TvtMA1080ModelTvtMASlider extends JModelItem
             
             
             
+        }
+        
+        
+        function dataListWithCount($cat_id = null,$offset = 0, $limit = 5, $count = false, &$count_rs = 0)
+        {
+            $entry = array();
+            $conditions = array(); 
+            /* var SPDb $db */
+            if(isset($cat_id)) {
+                $arrayConditions = explode('|', $cat_id);
+                if(!strpos($cat_id, 'cat_field') !== false) {
+                    $entry =  $this->getEntryUseField($arrayConditions, $offset, $limit, $count);
+                    return $entry;
+                }
+                
+                foreach ($arrayConditions as $value) {
+                    list($op1, $f1) = explode('.', $value);
+                    if(strpos($f1, 'cat_field') !== false) {
+                        $cat_id = (int)str_replace('cat_', '', $op1);
+                        break;
+                    }
+                    unset($value);
+                }
+                // Get all entry use op1,op2,f1,f2
+                $entry =  $this->getEntryUseField($arrayConditions, $offset, $limit, $count);
+                $categories = SPFactory::Category($cat_id);
+                $pids = $categories->getChilds('category', true);
+                if(count($pids) == 0) {
+                    $pids = $cat_id;
+                }
+                $conditions[ 'sprl.pid' ] = $pids;
+                
+                unset($pids);
+            } else {
+                $SID = $this->getSid();
+                $section = SPFactory::Model( 'section' );
+                $section->init( $SID );
+                unset($SID); 
+                $pids = $section->getChilds('category', true);
+                //var_dump($pids); ;die("test2");
+                if(count($pids) == 0) {
+                    $pids = $cat_id;
+                }
+                $conditions[ 'sprl.pid' ] = $pids;
+                
+                unset($pids);
+            }
+            
+            //$eOrder = 'createdTime.desc';
+            $eOrder = '';
+            $db =& SPFactory::db();
+            /* get the ordering and the direction */
+            $oPrefix = 'spo.';
+            $conditions['spo.oType'] = 'entry';
+            $conditions['spo.state'] = '1';
+            $conditions['spo.approved'] = '1';
+            //$conditions[ 'sprl.copy' ] = '0';
+            
+            $table = $db->join( array(
+				array( 'table' => 'spdb_relations', 'as' => 'sprl', 'key' => 'id' ),
+				array( 'table' => 'spdb_object', 'as' => 'spo', 'key' => 'id' )                                
+            ) );
+            
+            if($count == true) {
+                $db->select( 'count('.$oPrefix.'id)', $table, $conditions, '', 0 , 0, true );
+                $count_rs = $db->loadResult();
+            } 
+			
+          	$eOrder = 'rand()';  // kiennd: randomize result
+            $db->select( $oPrefix.'id', $table, $conditions, $eOrder, $limit , $offset, true );
+            
+            //var_dump($eOrder); die();
+            unset($table);
+            unset($conditions);
+            unset($eOrder);
+            
+            $results = $db->loadResultArray();
+            unset($db);
+            if(isset($cat_id)) {
+                $result = array_intersect($results, $entry);
+                unset($results);
+                unset($entry);
+                return $result;
+            } else {
+                return $results;
+            }    
         }
         
         /**

@@ -289,7 +289,7 @@ abstract class SPDBObject extends SPObject
 	 * @param bool $recursive
 	 * @return array
 	 */
-	public function getChilds( $type = 'entry', $recursive = false, $state = 0, $name = false )
+	public function getChilds( $type = 'entry', $recursive = false, $state = 0, $name = false, $limit = 200 )
 	{
 		$childs = SPFactory::cache()->getVar( 'childs_'.$type.( $recursive ? '_recursive' : '' ).( $name ? '_full' : '' ).$state, $this->id );
 		if( $childs ) {
@@ -317,11 +317,16 @@ abstract class SPDBObject extends SPObject
 		catch ( SPException $x ) {
 			Sobi::Error( $this->name(), SPLang::e( 'CANNOT_GET_CHILDS_DB_ERR', $x->getMessage() ), SPC::WARNING, 0, __LINE__, __FILE__ );
 		}
+		
 		if( $recursive && count( $results ) ) {
-			foreach ( $results as $cid ) {
-				$this->rGetChilds( $results, $cid, $state );
+			$_results = $results;
+			foreach ( $_results as $cid ) {
+				//$this->rGetChilds( $results, $cid, $state );
+				$this->rGetChilds( $results, $cid ); //kiennd
 			}
+			unset($_results);
 		}
+		
 		if( count( $results ) ) {
 			if( $type == 'all' ) {
 				foreach ( $results as $id => $r ) {
@@ -355,11 +360,16 @@ abstract class SPDBObject extends SPObject
 	 * @param string $type
 	 * @param int $id
 	 */
-	private function rGetChilds( &$results, $id )
+	private function rGetChilds( &$results, $_id )
 	{
-		if( is_array( $id ) ) {
-			$id = $id[ 'id' ];
+		if( is_array( $_id ) ) {
+			$id = $_id[ 'id' ];
 		}
+		else {
+			$id = $_id;
+		}
+		unset($_id);
+		
 		/* @var SPdb $db */
 		$db	=& SPFactory::db();
 		try {
@@ -370,6 +380,10 @@ abstract class SPDBObject extends SPObject
 		catch ( SPException $x ) {
 			Sobi::Error( $this->name(), SPLang::e( 'CANNOT_GET_CHILDS_DB_ERR', $x->getMessage() ), SPC::WARNING, 0, __LINE__, __FILE__ );
 		}
+		
+		unset($cond);
+		unset($db);
+		
 		if( count( $r ) ) {
 			foreach ( $r as $id => $rs ) {
 				$results[ $id ] = $rs;
@@ -377,7 +391,7 @@ abstract class SPDBObject extends SPObject
 			}
 		}
 	}
-
+	
 	/**
 	 */
 	protected function getFullPath()

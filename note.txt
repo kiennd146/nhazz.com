@@ -28,3 +28,14 @@ components/com_sobipro/usr/templates/nhazz/common/vcard.xsl
 View:
 components/com_sobipro/lib/views/section.php
 
+Page chuyen gia
+Template: 
+component/com_tvtma_user_presenter/views/tvtmauserpresenter/tmpl/default.php
+Model:
+component/com_tvtma_user_presenter/model/tvtmauserpresenter.php
+
+Page San pham
+Template:
+components/com_sobipro/usr/templates/nhazz_pro/common/vcard.xsl
+View:
+components/com_sobipro/lib/views/section.php
