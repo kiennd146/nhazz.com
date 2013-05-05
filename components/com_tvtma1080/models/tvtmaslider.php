@@ -60,7 +60,7 @@ class TvtMA1080ModelTvtMASlider extends JModelItem
                 
                 unset($pids);
             }
-            
+             
             //$eOrder = 'createdTime.desc';
             $eOrder = '';
             $db =& SPFactory::db();
@@ -99,10 +99,7 @@ class TvtMA1080ModelTvtMASlider extends JModelItem
                 //return $results;
             } else {
                 return $results;
-            }
-            
-            
-            
+            }  
         }
         
         
@@ -111,6 +108,7 @@ class TvtMA1080ModelTvtMASlider extends JModelItem
             $entry = array();
             $conditions = array(); 
             /* var SPDb $db */
+            
             if(isset($cat_id)) {
                 $arrayConditions = explode('|', $cat_id);
                 if(!strpos($cat_id, 'cat_field') !== false) {
@@ -135,21 +133,21 @@ class TvtMA1080ModelTvtMASlider extends JModelItem
                 }
                 $conditions[ 'sprl.pid' ] = $pids;
                 
-                unset($pids);
             } else {
                 $SID = $this->getSid();
                 $section = SPFactory::Model( 'section' );
                 $section->init( $SID );
                 unset($SID); 
                 $pids = $section->getChilds('category', true);
-                //var_dump($pids); ;die("test2");
+                
                 if(count($pids) == 0) {
                     $pids = $cat_id;
                 }
                 $conditions[ 'sprl.pid' ] = $pids;
                 
-                unset($pids);
             }
+            
+            unset($pids);
             
             //$eOrder = 'createdTime.desc';
             $eOrder = '';
@@ -159,7 +157,6 @@ class TvtMA1080ModelTvtMASlider extends JModelItem
             $conditions['spo.oType'] = 'entry';
             $conditions['spo.state'] = '1';
             $conditions['spo.approved'] = '1';
-            //$conditions[ 'sprl.copy' ] = '0';
             
             $table = $db->join( array(
 				array( 'table' => 'spdb_relations', 'as' => 'sprl', 'key' => 'id' ),
@@ -168,18 +165,19 @@ class TvtMA1080ModelTvtMASlider extends JModelItem
             
             if($count == true) {
                 $db->select( 'count('.$oPrefix.'id)', $table, $conditions, '', 0 , 0, true );
-                $count_rs = $db->loadResult();
+                $count_rs = (int)$db->loadResult();
             } 
 			
           	$eOrder = 'rand()';  // kiennd: randomize result
             $db->select( $oPrefix.'id', $table, $conditions, $eOrder, $limit , $offset, true );
-            
-            //var_dump($eOrder); die();
+
             unset($table);
             unset($conditions);
             unset($eOrder);
             
             $results = $db->loadResultArray();
+            //var_dump($results);die();
+            
             unset($db);
             if(isset($cat_id)) {
                 $result = array_intersect($results, $entry);
@@ -188,7 +186,7 @@ class TvtMA1080ModelTvtMASlider extends JModelItem
                 return $result;
             } else {
                 return $results;
-            }    
+            }   
         }
         
         /**

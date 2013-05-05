@@ -49676,7 +49676,7 @@ nhazz
 11=Z:\workspace\nhazz.com\components\com_sobipro\lib\models\dbobject.php
 [Selected Project Files]
 Main=
-Selected=Z:\workspace\nhazz.com\components\com_sobipro\lib\models\dbobject.php
+Selected=Z:\workspace\nhazz.com\components\com_tvtma1080\views\tvtmaslider\view.json.php
 [components\com_sobipro\lib\views\section.php]
 TopLine=1
 Caret=1,1
@@ -49705,11 +49705,11 @@ Caret=1,1
 TopLine=1
 Caret=1,1
 [components\com_tvtma1080\views\tvtmaslider\view.json.php]
-TopLine=22
-Caret=89,31
+TopLine=19
+Caret=48,32
 [components\com_tvtma1080\models\tvtmaslider.php]
-TopLine=128
-Caret=44,144
+TopLine=71
+Caret=23,87
 [components\com_sobipro\lib\models\dbobject.php]
-TopLine=288
-Caret=27,292
+TopLine=47
+Caret=24,47

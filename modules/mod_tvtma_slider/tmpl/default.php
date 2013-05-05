@@ -91,7 +91,7 @@ jQuery(document).ready(function() {
                     extend: function() {
                         function next(){
                             jQuery("#mod_tvtma_slider_offset").val(  parseInt(jQuery("#mod_tvtma_slider_offset").val()) + 1);
-                            jQuery("#mod_tvtma_slider_limit").val(parseInt(1));
+                            jQuery("#mod_tvtma_slider_limit").val(1);
                             jQuery.ajax({
                                     type: "POST",
                                     url: "index.php",

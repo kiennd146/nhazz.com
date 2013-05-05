@@ -29,8 +29,7 @@ class TvtMA1080ViewTvtMASlider extends JView
         // Get list entry
         $totalImage = 0;
         $lists = $model->dataListWithCount($menu_id, $offset, $limit, true, $totalImage);
-        //var_dump($totalImage);die(); //kiennd
-        //$totalImage = count($model->dataList($menu_id, $offset, $limit, true));
+
         $datas = array(); 
         foreach ($lists as $list) {
             $entry = SPFactory::Entry($list);
@@ -72,7 +71,7 @@ class TvtMA1080ViewTvtMASlider extends JView
         $result['json'] = $datas;
         unset($datas);
         $result['total'] = $totalImage . " " . JText::_('PICTURE');
-        //var_dump($lists);
+        //var_dump($result);die();
         
         echo json_encode($result);
 	}

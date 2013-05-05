@@ -320,10 +320,10 @@ abstract class SPDBObject extends SPObject
 		
 		if( $recursive && count( $results ) ) {
 			$_results = $results;
-			foreach ( $_results as $cid ) {
-				//$this->rGetChilds( $results, $cid, $state );
-				$this->rGetChilds( $results, $cid ); //kiennd
-			}
+			//foreach ( $_results as $cid ) {
+				//$this->rGetChilds( $results, $cid ); //kiennd
+			//}
+			$this->rGetChildren( $results, $_results ); //kiennd
 			unset($_results);
 		}
 		
@@ -355,6 +355,47 @@ abstract class SPDBObject extends SPObject
 		return $childs;
 	}
 
+	/**
+	 * @author kiennd	
+	 * @param array $results
+	 * @param string $type
+	 * @param int $id
+	 */
+	private function rGetChildren( &$results, $_id )
+	{
+		$id = array();
+		if( is_array( $_id ) ) {
+			foreach($_id as $item_id) {
+				$id[] = $item_id[ 'id' ];
+			}
+		}
+		else {
+			$id = array($_id);
+		}
+		unset($_id);
+		
+		/* @var SPdb $db */
+		$db	=& SPFactory::db();
+		try {
+			$cond = array( 'pid' => $id );
+			$db->select( array( 'id', 'oType' ), 'spdb_relations', $cond );
+			$r = $db->loadAssocList( 'id' );
+		}
+		catch ( SPException $x ) {
+			Sobi::Error( $this->name(), SPLang::e( 'CANNOT_GET_CHILDS_DB_ERR', $x->getMessage() ), SPC::WARNING, 0, __LINE__, __FILE__ );
+		}
+		
+		unset($cond);
+		unset($db);
+		
+		if( count( $r ) ) {
+			foreach ( $r as $id => $rs ) {
+				$results[ $id ] = $rs;	
+			}
+			$this->rGetChildren( $results, $r );
+		}
+	}
+	
 	/**
 	 * @param array $results
 	 * @param string $type
