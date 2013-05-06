@@ -28,16 +28,25 @@ class modTVTMASobiproMenuHelper {
     }
     
     public static function getList($fieldId){
-	$db = JFactory::getDBO();
-	$query = $db->getQuery(true);
-	$query->select('sfo.optValue as value,sl.sValue as text');
-	$query->from('#__sobipro_field_option as sfo,#__sobipro_language as sl');
-	$query->where('sfo.fid=' . $db->quote($fieldId));
-	$query->where('sl.sKey=sfo.optValue');
-	$query->group('sfo.optValue');
-        $db->setQuery($query);
-        $rows = $db->loadObjectList();
-        return $rows;
+		$db = JFactory::getDBO();
+		$query = $db->getQuery(true);
+		/*
+		$query->select('sfo.optValue as value,sl.sValue as text');
+		$query->from('#__sobipro_field_option as sfo,#__sobipro_language as sl');
+		$query->where('sfo.fid=' . $db->quote($fieldId));
+		$query->where('sl.sKey=sfo.optValue');
+		*/
+		$query->select('sfo.optValue as value,sl.sValue as text');
+		$query->from('#__sobipro_field_option as sfo');
+		$query->join('inner', '#__sobipro_language as sl on sl.sKey=sfo.optValue');
+		
+		$query->where('sfo.fid=' . $db->quote($fieldId));
+		//$query->where('sl.sKey=sfo.optValue');
+		
+		$query->group('sfo.optValue');
+		$db->setQuery($query);
+		$rows = $db->loadObjectList();
+		return $rows;
     }
 
 }

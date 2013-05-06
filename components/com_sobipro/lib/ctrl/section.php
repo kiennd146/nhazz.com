@@ -63,10 +63,12 @@ class SPSectionCtrl extends SPController
         /* get the right ordering */
         $eOrder = $this->parseOrdering( 'entries', 'eorder', $this->tKey( $this->template, 'entries_ordering', Sobi::Cfg( 'list.entries_ordering', 'name.asc' ) ) );
         $cOrder = $this->parseOrdering( 'categories', 'corder', $this->tKey( $this->template, 'categories_ordering', Sobi::Cfg( 'list.categories_ordering', 'name.asc' ) ) );
-
+		
         /* get entries */
-        $eCount = count( $this->getEntries( $eOrder, 0, 0, true, null, $entriesRecursive ) );
-        $entries = $this->getEntries( $eOrder, $eLimit, $eLimStart, false, null, $entriesRecursive );
+        //$eCount = count( $this->getEntries( $eOrder, 0, 0, true, null, $entriesRecursive ) );
+        $eCount = 0;
+        $entries = $this->getEntries( $eOrder, $eLimit, $eLimStart, true, null, $entriesRecursive, 0, $eCount);
+        
         $categories = array();
         if ( $cLim ) {
             $categories = $this->getCats( $cOrder, $cLim );
@@ -112,10 +114,12 @@ class SPSectionCtrl extends SPController
      */
     public function getCats( $cOrder, $cLim = 0 )
     {
-        $categories = array();
+        //$categories = array();
+        $results = array();
         $cOrder = trim( $cOrder );
         $cLim = $cLim > 0 ? $cLim : 0;
-        if ( $this->_model->getChilds( 'category' ) ) {
+        $category_children =  $this->_model->getChilds( 'category' );
+        if ( $category_children ) {
             /* var SPDb $db */
             $db =& SPFactory::db();
             $oPrefix = null;
@@ -186,7 +190,8 @@ class SPSectionCtrl extends SPController
             else {
                 $conditions = array_merge( $conditions, array( $oPrefix . 'state' => '1', $oPrefix . 'approved' => '1', '@VALID' => $db->valid( $oPrefix . 'validUntil', $oPrefix . 'validSince' ) ) );
             }
-            $conditions[ $oPrefix . 'id' ] = $this->_model->getChilds( 'category' );
+            //$conditions[ $oPrefix . 'id' ] = $this->_model->getChilds( 'category' );
+            $conditions[ $oPrefix . 'id' ] = $category_children;
             try {
                 $db->select( $oPrefix . 'id', $table, $conditions, $cOrder, $cLim, 0, true );
                 $results = $db->loadResultArray();
@@ -195,14 +200,16 @@ class SPSectionCtrl extends SPController
                 Sobi::Error( $this->name(), SPLang::e( 'DB_REPORTS_ERR', $x->getMessage() ), SPC::WARNING, 0, __LINE__, __FILE__ );
             }
             Sobi::Trigger( $this->name(), 'AfterGetCategories', array( &$results ) );
-            if ( $results && count( $results ) ) {
-                foreach ( $results as $i => $cid ) {
-                    $categories[ $i ] = $cid; // new $cClass();
-                    //$categories[ $i ]->init( $cid );
-                }
-            }
+            
+            // kiennd comment because of stupid code :|
+            //if ( $results && count( $results ) ) {
+            //    foreach ( $results as $i => $cid ) {
+            //        $categories[ $i ] = $cid; // new $cClass();
+            //        //$categories[ $i ]->init( $cid );
+            //    }
+            //}
         }
-        return $categories;
+        return $results;
     }
 
     protected function userPermissionsQuery( &$conditions, $oPrefix = null )
@@ -239,9 +246,9 @@ class SPSectionCtrl extends SPController
      * @param int $eLimStart
      * @return array
      */
-    public function getEntries( $eOrder, $eLimit = null, $eLimStart = null, $count = false, $conditions = array(), $entriesRecursive = false, $pid = 0 )
+    public function getEntries( $eOrder, $eLimit = null, $eLimStart = null, $count = false, $conditions = array(), $entriesRecursive = false, $pid = 0, &$eCount )
     {
-        /* var SPDb $db */
+        /* var SPDb $db */ 
         $db =& SPFactory::db();
         $eClass = SPLoader::loadModel( 'entry' );
         $entries = array();
@@ -255,12 +262,7 @@ class SPSectionCtrl extends SPController
             $eOrder = array_shift( $eOr );
             $eDir = implode( '.', $eOr );
         }
-//
-//        if ( strstr( $eOrder, '.' ) ) {
-//            $eOrder = explode( '.', $eOrder );
-//            $eDir = $eOrder[ 1 ];
-//            $eOrder = $eOrder[ 0 ];
-//        }
+
         $pid = $pid ? $pid : SPRequest::sid();
         /* if sort by name, then sort by the name field */
         if ( $eOrder == 'name' ) {
@@ -341,6 +343,17 @@ class SPSectionCtrl extends SPController
             $conditions = array_merge( $conditions, array( $oPrefix . 'state' => '1', '@VALID' => $db->valid( $oPrefix . 'validUntil', $oPrefix . 'validSince' ) ) );
             $conditions[ 'sprl.copy' ] = '0';
         }
+        
+        if ( $count ) {
+            try {
+	            $db->select( 'count('.$oPrefix . 'id)', $table, $conditions, '', 0, 0, true );
+	            $eCount = $db->loadResult();
+	        }
+	        catch ( SPException $x ) {
+	            Sobi::Error( $this->name(), SPLang::e( 'DB_REPORTS_ERR', $x->getMessage() ), SPC::WARNING, 0, __LINE__, __FILE__ );
+	        }
+        }
+        
         try {
             $db->select( $oPrefix . 'id', $table, $conditions, $eOrder, $eLimit, $eLimStart, true );
             $results = $db->loadResultArray();
@@ -349,17 +362,22 @@ class SPSectionCtrl extends SPController
             Sobi::Error( $this->name(), SPLang::e( 'DB_REPORTS_ERR', $x->getMessage() ), SPC::WARNING, 0, __LINE__, __FILE__ );
         }
         Sobi::Trigger( $this->name(), 'AfterGetEntries', array( &$results, $count ) );
-        if ( count( $results ) && !$count ) {
-            $memLimit = ( int )ini_get( 'memory_limit' ) * 2097152;
-            foreach ( $results as $i => $sid ) {
+        
+        // kiennd comment because of stupid code :|        
+        //if ( count( $results ) && !$count ) {
+        //    $memLimit = ( int )ini_get( 'memory_limit' ) * 2097152;
+        //    foreach ( $results as $i => $sid ) {
                 // it needs too much memory moving the object creation to the view
                 //$entries[ $i ] = SPFactory::Entry( $sid );
-                $entries[ $i ] = $sid;
-            }
-        }
-        if ( $count ) {
-            return $results;
-        }
-        return $entries;
+        //        $entries[ $i ] = $sid;
+        //    }
+        //}
+        
+        		        
+        //if ( $count ) {
+        //    return $results;
+        //}
+               
+        return $results;
     }
 }

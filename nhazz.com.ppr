@@ -14,7 +14,7 @@ Extensions=*.*
 [Project tree]
 nhazz
 	+nhazz.com
-		-.git
+		+.git
 			-hooks
 				Z:\workspace\nhazz.com\.git\hooks\applypatch-msg.sample
 				Z:\workspace\nhazz.com\.git\hooks\commit-msg.sample
@@ -7279,9 +7279,9 @@ nhazz
 				Z:\workspace\nhazz.com\components\com_search\index.html
 				Z:\workspace\nhazz.com\components\com_search\router.php
 				Z:\workspace\nhazz.com\components\com_search\search.php
-			-com_sobipro
+			+com_sobipro
 				-etc
-					-adm
+					+adm
 						Z:\workspace\nhazz.com\components\com_sobipro\etc\adm\.htaccess
 						Z:\workspace\nhazz.com\components\com_sobipro\etc\adm\calendar.ini
 						Z:\workspace\nhazz.com\components\com_sobipro\etc\adm\config.ini
@@ -7315,7 +7315,7 @@ nhazz
 					Z:\workspace\nhazz.com\components\com_sobipro\etc\news.xml
 					Z:\workspace\nhazz.com\components\com_sobipro\etc\paypal.ini
 					Z:\workspace\nhazz.com\components\com_sobipro\etc\template_functions.ini
-				-lib
+				+lib
 					-base
 						-fs
 							Z:\workspace\nhazz.com\components\com_sobipro\lib\base\fs\.htaccess
@@ -7561,7 +7561,7 @@ nhazz
 						Z:\workspace\nhazz.com\components\com_sobipro\lib\mlo\template_xslt.php
 						Z:\workspace\nhazz.com\components\com_sobipro\lib\mlo\tooltip.php
 						Z:\workspace\nhazz.com\components\com_sobipro\lib\mlo\tree.php
-					-models
+					+models
 						-adm
 							Z:\workspace\nhazz.com\components\com_sobipro\lib\models\adm\entry.php
 							Z:\workspace\nhazz.com\components\com_sobipro\lib\models\adm\field.php
@@ -7577,7 +7577,7 @@ nhazz
 						Z:\workspace\nhazz.com\components\com_sobipro\lib\models\field.php
 						Z:\workspace\nhazz.com\components\com_sobipro\lib\models\index.html
 						Z:\workspace\nhazz.com\components\com_sobipro\lib\models\section.php
-					-plugins
+					+plugins
 						Z:\workspace\nhazz.com\components\com_sobipro\lib\plugins\.htaccess
 						Z:\workspace\nhazz.com\components\com_sobipro\lib\plugins\index.html
 						Z:\workspace\nhazz.com\components\com_sobipro\lib\plugins\interface.php
@@ -7606,7 +7606,7 @@ nhazz
 						Z:\workspace\nhazz.com\components\com_sobipro\lib\types\array.php
 						Z:\workspace\nhazz.com\components\com_sobipro\lib\types\index.html
 						Z:\workspace\nhazz.com\components\com_sobipro\lib\types\string.php
-					-views
+					+views
 						-adm
 							Z:\workspace\nhazz.com\components\com_sobipro\lib\views\adm\.htaccess
 							Z:\workspace\nhazz.com\components\com_sobipro\lib\views\adm\acl.php
@@ -7635,7 +7635,7 @@ nhazz
 						Z:\workspace\nhazz.com\components\com_sobipro\lib\views\view.php
 					Z:\workspace\nhazz.com\components\com_sobipro\lib\index.html
 					Z:\workspace\nhazz.com\components\com_sobipro\lib\sobi.php
-				-opt
+				+opt
 					-fields
 						-adm
 							Z:\workspace\nhazz.com\components\com_sobipro\opt\fields\adm\chbxgroup.php
@@ -7659,7 +7659,7 @@ nhazz
 						Z:\workspace\nhazz.com\components\com_sobipro\opt\fields\select.php
 						Z:\workspace\nhazz.com\components\com_sobipro\opt\fields\textarea.php
 						Z:\workspace\nhazz.com\components\com_sobipro\opt\fields\url.php
-					-listing
+					+listing
 						Z:\workspace\nhazz.com\components\com_sobipro\opt\listing\alpha.php
 						Z:\workspace\nhazz.com\components\com_sobipro\opt\listing\index.html
 					-plugins
@@ -8385,7 +8385,7 @@ nhazz
 							Z:\workspace\nhazz.com\components\com_sobipro\usr\templates\vehicles\template.xml
 						Z:\workspace\nhazz.com\components\com_sobipro\usr\templates\index.html
 					Z:\workspace\nhazz.com\components\com_sobipro\usr\index.html
-				-var
+				+var
 					-cache
 						Z:\workspace\nhazz.com\components\com_sobipro\var\cache\index.html
 					-css
@@ -8401,8 +8401,8 @@ nhazz
 					-xml
 						Z:\workspace\nhazz.com\components\com_sobipro\var\xml\index.html
 					Z:\workspace\nhazz.com\components\com_sobipro\var\index.html
-				-views
-					+tpl
+				+views
+					-tpl
 						Z:\workspace\nhazz.com\components\com_sobipro\views\tpl\chooser.php
 						Z:\workspace\nhazz.com\components\com_sobipro\views\tpl\icon.php
 						Z:\workspace\nhazz.com\components\com_sobipro\views\tpl\index.html
@@ -8436,7 +8436,7 @@ nhazz
 				Z:\workspace\nhazz.com\components\com_tvtma_user_presenter\controller.php
 				Z:\workspace\nhazz.com\components\com_tvtma_user_presenter\index.html
 				Z:\workspace\nhazz.com\components\com_tvtma_user_presenter\tvtma_user_presenter.php
-			+com_tvtma1080
+			-com_tvtma1080
 				-js
 					Z:\workspace\nhazz.com\components\com_tvtma1080\js\index.html
 					Z:\workspace\nhazz.com\components\com_tvtma1080\js\jquery.bpopup-0.7.0.min.js
@@ -41312,7 +41312,7 @@ nhazz
 				Z:\workspace\nhazz.com\language\vi-VN\vi-VN.tpl_beez5.sys.ini
 				Z:\workspace\nhazz.com\language\vi-VN\vi-VN.xml
 			Z:\workspace\nhazz.com\language\index.html
-		-libraries
+		+libraries
 			-cms
 				-captcha
 					Z:\workspace\nhazz.com\libraries\cms\captcha\captcha.php
@@ -41625,7 +41625,7 @@ nhazz
 					Z:\workspace\nhazz.com\libraries\joomla\github\object.php
 					Z:\workspace\nhazz.com\libraries\joomla\github\pulls.php
 					Z:\workspace\nhazz.com\libraries\joomla\github\refs.php
-				-html
+				+html
 					-html
 						Z:\workspace\nhazz.com\libraries\joomla\html\html\access.php
 						Z:\workspace\nhazz.com\libraries\joomla\html\html\batch.php
@@ -41715,7 +41715,7 @@ nhazz
 					Z:\workspace\nhazz.com\libraries\joomla\http\index.html
 					Z:\workspace\nhazz.com\libraries\joomla\http\response.php
 					Z:\workspace\nhazz.com\libraries\joomla\http\transport.php
-				+image
+				-image
 					-filters
 						Z:\workspace\nhazz.com\libraries\joomla\image\filters\brightness.php
 						Z:\workspace\nhazz.com\libraries\joomla\image\filters\contrast.php
@@ -43128,7 +43128,7 @@ nhazz
 					Z:\workspace\nhazz.com\media\system\swf\uploader.swf
 				Z:\workspace\nhazz.com\media\system\index.html
 			Z:\workspace\nhazz.com\media\index.html
-		+modules
+		-modules
 			-mod_articles_archive
 				-tmpl
 					Z:\workspace\nhazz.com\modules\mod_articles_archive\tmpl\default.php
@@ -43709,7 +43709,7 @@ nhazz
 				Z:\workspace\nhazz.com\modules\mod_tvtma_slider\mod_tvtma_slider.php
 				Z:\workspace\nhazz.com\modules\mod_tvtma_slider\mod_tvtma_slider.xml
 				Z:\workspace\nhazz.com\modules\mod_tvtma_slider\section.php
-			+mod_tvtma_sobipro_entries
+			-mod_tvtma_sobipro_entries
 				-includes
 					-css
 						Z:\workspace\nhazz.com\modules\mod_tvtma_sobipro_entries\includes\css\blockactive.gif
@@ -49666,17 +49666,24 @@ nhazz
 1=Z:\workspace\nhazz.com\components\com_sobipro\usr\templates\nhazz_pro\common\vcard.xsl
 2=Z:\workspace\nhazz.com\components\com_sobipro\usr\templates\nhazz\common\vcard.xsl
 3=Z:\workspace\nhazz.com\modules\mod_tvtma_slider\tmpl\default.php
-4=Z:\workspace\nhazz.com\components\com_vitabook\models\message.php
-5=Z:\workspace\nhazz.com\components\com_vitabook\models\vitabook.php
-6=Z:\workspace\nhazz.com\components\com_vitabook\views\vitabook\view.raw.php
-7=Z:\workspace\nhazz.com\components\com_vitabook\views\vitabook\view.html.php
-8=Z:\workspace\nhazz.com\components\com_vitabook\controllers\message.raw.php
-9=Z:\workspace\nhazz.com\components\com_tvtma1080\views\tvtmaslider\view.json.php
-10=Z:\workspace\nhazz.com\components\com_tvtma1080\models\tvtmaslider.php
-11=Z:\workspace\nhazz.com\components\com_sobipro\lib\models\dbobject.php
+4=Z:\workspace\nhazz.com\components\com_vitabook\models\vitabook.php
+5=Z:\workspace\nhazz.com\components\com_vitabook\views\vitabook\view.raw.php
+6=Z:\workspace\nhazz.com\components\com_tvtma1080\views\tvtmaslider\view.json.php
+7=Z:\workspace\nhazz.com\components\com_tvtma1080\models\tvtmaslider.php
+8=Z:\workspace\nhazz.com\components\com_sobipro\lib\models\dbobject.php
+9=Z:\workspace\nhazz.com\components\com_sobipro\sobipro.php
+10=Z:\workspace\nhazz.com\components\com_sobipro\views\index.html
+11=Z:\workspace\nhazz.com\components\com_sobipro\changelog.txt
+12=Z:\workspace\nhazz.com\components\com_sobipro\opt\listing\alpha.php
+13=Z:\workspace\nhazz.com\components\com_sobipro\lib\models\category.php
+14=Z:\workspace\nhazz.com\components\com_sobipro\lib\models\datamodel.php
+15=Z:\workspace\nhazz.com\components\com_sobipro\lib\models\entry.php
+16=Z:\workspace\nhazz.com\components\com_sobipro\lib\ctrl\listing.php
+17=Z:\workspace\nhazz.com\libraries\joomla\image\image.php
+18=Z:\workspace\nhazz.com\libraries\joomla\html\html.php
 [Selected Project Files]
 Main=
-Selected=Z:\workspace\nhazz.com\components\com_tvtma1080\views\tvtmaslider\view.json.php
+Selected=Z:\workspace\nhazz.com\libraries\joomla\html\html.php
 [components\com_sobipro\lib\views\section.php]
 TopLine=1
 Caret=1,1
@@ -49689,27 +49696,48 @@ Caret=1,1
 [modules\mod_tvtma_slider\tmpl\default.php]
 TopLine=1
 Caret=1,1
-[components\com_vitabook\models\message.php]
-TopLine=1
-Caret=1,1
 [components\com_vitabook\models\vitabook.php]
 TopLine=1
 Caret=1,1
 [components\com_vitabook\views\vitabook\view.raw.php]
 TopLine=1
 Caret=1,1
-[components\com_vitabook\views\vitabook\view.html.php]
-TopLine=1
-Caret=1,1
-[components\com_vitabook\controllers\message.raw.php]
-TopLine=1
-Caret=1,1
 [components\com_tvtma1080\views\tvtmaslider\view.json.php]
-TopLine=19
-Caret=48,32
+TopLine=1
+Caret=1,1
 [components\com_tvtma1080\models\tvtmaslider.php]
-TopLine=71
-Caret=23,87
+TopLine=1
+Caret=1,1
 [components\com_sobipro\lib\models\dbobject.php]
-TopLine=47
-Caret=24,47
+TopLine=1
+Caret=1,1
+[components\com_sobipro\sobipro.php]
+TopLine=1
+Caret=1,1
+[components\com_sobipro\views\index.html]
+TopLine=1
+Caret=1,1
+[components\com_sobipro\changelog.txt]
+TopLine=1
+Caret=1,1
+[components\com_sobipro\opt\listing\alpha.php]
+TopLine=1
+Caret=1,1
+[components\com_sobipro\lib\models\category.php]
+TopLine=1
+Caret=1,1
+[components\com_sobipro\lib\models\datamodel.php]
+TopLine=27
+Caret=1,1
+[components\com_sobipro\lib\models\entry.php]
+TopLine=1
+Caret=1,1
+[components\com_sobipro\lib\ctrl\listing.php]
+TopLine=1
+Caret=1,1
+[libraries\joomla\image\image.php]
+TopLine=755
+Caret=25,773
+[libraries\joomla\html\html.php]
+TopLine=922
+Caret=9,939

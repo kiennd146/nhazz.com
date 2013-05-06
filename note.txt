@@ -39,3 +39,10 @@ Template:
 components/com_sobipro/usr/templates/nhazz_pro/common/vcard.xsl
 View:
 components/com_sobipro/lib/views/section.php
+
+
+Optimize code
+Page hinhanh
+components/com_sobipro/lib/ctrl/section.php
+function view()
+template nhazz.section.view
