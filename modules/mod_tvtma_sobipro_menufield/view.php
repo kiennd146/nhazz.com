@@ -27,7 +27,7 @@ SPLoader::loadView( 'section' );
 class SPCatModView extends SPSectionView
 {
 	public function display()
-	{
+	{     
 		$data = array();
                 $sid=$this->get('sid');
                 $data['sid'] = $sid;
@@ -35,28 +35,54 @@ class SPCatModView extends SPSectionView
                 $data['viewall'] = JRoute::_('index.php?option=com_sobipro&sid='.$sid);
                 $data['nid']= $this->getnid($fid);
 		$visitor = $this->get( 'visitor' );
+		
 		$current = $this->get( 'section' );
 		$entries = $this->get( 'entries' );
 		$debug = $this->get( 'debug' );
+		
                 $fields = $this->get( 'fields' );
                 require_once dirname( __FILE__ ).'/helper.php';
+              
 		if( count( $entries ) ) {
+
 			foreach ( $entries as $eid ) {
-				$en = $this->category($eid);
-                                $con = SPCatMod::CatNumber($eid);
-                                $pid = $this->getPid($en['id']);
-                                $grandid = $this->getPid($pid);
+			// kiennd optimize
+			$category = SPFactory::Category( $eid );
+			$count_children = SPCatMod::NumberCategoryChildren($eid);
+			
+			if ($count_children > 0) {continue;}
+			$en = array();
+				$en[ 'id' ] = $category->get( 'id' ); 
+            $en[ 'nid' ] = $category->get( 'nid' );
+            $en[ 'name' ] = array(
+                '_complex' => 1,
+                '_data' => $category->get( 'name' ),
+                '_attributes' => array( 'lang' => Sobi::Lang( false ) )
+            );
+            
+            
+                                
+                                
+                                //$pid = $this->getPid($en['id']);
+                                //$grandid = $this->getPid($pid);
                                 $title=JRoute::_('index.php?option=com_sobipro&sid='.$en['id'].'&Itemid=225');
-                                $en['entry'] = $con;
+                                
+                                //$en['entry'] = $count_children;
 				$data[ 'categories' ][] = array(
 					'_complex' => 1,
-					'_attributes' => array( 'id' => $en[ 'id' ], 'alt'=>$en['entry'], 'title'=>$pid, 'grand'=>$grandid,'name'=>$title, ),
+					//'_attributes' => array( 'id' => $en[ 'id' ], 'alt'=>$en['entry'], 'title'=>$pid, 'grand'=>$grandid,'name'=>$title, ),
+					//'_attributes' => array( 'id' => $en[ 'id' ], 'title'=>$pid, 'grand'=>$grandid,'name'=>$title, ),
+					'_attributes' => array( 'id' => $en[ 'id' ], 'name'=>$title, ),
 					'_data' => $en
 				);
                                 
 			}
+			 
+			// kiennd optimize
+			
 			unset($entries);
 		}
+		
                 require_once dirname( __FILE__ ).'/spelements.php';
                 if( count( $fields ) ) {
 			foreach ( $fields as $fiid ) {
@@ -73,6 +99,7 @@ class SPCatModView extends SPSectionView
 			unset($fields);
 		}
 		$data[ 'visitor' ] = $this->visitorArray( $visitor );
+		
 		$this->_attr = $data;
 		$this->_attr[ 'template_path' ] = Sobi::FixPath( str_replace( SOBI_ROOT, Sobi::Cfg( 'live_site' ), dirname( $this->_template.'.xsl' ) ) );
 		$parserClass = SPLoader::loadClass( 'mlo.template_xslt' );

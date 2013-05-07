@@ -45,10 +45,10 @@ class SPCatMod extends SPSectionCtrl
             $view = new SPCatModView();
             // Lấy ra danh sách các danh mục con
             $listCat = $view->getCat($cat_id);
-            $result = array(0);
+            $result = array(0); 
             foreach ($listCat['subcategories'] as $value) {
                 $result[] = $value['_attributes']['id'];
-            }
+            } 
             // Chuyển mảng danh mục con thành chuỗi
             $listString = implode(",", $result);
             $db =& SPFactory::db();
@@ -61,6 +61,24 @@ class SPCatMod extends SPSectionCtrl
         
         }
 
+		/**
+         * @author: Kiennd
+         * @purpose: Count the category children of a category         
+         * @param integer $cat_id
+         * @return integer 
+         */
+        public static function NumberCategoryChildren($cat_id) 
+        {
+            $db =& SPFactory::db();
+            $sql = "SELECT COUNT(*) FROM #__sobipro_relations WHERE pid IN (".$cat_id.") AND oType ='category'";
+            // Thực hiện truy vấn
+            $db->setQuery($sql);
+            $query_result = $db->loadResult();
+
+            return $query_result;
+        
+        }
+        
 	public function display( $params )
 	{
 		$template = SOBI_PATH.'/usr/templates/front/modules/cat/'.$params->get( 'tplFile' );
@@ -92,8 +110,10 @@ class SPCatMod extends SPSectionCtrl
 		$pid = $params->get( 'sid' );
 		$this->setModel( 'section' );
 		$this->_model->init( $pid );
+		
                 // Lấy danh sách danh mục con của section
 		$pids = $this->_model->getChilds( 'category', true );
+		
                 if( is_array( $pids ) ) {
                         $pids = array_keys( $pids );
                 }
