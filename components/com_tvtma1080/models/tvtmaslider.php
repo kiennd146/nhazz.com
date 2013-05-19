@@ -113,8 +113,8 @@ class TvtMA1080ModelTvtMASlider extends JModelItem
                 $arrayConditions = explode('|', $cat_id);
                 
                 if(!strpos($cat_id, 'cat_field') !== false) {
-                    $entry =  $this->getEntryUseField($arrayConditions, $offset, $limit, $count);
-                    if ($count) $count_rs = count($entry);
+                    $entry =  $this->getEntryUseFieldWithCount($arrayConditions, $offset, $limit, $count, $count_rs);
+                    //$count_rs = count($entry);
                     return $entry;
                 }
                 
@@ -127,7 +127,8 @@ class TvtMA1080ModelTvtMASlider extends JModelItem
                     unset($value);
                 }
                 // Get all entry use op1,op2,f1,f2
-                $entry =  $this->getEntryUseField($arrayConditions, $offset, $limit, $count);
+                $count_entry_rs = 0;
+                $entry =  $this->getEntryUseFieldWithCount($arrayConditions, $offset, $limit, $count, $count_entry_rs);
                 $categories = SPFactory::Category($cat_id);
                 $pids = $categories->getChilds('category', true);
                 if(count($pids) == 0) {
@@ -293,7 +294,120 @@ class TvtMA1080ModelTvtMASlider extends JModelItem
             return $section_id;
         }
         
-        
+        /**
+         * Get All entry use field data
+         * string $cat_id
+         * @return array 
+         */
+        function getEntryUseFieldWithCount($arrayConditions,$offset = 0, $limit = 5, $count = false, &$count_rs=0)
+        {
+            $listOp = array();
+            $listField = array();
+            foreach ($arrayConditions as $value) {
+				$listArray = explode('.', $value);
+				if(count($listArray) >= 2) {
+				    list($op1, $f1) = explode('.', $value);
+				} else {
+				    $op1 = $listArray[0];
+				    $f1  = "" ;
+				}
+		                
+                if(strpos($op1, 'op_') !== false) {
+                    $temp  = str_replace('op_', '', $op1);
+                    if($temp) {
+                        $listOp[] = "'" . $temp . "'";
+                        
+                    }
+				    if($f1 && $f1 != "") {
+					$listField[] = str_replace('field_', '', $f1);
+				    }
+                }
+                unset($value);
+            }
+            
+            $condition = "";
+            if($listOp && count($listOp) == 1) { // Find with 1 condition
+                $db = JFactory::getDBO();
+                $query = $db->getQuery(true);
+                
+                $query->from('#__sobipro_field_option_selected as sfos,#__sobipro_object as so');
+                $opToString = $listOp[0];
+                $condition = " AND sfos.optValue IN ($opToString)  AND sfos.sid=so.id AND so.state='1' AND so.oType='entry' ";
+                $listFieldString = implode(',', $listField);
+                $query->where("sfos.fid IN ($listFieldString)" . $condition);
+                $query->group('sfos.sid');
+                $query->order('so.createdTime DESC');
+                
+                if ($count == true) {
+                	$query_count = clone $query;
+                	$query_count->select('count(sfos.sid)');
+                    $db->setQuery((string)$query_count);
+                    $count_rs = $db->loadResult();
+                    
+                } 
+				
+                $query->select('sfos.sid');
+                $db->setQuery((string)$query, $offset, $limit);
+                
+                $fields = $db->loadResultArray();
+                unset($query);
+                unset($db);
+            } elseif($listOp && count($listOp) >= 2) { // Use as same as command all
+                $db = JFactory::getDBO();
+                $query = $db->getQuery(true);
+                
+                $query->from('#__sobipro_field_option_selected as sfos,#__sobipro_object as so');
+                foreach ($listOp as $op) {
+                    $entryList = $this->getEntryUseOneField($op, $listField);
+                    $listFieldString = implode(',', $entryList);
+                    $condition .= " AND sfos.sid IN ($listFieldString)";
+                }
+                
+                $listFieldString = implode(',', $listField);
+                $query->where("sfos.fid IN ($listFieldString)" . $condition . " AND sfos.sid=so.id AND so.state='1' AND so.oType='entry'");
+                $query->group('sfos.sid');
+                
+                if($count == true) {
+                	$query_count = clone $query;
+                	$query_count->select('count(sfos.sid)');
+                    $db->setQuery((string)$query_count);
+                    $count_rs = $db->loadResult();
+                }
+                
+				$query->select('sfos.sid');
+				$query->order('so.createdTime DESC');
+				$db->setQuery((string)$query, $offset, $limit);
+                
+                $fields = $db->loadResultArray();
+                unset($query);
+                unset($db);
+            }else { // Find all entry
+                $db = JFactory::getDBO();
+                $query = $db->getQuery(true);
+                
+                $query->from('#__sobipro_field_option_selected as sfos,#__sobipro_object as so');
+                $listFieldString = implode(',', $listField);
+                $query->where("sfos.fid IN ($listFieldString) AND sfos.sid=so.id AND so.state='1' AND so.oType='entry'");
+                $query->group('sfos.sid');                
+                
+                if($count == true) {
+                    $query_count = clone $query;
+                	$query_count->select('count(sfos.sid)');
+                    $db->setQuery((string)$query_count);
+                    $count_rs = $db->loadResult();
+                }
+                
+                $query->select('sfos.sid');
+                $query->order('so.createdTime DESC');
+                $db->setQuery((string)$query, $offset, $limit);
+                
+                $fields = $db->loadResultArray();
+                unset($query);
+                unset($db);
+            }
+            
+            return $fields;
+        }
         /**
          * Get All entry use field data
          * string $cat_id

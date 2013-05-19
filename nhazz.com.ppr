@@ -7279,7 +7279,7 @@ nhazz
 				Z:\workspace\nhazz.com\components\com_search\index.html
 				Z:\workspace\nhazz.com\components\com_search\router.php
 				Z:\workspace\nhazz.com\components\com_search\search.php
-			+com_sobipro
+			-com_sobipro
 				-etc
 					+adm
 						Z:\workspace\nhazz.com\components\com_sobipro\etc\adm\.htaccess
@@ -8436,7 +8436,7 @@ nhazz
 				Z:\workspace\nhazz.com\components\com_tvtma_user_presenter\controller.php
 				Z:\workspace\nhazz.com\components\com_tvtma_user_presenter\index.html
 				Z:\workspace\nhazz.com\components\com_tvtma_user_presenter\tvtma_user_presenter.php
-			-com_tvtma1080
+			+com_tvtma1080
 				-js
 					Z:\workspace\nhazz.com\components\com_tvtma1080\js\index.html
 					Z:\workspace\nhazz.com\components\com_tvtma1080\js\jquery.bpopup-0.7.0.min.js
@@ -49671,15 +49671,16 @@ nhazz
 6=Z:\workspace\nhazz.com\components\com_sobipro\lib\base\factory.php
 7=Z:\workspace\nhazz.com\components\com_sobipro\lib\models\entry.php
 8=Z:\workspace\nhazz.com\components\com_sobipro\lib\base\object.php
-9=Z:\workspace\nhazz.com\components\com_sobipro\lib\models\datamodel.php
-10=Z:\workspace\nhazz.com\components\com_sobipro\lib\models\fields\interface.php
-11=Z:\workspace\nhazz.com\components\com_sobipro\opt\fields\email.php
+9=Z:\workspace\nhazz.com\components\com_sobipro\lib\models\fields\interface.php
+10=Z:\workspace\nhazz.com\components\com_sobipro\opt\fields\email.php
+11=Z:\workspace\nhazz.com\components\com_tvtma1080\models\tvtmaslider.php
+12=Z:\workspace\nhazz.com\components\com_tvtma1080\views\tvtmaslider\view.json.php
 [Selected Project Files]
 Main=
-Selected=Z:\workspace\nhazz.com\components\com_sobipro\opt\fields\email.php
+Selected=Z:\workspace\nhazz.com\components\com_tvtma1080\models\tvtmaslider.php
 [components\com_sobipro\lib\views\section.php]
-TopLine=19
-Caret=9,39
+TopLine=1
+Caret=1,1
 [modules\mod_tvtma_sobipro_menufield\view.php]
 TopLine=1
 Caret=1,1
@@ -49693,23 +49694,26 @@ Caret=1,1
 TopLine=1
 Caret=1,1
 [components\com_sobipro\lib\models\dbobject.php]
-TopLine=18
-Caret=43,28
-[components\com_sobipro\lib\base\factory.php]
 TopLine=1
 Caret=1,1
+[components\com_sobipro\lib\base\factory.php]
+TopLine=96
+Caret=1,1
 [components\com_sobipro\lib\models\entry.php]
-TopLine=531
-Caret=37,543
+TopLine=1
+Caret=1,1
 [components\com_sobipro\lib\base\object.php]
-TopLine=11
-Caret=36,68
-[components\com_sobipro\lib\models\datamodel.php]
-TopLine=28
-Caret=1,28
+TopLine=19
+Caret=6,19
 [components\com_sobipro\lib\models\fields\interface.php]
-TopLine=43
-Caret=1,51
+TopLine=7
+Caret=1,1
 [components\com_sobipro\opt\fields\email.php]
-TopLine=239
-Caret=1,195
+TopLine=21
+Caret=1,1
+[components\com_tvtma1080\models\tvtmaslider.php]
+TopLine=17
+Caret=35,22
+[components\com_tvtma1080\views\tvtmaslider\view.json.php]
+TopLine=23
+Caret=11,31

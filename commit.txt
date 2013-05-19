@@ -1,10 +1,2 @@
-commit.txt
-components/com_sobipro/lib/ctrl/section.php
-components/com_sobipro/lib/models/dbobject.php
 components/com_tvtma1080/models/tvtmaslider.php
 components/com_tvtma1080/views/tvtmaslider/view.json.php
-libraries/joomla/html/html.php
-modules/mod_tvtma_slider/tmpl/default.php
-modules/mod_tvtma_sobipro_menu/helper.php
-modules/mod_tvtma_sobipro_menufield/helper.php
-modules/mod_tvtma_sobipro_menufield/view.php
