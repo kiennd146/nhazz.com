@@ -111,8 +111,10 @@ class TvtMA1080ModelTvtMASlider extends JModelItem
             
             if(isset($cat_id)) {
                 $arrayConditions = explode('|', $cat_id);
+                
                 if(!strpos($cat_id, 'cat_field') !== false) {
                     $entry =  $this->getEntryUseField($arrayConditions, $offset, $limit, $count);
+                    if ($count) $count_rs = count($entry);
                     return $entry;
                 }
                 
@@ -302,24 +304,23 @@ class TvtMA1080ModelTvtMASlider extends JModelItem
             $listOp = array();
             $listField = array();
             foreach ($arrayConditions as $value) {
-		$listArray = explode('.', $value);
-		if(count($listArray) >= 2) {
-		    list($op1, $f1) = explode('.', $value);
-		} else {
-		    $op1 = $listArray[0];
-		    $f1  = "" ;
-		}
-                
+				$listArray = explode('.', $value);
+				if(count($listArray) >= 2) {
+				    list($op1, $f1) = explode('.', $value);
+				} else {
+				    $op1 = $listArray[0];
+				    $f1  = "" ;
+				}
+		                
                 if(strpos($op1, 'op_') !== false) {
                     $temp  = str_replace('op_', '', $op1);
                     if($temp) {
                         $listOp[] = "'" . $temp . "'";
                         
                     }
-		    if($f1 && $f1 != "") {
-			$listField[] = str_replace('field_', '', $f1);
-		    }
-                    
+				    if($f1 && $f1 != "") {
+					$listField[] = str_replace('field_', '', $f1);
+				    }
                 }
                 unset($value);
             }

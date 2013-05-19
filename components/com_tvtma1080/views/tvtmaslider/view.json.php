@@ -28,10 +28,16 @@ class TvtMA1080ViewTvtMASlider extends JView
         $model =& $this->getModel();
         // Get list entry
         $totalImage = 0;
+        //echo $totalImage;die();
         $lists = $model->dataListWithCount($menu_id, $offset, $limit, true, $totalImage);
-
-        $datas = array(); 
+		
+        $datas = array();
+		$i=0; 
         foreach ($lists as $list) {
+        	if ($i == $limit) {
+				break;
+			}
+        	$i++;
             $entry = SPFactory::Entry($list);
             $id = $entry->get('id');
             $fid = $entry->get('primary');
