@@ -73,14 +73,15 @@ var data = [];
 jQuery(document).ready(function() {
      jQuery("#menu_id").val(null);
      jQuery("#mod_tvtma_slider_offset").val(0);
-     jQuery("#mod_tvtma_slider_limit").val(5);
+     jQuery("#mod_tvtma_slider_limit").val(2);
+     console.log("data request: ", jQuery('#mod_tvtma_slider').serialize());
      jQuery.ajax({
         type: "POST",
         url: "index.php",
         data: jQuery('#mod_tvtma_slider').serialize(),
         dataType: "json",
         success: function(request){
-            jQuery("#mod_tvtma_slider_offset").val(5);
+            jQuery("#mod_tvtma_slider_offset").val(1);
             jQuery("#mod_tvtma_slider_total").html(request.total);
             //var result = request;
             //jQuery('#xml_result').html(result.text());
@@ -140,14 +141,14 @@ jQuery(document).ready(function() {
                             //return false;
                             jQuery("#menu_id").val(condition);
                             jQuery("#mod_tvtma_slider_offset").val(0);
-                            jQuery("#mod_tvtma_slider_limit").val(5);
+                            jQuery("#mod_tvtma_slider_limit").val(2);
                             jQuery.ajax({
                                     type: "POST",
                                     url: "index.php",
                                     data: jQuery('#mod_tvtma_slider').serialize(),
                                     dataType: "json",
                                     success: function(request){
-                                        jQuery("#mod_tvtma_slider_offset").val(5);
+                                        jQuery("#mod_tvtma_slider_offset").val(1);
                                         if(request.json.length > 0) {
                                             jQuery("#mod_tvtma_slider_total").html(request.total);
                                             if(gallery._fullscreen.active == true) {
@@ -171,8 +172,7 @@ jQuery(document).ready(function() {
                                             }
 
                                         }
-                                        //alert(JSON.stringify(gallery, null, 4));
-                                        //jQuery("#menu_id").val(null);
+                                        
                                         jQuery('.megamenu').css({'display' : 'none'});
                                     }
                                 });
@@ -313,7 +313,7 @@ jQuery(document).ready(function() {
   <input type="hidden" name="format" value="json" />
   <input type="hidden" name="menu_id" value="" id="menu_id" />
   <input type="hidden" name="offset" value="0" id="mod_tvtma_slider_offset" />
-  <input type="hidden" name="limit" value="5" id="mod_tvtma_slider_limit" />
+  <input type="hidden" name="limit" value="1" id="mod_tvtma_slider_limit" />
   <input type="hidden" name="section_id" value="<?php echo $sectionId;?>"/>
 </form>
 
