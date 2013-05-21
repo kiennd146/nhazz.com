@@ -70,6 +70,10 @@ $lightboxTransitionSpeed    = $params->get('lightboxTransitionSpeed', 500);
 </div>
 <script type="text/javascript">
 var data = [];
+var show_pop_login = false;
+if (jQuery("#login_pop strong").length > 0) {
+	jQuery("#login_pop strong").remove();
+} 
 jQuery(document).ready(function() {
      jQuery("#menu_id").val(null);
      jQuery("#mod_tvtma_slider_offset").val(0);
@@ -222,6 +226,12 @@ jQuery(document).ready(function() {
 						       	e.preventDefault();                                 
 						       	showThem('login_pop');
 							});
+							if (show_pop_login != true ) {
+								showThem('login_pop');
+								jQuery("#login_pop").prepend("<strong>Đăng nhập để xem toàn màn hình</strong>");
+								show_pop_login = true;
+							}
+							
 							<?php } ?>
 							
                             jQuery('#mod_tvtma_slider_more_info').html(about);
