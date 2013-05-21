@@ -75,6 +75,8 @@ jQuery(document).ready(function() {
      jQuery("#mod_tvtma_slider_offset").val(0);
      jQuery("#mod_tvtma_slider_limit").val(2);
      console.log("data request: ", jQuery('#mod_tvtma_slider').serialize());
+
+	 						
      jQuery.ajax({
         type: "POST",
         url: "index.php",
@@ -83,8 +85,6 @@ jQuery(document).ready(function() {
         success: function(request){
             jQuery("#mod_tvtma_slider_offset").val(1);
             jQuery("#mod_tvtma_slider_total").html(request.total);
-            //var result = request;
-            //jQuery('#xml_result').html(result.text());
             data = request.json;
             Galleria.loadTheme('<?php echo $baseurl;?>modules/mod_tvtma_slider/includes/themes/type/galleria.twelve.min.js');
             Galleria.run('#galleria',{
@@ -99,6 +99,11 @@ jQuery(document).ready(function() {
                                     data: jQuery('#mod_tvtma_slider').serialize(),
                                     dataType: "json",
                                     success: function(request){
+                                    	//kiennd trick because event fullscreen exit not works
+                                    	if(gallery._fullscreen.active != true) {
+                                    		jQuery("#mod_tvtma_slider_total").show().html(request.total);
+                                    	}
+                                    	
                                         if(request.json.length > 0) {
                                             gallery.push({
                                                 image: request.json[0].image,
@@ -150,14 +155,17 @@ jQuery(document).ready(function() {
                                     success: function(request){
                                         jQuery("#mod_tvtma_slider_offset").val(1);
                                         if(request.json.length > 0) {
-                                            jQuery("#mod_tvtma_slider_total").html(request.total);
+											jQuery("#mod_tvtma_slider_total").html(request.total);                                         
                                             if(gallery._fullscreen.active == true) {
-                                                gallery.setOptions('width', '100%');
+                                                
+												gallery.setOptions('width', '100%');
                                                 gallery.setOptions('height', '100%');
                                                 gallery.load(request.json);
 
                                             } else {
                                                 gallery.load(request.json);
+                                                //kiennd trick because event fullscreen exit not works
+                                                jQuery("#mod_tvtma_slider_total").show();
                                             }
                                             
 
@@ -204,7 +212,18 @@ jQuery(document).ready(function() {
                             var about = currentIMG.about;
                             var totalImg = gallery.getDataLength();
                             jQuery('#mod_tvtma_slide_pictureAuthor').html(author);
-                            jQuery('.galleria-fullscreen').html('Fullscreen');
+                            
+							<?php if (JFactory::getUser()->id){ ?>
+							jQuery('.galleria-fullscreen').html('Fullscreen');
+							<?php }
+							else { ?>
+							jQuery('<div class="galleria-fullscreen">Fullscreen</div>').insertBefore(jQuery('.galleria-play'));
+							jQuery('.galleria-fullscreen').click(function(e){
+						       	e.preventDefault();                                 
+						       	showThem('login_pop');
+							});
+							<?php } ?>
+							
                             jQuery('#mod_tvtma_slider_more_info').html(about);
                             jQuery('.tvtmaslider-link').html('<?php echo JText::_("MOD_TVTMA_SLIDER_GET_MORE_INFORMATION");?>');
                             //alert(totalImg);
@@ -245,7 +264,6 @@ jQuery(document).ready(function() {
                             
                         });
                         
-                        
                         this.bind("fullscreen_exit", function(e) {
                             var left = jQuery("#tvtslider").offset().left;
                             var top = jQuery("#tvtslider").offset().top;
@@ -261,15 +279,14 @@ jQuery(document).ready(function() {
                             jQuery("#mod_tvtma_slider_cat_name").css({"display" : 'none'});
                             jQuery("#mod_tvtma_slider_total").css({"display" : 'none'});
                             this.attachKeyboard({
-                            right: function() {
-                                if(gallery._fullscreen.active == true) {
-                                    gallery.next();
-                                    next();
-                                }
-                                
-                            }
-
-                        }); 
+	                            right: function() {
+	                                if(gallery._fullscreen.active == true) {
+	                                    gallery.next();
+	                                    next();
+	                                }
+	                                
+	                            }
+	                        });
                         });
 
                     }
@@ -296,6 +313,9 @@ jQuery(document).ready(function() {
                 showInfo : <?php echo $showInfo;?>,
                 fullscreenTransition : <?php echo $fullscreenTransition;?>,
                 fullscreenCrop : <?php echo $fullscreenCrop;?>
+                <?php if (!JFactory::getUser()->id){ ?>
+				,_showFullscreen: false 
+				<?php } ?>				
             });
 
         }

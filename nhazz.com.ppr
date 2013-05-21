@@ -5105,7 +5105,7 @@ nhazz
 			Z:\workspace\nhazz.com\cli\garbagecron.php
 			Z:\workspace\nhazz.com\cli\index.html
 			Z:\workspace\nhazz.com\cli\update_cron.php
-		+components
+		-components
 			-com_banners
 				-helpers
 					Z:\workspace\nhazz.com\components\com_banners\helpers\banner.php
@@ -7315,7 +7315,7 @@ nhazz
 					Z:\workspace\nhazz.com\components\com_sobipro\etc\news.xml
 					Z:\workspace\nhazz.com\components\com_sobipro\etc\paypal.ini
 					Z:\workspace\nhazz.com\components\com_sobipro\etc\template_functions.ini
-				+lib
+				-lib
 					-base
 						-fs
 							Z:\workspace\nhazz.com\components\com_sobipro\lib\base\fs\.htaccess
@@ -8436,7 +8436,7 @@ nhazz
 				Z:\workspace\nhazz.com\components\com_tvtma_user_presenter\controller.php
 				Z:\workspace\nhazz.com\components\com_tvtma_user_presenter\index.html
 				Z:\workspace\nhazz.com\components\com_tvtma_user_presenter\tvtma_user_presenter.php
-			+com_tvtma1080
+			-com_tvtma1080
 				-js
 					Z:\workspace\nhazz.com\components\com_tvtma1080\js\index.html
 					Z:\workspace\nhazz.com\components\com_tvtma1080\js\jquery.bpopup-0.7.0.min.js
@@ -43659,7 +43659,7 @@ nhazz
 				Z:\workspace\nhazz.com\modules\mod_tvtma_banners\index.html
 				Z:\workspace\nhazz.com\modules\mod_tvtma_banners\mod_tvtma_banners.php
 				Z:\workspace\nhazz.com\modules\mod_tvtma_banners\mod_tvtma_banners.xml
-			-mod_tvtma_slider
+			+mod_tvtma_slider
 				-includes
 					-css
 						Z:\workspace\nhazz.com\modules\mod_tvtma_slider\includes\css\button.png
@@ -43751,7 +43751,7 @@ nhazz
 				Z:\workspace\nhazz.com\modules\mod_tvtma_sobipro_menu\mod_tvtma_sobipro_menu.xml
 				Z:\workspace\nhazz.com\modules\mod_tvtma_sobipro_menu\profiles.php
 				Z:\workspace\nhazz.com\modules\mod_tvtma_sobipro_menu\section.php
-			+mod_tvtma_sobipro_menufield
+			-mod_tvtma_sobipro_menufield
 				-includes
 					-css
 						Z:\workspace\nhazz.com\modules\mod_tvtma_sobipro_menufield\includes\css\backbutton.jpg
@@ -49675,9 +49675,21 @@ nhazz
 10=Z:\workspace\nhazz.com\components\com_sobipro\opt\fields\email.php
 11=Z:\workspace\nhazz.com\components\com_tvtma1080\models\tvtmaslider.php
 12=Z:\workspace\nhazz.com\components\com_tvtma1080\views\tvtmaslider\view.json.php
+13=Z:\workspace\nhazz.com\modules\mod_tvtma_slider\mod_tvtma_slider.php
+14=Z:\workspace\nhazz.com\modules\mod_tvtma_slider\tmpl\default.php
+15=Z:\workspace\nhazz.com\components\com_tvtma1080\models\modtvtmasobiproentries.php
+16=Z:\workspace\nhazz.com\components\com_tvtma1080\models\projecttvtma.php
+17=Z:\workspace\nhazz.com\components\com_tvtma1080\models\sobiproposts.php
+18=Z:\workspace\nhazz.com\components\com_tvtma1080\models\tvtma1080.php
+19=Z:\workspace\nhazz.com\components\com_tvtma1080\models\tvtmabanners.php
+20=Z:\workspace\nhazz.com\components\com_tvtma1080\models\tvtmacomments.php
+21=Z:\workspace\nhazz.com\components\com_tvtma1080\models\tvtmasobiprotags.php
+22=Z:\workspace\nhazz.com\components\com_tvtma1080\models\index.html
+23=Z:\workspace\nhazz.com\components\com_sobipro\lib\models\category.php
+24=Z:\workspace\nhazz.com\components\com_sobipro\lib\models\datamodel.php
 [Selected Project Files]
 Main=
-Selected=Z:\workspace\nhazz.com\components\com_tvtma1080\models\tvtmaslider.php
+Selected=Z:\workspace\nhazz.com\modules\mod_tvtma_slider\tmpl\default.php
 [components\com_sobipro\lib\views\section.php]
 TopLine=1
 Caret=1,1
@@ -49694,26 +49706,62 @@ Caret=1,1
 TopLine=1
 Caret=1,1
 [components\com_sobipro\lib\models\dbobject.php]
-TopLine=1
-Caret=1,1
+TopLine=292
+Caret=1,294
 [components\com_sobipro\lib\base\factory.php]
-TopLine=96
-Caret=1,1
+TopLine=40
+Caret=35,43
 [components\com_sobipro\lib\models\entry.php]
-TopLine=1
+TopLine=31
 Caret=1,1
 [components\com_sobipro\lib\base\object.php]
-TopLine=19
-Caret=6,19
+TopLine=77
+Caret=1,1
 [components\com_sobipro\lib\models\fields\interface.php]
-TopLine=7
+TopLine=1
 Caret=1,1
 [components\com_sobipro\opt\fields\email.php]
-TopLine=21
+TopLine=1
 Caret=1,1
 [components\com_tvtma1080\models\tvtmaslider.php]
-TopLine=17
-Caret=35,22
+TopLine=55
+Caret=10,20
 [components\com_tvtma1080\views\tvtmaslider\view.json.php]
-TopLine=23
-Caret=11,31
+TopLine=1
+Caret=1,1
+[modules\mod_tvtma_slider\mod_tvtma_slider.php]
+TopLine=1
+Caret=1,1
+[modules\mod_tvtma_slider\tmpl\default.php]
+TopLine=145
+Caret=90,168
+[components\com_tvtma1080\models\modtvtmasobiproentries.php]
+TopLine=1
+Caret=1,1
+[components\com_tvtma1080\models\projecttvtma.php]
+TopLine=67
+Caret=17,24
+[components\com_tvtma1080\models\sobiproposts.php]
+TopLine=37
+Caret=15,23
+[components\com_tvtma1080\models\tvtma1080.php]
+TopLine=1
+Caret=1,1
+[components\com_tvtma1080\models\tvtmabanners.php]
+TopLine=1
+Caret=1,1
+[components\com_tvtma1080\models\tvtmacomments.php]
+TopLine=1
+Caret=1,1
+[components\com_tvtma1080\models\tvtmasobiprotags.php]
+TopLine=21
+Caret=23,23
+[components\com_tvtma1080\models\index.html]
+TopLine=1
+Caret=1,1
+[components\com_sobipro\lib\models\category.php]
+TopLine=1
+Caret=17,239
+[components\com_sobipro\lib\models\datamodel.php]
+TopLine=27
+Caret=1,1
