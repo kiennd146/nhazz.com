@@ -330,33 +330,36 @@ class TvtMA1080ModelTvtMASlider extends JModelItem
                 $db = JFactory::getDBO();
                 $query = $db->getQuery(true);
                 
-                $query->from('#__sobipro_field_option_selected as sfos,#__sobipro_object as so');
+                $query->from('#__sobipro_field_option_selected as sfos');
+                $query->join('inner','#__sobipro_object as so on sfos.sid=so.id ');
                 $opToString = $listOp[0];
-                $condition = " AND sfos.optValue IN ($opToString)  AND sfos.sid=so.id AND so.state='1' AND so.oType='entry' ";
+                $condition = " AND sfos.optValue IN ($opToString) AND so.state='1' AND so.oType='entry' ";
                 $listFieldString = implode(',', $listField);
                 $query->where("sfos.fid IN ($listFieldString)" . $condition);
-                $query->group('sfos.sid');
-                $query->order('so.createdTime DESC');
                 
                 if ($count == true) {
                 	$query_count = clone $query;
-                	$query_count->select('count(sfos.sid)');
+                	$query_count->select('count(distinct sfos.sid)');
                     $db->setQuery((string)$query_count);
                     $count_rs = $db->loadResult();
-                    
                 } 
 				
                 $query->select('sfos.sid');
+                $query->group('sfos.sid');
+                //$query->order('so.createdTime DESC');
+                $query->order('rand()');
                 $db->setQuery((string)$query, $offset, $limit);
                 
                 $fields = $db->loadResultArray();
                 unset($query);
                 unset($db);
-            } elseif($listOp && count($listOp) >= 2) { // Use as same as command all
+            } 
+            elseif($listOp && count($listOp) >= 2) { // Use as same as command all
                 $db = JFactory::getDBO();
                 $query = $db->getQuery(true);
                 
-                $query->from('#__sobipro_field_option_selected as sfos,#__sobipro_object as so');
+                $query->from('#__sobipro_field_option_selected AS sfos');
+                $query->join('inner','#__sobipro_object AS so ON sfos.sid=so.id ');
                 foreach ($listOp as $op) {
                     $entryList = $this->getEntryUseOneField($op, $listField);
                     $listFieldString = implode(',', $entryList);
@@ -364,41 +367,45 @@ class TvtMA1080ModelTvtMASlider extends JModelItem
                 }
                 
                 $listFieldString = implode(',', $listField);
-                $query->where("sfos.fid IN ($listFieldString)" . $condition . " AND sfos.sid=so.id AND so.state='1' AND so.oType='entry'");
-                $query->group('sfos.sid');
+                $query->where("sfos.fid IN ($listFieldString)" . $condition . " AND so.state='1' AND so.oType='entry'");
                 
                 if($count == true) {
                 	$query_count = clone $query;
-                	$query_count->select('count(sfos.sid)');
+                	$query_count->select('count(distinct sfos.sid)');
                     $db->setQuery((string)$query_count);
                     $count_rs = $db->loadResult();
                 }
                 
 				$query->select('sfos.sid');
-				$query->order('so.createdTime DESC');
+				$query->group('sfos.sid');
+				//$query->order('so.createdTime DESC');
+				$query->order('rand()');
 				$db->setQuery((string)$query, $offset, $limit);
                 
                 $fields = $db->loadResultArray();
                 unset($query);
                 unset($db);
-            }else { // Find all entry
+            }
+            else { // Find all entry
                 $db = JFactory::getDBO();
                 $query = $db->getQuery(true);
                 
-                $query->from('#__sobipro_field_option_selected as sfos,#__sobipro_object as so');
+                $query->from('#__sobipro_field_option_selected as sfos');
+                $query->join('inner','#__sobipro_object as so ON sfos.sid=so.id ');
                 $listFieldString = implode(',', $listField);
-                $query->where("sfos.fid IN ($listFieldString) AND sfos.sid=so.id AND so.state='1' AND so.oType='entry'");
-                $query->group('sfos.sid');                
+                $query->where("sfos.fid IN ($listFieldString) AND so.state='1' AND so.oType='entry'");
                 
                 if($count == true) {
                     $query_count = clone $query;
-                	$query_count->select('count(sfos.sid)');
+                	$query_count->select('count(distinct sfos.sid)');
                     $db->setQuery((string)$query_count);
                     $count_rs = $db->loadResult();
                 }
                 
                 $query->select('sfos.sid');
-                $query->order('so.createdTime DESC');
+                $query->group('sfos.sid');
+                //$query->order('so.createdTime DESC');
+                $query->order('rand()');
                 $db->setQuery((string)$query, $offset, $limit);
                 
                 $fields = $db->loadResultArray();
