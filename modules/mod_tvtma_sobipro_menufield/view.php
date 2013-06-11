@@ -27,7 +27,7 @@ SPLoader::loadView( 'section' );
 class SPCatModView extends SPSectionView
 {
 	public function display()
-	{     
+	{  
 		$data = array();
                 $sid=$this->get('sid');
                 $data['sid'] = $sid;
@@ -46,14 +46,31 @@ class SPCatModView extends SPSectionView
 		if( count( $entries ) ) {
 
 			foreach ( $entries as $eid ) {
+			    $en = $this->category($eid);
+                //$con = SPCatMod::CatNumber($eid);
+                // kiennd optimize
+                $con = SPCatMod::NumberCategoryChildren($eid);
+                
+                $pid = $this->getPid($en['id']);
+                $grandid = $this->getPid($pid);
+                $en['entry'] = $con;
+                
+                $data[ 'categories' ][] = array(
+                    '_complex' => 1,
+                    '_attributes' => array( 'id' => $en[ 'id' ], 'alt'=>$en['entry'], 'title'=>$pid, 'grand'=>$grandid,'name'=>$title),
+                    '_data' => $en
+                );
+
+			/*
 			// kiennd optimize
 			$category = SPFactory::Category( $eid );
+			//$category = $this->category( $eid );
 			$count_children = SPCatMod::NumberCategoryChildren($eid);
-			
-			if ($count_children > 0) {continue;}
+
+			if ($count_children == 0) continue;
 			$en = array();
 				$en[ 'id' ] = $category->get( 'id' ); 
-            $en[ 'nid' ] = $category->get( 'nid' );
+            //$en[ 'nid' ] = $category->get( 'nid' );
             $en[ 'name' ] = array(
                 '_complex' => 1,
                 '_data' => $category->get( 'name' ),
@@ -63,19 +80,18 @@ class SPCatModView extends SPSectionView
             
                                 
                                 
-                                //$pid = $this->getPid($en['id']);
-                                //$grandid = $this->getPid($pid);
+                                $pid = $this->getPid($en['id']);
+                                $grandid = $this->getPid($pid);
                                 $title=JRoute::_('index.php?option=com_sobipro&sid='.$en['id'].'&Itemid=225');
                                 
-                                //$en['entry'] = $count_children;
+                                $en['entry'] = $count_children;
 				$data[ 'categories' ][] = array(
 					'_complex' => 1,
-					//'_attributes' => array( 'id' => $en[ 'id' ], 'alt'=>$en['entry'], 'title'=>$pid, 'grand'=>$grandid,'name'=>$title, ),
+					'_attributes' => array( 'id' => $en[ 'id' ], 'alt'=>$en['entry'], 'title'=>$pid, 'grand'=>$grandid,'name'=>$title, ),
 					//'_attributes' => array( 'id' => $en[ 'id' ], 'title'=>$pid, 'grand'=>$grandid,'name'=>$title, ),
-					'_attributes' => array( 'id' => $en[ 'id' ], 'name'=>$title, ),
 					'_data' => $en
 				);
-                                
+                  */              
 			}
 			 
 			// kiennd optimize
