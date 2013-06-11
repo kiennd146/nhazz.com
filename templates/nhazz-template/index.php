@@ -71,6 +71,10 @@ unset($doc->_scripts[$this->baseurl.'/media/system/js/caption.js']);
 				'max-height': 400
 			}
 		});
+		
+		jQuery('img').live('contextmenu', function(e) {
+		    return false;
+		}); 
 	});	
 	</script>
 	

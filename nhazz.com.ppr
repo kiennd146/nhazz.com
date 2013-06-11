@@ -5105,7 +5105,7 @@ nhazz
 			Z:\workspace\nhazz.com\cli\garbagecron.php
 			Z:\workspace\nhazz.com\cli\index.html
 			Z:\workspace\nhazz.com\cli\update_cron.php
-		-components
+		+components
 			-com_banners
 				-helpers
 					Z:\workspace\nhazz.com\components\com_banners\helpers\banner.php
@@ -7279,7 +7279,7 @@ nhazz
 				Z:\workspace\nhazz.com\components\com_search\index.html
 				Z:\workspace\nhazz.com\components\com_search\router.php
 				Z:\workspace\nhazz.com\components\com_search\search.php
-			-com_sobipro
+			+com_sobipro
 				-etc
 					+adm
 						Z:\workspace\nhazz.com\components\com_sobipro\etc\adm\.htaccess
@@ -7635,7 +7635,7 @@ nhazz
 						Z:\workspace\nhazz.com\components\com_sobipro\lib\views\view.php
 					Z:\workspace\nhazz.com\components\com_sobipro\lib\index.html
 					Z:\workspace\nhazz.com\components\com_sobipro\lib\sobi.php
-				+opt
+				-opt
 					-fields
 						-adm
 							Z:\workspace\nhazz.com\components\com_sobipro\opt\fields\adm\chbxgroup.php
@@ -7947,8 +7947,8 @@ nhazz
 							Z:\workspace\nhazz.com\components\com_sobipro\tmp\edit\2012-10-04_15-10-16_42-114-33-23\files.var
 							Z:\workspace\nhazz.com\components\com_sobipro\tmp\edit\2012-10-04_15-10-16_42-114-33-23\post.var
 							Z:\workspace\nhazz.com\components\com_sobipro\tmp\edit\2012-10-04_15-10-16_42-114-33-23\store.var
-				-usr
-					+templates
+				+usr
+					-templates
 						-default
 							-category
 								Z:\workspace\nhazz.com\components\com_sobipro\usr\templates\default\category\.htaccess
@@ -8238,7 +8238,7 @@ nhazz
 							Z:\workspace\nhazz.com\components\com_sobipro\usr\templates\nhazz\template.php
 							Z:\workspace\nhazz.com\components\com_sobipro\usr\templates\nhazz\template.xml
 							Z:\workspace\nhazz.com\components\com_sobipro\usr\templates\nhazz\translation.xml
-						-nhazz_pro
+						+nhazz_pro
 							-category
 								Z:\workspace\nhazz.com\components\com_sobipro\usr\templates\nhazz_pro\category\.htaccess
 								Z:\workspace\nhazz.com\components\com_sobipro\usr\templates\nhazz_pro\category\index.html
@@ -43659,7 +43659,7 @@ nhazz
 				Z:\workspace\nhazz.com\modules\mod_tvtma_banners\index.html
 				Z:\workspace\nhazz.com\modules\mod_tvtma_banners\mod_tvtma_banners.php
 				Z:\workspace\nhazz.com\modules\mod_tvtma_banners\mod_tvtma_banners.xml
-			+mod_tvtma_slider
+			-mod_tvtma_slider
 				-includes
 					-css
 						Z:\workspace\nhazz.com\modules\mod_tvtma_slider\includes\css\button.png
@@ -43751,7 +43751,7 @@ nhazz
 				Z:\workspace\nhazz.com\modules\mod_tvtma_sobipro_menu\mod_tvtma_sobipro_menu.xml
 				Z:\workspace\nhazz.com\modules\mod_tvtma_sobipro_menu\profiles.php
 				Z:\workspace\nhazz.com\modules\mod_tvtma_sobipro_menu\section.php
-			-mod_tvtma_sobipro_menufield
+			+mod_tvtma_sobipro_menufield
 				-includes
 					-css
 						Z:\workspace\nhazz.com\modules\mod_tvtma_sobipro_menufield\includes\css\backbutton.jpg
@@ -43874,7 +43874,7 @@ nhazz
 				Z:\workspace\nhazz.com\modules\mod_wrapper\index.html
 				Z:\workspace\nhazz.com\modules\mod_wrapper\mod_wrapper.php
 				Z:\workspace\nhazz.com\modules\mod_wrapper\mod_wrapper.xml
-			+mod_yj_pop_login
+			-mod_yj_pop_login
 				-css
 					Z:\workspace\nhazz.com\modules\mod_yj_pop_login\css\down.png
 					Z:\workspace\nhazz.com\modules\mod_yj_pop_login\css\index.html
@@ -49664,12 +49664,28 @@ nhazz
 [Open project files]
 0=Z:\workspace\nhazz.com\modules\mod_tvtma_slider\tmpl\default.php
 1=Z:\workspace\nhazz.com\modules\mod_yj_pop_login\tmpl\default.php
+2=Z:\workspace\nhazz.com\modules\mod_tvtma_sobipro_menufield\view.php
+3=Z:\workspace\nhazz.com\components\com_sobipro\usr\templates\front\modules\cat\category.xsl
+4=Z:\workspace\nhazz.com\modules\mod_tvtma_sobipro_menufield\helper.php
+5=Z:\workspace\nhazz.com\components\com_sobipro\lib\views\section.php
 [Selected Project Files]
 Main=
-Selected=Z:\workspace\nhazz.com\modules\mod_tvtma_slider\tmpl\default.php
+Selected=Z:\workspace\nhazz.com\components\com_sobipro\lib\views\section.php
 [modules\mod_tvtma_slider\tmpl\default.php]
-TopLine=209
-Caret=60,231
+TopLine=5
+Caret=1,1
 [modules\mod_yj_pop_login\tmpl\default.php]
-TopLine=161
-Caret=28,209
+TopLine=1
+Caret=1,1
+[modules\mod_tvtma_sobipro_menufield\view.php]
+TopLine=18
+Caret=41,27
+[components\com_sobipro\usr\templates\front\modules\cat\category.xsl]
+TopLine=80
+Caret=1,58
+[modules\mod_tvtma_sobipro_menufield\helper.php]
+TopLine=56
+Caret=54,70
+[components\com_sobipro\lib\views\section.php]
+TopLine=119
+Caret=1,29
