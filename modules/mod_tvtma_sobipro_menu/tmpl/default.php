@@ -2,7 +2,8 @@
 $baseurl = JURI::base();
 $document = &JFactory::getDocument();
 $document->addStyleSheet($baseurl . 'modules/mod_tvtma_sobipro_menu/includes/mod_tvtma_sobipro_menu.css');
-$values = explode(",", JRequest::getVar('searchFor'));
+$values = JRequest::getVar('searchFor') != '' ? explode(",", JRequest::getVar('searchFor')) : array();
+//var_dump($values);
 $search_user_id = JRequest::getVar('search_user_id');
 if(isset($search_user_id) && $search_user_id != "") return;
 $html = "";
@@ -10,19 +11,28 @@ if($type == 'list'):
     $html .= "<ul>";
 	$search_need_arr = array();
 	
-	foreach($values as $search_for) {
-		if (in_array($search_for, $lists)) {
-			$search_need_arr[] = $list->value;
-		}
-		else {
-			$search_need_arr[] = 'NEED_REPLACE';
+	$list_value = array();
+	foreach ($lists as $list) {
+		$list_value[] = $list->value;
+	}
+	
+	if (count($values)) {
+		
+		foreach($values as $search_for) {
+			if (!in_array($search_for, $list_value)) {				
+				$search_need_arr[] = $search_for;
+				$search_need_arr[] = 'NEED_REPLACE';
+			}
+			else {
+				$search_need_arr[] = 'NEED_REPLACE';
+			}
 		}
 	}
 			
     foreach ($lists as $list) {
 		$search_need = $list->value;
 		$search_phrase = 'exact';
-		if (count($values) > 0) {
+		if (count($search_need_arr) > 0) { //searching multi
 			$search_need = implode(",", $search_need_arr);
 			$search_phrase = 'multi';
 			$search_need = str_replace('NEED_REPLACE', $list->value, $search_need);
