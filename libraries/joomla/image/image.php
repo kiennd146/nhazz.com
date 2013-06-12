@@ -838,7 +838,7 @@ class JImage
 		}
 		
 		//-- Copy the renamed file to media/com_vitabook/images.
-		@$image->toFile($dest, $img_type, array('quality' => '90'));
+		@$image->toFile($dest, $img_type, array('quality' => '100'));
 		
 		return $dest;
 	}

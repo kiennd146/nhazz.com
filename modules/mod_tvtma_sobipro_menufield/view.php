@@ -54,7 +54,7 @@ class SPCatModView extends SPSectionView
                 $pid = $this->getPid($en['id']);
                 $grandid = $this->getPid($pid);
                 $en['entry'] = $con;
-                
+                $title=JRoute::_('index.php?option=com_sobipro&sid='.$en['id'].'&Itemid=225');
                 $data[ 'categories' ][] = array(
                     '_complex' => 1,
                     '_attributes' => array( 'id' => $en[ 'id' ], 'alt'=>$en['entry'], 'title'=>$pid, 'grand'=>$grandid,'name'=>$title),
