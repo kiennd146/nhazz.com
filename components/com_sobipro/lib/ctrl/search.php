@@ -156,7 +156,6 @@ final class SPSearchCtrl extends SPSectionCtrl {
 	if (!( $ssid ) || SPRequest::int('reset', 0)) {
 	    $this->session($ssid);
 	}
-
 	/* clean request */
 	if (count($this->_request)) {
 	    foreach ($this->_request as $i => $v) {
@@ -185,6 +184,11 @@ final class SPSearchCtrl extends SPSectionCtrl {
 		    break;
 		case 'exact': {
 			$this->searchPhrase();
+			break;
+		    }
+		// kiennd
+		case 'multi': {
+			$this->searchMulti();
 			break;
 		    }
 	    }
@@ -280,7 +284,27 @@ final class SPSearchCtrl extends SPSectionCtrl {
 	    Sobi::Trigger('OnVerify', 'Search', array(&$this->_results));
 	}
     }
-
+	
+	// kiennd
+	private function searchMulti() {
+	/* @TODO categories */
+	$searches = explode(",", $this->_request['search_for']);
+	$results = $this->searchPhraseMulti($searches[0]);
+	for($i=1; $i<count($searches); $i++) {
+		// clone from searchPhrase function
+		$rs = $this->searchPhraseMulti($searches[$i]);
+		$results = array_intersect($results, $rs);
+	}
+	$this->_results = $results;
+    }
+    
+    // kiennd
+    private function searchPhraseMulti($search_for) {
+	/* @TODO categories */
+	$search = str_replace('.', '\.', $search_for);
+	return $this->travelFields("REGEXP:[[:<:]]{$search}[[:>:]]", true);
+    }
+    
     private function searchPhrase() {
 	/* @TODO categories */
 	$search = str_replace('.', '\.', $this->_request['search_for']);
@@ -419,6 +443,7 @@ final class SPSearchCtrl extends SPSectionCtrl {
 	$results = array();
 	/* case some plugin overwrites this method */
 	Sobi::Trigger('GetResults', 'Search', array(&$results, &$ssid, &$template));
+	
 	if (count($results)) {
 	    return $results;
 	}

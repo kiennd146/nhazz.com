@@ -5105,7 +5105,7 @@ nhazz
 			Z:\workspace\nhazz.com\cli\garbagecron.php
 			Z:\workspace\nhazz.com\cli\index.html
 			Z:\workspace\nhazz.com\cli\update_cron.php
-		+components
+		-components
 			-com_banners
 				-helpers
 					Z:\workspace\nhazz.com\components\com_banners\helpers\banner.php
@@ -43128,7 +43128,7 @@ nhazz
 					Z:\workspace\nhazz.com\media\system\swf\uploader.swf
 				Z:\workspace\nhazz.com\media\system\index.html
 			Z:\workspace\nhazz.com\media\index.html
-		+modules
+		-modules
 			-mod_articles_archive
 				-tmpl
 					Z:\workspace\nhazz.com\modules\mod_articles_archive\tmpl\default.php
@@ -47646,7 +47646,7 @@ nhazz
 					Z:\workspace\nhazz.com\plugins\user\profile\profile.xml
 				Z:\workspace\nhazz.com\plugins\user\index.html
 			Z:\workspace\nhazz.com\plugins\index.html
-		-templates
+		+templates
 			-atomic
 				-css
 					-blueprint
@@ -48193,7 +48193,7 @@ nhazz
 					Z:\workspace\nhazz.com\templates\nhazz-template\images\upload_image.png
 				-img
 					Z:\workspace\nhazz.com\templates\nhazz-template\img\origin.png
-				+js
+				-js
 					Z:\workspace\nhazz.com\templates\nhazz-template\js\imgpreview.full.jquery.js
 					Z:\workspace\nhazz.com\templates\nhazz-template\js\index.html
 					Z:\workspace\nhazz.com\templates\nhazz-template\js\jquery.equalheights.js
@@ -49662,30 +49662,10 @@ nhazz
 		Z:\workspace\nhazz.com\setup.txt
 		Z:\workspace\nhazz.com\web.config.txt
 [Open project files]
-0=Z:\workspace\nhazz.com\modules\mod_tvtma_slider\tmpl\default.php
-1=Z:\workspace\nhazz.com\modules\mod_yj_pop_login\tmpl\default.php
-2=Z:\workspace\nhazz.com\modules\mod_tvtma_sobipro_menufield\view.php
-3=Z:\workspace\nhazz.com\components\com_sobipro\usr\templates\front\modules\cat\category.xsl
-4=Z:\workspace\nhazz.com\modules\mod_tvtma_sobipro_menufield\helper.php
-5=Z:\workspace\nhazz.com\components\com_sobipro\lib\views\section.php
+0=Z:\workspace\nhazz.com\templates\nhazz-template\index.php
 [Selected Project Files]
 Main=
-Selected=Z:\workspace\nhazz.com\components\com_sobipro\lib\views\section.php
-[modules\mod_tvtma_slider\tmpl\default.php]
-TopLine=5
-Caret=1,1
-[modules\mod_yj_pop_login\tmpl\default.php]
+Selected=Z:\workspace\nhazz.com\templates\nhazz-template\index.php
+[templates\nhazz-template\index.php]
 TopLine=1
 Caret=1,1
-[modules\mod_tvtma_sobipro_menufield\view.php]
-TopLine=18
-Caret=41,27
-[components\com_sobipro\usr\templates\front\modules\cat\category.xsl]
-TopLine=80
-Caret=1,58
-[modules\mod_tvtma_sobipro_menufield\helper.php]
-TopLine=56
-Caret=54,70
-[components\com_sobipro\lib\views\section.php]
-TopLine=119
-Caret=1,29
